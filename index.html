@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Material didáctico de Programación Estructurada - UABC FIAD - ISyTE">
+<title>Programación Estructurada | ISyTE - UABC</title>
+<link rel="stylesheet" href="styles/styles.css">
+
+<style>
+  /* Tema 0: ocupa el ancho completo de las tres columnas del índice */
+  .units .tema0-wide {
+    grid-column: 1 / -1;
+  }
+
+  .tema0-wide .tema0-list {
+    columns: 3;
+    column-gap: 2rem;
+  }
+
+  .tema0-wide .tema0-list li {
+    break-inside: avoid;
+    margin-bottom: .35rem;
+  }
+
+  @media (max-width: 900px) {
+    .tema0-wide .tema0-list { columns: 2; }
+  }
+
+  @media (max-width: 600px) {
+    .tema0-wide .tema0-list { columns: 1; }
+  }
+</style>
+</head>
+
+<body class="page-index">
+<div class="page">
+
+  <!-- =====================================================
+       ENCABEZADO INSTITUCIONAL
+       Reutiliza las mismas clases de Estructuras de Datos
+       ===================================================== -->
+  <header class="header">
+    <div class="title">
+      <h1>PROGRAMACIÓN ESTRUCTURADA
+        <span>Ingeniero en Software y Tecnologías Emergentes</span>
+      </h1>
+      <div class="subtitle">Material didáctico · Curso por temas</div>
+      <div class="badge">💻 <b>UABC</b> · Facultad de Ingeniería, Arquitectura y Diseño</div>
+    </div>
+
+    <div class="meta">
+      <div><strong>MATERIA</strong>Programación Estructurada</div>
+      <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
+      <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
+      <div><strong>FACULTAD</strong>FIAD</div>
+      <div><strong>UNIVERSIDAD</strong>UABC</div>
+    </div>
+
+    <div class="logo">
+      <img src="images/uabc_logo.png" alt="Escudo UABC">
+    </div>
+  </header>
+
+  <div class="ribbon">
+    <span>UNIVERSIDAD AUTÓNOMA DE BAJA CALIFORNIA</span>
+    <span>PROGRAMACIÓN ESTRUCTURADA · ISyTE</span>
+  </div>
+
+  <!-- =====================================================
+       BIENVENIDA Y COMPETENCIA
+       ===================================================== -->
+  <section class="hero">
+    <h2>Bienvenido al curso</h2>
+    <p>
+      En esta página encontrarás el acceso directo al material de Programación Estructurada.
+      El curso inicia con los elementos fundamentales del lenguaje y avanza hacia el diseño modular,
+      arreglos, estructuras, recursión, programas multiarchivo, bibliotecas y manejo de archivos.
+    </p>
+  </section>
+
+  <div class="competencia">
+    <b>Competencia general:</b>
+    Diseñar programas correctamente estructurados, aplicando los principios de abstracción procedimental
+    del diseño descendente, para construir programas eficaces, eficientes y fáciles de actualizar,
+    con una actitud analítica y creativa.
+  </div>
+
+  <div class="menu-title">CONTENIDO DEL CURSO</div>
+
+  <!-- =====================================================
+       TEMAS
+       Se reciclan u1..u6 para conservar la paleta original.
+       ===================================================== -->
+  <section class="units">
+
+    <article class="card u6 tema0-wide">
+      <div class="card-head">TEMA 0 · INTRODUCCIÓN A LA PROGRAMACIÓN ESTRUCTURADA</div>
+      <div class="card-body">
+        <div class="icon">💻</div>
+        <h3>Introducción a la Programación Estructurada</h3>
+        <p>Panorama general de la programación, sus paradigmas y los fundamentos del lenguaje C.</p>
+        <ul class="tema0-list">
+          <li>Historia de la programación</li>
+          <li>Diferentes paradigmas de programación</li>
+          <li>¿Qué es la Programación Estructurada?</li>
+          <li>Aportaciones de la Programación Estructurada</li>
+          <li>Lenguaje C: historia</li>
+          <li>Estructura básica de un programa en C</li>
+          <li>Librerías y directiva <code>#include</code></li>
+          <li>Secuencias de escape</li>
+          <li>Comentarios en C</li>
+          <li>Sentencia de entrada: <code>scanf()</code></li>
+          <li>Sentencia de salida: <code>printf()</code></li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_00_introduccion_programacion_estructurada.html">Abrir Tema 0</a>
+      </div>
+    </article>
+
+    <article class="card u1">
+      <div class="card-head">TEMA 1 · TIPOS DE DATOS</div>
+      <div class="card-body">
+        <div class="icon">🔢</div>
+        <h3>Tipos de datos</h3>
+        <p>Fundamentos para representar y almacenar información dentro de un programa.</p>
+        <ul>
+          <li>Enteros</li>
+          <li>Reales</li>
+          <li>Caracteres</li>
+          <li>Tipos y variables</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_01_tipos_datos.html">Abrir Tema 1</a>
+      </div>
+    </article>
+
+    <article class="card u2">
+      <div class="card-head">TEMA 2 · EXPRESIONES</div>
+      <div class="card-body">
+        <div class="icon">🧮</div>
+        <h3>Expresiones y operadores</h3>
+        <p>Construcción de expresiones para calcular, comparar y tomar decisiones.</p>
+        <ul>
+          <li>Expresiones aritméticas</li>
+          <li>Expresiones lógicas</li>
+          <li>Expresiones relacionales</li>
+          <li>Precedencia de operadores</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_02_expresiones.html">Abrir Tema 2</a>
+      </div>
+    </article>
+
+    <article class="card u3">
+      <div class="card-head">TEMA 3 · SELECCIÓN</div>
+      <div class="card-body">
+        <div class="icon">🔀</div>
+        <h3>Estructuras de control de selección</h3>
+        <p>Permiten decidir qué instrucciones ejecutar de acuerdo con una condición.</p>
+        <ul>
+          <li>Selección simple</li>
+          <li>Selección doble</li>
+          <li>Selección múltiple</li>
+          <li>Condiciones anidadas</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_03_seleccion.html">Abrir Tema 3</a>
+      </div>
+    </article>
+
+    <article class="card u4">
+      <div class="card-head">TEMA 4 · ITERACIÓN</div>
+      <div class="card-body">
+        <div class="icon">🔁</div>
+        <h3>Estructuras de control de iteración</h3>
+        <p>Repetición controlada de instrucciones para resolver procesos cíclicos.</p>
+        <ul>
+          <li>for</li>
+          <li>while</li>
+          <li>do-while</li>
+          <li>Contadores y acumuladores</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_04_iteracion.html">Abrir Tema 4</a>
+      </div>
+    </article>
+
+    <article class="card u5">
+      <div class="card-head">TEMA 5 · ABSTRACCIÓN PROCEDIMENTAL</div>
+      <div class="card-body">
+        <div class="icon">🧩</div>
+        <h3>Diseño modular</h3>
+        <p>División de un problema en tareas y subtareas mediante módulos reutilizables.</p>
+        <ul>
+          <li>5.1 Diseño descendente, tareas y subtareas</li>
+          <li>5.2 Módulos</li>
+          <li>5.3 Parámetros y argumentos</li>
+          <li>5.4 Resultados y valores de retorno</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_05_abstraccion_procedimental.html">Abrir Tema 5</a>
+      </div>
+    </article>
+
+    <article class="card u6">
+      <div class="card-head">TEMA 6 · ARREGLOS</div>
+      <div class="card-body">
+        <div class="icon">▦</div>
+        <h3>Arreglos</h3>
+        <p>Colecciones de datos del mismo tipo organizadas mediante posiciones o índices.</p>
+        <ul>
+          <li>6.1 Unidimensionales</li>
+          <li>6.2 Bidimensionales</li>
+          <li>6.3 Cadenas</li>
+          <li>Recorrido y procesamiento</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_06_arreglos.html">Abrir Tema 6</a>
+      </div>
+    </article>
+
+    <article class="card u1">
+      <div class="card-head">TEMA 7 · STRUCTS</div>
+      <div class="card-body">
+        <div class="icon">📦</div>
+        <h3>Estructuras (struct)</h3>
+        <p>Agrupación de datos relacionados, incluso de tipos diferentes, bajo una misma estructura.</p>
+        <ul>
+          <li>Declaración de estructuras</li>
+          <li>Campos o miembros</li>
+          <li>Variables tipo struct</li>
+          <li>Acceso a miembros</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_07_structs.html">Abrir Tema 7</a>
+      </div>
+    </article>
+
+    <article class="card u2">
+      <div class="card-head">TEMA 8 · TYPEDEF</div>
+      <div class="card-body">
+        <div class="icon">🏷️</div>
+        <h3>typedef</h3>
+        <p>Creación de nombres alternativos para tipos de datos y estructuras definidos por el programador.</p>
+        <ul>
+          <li>Alias de tipos</li>
+          <li>typedef con tipos básicos</li>
+          <li>typedef con struct</li>
+          <li>Legibilidad del programa</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_08_typedef.html">Abrir Tema 8</a>
+      </div>
+    </article>
+
+    <article class="card u3">
+      <div class="card-head">TEMA 9 · RECURSIÓN</div>
+      <div class="card-body">
+        <div class="icon">🪆</div>
+        <h3>Recursión</h3>
+        <p>Técnica en la que una función resuelve un problema llamándose a sí misma.</p>
+        <ul>
+          <li>Caso base</li>
+          <li>Caso recursivo</li>
+          <li>Pila de llamadas</li>
+          <li>Aplicaciones</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_09_recursion.html">Abrir Tema 9</a>
+      </div>
+    </article>
+
+    <article class="card u4">
+      <div class="card-head">TEMA 10 · PROGRAMAS MULTIARCHIVO</div>
+      <div class="card-body">
+        <div class="icon">🗂️</div>
+        <h3>Compilación separada</h3>
+        <p>Organización de programas grandes distribuyendo declaraciones e implementación en varios archivos.</p>
+        <ul>
+          <li>Archivos de cabecera</li>
+          <li>Archivos fuente</li>
+          <li>Compilación separada</li>
+          <li>Enlazado del programa</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_10_multiarchivo.html">Abrir Tema 10</a>
+      </div>
+    </article>
+
+    <article class="card u5">
+      <div class="card-head">TEMA 11 · BIBLIOTECA DE FUNCIONES</div>
+      <div class="card-body">
+        <div class="icon">📚</div>
+        <h3>Biblioteca de funciones</h3>
+        <p>Organización de funciones reutilizables para facilitar el mantenimiento y la modularidad.</p>
+        <ul>
+          <li>Funciones reutilizables</li>
+          <li>Prototipos</li>
+          <li>Cabeceras</li>
+          <li>Uso desde otros programas</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_11_biblioteca_funciones.html">Abrir Tema 11</a>
+      </div>
+    </article>
+
+    <article class="card u6">
+      <div class="card-head">TEMA 12 · ARCHIVOS</div>
+      <div class="card-body">
+        <div class="icon">💾</div>
+        <h3>Manejo de archivos</h3>
+        <p>Persistencia de información fuera de la memoria principal del programa.</p>
+        <ul>
+          <li>12.1 Archivos de texto</li>
+          <li>12.2 Archivos binarios</li>
+          <li>12.3 Archivos indexados</li>
+          <li>Lectura, escritura y actualización</li>
+        </ul>
+      </div>
+      <div class="card-foot">
+        <a class="btn" href="pages/tema_12_archivos.html">Abrir Tema 12</a>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- =====================================================
+       ACCESOS RÁPIDOS
+       ===================================================== -->
+  <section class="quick quick-codigo" aria-labelledby="titulo-codigo-base">
+    <div class="quick-icono" aria-hidden="true">💻</div>
+    <div class="quick-contenido">
+      <h3 id="titulo-codigo-base">CÓDIGO BASE EN C</h3>
+      <p>Ejemplos de código para consultar y utilizar como punto de partida durante el curso.</p>
+      <div class="quick-links">
+        <a class="quick-link" href="pages/codigo_control.html"><span class="quick-emoji">🔁</span><span>Control</span></a>
+        <a class="quick-link" href="pages/codigo_funciones.html"><span class="quick-emoji">🧩</span><span>Funciones</span></a>
+        <a class="quick-link" href="pages/codigo_arreglos.html"><span class="quick-emoji">▦</span><span>Arreglos</span></a>
+        <a class="quick-link" href="pages/codigo_structs.html"><span class="quick-emoji">📦</span><span>Structs</span></a>
+        <a class="quick-link" href="pages/codigo_recursion.html"><span class="quick-emoji">🪆</span><span>Recursión</span></a>
+        <a class="quick-link" href="pages/codigo_archivos.html"><span class="quick-emoji">💾</span><span>Archivos</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="infografias-panel" aria-labelledby="titulo-infografias">
+    <div class="infografias-icono" aria-hidden="true">🎨</div>
+    <div class="infografias-contenido">
+      <h3 id="titulo-infografias">INFOGRAFÍAS</h3>
+      <p>Material visual de apoyo para repasar rápidamente los conceptos principales.</p>
+      <div class="infografias-links">
+        <a class="infografia-link" href="pages/infografias_fundamentos.html"><span class="infografia-emoji">🔢</span><span>Fundamentos</span></a>
+        <a class="infografia-link" href="pages/infografias_control.html"><span class="infografia-emoji">🔀</span><span>Control</span></a>
+        <a class="infografia-link" href="pages/infografias_funciones.html"><span class="infografia-emoji">🧩</span><span>Funciones</span></a>
+        <a class="infografia-link" href="pages/infografias_arreglos.html"><span class="infografia-emoji">▦</span><span>Arreglos</span></a>
+        <a class="infografia-link" href="pages/infografias_recursion.html"><span class="infografia-emoji">🪆</span><span>Recursión</span></a>
+        <a class="infografia-link" href="pages/infografias_archivos.html"><span class="infografia-emoji">💾</span><span>Archivos</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="summary">
+    <div class="bulb">💡</div>
+    <div>
+      <b>Idea central del curso</b><br>
+      “Programar de forma estructurada es transformar un problema complejo en soluciones pequeñas,
+      claras, modulares y fáciles de mantener.”
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div>
+      <div class="uabc">UABC</div>
+      <div>UNIVERSIDAD AUTÓNOMA<br>DE BAJA CALIFORNIA</div>
+    </div>
+    <div class="center">
+      <b>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</b><br>
+      Ingeniero en Software y Tecnologías Emergentes · Programación Estructurada
+    </div>
+    <div class="right">POR LA REALIZACIÓN PLENA DEL SER</div>
+  </footer>
+
+</div>
+</body>
+</html>
