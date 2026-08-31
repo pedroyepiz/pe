@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programa Esqueleto de Funciones | Programación Estructurada</title>
+
+<link rel="stylesheet" href="../styles/styles.css">
+</head>
+
+<body class="page-programa-pilas">
+<div class="page">
+
+<header class="header">
+    <div class="title">
+        <h1>PROGRAMA ESQUELETO DE FUNCIONES <span>C / C++ · Programación modular</span></h1>
+        <div class="subtitle">Código base para prácticas de Programación Estructurada · Manejo de funciones</div>
+    </div>
+
+    <div class="meta">
+        <div><strong>MATERIA</strong>Programación Estructurada</div>
+        <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
+        <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
+        <div><strong>UNIVERSIDAD</strong>Universidad Autónoma de Baja California (UABC)</div>
+    </div>
+
+    <div class="logo">
+        <img src="../images/uabc_logo.png" alt="Escudo UABC">
+    </div>
+</header>
+
+<div class="ribbon">
+    <span>ABSTRACCIÓN PROCEDIMENTAL · FUNCIONES</span>
+    <span>ARCHIVO DE CÓDIGO PARA COPIAR</span>
+</div>
+
+<main class="content">
+
+    <div class="code-label">Programa base / esqueleto de funciones (.cpp)</div>
+    <section class="code-card">
+        <div class="code-head">
+            <div class="file-name">esqueleto.cpp</div>
+            <button class="copy-btn" onclick="copiarCodigo('codigoCPP', this)">Copiar código</button>
+        </div>
+        <pre><code id="codigoCPP">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#define N 10
+//*** PROTOTIPOS DE FUNCIONES  ******
+int msges();
+void menu();
+void Fibonacci (void);
+void Factorial (void);
+void Digitos (void);
+//****  main principal  *********
+int main()
+{
+   menu();
+
+	return 0;
+}
+//  *** DESARROLLO DE LAS FUNCIONES  ******
+//*********************
+int msges()
+{ int op;
+  system (&quot;CLS&quot;);
+  printf (&quot;   M  E   N   U \n&quot;);
+  printf(&quot;1.- FIBONACCI \n&quot;);
+  printf(&quot;2.- FACTORIAL \n&quot;);
+  printf(&quot;3.- DIGITOS \n&quot;);
+  printf(&quot;0.- SALIR  \n&quot;);
+  printf(&quot;ESCOGE UNA OPCION: &quot;);
+  scanf (&quot;%d&quot;,&amp;op);
+  return op;
+}
+//****************
+void menu()
+{
+  int op;
+  do{
+      op=msges();
+      switch (op)
+      {
+        case 1:
+              Fibonacci();
+              break;
+        case 2:
+              Factorial();
+              break;
+        case 3:
+              Digitos();
+              break;
+
+      }
+
+    }while (op != 0);
+
+
+}
+
+//*********************
+void Fibonacci (void)
+{
+    //  VARIALES LOCALES 
+    system (&quot;CLS&quot;);
+    //  AQUI DESARROLLO PROGRAMA
+    printf(&quot;   FIBONACCI\n&quot;); 
+    system (&quot;PAUSE&quot;);
+}
+
+//*************************
+void Factorial (void)
+{
+
+    //  VARIALES LOCALES 
+    system (&quot;CLS&quot;);
+    //  AQUI DESARROLLO PROGRAMA
+    printf(&quot;   FACTORIAL\n&quot;); 
+    system (&quot;PAUSE&quot;);
+}
+//****************************
+void Digitos (void)
+{
+    //  VARIALES LOCALES 
+    system (&quot;CLS&quot;);
+    //  AQUI DESARROLLO PROGRAMA
+    printf(&quot;   DIGITOS\n&quot;); 
+    system (&quot;PAUSE&quot;);
+
+}</code></pre>
+    </section>
+
+</main>
+</div>
+
+<script>
+async function copiarCodigo(id, boton) {
+    const texto = document.getElementById(id).textContent;
+    try {
+        await navigator.clipboard.writeText(texto);
+        const original = boton.textContent;
+        boton.textContent = "¡Copiado!";
+        setTimeout(() => boton.textContent = original, 1500);
+    } catch (e) {
+        const area = document.createElement("textarea");
+        area.value = texto;
+        document.body.appendChild(area);
+        area.select();
+        document.execCommand("copy");
+        area.remove();
+        const original = boton.textContent;
+        boton.textContent = "¡Copiado!";
+        setTimeout(() => boton.textContent = original, 1500);
+    }
+}
+</script>
+<script src="../scripts/app.js" defer></script>
+</body>
+</html>

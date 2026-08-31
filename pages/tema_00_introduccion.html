@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tema 0: Introducción a la Programación Estructurada - UABC FIAD - ISyTE">
+<title>Tema 0 · Introducción a la Programación Estructurada | UABC</title>
+<link rel="stylesheet" href="../styles/styles.css">
+<style>
+  :root{
+    --intro-green:#0f6b45;
+    --intro-green-2:#168455;
+    --intro-light:#eef8f2;
+    --intro-blue:#eaf4ff;
+    --intro-gold:#f2b134;
+    --intro-ink:#17352a;
+    --intro-line:#d6e7de;
+  }
+  html{scroll-behavior:smooth}
+  .content{overflow:hidden}
+  .topic-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:18px 0 24px}
+  .topic-nav a{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem .8rem;border:1px solid var(--intro-line);border-radius:999px;background:#fff;text-decoration:none;color:var(--intro-green);font-weight:800;font-size:.88rem;box-shadow:0 2px 7px rgba(0,0,0,.05);transition:.2s}
+  .topic-nav a:hover{transform:translateY(-2px);background:var(--intro-light)}
+  .intro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}
+  .mini-card{border:1px solid var(--intro-line);border-radius:16px;background:#fff;padding:16px;box-shadow:0 5px 16px rgba(0,0,0,.06);position:relative;overflow:hidden}
+  .mini-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--intro-green)}
+  .mini-card .big{font-size:2rem;line-height:1;margin-bottom:8px}
+  .mini-card h4{margin:.2rem 0 .45rem;color:var(--intro-green)}
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:20px 0 8px;position:relative}
+  .timeline::before{content:"";position:absolute;left:7%;right:7%;top:25px;height:4px;background:linear-gradient(90deg,var(--intro-green),var(--intro-gold));border-radius:5px}
+  .time-item{position:relative;text-align:center;padding:0 8px}
+  .time-dot{width:22px;height:22px;border-radius:50%;background:#fff;border:6px solid var(--intro-green);margin:15px auto 12px;position:relative;z-index:1}
+  .time-item b{display:block;color:var(--intro-green);font-size:1.05rem}
+  .time-item span{font-size:.88rem;display:block;margin-top:4px}
+  .paradigm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+  .paradigm{padding:16px;border-radius:16px;background:#fff;border:1px solid var(--intro-line);box-shadow:0 4px 12px rgba(0,0,0,.05);transition:.2s}
+  .paradigm:hover{transform:translateY(-3px)}
+  .paradigm strong{display:block;color:var(--intro-green);margin:.4rem 0}
+  .flow-wrap{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:20px 0}
+  .flow-box{min-width:150px;padding:14px 16px;border:2px solid var(--intro-green);border-radius:14px;background:var(--intro-light);text-align:center;font-weight:800}
+  .flow-arrow{font-size:1.8rem;color:var(--intro-green);font-weight:900;animation:pulseArrow 1.4s infinite}
+  @keyframes pulseArrow{50%{transform:translateX(5px);opacity:.55}}
+  .three-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:18px 0}
+  .pillar{background:#fff;border:1px solid var(--intro-line);border-radius:16px;padding:18px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.05)}
+  .pillar .symbol{font-size:2.3rem}.pillar h4{color:var(--intro-green);margin:.5rem 0}
+  .c-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:18px;align-items:stretch;margin:18px 0}
+  .program-map{background:linear-gradient(145deg,#f8fcfa,#e7f4ed);border:1px solid var(--intro-line);border-radius:18px;padding:18px}
+  .program-part{padding:10px 12px;margin:8px 0;border-radius:10px;background:#fff;border-left:5px solid var(--intro-green);box-shadow:0 2px 8px rgba(0,0,0,.04)}
+  .program-part b{color:var(--intro-green)}
+  .code-toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+  .copy-btn,.demo-btn,.quiz-btn{border:0;border-radius:10px;padding:.55rem .85rem;background:var(--intro-green);color:#fff;font-weight:800;cursor:pointer}
+  .copy-btn:hover,.demo-btn:hover,.quiz-btn:hover{background:var(--intro-green-2)}
+  .copy-status{font-size:.82rem;color:var(--intro-green);font-weight:700}
+  .escape-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+  .escape{border:1px solid var(--intro-line);border-radius:12px;background:#fff;padding:13px;text-align:center}
+  .escape code{display:block;font-size:1.15rem;font-weight:900;color:var(--intro-green);margin-bottom:5px}
+  .io-demo{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}
+  .terminal{background:#12231b;color:#e9fff4;border-radius:16px;padding:18px;min-height:170px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+  .terminal .prompt{color:#8fe2b7}.terminal .output{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+  .demo-panel{border:1px solid var(--intro-line);border-radius:16px;padding:18px;background:#fff}
+  .demo-panel label{display:block;font-weight:800;color:var(--intro-green);margin-bottom:6px}
+  .demo-panel input{width:100%;box-sizing:border-box;padding:.7rem .8rem;border:1px solid #b9cdc2;border-radius:10px;margin-bottom:10px;font:inherit}
+  .tip{border-left:5px solid var(--intro-gold);background:#fff8e8;padding:13px 15px;border-radius:10px;margin:14px 0}
+  .compare{width:100%;border-collapse:collapse;margin:16px 0}
+  .compare th,.compare td{padding:10px;border:1px solid var(--intro-line);vertical-align:top}.compare th{background:var(--intro-light);color:var(--intro-green)}
+  .quiz{margin:22px 0;padding:18px;border:1px solid var(--intro-line);border-radius:18px;background:#fff}
+  .quiz-q{margin:14px 0;padding:14px;border-radius:12px;background:#f8fbf9}
+  .quiz-q button{display:block;width:100%;text-align:left;margin:7px 0;padding:9px 10px;border:1px solid #c8d9d0;background:#fff;border-radius:9px;cursor:pointer}
+  .quiz-q button:hover{background:var(--intro-light)}
+  .quiz-feedback{font-weight:800;margin-top:7px;min-height:1.2em}
+  .reveal{cursor:pointer}.reveal-content{display:none;margin-top:10px}.reveal.open .reveal-content{display:block}
+  @media(max-width:900px){.intro-grid,.paradigm-grid{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:1fr}.timeline::before{display:none}.time-item{display:grid;grid-template-columns:60px 1fr;text-align:left;align-items:center}.time-dot{margin:8px auto}.three-pillars,.c-layout,.io-demo{grid-template-columns:1fr}.escape-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:560px){.intro-grid,.paradigm-grid,.escape-grid{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}.flow-arrow{transform:rotate(90deg);animation:none}}
+</style>
+</head>
+<body class="page-listas">
+<div class="page">
+  <header class="header">
+    <div>
+      <h1>INTRODUCCIÓN A LA PROGRAMACIÓN ESTRUCTURADA <span>TEMA 0 · FUNDAMENTOS DEL LENGUAJE C</span></h1>
+      <div class="subtitle">Panorama general de la programación, sus paradigmas y los fundamentos del lenguaje C</div>
+      <div class="badge">💻 <b>De un problema a una solución paso a paso</b></div>
+    </div>
+    <div class="meta">
+      <div><strong>TEMA</strong>Tema 0 · Introducción</div>
+      <div><strong>MATERIA</strong>Programación Estructurada</div>
+      <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
+      <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
+      <div><strong>FACULTAD</strong>FIAD</div>
+      <div><strong>UNIVERSIDAD</strong>UABC</div>
+    </div>
+    <div class="logo"><img src="../images/uabc_logo.png" alt="Escudo UABC"></div>
+  </header>
+
+  <div class="ribbon"><span>TEMA 0 · INTRODUCCIÓN A LA PROGRAMACIÓN ESTRUCTURADA</span><span>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</span></div>
+
+  <main class="content">
+    <div class="note"><b>Propósito del tema:</b> reconocer cómo evolucionó la programación, distinguir sus principales paradigmas y comprender la lógica de la programación estructurada antes de comenzar a construir programas en lenguaje C.</div>
+
+    <nav class="topic-nav" aria-label="Navegación del tema">
+      <a href="#historia">1 · Historia</a><a href="#paradigmas">2 · Paradigmas</a><a href="#estructurada">3 · Estructurada</a><a href="#aportes">4 · Aportes</a><a href="#c-historia">5 · Lenguaje C</a><a href="#estructura-c">6 · Programa en C</a><a href="#include">7 · #include</a><a href="#escape">8 · Escape</a><a href="#comentarios">9 · Comentarios</a><a href="#scanf">10 · scanf()</a><a href="#printf">11 · printf()</a>
+    </nav>
+
+    <section class="intro-grid">
+      <article class="mini-card"><div class="big">🧠</div><h4>Programar</h4><p>Es convertir una solución lógica en instrucciones que una computadora pueda ejecutar.</p></article>
+      <article class="mini-card"><div class="big">🧩</div><h4>Dividir</h4><p>Un problema grande se entiende mejor cuando se separa en tareas pequeñas.</p></article>
+      <article class="mini-card"><div class="big">🔀</div><h4>Decidir</h4><p>Los programas seleccionan caminos según condiciones y datos.</p></article>
+      <article class="mini-card"><div class="big">🔁</div><h4>Repetir</h4><p>Las estructuras de iteración permiten automatizar tareas repetitivas.</p></article>
+    </section>
+
+    <div class="section" id="historia">1 · HISTORIA DE LA PROGRAMACIÓN</div>
+    <p>La programación ha evolucionado desde instrucciones muy cercanas al hardware hasta lenguajes que permiten expresar soluciones de forma cada vez más clara. En cada etapa se buscó que programar fuera más productivo, menos propenso a errores y más fácil de mantener.</p>
+    <div class="timeline" aria-label="Línea del tiempo simplificada de la programación">
+      <div class="time-item"><div class="time-dot"></div><div><b>1940–50</b><span>Lenguaje máquina y código binario.</span></div></div>
+      <div class="time-item"><div class="time-dot"></div><div><b>1950–60</b><span>Ensamblador y primeros lenguajes de alto nivel.</span></div></div>
+      <div class="time-item"><div class="time-dot"></div><div><b>1960–70</b><span>Se consolida la programación estructurada.</span></div></div>
+      <div class="time-item"><div class="time-dot"></div><div><b>1972</b><span>Dennis Ritchie desarrolla C en Bell Labs.</span></div></div>
+      <div class="time-item"><div class="time-dot"></div><div><b>Actualidad</b><span>Conviven múltiples paradigmas y lenguajes.</span></div></div>
+    </div>
+    <div class="tip"><b>Idea para recordar:</b> la evolución de los lenguajes no elimina lo anterior; agrega nuevas formas de expresar y organizar soluciones.</div>
+
+    <div class="section" id="paradigmas">2 · DIFERENTES PARADIGMAS DE PROGRAMACIÓN</div>
+    <p>Un <b>paradigma</b> es una manera general de pensar y organizar la solución de un problema mediante programación.</p>
+    <section class="paradigm-grid">
+      <article class="paradigm"><div style="font-size:2rem">🧱</div><strong>Imperativo / Procedimental</strong><span>Describe una secuencia de instrucciones y procedimientos. <b>C</b> es uno de sus lenguajes representativos.</span></article>
+      <article class="paradigm"><div style="font-size:2rem">🧩</div><strong>Orientado a objetos</strong><span>Organiza el software alrededor de objetos, datos y comportamientos.</span></article>
+      <article class="paradigm"><div style="font-size:2rem">🧮</div><strong>Funcional</strong><span>Da protagonismo a funciones, expresiones y transformaciones de datos.</span></article>
+      <article class="paradigm"><div style="font-size:2rem">📜</div><strong>Declarativo</strong><span>Se enfoca en <i>qué</i> resultado se desea, más que en detallar cada paso.</span></article>
+    </section>
+
+    <div class="section" id="estructurada">3 · ¿QUÉ ES LA PROGRAMACIÓN ESTRUCTURADA?</div>
+    <p>Es una forma de construir programas usando bloques claros y un flujo de control comprensible. En lugar de saltos arbitrarios, se busca resolver el problema mediante estructuras bien definidas.</p>
+    <section class="three-pillars">
+      <article class="pillar"><div class="symbol">➡️</div><h4>Secuencia</h4><p>Las instrucciones se ejecutan una después de otra.</p></article>
+      <article class="pillar"><div class="symbol">🔀</div><h4>Selección</h4><p>El programa elige una ruta según una condición.</p></article>
+      <article class="pillar"><div class="symbol">🔁</div><h4>Iteración</h4><p>Un conjunto de instrucciones se repite mientras sea necesario.</p></article>
+    </section>
+    <div class="flow-wrap"><div class="flow-box">Problema</div><div class="flow-arrow">→</div><div class="flow-box">Análisis</div><div class="flow-arrow">→</div><div class="flow-box">Algoritmo</div><div class="flow-arrow">→</div><div class="flow-box">Programa</div><div class="flow-arrow">→</div><div class="flow-box">Resultado</div></div>
+
+    <div class="section" id="aportes">4 · APORTACIONES DE LA PROGRAMACIÓN ESTRUCTURADA</div>
+    <table class="compare"><tr><th>Aportación</th><th>¿Qué mejora?</th><th>Ejemplo en clase</th></tr>
+      <tr><td><b>Claridad</b></td><td>El flujo del programa se entiende con mayor facilidad.</td><td>Separar entrada, proceso y salida.</td></tr>
+      <tr><td><b>Modularidad</b></td><td>Permite dividir problemas grandes en tareas pequeñas.</td><td>Crear funciones para cálculos específicos.</td></tr>
+      <tr><td><b>Mantenimiento</b></td><td>Los cambios se localizan y prueban mejor.</td><td>Modificar un módulo sin rehacer todo el programa.</td></tr>
+      <tr><td><b>Reutilización</b></td><td>Una solución puede aprovecharse en otros programas.</td><td>Reutilizar una función de validación.</td></tr>
+      <tr><td><b>Menos errores</b></td><td>Una estructura ordenada facilita detectar fallas.</td><td>Seguir paso a paso el flujo de ejecución.</td></tr>
+    </table>
+
+    <div class="section" id="c-historia">5 · LENGUAJE C · HISTORIA</div>
+    <div class="two">
+      <div>
+        <p>El lenguaje <b>C</b> fue desarrollado a comienzos de la década de 1970 por <b>Dennis Ritchie</b> en Bell Labs. Su desarrollo estuvo estrechamente relacionado con el sistema operativo UNIX.</p>
+        <p>C logró combinar acceso de bajo nivel con construcciones de alto nivel, por lo que se volvió muy influyente en sistemas operativos, compiladores, bibliotecas y posteriormente en muchos lenguajes derivados o inspirados en su sintaxis.</p>
+        <div class="key"><b>C en este curso:</b> nos permite aprender variables, operadores, decisiones, ciclos, funciones, arreglos, estructuras, archivos y modularidad con una sintaxis compacta.</div>
+      </div>
+      <div class="diagram"><div style="font-size:4rem">🖥️</div><b>C → COMPILADOR → PROGRAMA EJECUTABLE</b><p>El código fuente se traduce antes de ejecutarse.</p></div>
+    </div>
+
+    <div class="section" id="estructura-c">6 · ESTRUCTURA BÁSICA DE UN PROGRAMA EN C</div>
+    <div class="c-layout">
+      <div class="program-map">
+        <div class="program-part"><b>1. Directivas</b><br><code>#include &lt;stdio.h&gt;</code></div>
+        <div class="program-part"><b>2. Función principal</b><br><code>int main(void)</code></div>
+        <div class="program-part"><b>3. Declaraciones</b><br>Variables que utilizará el programa.</div>
+        <div class="program-part"><b>4. Instrucciones</b><br>Entrada, proceso y salida.</div>
+        <div class="program-part"><b>5. Retorno</b><br><code>return 0;</code></div>
+      </div>
+      <div>
+        <div class="code-toolbar"><b>Primer programa en C</b><button class="copy-btn" data-copy="codigo-basico">Copiar código</button></div>
+        <div class="code" id="codigo-basico">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    int edad;
+
+    printf("Escribe tu edad: ");
+    scanf("%d", &amp;edad);
+
+    printf("Tu edad es %d años\n", edad);
+
+    return 0;
+}</div>
+        <div class="tip"><b>Observa:</b> el programa incluye una biblioteca, entra a <code>main()</code>, declara una variable, recibe un dato con <code>scanf()</code>, muestra información con <code>printf()</code> y termina con <code>return 0;</code>.</div>
+      </div>
+    </div>
+
+    <div class="section" id="include">7 · LIBRERÍAS Y DIRECTIVA <code>#include</code></div>
+    <p>Una biblioteca reúne declaraciones y herramientas ya preparadas para utilizarse. La directiva <code>#include</code> hace disponible el contenido de un archivo de cabecera antes de compilar el programa.</p>
+    <div class="two">
+      <div class="op"><h4><code>&lt;stdio.h&gt;</code></h4><p>Entrada y salida estándar. Aquí se encuentran las declaraciones de funciones como <code>printf()</code> y <code>scanf()</code>.</p><div class="code">#include &lt;stdio.h&gt;</div></div>
+      <div class="op"><h4>Otras cabeceras comunes</h4><div class="code">#include &lt;stdlib.h&gt;
+#include &lt;math.h&gt;
+#include &lt;string.h&gt;</div><p>Se incorporan conforme el programa necesita herramientas adicionales.</p></div>
+    </div>
+    <div class="reveal tip" onclick="this.classList.toggle('open')"><b>👆 Haz clic: ¿#include copia una biblioteca completa dentro de mi programa?</b><div class="reveal-content">No necesariamente. Conceptualmente, el preprocesador incorpora el contenido del archivo de cabecera indicado. Ese archivo contiene principalmente declaraciones, definiciones y macros necesarias para compilar correctamente el código que usa esas funciones.</div></div>
+
+    <div class="section" id="escape">8 · SECUENCIAS DE ESCAPE</div>
+    <p>Las secuencias de escape permiten representar caracteres especiales dentro de cadenas de texto. Comienzan con una diagonal invertida <code>\</code>.</p>
+    <div class="escape-grid">
+      <div class="escape"><code>\n</code>Nueva línea</div><div class="escape"><code>\t</code>Tabulación</div><div class="escape"><code>\"</code>Comillas dobles</div><div class="escape"><code>\\</code>Diagonal invertida</div>
+    </div>
+    <div class="code-toolbar"><b>Ejemplo</b><button class="copy-btn" data-copy="codigo-escape">Copiar código</button></div>
+    <div class="code" id="codigo-escape">printf("Nombre:\tAna\nEdad:\t20\n");
+printf("Ella dijo: \"Hola\"\n");
+printf("Ruta: C:\\Programas\\C\n");</div>
+
+    <div class="section" id="comentarios">9 · COMENTARIOS EN C</div>
+    <p>Los comentarios ayudan a documentar el programa. El compilador los ignora, pero son muy útiles para explicar decisiones, secciones y propósito del código.</p>
+    <div class="two">
+      <div class="op"><h4>Comentario de una línea</h4><div class="code">// Calcula el promedio
+promedio = suma / 3.0;</div></div>
+      <div class="op"><h4>Comentario de varias líneas</h4><div class="code">/*
+   Programa de ejemplo
+   Tema 0
+*/</div></div>
+    </div>
+    <div class="note"><b>Buena práctica:</b> comenta el <i>porqué</i> cuando sea necesario. Evita comentarios que simplemente repitan lo evidente del código.</div>
+
+    <div class="section" id="scanf">10 · SENTENCIA DE ENTRADA · <code>scanf()</code></div>
+    <p><code>scanf()</code> permite leer datos desde la entrada estándar. Para variables numéricas normalmente se utiliza el operador <code>&amp;</code> para proporcionar su dirección de memoria.</p>
+    <div class="two">
+      <div>
+        <div class="code-toolbar"><b>Ejemplo con entero</b><button class="copy-btn" data-copy="codigo-scanf">Copiar código</button></div>
+        <div class="code" id="codigo-scanf">int edad;
+
+printf("Edad: ");
+scanf("%d", &amp;edad);</div>
+      </div>
+      <div>
+        <table class="compare"><tr><th>Formato</th><th>Dato típico</th></tr><tr><td><code>%d</code></td><td>int</td></tr><tr><td><code>%f</code></td><td>float</td></tr><tr><td><code>%lf</code></td><td>double</td></tr><tr><td><code>%c</code></td><td>char</td></tr><tr><td><code>%s</code></td><td>cadena sin espacios</td></tr></table>
+      </div>
+    </div>
+
+    <div class="section" id="printf">11 · SENTENCIA DE SALIDA · <code>printf()</code></div>
+    <p><code>printf()</code> envía texto y valores a la salida estándar. Puede combinar texto fijo con especificadores de formato.</p>
+    <div class="code-toolbar"><b>Ejemplo</b><button class="copy-btn" data-copy="codigo-printf">Copiar código</button></div>
+    <div class="code" id="codigo-printf">int edad = 20;
+float promedio = 9.5;
+
+printf("Edad: %d\n", edad);
+printf("Promedio: %.1f\n", promedio);</div>
+
+    <h3 style="color:var(--uabc-dark);margin-top:26px">LABORATORIO INTERACTIVO · ENTRADA → PROCESO → SALIDA</h3>
+    <div class="io-demo">
+      <div class="demo-panel">
+        <label for="nombreDemo">Nombre del estudiante</label>
+        <input id="nombreDemo" type="text" value="Ana" maxlength="30">
+        <label for="edadDemo">Edad</label>
+        <input id="edadDemo" type="number" value="20" min="1" max="120">
+        <button class="demo-btn" id="runDemo">▶ Ejecutar ejemplo</button>
+        <div class="tip" style="margin-bottom:0"><b>Simulación didáctica:</b> aquí puedes ver el papel de <code>scanf()</code> y <code>printf()</code>. El navegador simula la interacción; no está compilando C.</div>
+      </div>
+      <div class="terminal" aria-live="polite">
+        <div class="prompt">$ programa.exe</div>
+        <div class="output" id="terminalOutput">Escribe tu nombre: Ana
+Escribe tu edad: 20
+
+Hola Ana
+Tu edad es 20 años</div>
+      </div>
+    </div>
+
+    <div class="section">12 · PROGRAMA INTEGRADOR DEL TEMA 0</div>
+    <p>Este ejemplo reúne biblioteca, <code>main()</code>, comentarios, variables, <code>scanf()</code>, <code>printf()</code> y secuencias de escape.</p>
+    <div class="code-toolbar"><b>Programa completo</b><button class="copy-btn" data-copy="codigo-integrador">Copiar código</button></div>
+    <div class="code" id="codigo-integrador">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    /* Variables de entrada */
+    int edad;
+    float estatura;
+
+    printf("=== DATOS DEL ESTUDIANTE ===\n");
+
+    printf("Edad: ");
+    scanf("%d", &amp;edad);
+
+    printf("Estatura en metros: ");
+    scanf("%f", &amp;estatura);
+
+    printf("\n--- RESULTADO ---\n");
+    printf("Edad:\t%d años\n", edad);
+    printf("Estatura:\t%.2f m\n", estatura);
+
+    return 0;
+}</div>
+
+    <div class="quiz">
+      <h3 style="margin-top:0;color:var(--intro-green)">🧠 Comprueba lo aprendido</h3>
+      <div class="quiz-q" data-answer="b"><b>1. ¿Cuáles son las tres estructuras fundamentales?</b><button data-opt="a">Variables, funciones y archivos</button><button data-opt="b">Secuencia, selección e iteración</button><button data-opt="c">Entrada, salida y compilación</button><div class="quiz-feedback"></div></div>
+      <div class="quiz-q" data-answer="c"><b>2. ¿Qué biblioteca se usa normalmente para printf() y scanf()?</b><button data-opt="a">math.h</button><button data-opt="b">string.h</button><button data-opt="c">stdio.h</button><div class="quiz-feedback"></div></div>
+      <div class="quiz-q" data-answer="a"><b>3. ¿Qué secuencia produce una nueva línea?</b><button data-opt="a">\n</button><button data-opt="b">\t</button><button data-opt="c">\\</button><div class="quiz-feedback"></div></div>
+    </div>
+
+    <div class="section">13 · RESUMEN DEL TEMA</div>
+    <div class="key"><b>Al finalizar este tema debes poder explicar:</b><ul><li>Cómo evolucionó la programación y qué significa paradigma.</li><li>Qué caracteriza a la programación estructurada.</li><li>Por qué secuencia, selección e iteración son sus estructuras fundamentales.</li><li>Qué papel tuvo el lenguaje C y por qué sigue siendo útil para aprender programación.</li><li>La estructura mínima de un programa en C.</li><li>Para qué sirven <code>#include</code>, las secuencias de escape y los comentarios.</li><li>La diferencia entre entrada con <code>scanf()</code> y salida con <code>printf()</code>.</li></ul></div>
+
+    <div class="summary"><div class="bulb">💡</div><div><b>IDEA CLAVE</b><br>Programar no consiste en memorizar instrucciones: consiste en <b>organizar una solución</b>. C será la herramienta; la programación estructurada será la forma ordenada de pensarla.</div></div>
+  </main>
+
+  <footer class="footer"><div><div class="uabc">UABC</div><div>UNIVERSIDAD AUTÓNOMA<br>DE BAJA CALIFORNIA</div></div><div class="center"><b>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</b><br>Programación Estructurada · Tema 0: Introducción</div><div class="right">POR LA REALIZACIÓN PLENA DEL SER</div></footer>
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const el = document.getElementById(btn.dataset.copy);
+      const text = el ? el.innerText : '';
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent;
+        btn.textContent = '✓ Copiado';
+        setTimeout(() => btn.textContent = old, 1200);
+      } catch(e) {
+        btn.textContent = 'Selecciona y copia';
+      }
+    });
+  });
+
+  document.getElementById('runDemo').addEventListener('click', () => {
+    const nombre = document.getElementById('nombreDemo').value.trim() || 'Estudiante';
+    const edad = document.getElementById('edadDemo').value || '0';
+    document.getElementById('terminalOutput').textContent =
+      `Escribe tu nombre: ${nombre}\nEscribe tu edad: ${edad}\n\nHola ${nombre}\nTu edad es ${edad} años`;
+  });
+
+  document.querySelectorAll('.quiz-q').forEach(q => {
+    q.querySelectorAll('button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ok = btn.dataset.opt === q.dataset.answer;
+        q.querySelector('.quiz-feedback').textContent = ok ? '✓ Correcto' : '✗ Revisa el tema e intenta nuevamente';
+        q.querySelector('.quiz-feedback').style.color = ok ? '#0f6b45' : '#a32828';
+      });
+    });
+  });
+</script>
+<script src="../scripts/app.js" defer></script>
+</body>
+</html>

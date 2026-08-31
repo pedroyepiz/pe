@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tema 2: Expresiones aritméticas, relacionales y lógicas en C - Programación Estructurada - UABC FIAD">
+<title>Tema 2 · Expresiones en C | UABC</title>
+<link rel="stylesheet" href="../styles/styles.css">
+<style>
+:root{
+  --t2-green:#0f6b45;--t2-green2:#168455;--t2-light:#eef8f2;--t2-gold:#f2b134;
+  --t2-blue:#eaf4ff;--t2-red:#fff1f0;--t2-purple:#f5f0ff;--t2-ink:#17352a;--t2-line:#d6e7de;
+  --arith:#d97706;--rel:#2563eb;--logic:#7c3aed;
+}
+html{scroll-behavior:smooth}.content{overflow:hidden}
+.topic-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:18px 0 24px}
+.topic-nav a{padding:.55rem .8rem;border:1px solid var(--t2-line);border-radius:999px;background:#fff;text-decoration:none;color:var(--t2-green);font-weight:800;font-size:.86rem;box-shadow:0 2px 7px rgba(0,0,0,.05);transition:.2s}
+.topic-nav a:hover{transform:translateY(-2px);background:var(--t2-light)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:stretch;margin:18px 0}
+.hero-card{border:1px solid var(--t2-line);border-radius:18px;padding:20px;background:linear-gradient(145deg,#fff,#f1fbf5);box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.expr-machine{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:16px 0}.machine-box{min-height:88px;border-radius:15px;display:grid;place-items:center;text-align:center;padding:10px;font-weight:900;border:2px dashed var(--t2-green);background:#fff}.machine-op{font-size:2rem;font-weight:900;color:var(--t2-green);animation:bob 2.2s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-5px)}}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.cards2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:16px 0}.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.cardx{background:#fff;border:1px solid var(--t2-line);border-radius:16px;padding:16px;box-shadow:0 4px 13px rgba(0,0,0,.05);position:relative;overflow:hidden;transition:.2s}.cardx:hover{transform:translateY(-3px)}.cardx::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--t2-green)}.cardx.arith::before{background:var(--arith)}.cardx.rel::before{background:var(--rel)}.cardx.logic::before{background:var(--logic)}.cardx .icon{font-size:2rem}.cardx h4{margin:.35rem 0;color:var(--t2-green)}
+.op-chip{display:inline-grid;place-items:center;min-width:42px;height:36px;padding:0 .45rem;border-radius:10px;background:#15261e;color:#fff;font:900 1.15rem/1 Consolas,monospace;margin:.18rem}.op-chip.ar{background:#8a4a09}.op-chip.re{background:#1e4f9e}.op-chip.lo{background:#5b21b6}
+.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--t2-line);margin:14px 0}.data-table{border-collapse:collapse;width:100%;min-width:680px;background:#fff}.data-table th,.data-table td{padding:11px 12px;border-bottom:1px solid var(--t2-line);text-align:left}.data-table th{background:var(--t2-green);color:#fff}.data-table tr:last-child td{border-bottom:0}.data-table tr:hover td{background:#f7fbf9}
+.code-shell{background:#101914;border-radius:16px;padding:0;overflow:hidden;margin:15px 0;box-shadow:0 8px 20px rgba(0,0,0,.12)}.code-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#1d2b23;color:#dff6e8;font:700 .82rem/1.2 system-ui}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:#89988e}.copy-btn,.action-btn,.quiz-btn{border:0;border-radius:9px;padding:.5rem .75rem;background:var(--t2-green);color:#fff;font-weight:800;cursor:pointer}.copy-btn:hover,.action-btn:hover,.quiz-btn:hover{background:var(--t2-green2)}
+pre.c-code{margin:0;padding:16px;overflow:auto;color:#e9fff3;font:500 .93rem/1.6 Consolas,"Courier New",monospace;tab-size:4}pre.c-code .kw{color:#7fd7ff}.type{color:#ffd479}.str{color:#9fe39f}.num{color:#f5a9e1}.com{color:#7f9a88;font-style:italic}.fn{color:#f3d36f}.pp{color:#ff9e9e}.op{color:#ffca7a;font-weight:900}
+.note-box,.warn-box,.success-box,.prof-box{padding:13px 15px;border-radius:12px;margin:13px 0;border-left:5px solid}.note-box{background:#fff8e8;border-color:var(--t2-gold)}.warn-box{background:var(--t2-red);border-color:#d9534f}.success-box{background:var(--t2-light);border-color:var(--t2-green)}.prof-box{background:#f4f0ff;border-color:var(--logic)}
+.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.prof-figure{margin:0;border-radius:16px;overflow:hidden;background:#fff;border:1px solid var(--t2-line);box-shadow:0 6px 17px rgba(0,0,0,.08)}.prof-figure img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}.prof-figure figcaption{padding:11px 13px;font-size:.88rem;color:#42584e}.stamp{display:inline-block;background:var(--t2-green);color:#fff;border-radius:999px;padding:.28rem .62rem;font-weight:900;font-size:.75rem;margin-bottom:6px}
+.truth-wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.truth{border-radius:16px;border:1px solid var(--t2-line);background:#fff;padding:14px;text-align:center}.truth h4{margin:.2rem 0 .8rem;color:var(--logic)}.truth table{width:100%;border-collapse:collapse;font-family:Consolas,monospace}.truth td,.truth th{padding:7px;border-bottom:1px solid #eee}.bulb{width:18px;height:18px;display:inline-block;border-radius:50%;vertical-align:middle;margin-left:6px;background:#cfd8d3}.bulb.on{background:#45a36b;box-shadow:0 0 0 5px #e0f6e7}
+.precedence{display:grid;gap:7px;max-width:900px;margin:16px auto}.level{display:grid;grid-template-columns:56px 1fr 190px;align-items:center;gap:12px;padding:10px 12px;border-radius:12px;border:1px solid var(--t2-line);background:#fff}.level strong{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--t2-green);color:#fff}.level code{font-weight:900}.level small{text-align:right}.level:hover{transform:translateX(4px);transition:.2s;background:#f5fbf7}
+.stepper{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:15px 0}.step{padding:13px;border-radius:14px;background:#fff;border:1px solid var(--t2-line);position:relative}.step b{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--t2-green);color:#fff;margin-right:6px}
+.shortcircuit{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}.circuit{border:1px solid var(--t2-line);border-radius:16px;background:#fff;padding:16px}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px}.node{padding:9px 11px;border-radius:10px;background:var(--t2-light);border:1px solid #bcd7c7;font-weight:800}.arrow{font-weight:900;color:var(--t2-green)}.stop{background:#ffe7e5;border-color:#efb8b4}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.panel{border:1px solid var(--t2-line);border-radius:16px;background:#fff;padding:16px}.panel label{display:block;font-weight:800;color:var(--t2-green);margin:8px 0 5px}.panel select,.panel input{width:100%;box-sizing:border-box;padding:.68rem;border:1px solid #b9cdc2;border-radius:9px;font:inherit}.terminal{background:#102019;color:#eafff3;border-radius:14px;padding:15px;min-height:190px;font:500 .92rem/1.55 Consolas,monospace;white-space:pre-wrap}
+.quiz{margin:22px 0;padding:18px;border:1px solid var(--t2-line);border-radius:18px;background:#fff}.quiz-q{padding:12px 0;border-bottom:1px dashed var(--t2-line)}.quiz-q:last-child{border-bottom:0}.quiz-q button{display:block;width:100%;text-align:left;margin:7px 0;padding:9px 10px;border:1px solid #c8d9d0;background:#fff;border-radius:9px;cursor:pointer}.quiz-q button:hover{background:var(--t2-light)}.feedback{min-height:1.2em;font-weight:800}
+@media(max-width:900px){.hero-grid,.prof-grid,.shortcircuit,.lab{grid-template-columns:1fr}.cards3,.truth-wrap{grid-template-columns:1fr}.cards4,.cards2{grid-template-columns:repeat(2,1fr)}.stepper{grid-template-columns:1fr 1fr}.expr-machine{grid-template-columns:1fr}.machine-op{transform:rotate(90deg)}.level{grid-template-columns:48px 1fr}.level small{grid-column:2;text-align:left}}
+@media(max-width:560px){.cards4,.cards2,.stepper{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body class="page-listas">
+<div class="page">
+<header class="header">
+  <div>
+    <h1>EXPRESIONES EN C <span>TEMA 2 · PROGRAMACIÓN ESTRUCTURADA</span></h1>
+    <div class="subtitle">Expresiones aritméticas, relacionales y lógicas</div>
+    <div class="badge">🧠 <b>Calcular + comparar + decidir = lógica computacional</b></div>
+  </div>
+  <div class="meta">
+    <div><strong>TEMA</strong>Tema 2 · Expresiones</div>
+    <div><strong>MATERIA</strong>Programación Estructurada</div>
+    <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
+    <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
+    <div><strong>FACULTAD</strong>FIAD</div><div><strong>UNIVERSIDAD</strong>UABC</div>
+  </div>
+  <div class="logo"><img src="../images/uabc_logo.png" alt="Escudo UABC"></div>
+</header>
+<div class="ribbon"><span>TEMA 2 · EXPRESIONES ARITMÉTICAS, RELACIONALES Y LÓGICAS</span><span>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</span></div>
+
+<main class="content">
+<div class="note"><b>Propósito:</b> aprender a construir y evaluar expresiones en C para realizar cálculos, comparar valores y formular condiciones que después controlarán las decisiones de un programa.</div>
+<nav class="topic-nav">
+<a href="#concepto">Concepto</a><a href="#aritmeticos">Aritméticos</a><a href="#relacionales">Relacionales</a><a href="#logicos">Lógicos</a><a href="#precedencia">Precedencia</a><a href="#corto">Cortocircuito</a><a href="#conversion">Conversión</a><a href="#laboratorio">Laboratorio</a><a href="#quiz">Repaso</a>
+</nav>
+
+<section class="hero-grid" id="concepto">
+  <article class="hero-card">
+    <h2>🧩 ¿Qué es una expresión?</h2>
+    <p>Una <b>expresión</b> es una combinación de <b>valores, variables, operadores y llamadas a funciones</b> que produce un resultado.</p>
+    <div class="expr-machine">
+      <div class="machine-box">Variable<br><code>num1</code></div><div class="machine-op">+</div><div class="machine-box">Valor<br><code>20</code></div><div class="machine-op">→</div><div class="machine-box">Resultado<br><code>num1 + 20</code></div>
+    </div>
+    <div class="success-box">✅ Las expresiones son el corazón del razonamiento computacional: <b>calculan, comparan y producen condiciones</b>.</div>
+  </article>
+  <aside class="hero-card">
+    <h3>🎯 Tres familias principales</h3>
+    <div class="cardx arith"><div class="icon">➕</div><h4>Aritméticas</h4><p>Realizan cálculos matemáticos.</p></div>
+    <div class="cardx rel"><div class="icon">⚖️</div><h4>Relacionales</h4><p>Comparan dos valores y producen 0 o 1.</p></div>
+    <div class="cardx logic"><div class="icon">🧠</div><h4>Lógicas</h4><p>Combinan o niegan condiciones.</p></div>
+  </aside>
+</section>
+
+<div class="section" id="aritmeticos">2.1.1 · OPERADORES ARITMÉTICOS</div>
+<p>Trabajan con valores numéricos. En C los operadores básicos son:</p>
+<div class="cards4">
+  <article class="cardx arith"><span class="op-chip ar">+</span><h4>Suma</h4><p><code>a + b</code></p></article>
+  <article class="cardx arith"><span class="op-chip ar">−</span><h4>Resta</h4><p><code>a - b</code></p></article>
+  <article class="cardx arith"><span class="op-chip ar">*</span><h4>Multiplicación</h4><p><code>a * b</code></p></article>
+  <article class="cardx arith"><span class="op-chip ar">/</span><h4>División</h4><p><code>a / b</code></p></article>
+</div>
+<div class="cards2"><article class="cardx arith"><span class="op-chip ar">%</span><h4>Módulo</h4><p>Obtiene el residuo de una división entre enteros. Muy útil para paridad, ciclos e índices circulares.</p></article><article class="cardx"><div class="icon">🔍</div><h4>Ejemplo</h4><p>Si <code>a=10</code> y <code>b=3</code>: suma=13, resta=7, multiplicación=30, división entera=3 y módulo=1.</p></article></div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>aritmetica.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="fn">main</span>(<span class="type">void</span>) {
+    <span class="type">int</span> a = <span class="num">10</span>, b = <span class="num">3</span>;
+    <span class="type">double</span> x = <span class="num">10.0</span>, y = <span class="num">3.0</span>;
+
+    <span class="fn">printf</span>(<span class="str">"%d\n"</span>, a <span class="op">/</span> b);             <span class="com">// 3: división entera</span>
+    <span class="fn">printf</span>(<span class="str">"%.2f\n"</span>, x <span class="op">/</span> y);          <span class="com">// 3.33</span>
+    <span class="fn">printf</span>(<span class="str">"%.2f\n"</span>, (<span class="type">double</span>)a <span class="op">/</span> b); <span class="com">// 3.33</span>
+    <span class="fn">printf</span>(<span class="str">"Residuo: %d\n"</span>, a <span class="op">%</span> b); <span class="com">// 1</span>
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+<div class="note-box">💡 <b>División entera:</b> si ambos operandos son enteros, se descarta la parte fraccionaria. Si al menos uno es flotante, el resultado puede conservar decimales.</div>
+
+<div class="section" id="relacionales">2.1.2 · OPERADORES RELACIONALES</div>
+<p>Comparan dos valores y producen un resultado lógico: <b>1</b> (verdadero) o <b>0</b> (falso).</p>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Operador</th><th>Significado</th><th>Ejemplo</th><th>Resultado si a=5, b=3</th></tr></thead><tbody>
+<tr><td><code>==</code></td><td>Igual a</td><td><code>a == b</code></td><td>0</td></tr>
+<tr><td><code>!=</code></td><td>Diferente de</td><td><code>a != b</code></td><td>1</td></tr>
+<tr><td><code>&lt;</code></td><td>Menor que</td><td><code>b &lt; a</code></td><td>1</td></tr>
+<tr><td><code>&gt;</code></td><td>Mayor que</td><td><code>a &gt; b</code></td><td>1</td></tr>
+<tr><td><code>&lt;=</code></td><td>Menor o igual</td><td><code>b &lt;= 3</code></td><td>1</td></tr>
+<tr><td><code>&gt;=</code></td><td>Mayor o igual</td><td><code>a &gt;= 10</code></td><td>0</td></tr>
+</tbody></table></div>
+
+<div class="prof-box"><b>🧑‍🏫 Del pizarrón del Prof. Yepiz:</b> una expresión relacional debe tener una forma válida: <b>operando → operador relacional → operando</b>. Los operandos pueden ser variables, constantes o valores.</div>
+<div class="prof-grid">
+  <figure class="prof-figure"><img src="../images/prof_yepiz_expresiones_relacionales_1.png" alt="Explicación del Prof. Pedro Núñez Yepiz sobre operadores relacionales y comparación de promedio"><figcaption><span class="stamp">APUNTES DEL PROF. YEPIZ</span><br>Comparaciones como <code>num1 &gt; num2</code>, <code>prom &lt; 60</code> y <code>prom &gt;= 60</code>. La recta numérica ayuda a visualizar los rangos.</figcaption></figure>
+  <figure class="prof-figure"><img src="../images/prof_yepiz_expresiones_logicas_2.png" alt="Explicación del Prof. Pedro Núñez Yepiz de la estructura de una expresión lógica"><figcaption><span class="stamp">APUNTES DEL PROF. YEPIZ</span><br>La expresión se construye con <b>variable/valor + operador relacional + variable/constante</b> y el resultado final es <b>0 o 1</b>.</figcaption></figure>
+</div>
+<div class="warn-box">🚨 <b>Error clásico:</b> <code>=</code> asigna; <code>==</code> compara. Son operaciones distintas.</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>relacionales.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> prom = <span class="num">60</span>;
+
+<span class="fn">printf</span>(<span class="str">"prom &lt; 60  = %d\n"</span>, prom <span class="op">&lt;</span> <span class="num">60</span>);  <span class="com">// 0</span>
+<span class="fn">printf</span>(<span class="str">"prom &gt;= 60 = %d\n"</span>, prom <span class="op">&gt;=</span> <span class="num">60</span>); <span class="com">// 1</span>
+
+<span class="com">// CUIDADO:</span>
+<span class="kw">if</span> (prom <span class="op">==</span> <span class="num">60</span>) {
+    <span class="fn">printf</span>(<span class="str">"El promedio es exactamente 60\n"</span>);
+}</pre></div>
+
+<div class="section" id="logicos">2.1.3 · OPERADORES LÓGICOS</div>
+<p>Permiten combinar condiciones para construir decisiones más completas.</p>
+<div class="cards3">
+  <article class="cardx logic"><span class="op-chip lo">&&</span><h4>AND · Y</h4><p>Verdadero solamente si <b>ambas</b> condiciones son verdaderas.</p></article>
+  <article class="cardx logic"><span class="op-chip lo">||</span><h4>OR · O</h4><p>Verdadero si <b>al menos una</b> condición es verdadera.</p></article>
+  <article class="cardx logic"><span class="op-chip lo">!</span><h4>NOT · NO</h4><p>Invierte el resultado lógico.</p></article>
+</div>
+<div class="truth-wrap">
+  <article class="truth"><h4>AND <code>&&</code></h4><table><tr><th>A</th><th>B</th><th>A&&B</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>0</td></tr><tr><td>1</td><td>0</td><td>0</td></tr><tr><td>1</td><td>1</td><td>1 <span class="bulb on"></span></td></tr></table></article>
+  <article class="truth"><h4>OR <code>||</code></h4><table><tr><th>A</th><th>B</th><th>A||B</th></tr><tr><td>0</td><td>0</td><td>0</td></tr><tr><td>0</td><td>1</td><td>1 <span class="bulb on"></span></td></tr><tr><td>1</td><td>0</td><td>1 <span class="bulb on"></span></td></tr><tr><td>1</td><td>1</td><td>1 <span class="bulb on"></span></td></tr></table></article>
+  <article class="truth"><h4>NOT <code>!</code></h4><table><tr><th>A</th><th>!A</th></tr><tr><td>0</td><td>1 <span class="bulb on"></span></td></tr><tr><td>1</td><td>0</td></tr></table><p><b>Mnemotecnia:</b> <code>!</code> significa “NO”.</p></article>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>logica.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;stdbool.h&gt;</span>
+
+<span class="type">int</span> edad = <span class="num">20</span>;
+<span class="type">bool</span> tiene_licencia = <span class="kw">true</span>;
+
+<span class="kw">if</span> (edad <span class="op">&gt;=</span> <span class="num">18</span> <span class="op">&&</span> tiene_licencia) {
+    <span class="fn">printf</span>(<span class="str">"Puede conducir.\n"</span>);
+}
+
+<span class="kw">if</span> (edad <span class="op">&lt;</span> <span class="num">16</span> <span class="op">||</span> <span class="op">!</span>tiene_licencia) {
+    <span class="fn">printf</span>(<span class="str">"No puede conducir.\n"</span>);
+}</pre></div>
+<div class="success-box">✅ Regla mnemotécnica: <code>&&</code> = “y además”, <code>||</code> = “o también”, <code>!</code> = “no”.</div>
+
+<div class="section" id="precedencia">2.2 · EVALUACIÓN, PRECEDENCIA Y ASOCIATIVIDAD</div>
+<p>C no necesariamente evalúa una expresión de izquierda a derecha. Cada operador posee una prioridad.</p>
+<div class="precedence">
+  <div class="level"><strong>1</strong><code>() [] -&gt; .</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>2</strong><code>! ~ ++ -- + -</code><small>Derecha → Izquierda</small></div>
+  <div class="level"><strong>3</strong><code>* / %</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>4</strong><code>+ -</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>5</strong><code>&lt; &lt;= &gt; &gt;=</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>6</strong><code>== !=</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>7</strong><code>&&</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>8</strong><code>||</code><small>Izquierda → Derecha</small></div>
+  <div class="level"><strong>9</strong><code>= += -= *= /=</code><small>Derecha → Izquierda</small></div>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>precedencia.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> resultado = <span class="num">5</span> <span class="op">+</span> <span class="num">3</span> <span class="op">*</span> <span class="num">2</span> <span class="op">&gt;</span> <span class="num">10</span> <span class="op">&&</span> <span class="num">1</span>;
+<span class="com">// 1) 3 * 2 = 6</span>
+<span class="com">// 2) 5 + 6 = 11</span>
+<span class="com">// 3) 11 > 10 = 1</span>
+<span class="com">// 4) 1 && 1 = 1</span>
+<span class="fn">printf</span>(<span class="str">"%d\n"</span>, resultado); <span class="com">// 1</span></pre></div>
+<div class="stepper"><div class="step"><b>1</b><code>3 * 2</code><p>Resultado: 6</p></div><div class="step"><b>2</b><code>5 + 6</code><p>Resultado: 11</p></div><div class="step"><b>3</b><code>11 &gt; 10</code><p>Resultado: 1</p></div><div class="step"><b>4</b><code>1 && 1</code><p>Resultado: 1</p></div></div>
+<div class="note-box">🧵 <b>Buena práctica:</b> usa paréntesis para hacer explícito tu razonamiento. Si tienes que consultar la tabla para entender una expresión, probablemente convenga agregar paréntesis.</div>
+
+<div class="section" id="corto">2.2.3 · EVALUACIÓN DE CORTOCIRCUITO</div>
+<p>C evita evaluar una condición cuando el resultado ya puede determinarse.</p>
+<div class="shortcircuit">
+  <article class="circuit"><h4>⚡ AND <code>&&</code></h4><p>Si la primera condición es falsa, la segunda <b>ya no se evalúa</b>.</p><div class="flow"><span class="node">A = falso</span><span class="arrow">→</span><span class="node stop">DETENER</span><span class="arrow">→</span><span class="node">Resultado = falso</span></div></article>
+  <article class="circuit"><h4>⚡ OR <code>||</code></h4><p>Si la primera condición es verdadera, la segunda <b>ya no se evalúa</b>.</p><div class="flow"><span class="node">A = verdadero</span><span class="arrow">→</span><span class="node stop">DETENER</span><span class="arrow">→</span><span class="node">Resultado = verdadero</span></div></article>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>cortocircuito.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> x = <span class="num">0</span>;
+
+<span class="kw">if</span> (x <span class="op">!=</span> <span class="num">0</span> <span class="op">&&</span> <span class="num">10</span> <span class="op">/</span> x <span class="op">&gt;</span> <span class="num">2</span>) {
+    <span class="fn">printf</span>(<span class="str">"Condición verdadera\n"</span>);
+}
+<span class="com">// Si x == 0, 10/x no se evalúa: se evita división por cero.</span></pre></div>
+
+<div class="section" id="conversion">2.3 · CONVERSIÓN DE TIPOS</div>
+<div class="cards2">
+  <article class="cardx"><div class="icon">📈</div><h4>Conversión implícita</h4><p>C promueve automáticamente tipos pequeños y combina operandos según las reglas de conversión usuales.</p></article>
+  <article class="cardx"><div class="icon">🎭</div><h4>Casting explícito</h4><p>El programador indica el tipo deseado mediante <code>(tipo) expresión</code>.</p></article>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>casting.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">char</span> c = <span class="str">'A'</span>;      <span class="com">// 65</span>
+<span class="type">int</span> i = <span class="num">10</span>;
+<span class="type">double</span> d = <span class="num">3.14</span>;
+<span class="type">double</span> r = c <span class="op">+</span> i <span class="op">+</span> d; <span class="com">// 78.14</span>
+
+<span class="type">int</span> a = <span class="num">5</span>, b = <span class="num">2</span>;
+<span class="type">double</span> promedio = (<span class="type">double</span>)a <span class="op">/</span> b; <span class="com">// 2.5</span>
+
+<span class="type">double</span> pi = <span class="num">3.14159</span>;
+<span class="type">int</span> entero_pi = (<span class="type">int</span>)pi; <span class="com">// 3</span></pre></div>
+<div class="note-box">🔎 <b>Aclaración técnica:</b> al mezclar <code>int</code> y <code>float</code>, la operación se realiza con conversión al tipo apropiado; si el resultado final se asigna a un <code>int</code>, allí se descarta la parte decimal.</div>
+
+<div class="section" id="laboratorio">🧪 LABORATORIO INTERACTIVO</div>
+<p>Escribe dos números y observa inmediatamente los resultados aritméticos y relacionales. También puedes combinar condiciones lógicas.</p>
+<div class="lab">
+  <section class="panel">
+    <label for="numA">Valor A</label><input id="numA" type="number" value="10" step="any" oninput="actualizaLab()">
+    <label for="numB">Valor B</label><input id="numB" type="number" value="3" step="any" oninput="actualizaLab()">
+    <label for="cond1">Condición lógica 1</label><select id="cond1" onchange="actualizaLab()"><option value="gt">A &gt; B</option><option value="lt">A &lt; B</option><option value="eq">A == B</option><option value="ge">A &gt;= B</option></select>
+    <label for="logOp">Combinar con</label><select id="logOp" onchange="actualizaLab()"><option value="and">&&</option><option value="or">||</option></select>
+    <label for="cond2">Condición lógica 2</label><select id="cond2" onchange="actualizaLab()"><option value="apos">A &gt; 0</option><option value="bpos">B &gt; 0</option><option value="ane0">A != 0</option><option value="bne0">B != 0</option></select>
+    <button class="action-btn" onclick="actualizaLab()">Evaluar expresiones</button>
+  </section>
+  <section class="terminal" id="terminalLab"></section>
+</div>
+
+<div class="section" id="quiz">✅ REPASO RÁPIDO</div>
+<div class="quiz">
+  <div class="quiz-q"><b>1. ¿Qué operador compara igualdad?</b><button onclick="answer(this,false)">=</button><button onclick="answer(this,true)">==</button><button onclick="answer(this,false)">!=</button><div class="feedback"></div></div>
+  <div class="quiz-q"><b>2. Si A=1 y B=0, ¿cuánto vale A && B?</b><button onclick="answer(this,false)">1</button><button onclick="answer(this,true)">0</button><div class="feedback"></div></div>
+  <div class="quiz-q"><b>3. ¿Cuál se evalúa primero en 5 + 3 * 2?</b><button onclick="answer(this,false)">5 + 3</button><button onclick="answer(this,true)">3 * 2</button><div class="feedback"></div></div>
+  <div class="quiz-q"><b>4. ¿Qué hace <code>(double)a / b</code> cuando a y b son int?</b><button onclick="answer(this,true)">Permite una división de punto flotante</button><button onclick="answer(this,false)">Convierte b a char</button><button onclick="answer(this,false)">Hace una comparación lógica</button><div class="feedback"></div></div>
+</div>
+
+<div class="note"><b>En resumen:</b> una expresión combina operandos y operadores para producir un valor. Las expresiones aritméticas calculan, las relacionales comparan y las lógicas permiten construir condiciones más completas. La precedencia, el cortocircuito y las conversiones de tipo determinan cómo se obtiene el resultado final.</div>
+<blockquote>“Un programa bien escrito no solo funciona: se lee como una proposición lógica clara.”<br><b>— Prof. Pedro Núñez Yepiz</b></blockquote>
+</main>
+
+<footer class="footer"><div><b>Universidad Autónoma de Baja California · FIAD</b><br>Programación Estructurada · Ingeniero en Software y Tecnologías Emergentes</div><div>Material didáctico · Tema 2</div></footer>
+</div>
+<script src="../scripts/app.js" defer></script>
+<script>
+function copyCode(btn){
+  const pre=btn.closest('.code-shell').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(()=>{const old=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=old,1400);});
+}
+function bool01(v){return v ? 1 : 0;}
+function evalCond(kind,a,b){
+  if(kind==='gt') return a>b;
+  if(kind==='lt') return a<b;
+  if(kind==='eq') return a===b;
+  return a>=b;
+}
+function evalCond2(kind,a,b){
+  if(kind==='apos') return a>0;
+  if(kind==='bpos') return b>0;
+  if(kind==='ane0') return a!==0;
+  return b!==0;
+}
+function actualizaLab(){
+  const a=Number(document.getElementById('numA').value||0), b=Number(document.getElementById('numB').value||0);
+  const c1=evalCond(document.getElementById('cond1').value,a,b);
+  const c2=evalCond2(document.getElementById('cond2').value,a,b);
+  const op=document.getElementById('logOp').value;
+  const logic=op==='and' ? (c1&&c2) : (c1||c2);
+  const div=b===0 ? 'NO DEFINIDA (división por cero)' : (a/b).toFixed(4).replace(/\.0000$/,'');
+  const modulo=(Number.isInteger(a)&&Number.isInteger(b)&&b!==0) ? a%b : 'requiere enteros y B != 0';
+  document.getElementById('terminalLab').textContent=
+`EXPRESIONES CON A=${a} y B=${b}\n\n`+
+`A + B   = ${a+b}\nA - B   = ${a-b}\nA * B   = ${a*b}\nA / B   = ${div}\nA % B   = ${modulo}\n\n`+
+`A == B  = ${bool01(a===b)}\nA != B  = ${bool01(a!==b)}\nA < B   = ${bool01(a<b)}\nA > B   = ${bool01(a>b)}\nA <= B  = ${bool01(a<=b)}\nA >= B  = ${bool01(a>=b)}\n\n`+
+`CONDICIÓN 1 = ${bool01(c1)}\nCONDICIÓN 2 = ${bool01(c2)}\nRESULTADO ${op==='and'?'&&':'||'} = ${bool01(logic)}`;
+}
+function answer(btn,ok){
+  const q=btn.closest('.quiz-q'),fb=q.querySelector('.feedback');
+  q.querySelectorAll('button').forEach(b=>b.disabled=true);
+  btn.style.fontWeight='900';
+  if(ok){btn.style.background='#e4f6ea';btn.style.borderColor='#63a979';fb.textContent='✓ Correcto';fb.style.color='#17713f';}
+  else{btn.style.background='#fff0ef';btn.style.borderColor='#d97870';fb.textContent='✗ Revisa el concepto e inténtalo en el laboratorio.';fb.style.color='#a2332d';}
+}
+actualizaLab();
+</script>
+</body>
+</html>

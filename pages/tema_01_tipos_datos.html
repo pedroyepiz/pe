@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tema 1: Tipos de Datos en C - Programación Estructurada - UABC FIAD">
+<title>Tema 1 · Tipos de Datos en C | UABC</title>
+<link rel="stylesheet" href="../styles/styles.css">
+<style>
+:root{
+  --t1-green:#0f6b45;--t1-green2:#168455;--t1-light:#eef8f2;--t1-gold:#f2b134;
+  --t1-blue:#eaf4ff;--t1-red:#fff1f0;--t1-violet:#f5f0ff;--t1-ink:#17352a;--t1-line:#d6e7de;
+}
+html{scroll-behavior:smooth}.content{overflow:hidden}
+.topic-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:18px 0 24px}
+.topic-nav a{padding:.55rem .8rem;border:1px solid var(--t1-line);border-radius:999px;background:#fff;text-decoration:none;color:var(--t1-green);font-weight:800;font-size:.86rem;box-shadow:0 2px 7px rgba(0,0,0,.05);transition:.2s}
+.topic-nav a:hover{transform:translateY(-2px);background:var(--t1-light)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch;margin:18px 0}
+.hero-card{border:1px solid var(--t1-line);border-radius:18px;padding:20px;background:linear-gradient(145deg,#fff,#f1fbf5);box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.memory{display:grid;grid-template-columns:repeat(8,1fr);gap:5px;margin-top:14px}.bit{aspect-ratio:1;border-radius:8px;display:grid;place-items:center;font-weight:900;background:#fff;border:2px solid var(--t1-green);color:var(--t1-green);animation:bitPulse 2.5s infinite}.bit:nth-child(2n){animation-delay:.25s}.bit:nth-child(3n){animation-delay:.55s}@keyframes bitPulse{50%{transform:translateY(-3px);background:var(--t1-light)}}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:16px 0}
+.cardx{background:#fff;border:1px solid var(--t1-line);border-radius:16px;padding:16px;box-shadow:0 4px 13px rgba(0,0,0,.05);position:relative;overflow:hidden;transition:.2s}.cardx:hover{transform:translateY(-3px)}.cardx::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--t1-green)}.cardx .icon{font-size:2rem}.cardx h4{margin:.35rem 0;color:var(--t1-green)}
+.type-chip{display:inline-block;padding:.28rem .55rem;border-radius:8px;background:var(--t1-ink);color:#fff;font-family:Consolas,monospace;font-weight:800;margin:.18rem}
+.table-wrap{overflow:auto;border-radius:14px;border:1px solid var(--t1-line);margin:14px 0}.data-table{border-collapse:collapse;width:100%;min-width:680px;background:#fff}.data-table th,.data-table td{padding:11px 12px;border-bottom:1px solid var(--t1-line);text-align:left}.data-table th{background:var(--t1-green);color:#fff}.data-table tr:last-child td{border-bottom:0}.data-table tr:hover td{background:#f7fbf9}
+.code-shell{background:#101914;border-radius:16px;padding:0;overflow:hidden;margin:15px 0;box-shadow:0 8px 20px rgba(0,0,0,.12)}.code-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#1d2b23;color:#dff6e8;font:700 .82rem/1.2 system-ui}.dots{display:flex;gap:6px}.dot{width:10px;height:10px;border-radius:50%;background:#89988e}.copy-btn,.action-btn,.quiz-btn{border:0;border-radius:9px;padding:.5rem .75rem;background:var(--t1-green);color:#fff;font-weight:800;cursor:pointer}.copy-btn:hover,.action-btn:hover,.quiz-btn:hover{background:var(--t1-green2)}
+pre.c-code{margin:0;padding:16px;overflow:auto;color:#e9fff3;font:500 .93rem/1.6 Consolas,"Courier New",monospace;tab-size:4}pre.c-code .kw{color:#7fd7ff}.type{color:#ffd479}.str{color:#9fe39f}.num{color:#f5a9e1}.com{color:#7f9a88;font-style:italic}.fn{color:#f3d36f}.pp{color:#ff9e9e}
+.note-box,.warn-box,.success-box{padding:13px 15px;border-radius:12px;margin:13px 0;border-left:5px solid}.note-box{background:#fff8e8;border-color:var(--t1-gold)}.warn-box{background:var(--t1-red);border-color:#d9534f}.success-box{background:var(--t1-light);border-color:var(--t1-green)}
+.arch-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:15px 0}.arch{border-radius:16px;border:1px solid var(--t1-line);padding:16px;background:#fff}.arch h4{margin:.2rem 0 .8rem;color:var(--t1-green)}.bar{display:flex;align-items:center;gap:10px;margin:8px 0}.bar span:first-child{width:90px;font-family:Consolas,monospace;font-weight:800}.meter{height:18px;border-radius:9px;background:#e8f1ec;flex:1;overflow:hidden}.fill{height:100%;background:linear-gradient(90deg,var(--t1-green),var(--t1-gold));border-radius:9px}.bar small{width:62px;text-align:right}
+.format-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.format-card{border:1px solid var(--t1-line);border-radius:12px;padding:12px;background:#fff;text-align:center}.format-card code{font-size:1.3rem;font-weight:900;color:var(--t1-green)}
+.lab{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.panel{border:1px solid var(--t1-line);border-radius:16px;background:#fff;padding:16px}.panel label{display:block;font-weight:800;color:var(--t1-green);margin:8px 0 5px}.panel select,.panel input{width:100%;box-sizing:border-box;padding:.68rem;border:1px solid #b9cdc2;border-radius:9px;font:inherit}.terminal{background:#102019;color:#eafff3;border-radius:14px;padding:15px;min-height:150px;font:500 .92rem/1.55 Consolas,monospace;white-space:pre-wrap}
+.quiz{margin:22px 0;padding:18px;border:1px solid var(--t1-line);border-radius:18px;background:#fff}.quiz-q{padding:12px 0;border-bottom:1px dashed var(--t1-line)}.quiz-q:last-child{border-bottom:0}.quiz-q button{display:block;width:100%;text-align:left;margin:7px 0;padding:9px 10px;border:1px solid #c8d9d0;background:#fff;border-radius:9px;cursor:pointer}.quiz-q button:hover{background:var(--t1-light)}.feedback{min-height:1.2em;font-weight:800}
+@media(max-width:900px){.hero-grid,.arch-grid,.lab{grid-template-columns:1fr}.cards4{grid-template-columns:repeat(2,1fr)}.cards3{grid-template-columns:1fr}.format-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cards4,.format-grid{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}.memory{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body class="page-listas">
+<div class="page">
+<header class="header">
+  <div>
+    <h1>TIPOS DE DATOS EN C <span>TEMA 1 · PROGRAMACIÓN ESTRUCTURADA</span></h1>
+    <div class="subtitle">Cómo representa C la información en memoria y cómo elegir el tipo correcto</div>
+    <div class="badge">🧮 <b>Los tipos de datos son contratos entre el programa y la máquina</b></div>
+  </div>
+  <div class="meta">
+    <div><strong>TEMA</strong>Tema 1 · Tipos de datos</div>
+    <div><strong>MATERIA</strong>Programación Estructurada</div>
+    <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
+    <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
+    <div><strong>FACULTAD</strong>FIAD</div><div><strong>UNIVERSIDAD</strong>UABC</div>
+  </div>
+  <div class="logo"><img src="../images/uabc_logo.png" alt="Escudo UABC"></div>
+</header>
+<div class="ribbon"><span>TEMA 1 · TIPOS DE DATOS</span><span>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</span></div>
+
+<main class="content">
+<div class="note"><b>Propósito:</b> comprender cómo C reserva memoria, interpreta bits y determina qué operaciones son válidas según el tipo de dato.</div>
+<nav class="topic-nav">
+<a href="#concepto">Concepto</a><a href="#primitivos">Primitivos</a><a href="#tamano">Tamaño</a><a href="#formatos">Formatos</a><a href="#modificadores">Modificadores</a><a href="#compuestos">Compuestos</a><a href="#laboratorio">Laboratorio</a><a href="#quiz">Repaso</a>
+</nav>
+
+<section class="hero-grid" id="concepto">
+  <article class="hero-card">
+    <h2>🧠 ¿Qué es un tipo de dato?</h2>
+    <p>La memoria de la computadora solo almacena <b>bits</b>. Un tipo de dato le dice al compilador <b>cuánta memoria reservar</b>, <b>cómo interpretar esos bits</b> y <b>qué operaciones son válidas</b>.</p>
+    <div class="cards3">
+      <div class="cardx"><div class="icon">📦</div><h4>Reserva memoria</h4><p>Determina cuánto espacio necesita una variable.</p></div>
+      <div class="cardx"><div class="icon">🔍</div><h4>Interpreta bits</h4><p>Los mismos bits pueden significar números, caracteres u otros valores.</p></div>
+      <div class="cardx"><div class="icon">⚙️</div><h4>Define operaciones</h4><p>Controla qué cálculos y conversiones son válidos.</p></div>
+    </div>
+  </article>
+  <aside class="hero-card">
+    <h3>💾 1 byte = 8 bits</h3>
+    <p>Visualiza un byte como ocho interruptores encendidos o apagados:</p>
+    <div class="memory" aria-label="Representación visual de bits">
+      <div class="bit">1</div><div class="bit">0</div><div class="bit">1</div><div class="bit">1</div><div class="bit">0</div><div class="bit">0</div><div class="bit">1</div><div class="bit">0</div>
+    </div>
+    <div class="note-box">En C, elegir el tipo correcto ayuda a escribir código <b>correcto, seguro y eficiente</b>.</div>
+  </aside>
+</section>
+
+<div class="section" id="primitivos">1.1 · TIPOS PRIMITIVOS O FUNDAMENTALES</div>
+<p>Son los <b>ladrillos básicos</b> del lenguaje C. Los podemos agrupar en enteros, reales y booleanos.</p>
+<div class="cards4">
+  <article class="cardx"><div class="icon">🔢</div><h4>Enteros</h4><span class="type-chip">char</span><span class="type-chip">short</span><span class="type-chip">int</span><span class="type-chip">long</span><span class="type-chip">long long</span></article>
+  <article class="cardx"><div class="icon">🌊</div><h4>Reales</h4><span class="type-chip">float</span><span class="type-chip">double</span><span class="type-chip">long double</span></article>
+  <article class="cardx"><div class="icon">✅</div><h4>Booleanos</h4><span class="type-chip">_Bool</span><span class="type-chip">bool</span><p>Desde C99, con <code>&lt;stdbool.h&gt;</code>.</p></article>
+  <article class="cardx"><div class="icon">🔤</div><h4>Carácter</h4><span class="type-chip">char</span><p>Técnicamente es un entero pequeño; suele representar códigos de caracteres.</p></article>
+</div>
+
+<h3>Enteros: <code>char</code>, <code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code></h3>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Tipo</th><th>Tamaño típico</th><th>Rango típico con signo</th><th>Uso frecuente</th></tr></thead><tbody>
+<tr><td><code>char</code></td><td>1 byte</td><td>-128 a 127</td><td>Caracteres / entero pequeño</td></tr>
+<tr><td><code>short</code></td><td>2 bytes</td><td>-32,768 a 32,767</td><td>Enteros de rango reducido</td></tr>
+<tr><td><code>int</code></td><td>4 bytes</td><td>-2,147,483,648 a 2,147,483,647</td><td>Conteos, índices, enteros generales</td></tr>
+<tr><td><code>long</code></td><td>4 u 8 bytes</td><td>Depende de la arquitectura</td><td>Enteros grandes</td></tr>
+<tr><td><code>long long</code></td><td>8 bytes</td><td>≈ ±9.2 × 10¹⁸</td><td>Enteros muy grandes</td></tr>
+</tbody></table></div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>ejemplo_enteros.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> edad = <span class="num">20</span>;
+<span class="type">char</span> inicial = <span class="str">'P'</span>;
+<span class="type">long long</span> poblacion_mundial = <span class="num">8000000000LL</span>;
+
+<span class="com">// LL indica que el literal es long long</span></pre></div>
+
+<h3>Reales: <code>float</code>, <code>double</code>, <code>long double</code></h3>
+<div class="table-wrap"><table class="data-table"><thead><tr><th>Tipo</th><th>Tamaño típico</th><th>Precisión aproximada</th><th>Rango típico</th></tr></thead><tbody>
+<tr><td><code>float</code></td><td>4 bytes</td><td>6–7 dígitos</td><td>±10³⁸</td></tr>
+<tr><td><code>double</code></td><td>8 bytes</td><td>15–16 dígitos</td><td>±10³⁰⁸</td></tr>
+<tr><td><code>long double</code></td><td>10–16 bytes</td><td>Variable / mayor</td><td>Depende del sistema</td></tr>
+</tbody></table></div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>ejemplo_reales.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">float</span> temperatura = <span class="num">36.6f</span>;   <span class="com">// f indica float</span>
+<span class="type">double</span> pi = <span class="num">3.1415926535</span>; <span class="com">// sin sufijo → double</span></pre></div>
+<div class="warn-box">⚠️ Los números de punto flotante no siempre son exactos en binario. Evita comparar resultados decimales con <code>==</code> cuando necesites alta precisión.</div>
+
+<h3>Booleanos en C99+</h3>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>booleanos.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+<span class="pp">#include</span> <span class="str">&lt;stdbool.h&gt;</span>
+
+<span class="type">bool</span> esMayor = <span class="kw">true</span>;
+<span class="type">_Bool</span> activo = <span class="num">0</span>;
+
+<span class="kw">if</span> (esMayor) {
+    <span class="fn">printf</span>(<span class="str">"Es mayor de edad.\n"</span>);
+}</pre></div>
+
+<div class="section" id="tamano">1.2 · TAMAÑO DE LOS TIPOS DE DATOS</div>
+<p>El tamaño exacto depende del compilador y de la arquitectura. Por eso, en C conviene <b>preguntar al sistema</b> en lugar de asumir.</p>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>sizeof.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="fn">printf</span>(<span class="str">"Tamaño de int: %zu bytes\n"</span>, <span class="kw">sizeof</span>(<span class="type">int</span>));
+<span class="fn">printf</span>(<span class="str">"Tamaño de double: %zu bytes\n"</span>, <span class="kw">sizeof</span>(<span class="type">double</span>));
+
+<span class="type">int</span> x = <span class="num">100</span>;
+<span class="fn">printf</span>(<span class="str">"Tamaño de x: %zu bytes\n"</span>, <span class="kw">sizeof</span>(x));</pre></div>
+<div class="success-box">✅ Usa <code>%zu</code> para imprimir el resultado de <code>sizeof</code>, porque devuelve un valor de tipo <code>size_t</code>.</div>
+
+<div class="arch-grid">
+  <article class="arch"><h4>🐧 Linux / macOS 64 bits (LP64)</h4><div class="bar"><span>int</span><div class="meter"><div class="fill" style="width:50%"></div></div><small>4 bytes</small></div><div class="bar"><span>long</span><div class="meter"><div class="fill" style="width:100%"></div></div><small>8 bytes</small></div><div class="bar"><span>long long</span><div class="meter"><div class="fill" style="width:100%"></div></div><small>8 bytes</small></div></article>
+  <article class="arch"><h4>🪟 Windows 64 bits (LLP64)</h4><div class="bar"><span>int</span><div class="meter"><div class="fill" style="width:50%"></div></div><small>4 bytes</small></div><div class="bar"><span>long</span><div class="meter"><div class="fill" style="width:50%"></div></div><small>4 bytes</small></div><div class="bar"><span>long long</span><div class="meter"><div class="fill" style="width:100%"></div></div><small>8 bytes</small></div></article>
+</div>
+<div class="note-box">📚 <code>&lt;limits.h&gt;</code> define límites de enteros como <code>INT_MAX</code> e <code>INT_MIN</code>. <code>&lt;float.h&gt;</code> contiene constantes como <code>FLT_MAX</code>, <code>DBL_EPSILON</code> y <code>LDBL_DIG</code>.</div>
+
+<div class="section" id="formatos">1.3 · ESPECIFICADORES DE FORMATO</div>
+<p><code>printf()</code> y <code>scanf()</code> necesitan saber qué tipo de dato están manejando. El especificador debe coincidir con el tipo.</p>
+<div class="format-grid">
+<div class="format-card"><code>%d</code><b>int</b><small>entero decimal</small></div><div class="format-card"><code>%c</code><b>char</b><small>carácter</small></div><div class="format-card"><code>%f</code><b>float/double</b><small>salida con printf</small></div><div class="format-card"><code>%lf</code><b>double</b><small>entrada con scanf</small></div>
+<div class="format-card"><code>%s</code><b>char[]</b><small>cadena</small></div><div class="format-card"><code>%u</code><b>unsigned int</b><small>entero sin signo</small></div><div class="format-card"><code>%x</code><b>entero</b><small>hexadecimal</small></div><div class="format-card"><code>%p</code><b>puntero</b><small>dirección</small></div>
+</div>
+<div class="warn-box">🚨 Con cadenas, evita <code>scanf("%s", nombre)</code> sin límite. Para un arreglo de 100 caracteres, usa <code>scanf("%99s", nombre)</code>.</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>formatos.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">double</span> precio = <span class="num">19.99</span>;
+
+<span class="fn">printf</span>(<span class="str">"Precio: %8.2f\n"</span>, precio); <span class="com">//    19.99</span>
+<span class="fn">printf</span>(<span class="str">"ID: %06d\n"</span>, <span class="num">42</span>);          <span class="com">// 000042</span></pre></div>
+<div class="success-box">✅ Regla de oro: el especificador debe coincidir exactamente con el tipo del argumento. Con GCC, compila con <code>gcc -Wall -Wextra programa.c -o programa</code>.</div>
+
+<div class="section" id="modificadores">1.4 · MODIFICADORES Y CALIFICADORES</div>
+<div class="cards4">
+<article class="cardx"><div class="icon">➕</div><h4>signed</h4><p>Permite valores negativos y positivos.</p></article>
+<article class="cardx"><div class="icon">🔢</div><h4>unsigned</h4><p>Solo cero y positivos; amplía el rango positivo.</p></article>
+<article class="cardx"><div class="icon">🔒</div><h4>const</h4><p>El valor no debe modificarse después de inicializarse.</p></article>
+<article class="cardx"><div class="icon">⚡</div><h4>volatile</h4><p>El valor puede cambiar por hardware u otros mecanismos externos.</p></article>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>modificadores.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">unsigned int</span> contador = <span class="num">0</span>;
+<span class="type">signed char</span> c = <span class="num">-50</span>;
+
+<span class="kw">const</span> <span class="type">double</span> PI = <span class="num">3.14159</span>;
+<span class="com">// PI = 3.14;  // error de compilación</span>
+
+<span class="kw">volatile</span> <span class="type">int</span> *sensor = (<span class="type">int</span>*)<span class="num">0x4000</span>;</pre></div>
+
+<div class="section" id="compuestos">1.5 · TIPOS COMPUESTOS</div>
+<p>C también permite construir tipos más complejos. En este tema solo los presentamos; más adelante se estudian con detalle.</p>
+<div class="cards3">
+<article class="cardx"><div class="icon">📦</div><h4>struct</h4><p>Agrupa datos relacionados de distintos tipos bajo un solo nombre.</p></article>
+<article class="cardx"><div class="icon">🏷️</div><h4>typedef</h4><p>Crea alias de tipos para mejorar legibilidad y mantenimiento.</p></article>
+<article class="cardx"><div class="icon">📊</div><h4>Arreglos de estructuras</h4><p>Permiten almacenar colecciones de registros del mismo tipo.</p></article>
+</div>
+<div class="code-shell"><div class="code-bar"><div class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i></div><span>struct_estudiante.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">typedef struct</span> {
+    <span class="type">char</span> nombre[<span class="num">50</span>];
+    <span class="type">int</span> edad;
+    <span class="type">float</span> promedio;
+} Estudiante;
+
+Estudiante alumno = {<span class="str">"Ana"</span>, <span class="num">21</span>, <span class="num">9.3f</span>};
+<span class="fn">printf</span>(<span class="str">"%s tiene %d años y promedio %.1f\n"</span>,
+       alumno.nombre, alumno.edad, alumno.promedio);</pre></div>
+
+<div class="section" id="laboratorio">🧪 LABORATORIO INTERACTIVO</div>
+<p>Selecciona un tipo y observa una referencia rápida. Después escribe un valor para visualizar cómo se presentaría con <code>printf()</code>.</p>
+<div class="lab">
+  <section class="panel">
+    <label for="tipoSel">Tipo de dato</label>
+    <select id="tipoSel" onchange="actualizaLab()"><option value="int">int</option><option value="char">char</option><option value="float">float</option><option value="double">double</option><option value="bool">bool</option><option value="longlong">long long</option></select>
+    <label for="valorInp">Valor de ejemplo</label><input id="valorInp" value="25" oninput="actualizaLab()">
+    <button class="action-btn" onclick="actualizaLab()">Actualizar ejemplo</button>
+    <div id="tipoInfo" class="note-box"></div>
+  </section>
+  <section class="terminal" id="terminalLab"></section>
+</div>
+
+<div class="section" id="quiz">✅ REPASO RÁPIDO</div>
+<div class="quiz">
+  <div class="quiz-q"><b>1. ¿Qué operador permite conocer el tamaño de un tipo o variable?</b><button onclick="answer(this,true)">sizeof</button><button onclick="answer(this,false)">printf</button><button onclick="answer(this,false)">typedef</button><div class="feedback"></div></div>
+  <div class="quiz-q"><b>2. ¿Qué especificador usa scanf() para leer un double?</b><button onclick="answer(this,false)">%f</button><button onclick="answer(this,true)">%lf</button><button onclick="answer(this,false)">%d</button><div class="feedback"></div></div>
+  <div class="quiz-q"><b>3. ¿Qué palabra evita modificar accidentalmente un valor?</b><button onclick="answer(this,false)">volatile</button><button onclick="answer(this,false)">unsigned</button><button onclick="answer(this,true)">const</button><div class="feedback"></div></div>
+</div>
+
+<div class="note"><b>En resumen:</b> los tipos de datos determinan cuánta memoria se utiliza, cómo se interpretan los bits y qué operaciones son seguras. Dominar tipos primitivos, límites, formatos y modificadores es una base esencial para programar correctamente en C.</div>
+<blockquote>“En C, tú estás al mando. Pero con gran poder viene gran responsabilidad.”<br><b>— Prof. Pedro Núñez Yepiz</b></blockquote>
+</main>
+
+<footer class="footer"><div><b>Universidad Autónoma de Baja California · FIAD</b><br>Programación Estructurada · Ingeniero en Software y Tecnologías Emergentes</div><div>Material didáctico · Tema 1</div></footer>
+</div>
+<script src="../scripts/app.js" defer></script>
+<script>
+function copyCode(btn){
+  const pre=btn.closest('.code-shell').querySelector('pre');
+  navigator.clipboard.writeText(pre.innerText).then(()=>{const old=btn.textContent;btn.textContent='✓ Copiado';setTimeout(()=>btn.textContent=old,1400);});
+}
+const tipos={
+ int:{tam:'4 bytes (típico)',fmt:'%d',desc:'Entero general; muy usado para conteos e índices.',ej:'int edad = 25;'},
+ char:{tam:'1 byte',fmt:'%c',desc:'Carácter o entero pequeño.',ej:"char inicial = 'P';"},
+ float:{tam:'4 bytes (típico)',fmt:'%f',desc:'Real de precisión simple, ~6–7 dígitos.',ej:'float temp = 36.6f;'},
+ double:{tam:'8 bytes (típico)',fmt:'%f en printf / %lf en scanf',desc:'Real de doble precisión, ~15–16 dígitos.',ej:'double pi = 3.1415926535;'},
+ bool:{tam:'1 byte normalmente',fmt:'%d (0 o 1)',desc:'Booleano de C99 mediante <stdbool.h>.',ej:'bool activo = true;'},
+ longlong:{tam:'8 bytes (típico)',fmt:'%lld',desc:'Entero de rango muy grande.',ej:'long long poblacion = 8000000000LL;'}
+};
+function actualizaLab(){
+ const k=document.getElementById('tipoSel').value,v=document.getElementById('valorInp').value,t=tipos[k];
+ document.getElementById('tipoInfo').innerHTML='<b>'+k+'</b><br>'+t.desc+'<br><b>Tamaño:</b> '+t.tam+'<br><b>Formato:</b> <code>'+t.fmt+'</code>';
+ let safe=v.replace(/[<>]/g,'');
+ document.getElementById('terminalLab').textContent='// Declaración de referencia\n'+t.ej+'\n\n// Valor escrito por el alumno\nEntrada: '+safe+'\n\n// Recuerda: el tamaño real depende del sistema.\nFormato recomendado: '+t.fmt;
+}
+function answer(btn,ok){const box=btn.parentElement,fb=box.querySelector('.feedback');box.querySelectorAll('button').forEach(b=>b.disabled=true);fb.textContent=ok?'✓ Correcto':'✗ Revisa la explicación del tema';fb.style.color=ok?'#0f6b45':'#b53b32';}
+document.addEventListener('DOMContentLoaded',actualizaLab);
+</script>
+</body>
+</html>
