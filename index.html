@@ -38,6 +38,60 @@
     filter: grayscale(.35);
   }
 
+
+  /* =========================================================
+     BOTONES DE NAVEGACIÓN POR TEMA
+     Cada botón ocupa todo el ancho del recuadro.
+     Los recursos que aún no existen aparecen apagados.
+     ========================================================= */
+  .card-foot{
+    display:flex;
+    flex-direction:column;
+    gap:.55rem;
+    width:100%;
+  }
+
+  .card-foot .btn,
+  .card-foot .btn-tema,
+  .card-foot .btn-infografia{
+    box-sizing:border-box;
+    display:flex;
+    width:100%;
+    min-height:44px;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    gap:.45rem;
+    margin:0;
+  }
+
+  .card-foot .btn-infografia{
+    background:linear-gradient(135deg,#6a1b9a,#8e24aa);
+    color:#fff;
+    border:2px solid #4a136e;
+    box-shadow:0 3px 8px rgba(74,19,110,.20);
+    text-decoration:none;
+  }
+
+  .card-foot .btn-infografia:hover{
+    background:linear-gradient(135deg,#7b1fa2,#ab47bc);
+    transform:translateY(-1px);
+  }
+
+  /* Botón sin página disponible */
+  .card-foot .btn-apagado,
+  .card-foot .btn-apagado:hover{
+    background:#d9dde1 !important;
+    color:#7a8086 !important;
+    border:2px solid #b8bec4 !important;
+    box-shadow:none !important;
+    cursor:not-allowed !important;
+    opacity:.72;
+    filter:grayscale(1);
+    transform:none !important;
+    pointer-events:none;
+  }
+
 </style>
 </head>
 
@@ -123,7 +177,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn" href="pages/tema_00_introduccion.html">Abrir Tema 0</a>
+        <a class="btn btn-tema" href="pages/tema_00_introduccion.html">📖 Abrir Tema 0</a>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🖼️ Infografía Tema 0</span>
       </div>
     </article>
 
@@ -141,7 +196,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn" href="pages/tema_01_tipos_datos.html">Abrir Tema 1</a>
+        <a class="btn btn-tema" href="pages/tema_01_tipos_datos.html">📖 Abrir Tema 1</a>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🎨 Infografía Tema 1</span>
       </div>
     </article>
 
@@ -159,7 +215,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn" href="pages/tema_02_expresiones.html">Abrir Tema 2</a>
+        <a class="btn btn-tema" href="pages/tema_02_expresiones.html">📖 Abrir Tema 2</a>
+        <a class="btn btn-infografia" href="pages/infografias_expresiones.html">⚙️ Infografía Tema 2</a>
       </div>
     </article>
 
@@ -177,7 +234,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 3</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 3</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🧭 Infografía Tema 3</span>
       </div>
     </article>
 
@@ -195,7 +253,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 4</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 4</span>
+        <a class="btn btn-infografia" href="pages/infografias_ciclos.html">🔄 Infografía Tema 4</a>
       </div>
     </article>
 
@@ -213,7 +272,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 5</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 5</span>
+        <a class="btn btn-infografia" href="pages/infografias_funciones.html">🧩 Infografía Tema 5</a>
       </div>
     </article>
 
@@ -231,7 +291,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 6</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 6</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">📊 Infografía Tema 6</span>
       </div>
     </article>
 
@@ -249,7 +310,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 7</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 7</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🧱 Infografía Tema 7</span>
       </div>
     </article>
 
@@ -267,7 +329,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 8</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 8</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🏷️ Infografía Tema 8</span>
       </div>
     </article>
 
@@ -285,7 +348,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 9</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 9</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🌀 Infografía Tema 9</span>
       </div>
     </article>
 
@@ -303,7 +367,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 10</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 10</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">🗂️ Infografía Tema 10</span>
       </div>
     </article>
 
@@ -321,7 +386,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 11</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 11</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">📚 Infografía Tema 11</span>
       </div>
     </article>
 
@@ -339,7 +405,8 @@
         </ul>
       </div>
       <div class="card-foot">
-        <a class="btn pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">Abrir Tema 12</a>
+        <span class="btn btn-tema btn-apagado" aria-disabled="true" title="Material todavía no disponible">📖 Abrir Tema 12</span>
+        <span class="btn btn-infografia btn-apagado" aria-disabled="true" title="Material todavía no disponible">💾 Infografía Tema 12</span>
       </div>
     </article>
 
@@ -364,56 +431,7 @@
     </div>
   </section>
 
-  <section class="infografias-panel" aria-labelledby="titulo-infografias">
-    <div class="infografias-icono" aria-hidden="true">🎨</div>
-    <div class="infografias-contenido">
-      <h3 id="titulo-infografias">INFOGRAFÍAS</h3>
-      <p>Material visual organizado por cada tema del curso, desde la introducción hasta el manejo de archivos.</p>
-      <div class="infografias-links">
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">💻</span><span>Tema 0 · Introducción</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">🔢</span><span>Tema 1 · Tipos de datos</span>
-        </a>
-        <a class="infografia-link" href="pages/infografias_expresiones.html">
-          <span class="infografia-emoji">🧮</span><span>Tema 2 · Expresiones</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">🔀</span><span>Tema 3 · Selección</span>
-        </a>
-        <a class="infografia-link" href="pages/infografias_ciclos.html">
-          <span class="infografia-emoji">🔁</span><span>Tema 4 · Iteración</span>
-        </a>
-        <a class="infografia-link" href="pages/infografias_funciones.html">
-          <span class="infografia-emoji">🧩</span><span>Tema 5 · Funciones</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">▦</span><span>Tema 6 · Arreglos</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">📦</span><span>Tema 7 · structs</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">🏷️</span><span>Tema 8 · typedef</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">🪆</span><span>Tema 9 · Recursión</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">🗂️</span><span>Tema 10 · Multiarchivo</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">📚</span><span>Tema 11 · Biblioteca de funciones</span>
-        </a>
-        <a class="infografia-link pendiente"  href="#" aria-disabled="true" title="Material pendiente de agregar">
-          <span class="infografia-emoji">💾</span><span>Tema 12 · Archivos</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <div class="summary">
+<div class="summary">
     <div class="bulb">💡</div>
     <div>
       <b>Idea central del curso</b><br>
