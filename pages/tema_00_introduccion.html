@@ -1,13 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tema 0: Introducción a la Programación Estructurada - UABC FIAD - ISyTE">
-<title>Tema 0 · Introducción a la Programación Estructurada | UABC</title>
-<link rel="stylesheet" href="../styles/styles.css">
-<style>
-  :root{
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <title>Tema 0 · Introducción a la Programación Estructurada | UABC</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+
+  <style>
+:root{
     --intro-green:#0f6b45;
     --intro-green-2:#168455;
     --intro-light:#eef8f2;
@@ -71,31 +79,527 @@
   .reveal{cursor:pointer}.reveal-content{display:none;margin-top:10px}.reveal.open .reveal-content{display:block}
   @media(max-width:900px){.intro-grid,.paradigm-grid{grid-template-columns:repeat(2,1fr)}.timeline{grid-template-columns:1fr}.timeline::before{display:none}.time-item{display:grid;grid-template-columns:60px 1fr;text-align:left;align-items:center}.time-dot{margin:8px auto}.three-pillars,.c-layout,.io-demo{grid-template-columns:1fr}.escape-grid{grid-template-columns:repeat(2,1fr)}}
   @media(max-width:560px){.intro-grid,.paradigm-grid,.escape-grid{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}.flow-arrow{transform:rotate(90deg);animation:none}}
-</style>
+
+
+/* ===============================================================
+   TEMA 0 · ADAPTACIÓN AL DISEÑO MODERNO DEL INDEX
+   =============================================================== */
+
+body.pe-home.pe-topic{
+  background:
+    radial-gradient(circle at 10% 12%, rgba(0,104,71,.055), transparent 25%),
+    linear-gradient(180deg,#f4fbf8 0,#ffffff 35%,#f5faf8 100%);
+}
+
+/* El encabezado institucional usa exactamente la estructura del INDEX */
+body.pe-topic .institutional-top{
+  position:sticky !important;
+  top:0;
+  z-index:2050;
+}
+
+/* Hero del tema: misma identidad del index, adaptada a una unidad */
+body.pe-topic .topic-course-hero{
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #d5e8df;
+  background:
+    radial-gradient(circle at 9% 10%,rgba(255,255,255,.58) 0 18%,transparent 19%),
+    linear-gradient(135deg,#d7eee5 0%,#e6f5ef 34%,#f8fcfa 58%,#d2ebe1 80%,#c4e4d8 100%);
+}
+
+body.pe-topic .topic-course-hero::before{
+  content:"";
+  position:absolute;
+  width:720px;
+  height:300px;
+  left:-165px;
+  top:-125px;
+  border-radius:50%;
+  border:38px solid rgba(0,104,71,.08);
+  transform:rotate(-13deg);
+}
+
+body.pe-topic .topic-course-hero::after{
+  content:"";
+  position:absolute;
+  width:620px;
+  height:250px;
+  right:-125px;
+  bottom:-145px;
+  border-radius:50%;
+  background:rgba(0,104,71,.07);
+  transform:rotate(-16deg);
+}
+
+body.pe-topic .topic-course-hero .row{
+  position:relative;
+  z-index:1;
+}
+
+body.pe-topic .topic-course-hero .course-kicker{
+  color:#526d94;
+  font-weight:900;
+  letter-spacing:.12em;
+}
+
+body.pe-topic .topic-course-hero .course-title{
+  max-width:950px;
+  font-size:clamp(2.55rem,4.7vw,4.55rem) !important;
+  line-height:.98 !important;
+}
+
+body.pe-topic .topic-number-pill{
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  margin-bottom:.55rem;
+  padding:.42rem .78rem;
+  border:1px solid rgba(0,104,71,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.62);
+  color:#075b43;
+  font-weight:850;
+  font-size:.86rem;
+  backdrop-filter:blur(5px);
+}
+
+body.pe-topic .topic-number-pill i{
+  font-size:1rem;
+}
+
+/* Tarjeta de identificación igual al INDEX, con tono verde visible */
+body.pe-topic .course-info-card{
+  background:
+    linear-gradient(135deg,
+      rgba(224,246,237,.98) 0%,
+      rgba(197,234,219,.96) 48%,
+      rgba(226,248,240,.98) 100%) !important;
+  border:1px solid rgba(0,104,71,.38) !important;
+  box-shadow:
+    0 14px 30px rgba(0,77,54,.15),
+    inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+/* Contenido del tema como panel principal */
+body.pe-topic .topic-content-shell{
+  padding-top:22px;
+  padding-bottom:32px;
+}
+
+body.pe-topic .topic-content-card{
+  background:#fff;
+  border:1px solid #deebe5;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(7,67,48,.08);
+  padding:clamp(16px,2.4vw,28px);
+}
+
+/* Navegación del tema modernizada */
+body.pe-topic .topic-nav{
+  position:relative;
+  z-index:3;
+  padding:12px;
+  border:1px solid #d9e9e2;
+  border-radius:14px;
+  background:linear-gradient(180deg,#ffffff,#f5fbf8);
+  box-shadow:0 5px 16px rgba(0,70,48,.06);
+}
+
+body.pe-topic .topic-nav a{
+  border-color:#c9e0d5;
+  background:#fff;
+}
+
+body.pe-topic .topic-nav a:hover{
+  background:#e7f6ef;
+  border-color:#98cbb4;
+}
+
+/* Secciones: mismo lenguaje visual del INDEX */
+body.pe-topic .section{
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,75,52,.10);
+}
+
+body.pe-topic .summary{
+  border-radius:14px;
+}
+
+/* Botón flotante de regreso (app.js no lo crea al usar pe-home) */
+body.pe-topic .topic-back-home{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:2100;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 14px 8px 8px;
+  border:2px solid #006847;
+  border-radius:999px;
+  background:#fff;
+  color:#004b35;
+  text-decoration:none;
+  font-weight:800;
+  box-shadow:0 8px 22px rgba(0,0,0,.17);
+  transition:.2s ease;
+}
+
+body.pe-topic .topic-back-home:hover{
+  color:#004b35;
+  background:#f0faf5;
+  transform:translateY(-2px);
+}
+
+body.pe-topic .topic-back-home img{
+  width:50px;
+  height:50px;
+  object-fit:contain;
+}
+
+/* Footer moderno igual al INDEX */
+body.pe-topic .institutional-footer{
+  margin-top:0;
+}
+
+/* Bootstrap + contenido existente */
+body.pe-topic .content{
+  padding:0;
+  overflow:visible;
+}
+
+@media (max-width:991.98px){
+  body.pe-topic .topic-course-hero .course-title{
+    font-size:clamp(2.7rem,6.5vw,4rem) !important;
+  }
+}
+
+@media (max-width:767.98px){
+  body.pe-topic .topic-course-hero .course-title{
+    font-size:clamp(2.35rem,9vw,3.3rem) !important;
+  }
+
+  body.pe-topic .topic-content-shell{
+    padding-top:14px;
+  }
+
+  body.pe-topic .topic-content-card{
+    border-radius:14px;
+    padding:15px;
+  }
+
+  body.pe-topic .topic-back-home{
+    right:12px;
+    bottom:12px;
+    padding-right:11px;
+  }
+
+  body.pe-topic .topic-back-home img{
+    width:44px;
+    height:44px;
+  }
+}
+
+@media (max-width:430px){
+  body.pe-topic .topic-course-hero .course-title{
+    font-size:2.35rem !important;
+  }
+
+  body.pe-topic .topic-back-home span{
+    display:none;
+  }
+
+  body.pe-topic .topic-back-home{
+    padding:7px;
+  }
+}
+
+
+/* ============================================================
+   UNIFORMIDAD VISUAL CON EL INDEX · PÁGINAS INTERNAS
+   ============================================================ */
+body.pe-home.pe-course-page{
+  background:
+    radial-gradient(circle at 10% 12%, rgba(0,104,71,.045), transparent 25%),
+    linear-gradient(180deg,#f4fbf8 0,#ffffff 34%,#f5faf8 100%);
+}
+
+body.pe-course-page .institutional-top{
+  position:sticky !important;
+  top:0;
+  z-index:2050;
+  overflow:visible;
+  width:100%;
+  box-shadow:0 4px 16px rgba(0,58,43,.18);
+}
+
+body.pe-course-page .institutional-top .brand-shield{
+  width:104px !important;
+  height:118px !important;
+  min-width:104px !important;
+  object-fit:contain;
+  background:transparent !important;
+  border:0 !important;
+  position:relative;
+  z-index:2060;
+  transform:translateY(16px);
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.22));
+}
+
+body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:92px}
+
+body.pe-course-page .brand-motto{
+  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.9rem !important;
+  font-weight:600 !important;
+  line-height:1.12;
+  text-transform:none !important;
+  color:#fff !important;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-width:330px;
+}
+
+body.pe-course-page .topic-course-hero{
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #d5e8df;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,255,255,.58) 0 18%,transparent 19%),
+    linear-gradient(135deg,#d7eee5 0%,#e5f4ee 33%,#f8fcfa 58%,#d0e9df 79%,#bee0d3 100%);
+}
+
+body.pe-course-page .topic-course-hero::before{
+  content:"";
+  position:absolute;
+  width:720px;height:300px;
+  left:-165px;top:-125px;
+  border-radius:50%;
+  border:38px solid rgba(0,104,71,.08);
+  transform:rotate(-13deg);
+}
+
+body.pe-course-page .topic-course-hero::after{
+  content:"";
+  position:absolute;
+  width:620px;height:250px;
+  right:-125px;bottom:-145px;
+  border-radius:50%;
+  background:rgba(0,104,71,.07);
+  transform:rotate(-16deg);
+}
+
+body.pe-course-page .topic-course-hero .row{position:relative;z-index:1}
+body.pe-course-page .topic-course-hero .course-kicker{
+  color:#526d94;font-weight:900;letter-spacing:.12em
+}
+body.pe-course-page .topic-course-hero .course-title{
+  max-width:980px;
+  font-size:clamp(2.7rem,4.6vw,4.65rem) !important;
+  line-height:.97 !important;
+}
+body.pe-course-page .topic-number-pill{
+  display:inline-flex;align-items:center;gap:.55rem;
+  margin-bottom:.55rem;padding:.42rem .78rem;
+  border:1px solid rgba(0,104,71,.20);border-radius:999px;
+  background:rgba(255,255,255,.66);color:#075b43;
+  font-weight:850;font-size:.86rem;backdrop-filter:blur(5px)
+}
+
+body.pe-course-page .course-info-card{
+  background:linear-gradient(135deg,
+      rgba(224,246,237,.98) 0%,
+      rgba(194,233,217,.97) 48%,
+      rgba(225,247,239,.98) 100%) !important;
+  border:1px solid rgba(0,104,71,.38) !important;
+  box-shadow:0 14px 30px rgba(0,77,54,.15),inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+body.pe-course-page .course-info-card .info-row{
+  background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(0,104,71,.035),rgba(255,255,255,.08));
+}
+
+body.pe-course-page .page-content-shell{padding-top:22px;padding-bottom:32px}
+body.pe-course-page .page-content-card{
+  background:#fff;border:1px solid #deebe5;border-radius:18px;
+  box-shadow:0 10px 30px rgba(7,67,48,.08);
+  padding:clamp(16px,2.4vw,28px);
+}
+body.pe-course-page .content{padding:0;overflow:visible}
+
+body.pe-course-page .topic-nav{
+  padding:12px;border:1px solid #d9e9e2;border-radius:14px;
+  background:linear-gradient(180deg,#fff,#f5fbf8);
+  box-shadow:0 5px 16px rgba(0,70,48,.06);
+}
+body.pe-course-page .section{
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,75,52,.10);
+}
+
+body.pe-course-page .gallery-intro{
+  border-radius:16px;
+  background:linear-gradient(135deg,#f5fbf8,#e8f5ef);
+  border:1px solid #d2e8dd;
+  padding:18px 20px;
+  margin-bottom:18px;
+}
+
+body.pe-course-page .topic-back-home{
+  position:fixed;right:22px;bottom:22px;z-index:2100;
+  display:flex;align-items:center;gap:9px;
+  padding:8px 14px 8px 8px;border:2px solid #006847;border-radius:999px;
+  background:#fff;color:#004b35;text-decoration:none;font-weight:800;
+  box-shadow:0 8px 22px rgba(0,0,0,.17);transition:.2s ease;
+}
+body.pe-course-page .topic-back-home:hover{
+  color:#004b35;background:#f0faf5;transform:translateY(-2px)
+}
+body.pe-course-page .topic-back-home img{
+  width:50px;height:50px;object-fit:contain
+}
+
+/* Ajuste de lightbox para convivir con header fijo */
+body.pe-course-page .infografia-lightbox{z-index:5000}
+
+/* Evitar que las clases heredadas de páginas antiguas reemplacen el layout general */
+body.pe-course-page > .page{display:none !important}
+
+@media (max-width:1199.98px){
+  body.pe-course-page .brand-motto{font-size:1.55rem !important;min-width:280px}
+  body.pe-course-page .institutional-top .brand-shield{
+    width:88px !important;height:102px !important;min-width:88px !important;transform:translateY(13px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:82px}
+}
+
+@media (max-width:991.98px){
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.6rem,6.3vw,4rem) !important}
+}
+
+@media (max-width:767.98px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:76px !important;height:90px !important;min-width:76px !important;transform:translateY(11px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:74px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.25rem,9vw,3.35rem) !important}
+  body.pe-course-page .page-content-shell{padding-top:14px}
+  body.pe-course-page .page-content-card{border-radius:14px;padding:15px}
+  body.pe-course-page .topic-back-home{right:12px;bottom:12px;padding-right:11px}
+  body.pe-course-page .topic-back-home img{width:44px;height:44px}
+}
+
+@media (max-width:430px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:66px !important;height:78px !important;min-width:66px !important;transform:translateY(9px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:68px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:2.3rem !important}
+  body.pe-course-page .topic-back-home span{display:none}
+  body.pe-course-page .topic-back-home{padding:7px}
+}
+
+  </style>
 </head>
-<body class="page-listas">
-<div class="page">
-  <header class="header">
-    <div>
-      <h1>INTRODUCCIÓN A LA PROGRAMACIÓN ESTRUCTURADA <span>TEMA 0 · FUNDAMENTOS DEL LENGUAJE C</span></h1>
-      <div class="subtitle">Panorama general de la programación, sus paradigmas y los fundamentos del lenguaje C</div>
-      <div class="badge">💻 <b>De un problema a una solución paso a paso</b></div>
+
+<body class="pe-home pe-course-page pe-topic page-listas">
+
+  <header class="institutional-top">
+    <div class="container-fluid pe-shell">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 py-lg-3">
+        <div class="d-flex align-items-center gap-3 min-w-0">
+          <img class="brand-shield"
+               src="../images/uabc_logo.png"
+               alt="Escudo de la Universidad Autónoma de Baja California">
+
+          <div class="brand-university">
+            <div class="brand-name">
+              Universidad Autónoma<br class="d-none d-sm-block"> de Baja California
+            </div>
+          </div>
+
+          <div class="brand-divider d-none d-lg-block"></div>
+          <div class="brand-motto d-none d-lg-block">Por la realización plena del ser</div>
+        </div>
+
+        <div class="top-identity d-flex align-items-center gap-3">
+          <div class="uabc-brush d-none d-md-block">UABC</div>
+          <div class="brand-divider d-none d-md-block"></div>
+          <div class="somos-uabc text-end">
+            <span>SOMOS</span>
+            <strong>uABC</strong>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="meta">
-      <div><strong>TEMA</strong>Tema 0 · Introducción</div>
-      <div><strong>MATERIA</strong>Programación Estructurada</div>
-      <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
-      <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
-      <div><strong>FACULTAD</strong>FIAD</div>
-      <div><strong>UNIVERSIDAD</strong>UABC</div>
-    </div>
-    <div class="logo"><img src="../images/uabc_logo.png" alt="Escudo UABC"></div>
   </header>
 
-  <div class="ribbon"><span>TEMA 0 · INTRODUCCIÓN A LA PROGRAMACIÓN ESTRUCTURADA</span><span>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</span></div>
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-laptop"></i>
+            TEMA 0 · FUNDAMENTOS
+          </div>
 
-  <main class="content">
-    <div class="note"><b>Propósito del tema:</b> reconocer cómo evolucionó la programación, distinguir sus principales paradigmas y comprender la lógica de la programación estructurada antes de comenzar a construir programas en lenguaje C.</div>
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Introducción a la Programación Estructurada</h1>
+          <p class="course-subtitle mb-0">Panorama general de la programación, sus paradigmas y los fundamentos del lenguaje C</p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-code-square" aria-hidden="true"></i>
+            <span>“De un problema a una solución paso a paso”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <aside class="course-info-card" aria-label="Información académica">
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-book"></i></div>
+              <div class="info-label">TEMA:</div>
+              <div class="info-value">Tema 0 · Introducción</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-journal-code"></i></div>
+              <div class="info-label">MATERIA:</div>
+              <div class="info-value">Programación Estructurada</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-person-fill"></i></div>
+              <div class="info-label">DOCENTE:</div>
+              <div class="info-value">Pedro Núñez Yepiz</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
+              <div class="info-label">CARRERA:</div>
+              <div class="info-value">Ingeniero en Software y Tecnologías Emergentes / Ingeniero en Computación</div>
+            </div>
+
+            <div class="info-row border-0">
+              <div class="info-icon"><i class="bi bi-bank2"></i></div>
+              <div class="info-label">FACULTAD:</div>
+              <div class="info-value">Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+<div class="topic-content-card content">
+<div class="note"><b>Propósito del tema:</b> reconocer cómo evolucionó la programación, distinguir sus principales paradigmas y comprender la lógica de la programación estructurada antes de comenzar a construir programas en lenguaje C.</div>
 
     <nav class="topic-nav" aria-label="Navegación del tema">
       <a href="#historia">1 · Historia</a><a href="#paradigmas">2 · Paradigmas</a><a href="#estructurada">3 · Estructurada</a><a href="#aportes">4 · Aportes</a><a href="#c-historia">5 · Lenguaje C</a><a href="#estructura-c">6 · Programa en C</a><a href="#include">7 · #include</a><a href="#escape">8 · Escape</a><a href="#comentarios">9 · Comentarios</a><a href="#scanf">10 · scanf()</a><a href="#printf">11 · printf()</a>
@@ -297,13 +801,45 @@ int main(void)
     <div class="key"><b>Al finalizar este tema debes poder explicar:</b><ul><li>Cómo evolucionó la programación y qué significa paradigma.</li><li>Qué caracteriza a la programación estructurada.</li><li>Por qué secuencia, selección e iteración son sus estructuras fundamentales.</li><li>Qué papel tuvo el lenguaje C y por qué sigue siendo útil para aprender programación.</li><li>La estructura mínima de un programa en C.</li><li>Para qué sirven <code>#include</code>, las secuencias de escape y los comentarios.</li><li>La diferencia entre entrada con <code>scanf()</code> y salida con <code>printf()</code>.</li></ul></div>
 
     <div class="summary"><div class="bulb">💡</div><div><b>IDEA CLAVE</b><br>Programar no consiste en memorizar instrucciones: consiste en <b>organizar una solución</b>. C será la herramienta; la programación estructurada será la forma ordenada de pensarla.</div></div>
+    </div>
+    </div>
   </main>
 
-  <footer class="footer"><div><div class="uabc">UABC</div><div>UNIVERSIDAD AUTÓNOMA<br>DE BAJA CALIFORNIA</div></div><div class="center"><b>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</b><br>Programación Estructurada · Tema 0: Introducción</div><div class="right">POR LA REALIZACIÓN PLENA DEL SER</div></footer>
-</div>
+  <footer class="institutional-footer">
+    <div class="container-fluid pe-shell">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+          <div>
+            <strong>Universidad Autónoma<br>de Baja California</strong>
+          </div>
+        </div>
+
+        <div class="footer-divider d-none d-lg-block"></div>
+        <div class="footer-motto d-none d-lg-block">Por la realización plena del ser</div>
+
+        <div class="footer-signature ms-lg-auto">
+          <span>@el_profe_Yepiz</span>
+          <span id="currentYear">2026</span>
+          <span aria-hidden="true">🤟</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="topic-back-home" href="../index.html" aria-label="Regresar al contenido del curso">
+    <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+    <span>Regresar al curso</span>
+  </a>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
 
 <script>
-  document.querySelectorAll('.copy-btn').forEach(btn => {
+document.querySelectorAll('.copy-btn').forEach(btn => {
     btn.addEventListener('click', async () => {
       const el = document.getElementById(btn.dataset.copy);
       const text = el ? el.innerText : '';
@@ -334,7 +870,17 @@ int main(void)
       });
     });
   });
-</script>
+
+    const year = document.getElementById("currentYear");
+    if (year) year.textContent = new Date().getFullYear();
+  </script>
 <script src="../scripts/app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const year = document.getElementById("currentYear");
+      if (year) year.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>

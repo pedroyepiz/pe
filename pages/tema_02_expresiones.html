@@ -1,12 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tema 2: Expresiones aritméticas, relacionales y lógicas en C - Programación Estructurada - UABC FIAD">
-<title>Tema 2 · Expresiones en C | UABC</title>
-<link rel="stylesheet" href="../styles/styles.css">
-<style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <title>Tema 2 · Expresiones en C | UABC</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+
+  <style>
 :root{
   --t2-green:#0f6b45;--t2-green2:#168455;--t2-light:#eef8f2;--t2-gold:#f2b134;
   --t2-blue:#eaf4ff;--t2-red:#fff1f0;--t2-purple:#f5f0ff;--t2-ink:#17352a;--t2-line:#d6e7de;
@@ -35,28 +43,290 @@ pre.c-code{margin:0;padding:16px;overflow:auto;color:#e9fff3;font:500 .93rem/1.6
 .quiz{margin:22px 0;padding:18px;border:1px solid var(--t2-line);border-radius:18px;background:#fff}.quiz-q{padding:12px 0;border-bottom:1px dashed var(--t2-line)}.quiz-q:last-child{border-bottom:0}.quiz-q button{display:block;width:100%;text-align:left;margin:7px 0;padding:9px 10px;border:1px solid #c8d9d0;background:#fff;border-radius:9px;cursor:pointer}.quiz-q button:hover{background:var(--t2-light)}.feedback{min-height:1.2em;font-weight:800}
 @media(max-width:900px){.hero-grid,.prof-grid,.shortcircuit,.lab{grid-template-columns:1fr}.cards3,.truth-wrap{grid-template-columns:1fr}.cards4,.cards2{grid-template-columns:repeat(2,1fr)}.stepper{grid-template-columns:1fr 1fr}.expr-machine{grid-template-columns:1fr}.machine-op{transform:rotate(90deg)}.level{grid-template-columns:48px 1fr}.level small{grid-column:2;text-align:left}}
 @media(max-width:560px){.cards4,.cards2,.stepper{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}}
-</style>
-</head>
-<body class="page-listas">
-<div class="page">
-<header class="header">
-  <div>
-    <h1>EXPRESIONES EN C <span>TEMA 2 · PROGRAMACIÓN ESTRUCTURADA</span></h1>
-    <div class="subtitle">Expresiones aritméticas, relacionales y lógicas</div>
-    <div class="badge">🧠 <b>Calcular + comparar + decidir = lógica computacional</b></div>
-  </div>
-  <div class="meta">
-    <div><strong>TEMA</strong>Tema 2 · Expresiones</div>
-    <div><strong>MATERIA</strong>Programación Estructurada</div>
-    <div><strong>MAESTRO</strong>Pedro Núñez Yepiz</div>
-    <div><strong>CARRERA</strong>Ingeniero en Software y Tecnologías Emergentes</div>
-    <div><strong>FACULTAD</strong>FIAD</div><div><strong>UNIVERSIDAD</strong>UABC</div>
-  </div>
-  <div class="logo"><img src="../images/uabc_logo.png" alt="Escudo UABC"></div>
-</header>
-<div class="ribbon"><span>TEMA 2 · EXPRESIONES ARITMÉTICAS, RELACIONALES Y LÓGICAS</span><span>FACULTAD DE INGENIERÍA, ARQUITECTURA Y DISEÑO</span></div>
 
-<main class="content">
+
+/* ============================================================
+   UNIFORMIDAD VISUAL CON EL INDEX · PÁGINAS INTERNAS
+   ============================================================ */
+body.pe-home.pe-course-page{
+  background:
+    radial-gradient(circle at 10% 12%, rgba(0,104,71,.045), transparent 25%),
+    linear-gradient(180deg,#f4fbf8 0,#ffffff 34%,#f5faf8 100%);
+}
+
+body.pe-course-page .institutional-top{
+  position:sticky !important;
+  top:0;
+  z-index:2050;
+  overflow:visible;
+  width:100%;
+  box-shadow:0 4px 16px rgba(0,58,43,.18);
+}
+
+body.pe-course-page .institutional-top .brand-shield{
+  width:104px !important;
+  height:118px !important;
+  min-width:104px !important;
+  object-fit:contain;
+  background:transparent !important;
+  border:0 !important;
+  position:relative;
+  z-index:2060;
+  transform:translateY(16px);
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.22));
+}
+
+body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:92px}
+
+body.pe-course-page .brand-motto{
+  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.9rem !important;
+  font-weight:600 !important;
+  line-height:1.12;
+  text-transform:none !important;
+  color:#fff !important;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-width:330px;
+}
+
+body.pe-course-page .topic-course-hero{
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #d5e8df;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,255,255,.58) 0 18%,transparent 19%),
+    linear-gradient(135deg,#d7eee5 0%,#e5f4ee 33%,#f8fcfa 58%,#d0e9df 79%,#bee0d3 100%);
+}
+
+body.pe-course-page .topic-course-hero::before{
+  content:"";
+  position:absolute;
+  width:720px;height:300px;
+  left:-165px;top:-125px;
+  border-radius:50%;
+  border:38px solid rgba(0,104,71,.08);
+  transform:rotate(-13deg);
+}
+
+body.pe-course-page .topic-course-hero::after{
+  content:"";
+  position:absolute;
+  width:620px;height:250px;
+  right:-125px;bottom:-145px;
+  border-radius:50%;
+  background:rgba(0,104,71,.07);
+  transform:rotate(-16deg);
+}
+
+body.pe-course-page .topic-course-hero .row{position:relative;z-index:1}
+body.pe-course-page .topic-course-hero .course-kicker{
+  color:#526d94;font-weight:900;letter-spacing:.12em
+}
+body.pe-course-page .topic-course-hero .course-title{
+  max-width:980px;
+  font-size:clamp(2.7rem,4.6vw,4.65rem) !important;
+  line-height:.97 !important;
+}
+body.pe-course-page .topic-number-pill{
+  display:inline-flex;align-items:center;gap:.55rem;
+  margin-bottom:.55rem;padding:.42rem .78rem;
+  border:1px solid rgba(0,104,71,.20);border-radius:999px;
+  background:rgba(255,255,255,.66);color:#075b43;
+  font-weight:850;font-size:.86rem;backdrop-filter:blur(5px)
+}
+
+body.pe-course-page .course-info-card{
+  background:linear-gradient(135deg,
+      rgba(224,246,237,.98) 0%,
+      rgba(194,233,217,.97) 48%,
+      rgba(225,247,239,.98) 100%) !important;
+  border:1px solid rgba(0,104,71,.38) !important;
+  box-shadow:0 14px 30px rgba(0,77,54,.15),inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+body.pe-course-page .course-info-card .info-row{
+  background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(0,104,71,.035),rgba(255,255,255,.08));
+}
+
+body.pe-course-page .page-content-shell{padding-top:22px;padding-bottom:32px}
+body.pe-course-page .page-content-card{
+  background:#fff;border:1px solid #deebe5;border-radius:18px;
+  box-shadow:0 10px 30px rgba(7,67,48,.08);
+  padding:clamp(16px,2.4vw,28px);
+}
+body.pe-course-page .content{padding:0;overflow:visible}
+
+body.pe-course-page .topic-nav{
+  padding:12px;border:1px solid #d9e9e2;border-radius:14px;
+  background:linear-gradient(180deg,#fff,#f5fbf8);
+  box-shadow:0 5px 16px rgba(0,70,48,.06);
+}
+body.pe-course-page .section{
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,75,52,.10);
+}
+
+body.pe-course-page .gallery-intro{
+  border-radius:16px;
+  background:linear-gradient(135deg,#f5fbf8,#e8f5ef);
+  border:1px solid #d2e8dd;
+  padding:18px 20px;
+  margin-bottom:18px;
+}
+
+body.pe-course-page .topic-back-home{
+  position:fixed;right:22px;bottom:22px;z-index:2100;
+  display:flex;align-items:center;gap:9px;
+  padding:8px 14px 8px 8px;border:2px solid #006847;border-radius:999px;
+  background:#fff;color:#004b35;text-decoration:none;font-weight:800;
+  box-shadow:0 8px 22px rgba(0,0,0,.17);transition:.2s ease;
+}
+body.pe-course-page .topic-back-home:hover{
+  color:#004b35;background:#f0faf5;transform:translateY(-2px)
+}
+body.pe-course-page .topic-back-home img{
+  width:50px;height:50px;object-fit:contain
+}
+
+/* Ajuste de lightbox para convivir con header fijo */
+body.pe-course-page .infografia-lightbox{z-index:5000}
+
+/* Evitar que las clases heredadas de páginas antiguas reemplacen el layout general */
+body.pe-course-page > .page{display:none !important}
+
+@media (max-width:1199.98px){
+  body.pe-course-page .brand-motto{font-size:1.55rem !important;min-width:280px}
+  body.pe-course-page .institutional-top .brand-shield{
+    width:88px !important;height:102px !important;min-width:88px !important;transform:translateY(13px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:82px}
+}
+
+@media (max-width:991.98px){
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.6rem,6.3vw,4rem) !important}
+}
+
+@media (max-width:767.98px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:76px !important;height:90px !important;min-width:76px !important;transform:translateY(11px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:74px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.25rem,9vw,3.35rem) !important}
+  body.pe-course-page .page-content-shell{padding-top:14px}
+  body.pe-course-page .page-content-card{border-radius:14px;padding:15px}
+  body.pe-course-page .topic-back-home{right:12px;bottom:12px;padding-right:11px}
+  body.pe-course-page .topic-back-home img{width:44px;height:44px}
+}
+
+@media (max-width:430px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:66px !important;height:78px !important;min-width:66px !important;transform:translateY(9px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:68px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:2.3rem !important}
+  body.pe-course-page .topic-back-home span{display:none}
+  body.pe-course-page .topic-back-home{padding:7px}
+}
+
+  </style>
+</head>
+
+<body class="pe-home pe-course-page page-listas">
+
+  <header class="institutional-top">
+    <div class="container-fluid pe-shell">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 py-lg-3">
+        <div class="d-flex align-items-center gap-3 min-w-0">
+          <img class="brand-shield"
+               src="../images/uabc_logo.png"
+               alt="Escudo de la Universidad Autónoma de Baja California">
+
+          <div class="brand-university">
+            <div class="brand-name">
+              Universidad Autónoma<br class="d-none d-sm-block"> de Baja California
+            </div>
+          </div>
+
+          <div class="brand-divider d-none d-lg-block"></div>
+          <div class="brand-motto d-none d-lg-block">Por la realización plena del ser</div>
+        </div>
+
+        <div class="top-identity d-flex align-items-center gap-3">
+          <div class="uabc-brush d-none d-md-block">UABC</div>
+          <div class="brand-divider d-none d-md-block"></div>
+          <div class="somos-uabc text-end">
+            <span>SOMOS</span>
+            <strong>uABC</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-calculator-fill"></i>
+            TEMA 2 · EXPRESIONES
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Expresiones en C</h1>
+          <p class="course-subtitle mb-0">Expresiones aritméticas, relacionales y lógicas</p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-code-square" aria-hidden="true"></i>
+            <span>“Calcular + comparar + decidir = lógica computacional”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <aside class="course-info-card" aria-label="Información académica">
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-book"></i></div>
+              <div class="info-label">TEMA:</div>
+              <div class="info-value">Tema 2 · Expresiones</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-journal-code"></i></div>
+              <div class="info-label">MATERIA:</div>
+              <div class="info-value">Programación Estructurada</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-person-fill"></i></div>
+              <div class="info-label">DOCENTE:</div>
+              <div class="info-value">Pedro Núñez Yepiz</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
+              <div class="info-label">CARRERA:</div>
+              <div class="info-value">Ingeniero en Software y Tecnologías Emergentes / Ingeniero en Computación</div>
+            </div>
+
+            <div class="info-row border-0">
+              <div class="info-icon"><i class="bi bi-bank2"></i></div>
+              <div class="info-label">FACULTAD:</div>
+              <div class="info-value">Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
 <div class="note"><b>Propósito:</b> aprender a construir y evaluar expresiones en C para realizar cálculos, comparar valores y formular condiciones que después controlarán las decisiones de un programa.</div>
 <nav class="topic-nav">
 <a href="#concepto">Concepto</a><a href="#aritmeticos">Aritméticos</a><a href="#relacionales">Relacionales</a><a href="#logicos">Lógicos</a><a href="#precedencia">Precedencia</a><a href="#corto">Cortocircuito</a><a href="#conversion">Conversión</a><a href="#laboratorio">Laboratorio</a><a href="#quiz">Repaso</a>
@@ -232,10 +502,42 @@ pre.c-code{margin:0;padding:16px;overflow:auto;color:#e9fff3;font:500 .93rem/1.6
 
 <div class="note"><b>En resumen:</b> una expresión combina operandos y operadores para producir un valor. Las expresiones aritméticas calculan, las relacionales comparan y las lógicas permiten construir condiciones más completas. La precedencia, el cortocircuito y las conversiones de tipo determinan cómo se obtiene el resultado final.</div>
 <blockquote>“Un programa bien escrito no solo funciona: se lee como una proposición lógica clara.”<br><b>— Prof. Pedro Núñez Yepiz</b></blockquote>
-</main>
+    </div>
+  </main>
 
-<footer class="footer"><div><b>Universidad Autónoma de Baja California · FIAD</b><br>Programación Estructurada · Ingeniero en Software y Tecnologías Emergentes</div><div>Material didáctico · Tema 2</div></footer>
-</div>
+  <footer class="institutional-footer">
+    <div class="container-fluid pe-shell">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+          <div>
+            <strong>Universidad Autónoma<br>de Baja California</strong>
+          </div>
+        </div>
+
+        <div class="footer-divider d-none d-lg-block"></div>
+        <div class="footer-motto d-none d-lg-block">Por la realización plena del ser</div>
+
+        <div class="footer-signature ms-lg-auto">
+          <span>@el_profe_Yepiz</span>
+          <span id="currentYear">2026</span>
+          <span aria-hidden="true">🤟</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="topic-back-home" href="../index.html" aria-label="Regresar al contenido del curso">
+    <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+    <span>Regresar al curso</span>
+  </a>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
 <script src="../scripts/app.js" defer></script>
 <script>
 function copyCode(btn){
@@ -278,5 +580,12 @@ function answer(btn,ok){
 }
 actualizaLab();
 </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const year = document.getElementById("currentYear");
+      if (year) year.textContent = new Date().getFullYear();
+    });
+  </script>
 </body>
 </html>

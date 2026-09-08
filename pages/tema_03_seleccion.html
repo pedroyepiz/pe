@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <title>Tema 3 · Estructuras de Control de Selección | UABC</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+
+  <style>
+:root{--u3-green:#0f6b45;--u3-green2:#168455;--u3-light:#eef8f2;--u3-gold:#f2b134;--u3-line:#d6e7de;--simple:#157347;--double:#2563eb;--multi:#7c3aed;--switch:#d97706}
+html{scroll-behavior:smooth}.content{overflow:hidden}
+.topic-nav{display:flex;flex-wrap:wrap;gap:.55rem;margin:18px 0 24px}
+.topic-nav a{padding:.55rem .8rem;border:1px solid var(--u3-line);border-radius:999px;background:#fff;text-decoration:none;color:var(--u3-green);font-weight:800;font-size:.86rem;box-shadow:0 2px 7px rgba(0,0,0,.05);transition:.2s}
+.topic-nav a:hover{transform:translateY(-2px);background:var(--u3-light)}
+.hero-grid,.grid2{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch;margin:18px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:16px 0}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.cardx{background:#fff;border:1px solid var(--u3-line);border-radius:16px;padding:16px;box-shadow:0 4px 13px rgba(0,0,0,.05);position:relative;overflow:hidden;transition:.2s}
+.cardx:hover{transform:translateY(-3px)}.cardx::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--u3-green)}
+.cardx.simple::before{background:var(--simple)}.cardx.double::before{background:var(--double)}.cardx.multi::before{background:var(--multi)}.cardx.switchx::before{background:var(--switch)}
+.cardx h3,.cardx h4{margin:.35rem 0;color:var(--u3-green)}.big-icon{font-size:2.5rem}
+.decision-machine{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:10px;margin:18px 0}
+.dm-box{min-height:90px;border:2px dashed var(--u3-green);border-radius:15px;background:#fff;display:grid;place-items:center;text-align:center;padding:10px;font-weight:900}
+.dm-arrow{font-size:2rem;color:var(--u3-green);font-weight:900}
+.flow-card{background:#fff;border:1px solid var(--u3-line);border-radius:18px;padding:14px;box-shadow:0 5px 15px rgba(0,0,0,.06)}
+.flow-card img{width:100%;display:block;border-radius:12px;background:#fff;max-height:560px;object-fit:contain}
+.flow-card figcaption{padding:9px 4px 0;color:#53675e;font-size:.88rem}
+.code-shell{background:#101914;border-radius:16px;overflow:hidden;margin:15px 0;box-shadow:0 8px 20px rgba(0,0,0,.12)}
+.code-bar{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:#1d2b23;color:#dff6e8;font:700 .82rem/1.2 system-ui}
+.copy-btn,.action-btn{border:0;border-radius:9px;padding:.5rem .75rem;background:var(--u3-green);color:#fff;font-weight:800;cursor:pointer}
+.copy-btn:hover,.action-btn:hover{background:var(--u3-green2)}
+pre.c-code{margin:0;padding:16px;overflow:auto;color:#e9fff3;font:500 .93rem/1.6 Consolas,'Courier New',monospace;tab-size:4}
+.kw{color:#7fd7ff}.type{color:#ffd479}.str{color:#9fe39f}.num{color:#f5a9e1}.com{color:#7f9a88;font-style:italic}.fn{color:#f3d36f}.pp{color:#ff9e9e}.op{color:#ffca7a;font-weight:900}
+.note-box,.warn-box,.success-box,.prof-box{padding:13px 15px;border-radius:12px;margin:13px 0;border-left:5px solid}
+.note-box{background:#fff8e8;border-color:var(--u3-gold)}.warn-box{background:#fff1f0;border-color:#d9534f}.success-box{background:#eef8f2;border-color:#0f6b45}.prof-box{background:#f4f0ff;border-color:#7c3aed}
+.compare{overflow:auto;border-radius:14px;border:1px solid var(--u3-line);margin:14px 0}.compare table{border-collapse:collapse;width:100%;min-width:720px;background:#fff}.compare th,.compare td{padding:11px 12px;border-bottom:1px solid var(--u3-line);text-align:left}.compare th{background:#0f6b45;color:#fff}
+.switch-rail{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}.case-card{background:#fff;border:1px solid var(--u3-line);border-radius:14px;padding:14px;text-align:center}.case-card code{display:inline-block;background:#15261e;color:#fff;border-radius:8px;padding:.35rem .55rem;font-weight:900}
+.simulator{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:18px 0}.panel{border:1px solid var(--u3-line);border-radius:16px;background:#fff;padding:16px}.panel label{display:block;font-weight:800;color:#0f6b45;margin:8px 0 5px}.panel input,.panel select{width:100%;box-sizing:border-box;padding:.7rem;border:1px solid #b9cdc2;border-radius:9px;font:inherit}.terminal{background:#102019;color:#eafff3;border-radius:14px;padding:15px;min-height:190px;font:500 .92rem/1.55 Consolas,monospace;white-space:pre-wrap}
+.quiz{margin:22px 0;padding:18px;border:1px solid var(--u3-line);border-radius:18px;background:#fff}.quiz-q{padding:12px 0;border-bottom:1px dashed var(--u3-line)}.quiz-q:last-child{border-bottom:0}.quiz-q button{display:block;width:100%;text-align:left;margin:7px 0;padding:9px 10px;border:1px solid #c8d9d0;background:#fff;border-radius:9px;cursor:pointer}.quiz-q button:hover{background:#eef8f2}.feedback{min-height:1.2em;font-weight:800}
+@media(max-width:900px){.hero-grid,.grid2,.simulator{grid-template-columns:1fr}.grid3,.grid4,.switch-rail{grid-template-columns:1fr 1fr}.decision-machine{grid-template-columns:1fr}.dm-arrow{transform:rotate(90deg)}}
+@media(max-width:560px){.grid3,.grid4,.switch-rail{grid-template-columns:1fr}.topic-nav{display:grid;grid-template-columns:1fr 1fr}}
+
+
+/* ============================================================
+   UNIFORMIDAD VISUAL CON EL INDEX · PÁGINAS INTERNAS
+   ============================================================ */
+body.pe-home.pe-course-page{
+  background:
+    radial-gradient(circle at 10% 12%, rgba(0,104,71,.045), transparent 25%),
+    linear-gradient(180deg,#f4fbf8 0,#ffffff 34%,#f5faf8 100%);
+}
+
+body.pe-course-page .institutional-top{
+  position:sticky !important;
+  top:0;
+  z-index:2050;
+  overflow:visible;
+  width:100%;
+  box-shadow:0 4px 16px rgba(0,58,43,.18);
+}
+
+body.pe-course-page .institutional-top .brand-shield{
+  width:104px !important;
+  height:118px !important;
+  min-width:104px !important;
+  object-fit:contain;
+  background:transparent !important;
+  border:0 !important;
+  position:relative;
+  z-index:2060;
+  transform:translateY(16px);
+  filter:drop-shadow(0 5px 9px rgba(0,0,0,.22));
+}
+
+body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:92px}
+
+body.pe-course-page .brand-motto{
+  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+  font-size:1.9rem !important;
+  font-weight:600 !important;
+  line-height:1.12;
+  text-transform:none !important;
+  color:#fff !important;
+  white-space:nowrap;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  min-width:330px;
+}
+
+body.pe-course-page .topic-course-hero{
+  position:relative;
+  overflow:hidden;
+  border-bottom:1px solid #d5e8df;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(255,255,255,.58) 0 18%,transparent 19%),
+    linear-gradient(135deg,#d7eee5 0%,#e5f4ee 33%,#f8fcfa 58%,#d0e9df 79%,#bee0d3 100%);
+}
+
+body.pe-course-page .topic-course-hero::before{
+  content:"";
+  position:absolute;
+  width:720px;height:300px;
+  left:-165px;top:-125px;
+  border-radius:50%;
+  border:38px solid rgba(0,104,71,.08);
+  transform:rotate(-13deg);
+}
+
+body.pe-course-page .topic-course-hero::after{
+  content:"";
+  position:absolute;
+  width:620px;height:250px;
+  right:-125px;bottom:-145px;
+  border-radius:50%;
+  background:rgba(0,104,71,.07);
+  transform:rotate(-16deg);
+}
+
+body.pe-course-page .topic-course-hero .row{position:relative;z-index:1}
+body.pe-course-page .topic-course-hero .course-kicker{
+  color:#526d94;font-weight:900;letter-spacing:.12em
+}
+body.pe-course-page .topic-course-hero .course-title{
+  max-width:980px;
+  font-size:clamp(2.7rem,4.6vw,4.65rem) !important;
+  line-height:.97 !important;
+}
+body.pe-course-page .topic-number-pill{
+  display:inline-flex;align-items:center;gap:.55rem;
+  margin-bottom:.55rem;padding:.42rem .78rem;
+  border:1px solid rgba(0,104,71,.20);border-radius:999px;
+  background:rgba(255,255,255,.66);color:#075b43;
+  font-weight:850;font-size:.86rem;backdrop-filter:blur(5px)
+}
+
+body.pe-course-page .course-info-card{
+  background:linear-gradient(135deg,
+      rgba(224,246,237,.98) 0%,
+      rgba(194,233,217,.97) 48%,
+      rgba(225,247,239,.98) 100%) !important;
+  border:1px solid rgba(0,104,71,.38) !important;
+  box-shadow:0 14px 30px rgba(0,77,54,.15),inset 0 1px 0 rgba(255,255,255,.85) !important;
+}
+
+body.pe-course-page .course-info-card .info-row{
+  background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(0,104,71,.035),rgba(255,255,255,.08));
+}
+
+body.pe-course-page .page-content-shell{padding-top:22px;padding-bottom:32px}
+body.pe-course-page .page-content-card{
+  background:#fff;border:1px solid #deebe5;border-radius:18px;
+  box-shadow:0 10px 30px rgba(7,67,48,.08);
+  padding:clamp(16px,2.4vw,28px);
+}
+body.pe-course-page .content{padding:0;overflow:visible}
+
+body.pe-course-page .topic-nav{
+  padding:12px;border:1px solid #d9e9e2;border-radius:14px;
+  background:linear-gradient(180deg,#fff,#f5fbf8);
+  box-shadow:0 5px 16px rgba(0,70,48,.06);
+}
+body.pe-course-page .section{
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,75,52,.10);
+}
+
+body.pe-course-page .gallery-intro{
+  border-radius:16px;
+  background:linear-gradient(135deg,#f5fbf8,#e8f5ef);
+  border:1px solid #d2e8dd;
+  padding:18px 20px;
+  margin-bottom:18px;
+}
+
+body.pe-course-page .topic-back-home{
+  position:fixed;right:22px;bottom:22px;z-index:2100;
+  display:flex;align-items:center;gap:9px;
+  padding:8px 14px 8px 8px;border:2px solid #006847;border-radius:999px;
+  background:#fff;color:#004b35;text-decoration:none;font-weight:800;
+  box-shadow:0 8px 22px rgba(0,0,0,.17);transition:.2s ease;
+}
+body.pe-course-page .topic-back-home:hover{
+  color:#004b35;background:#f0faf5;transform:translateY(-2px)
+}
+body.pe-course-page .topic-back-home img{
+  width:50px;height:50px;object-fit:contain
+}
+
+/* Ajuste de lightbox para convivir con header fijo */
+body.pe-course-page .infografia-lightbox{z-index:5000}
+
+/* Evitar que las clases heredadas de páginas antiguas reemplacen el layout general */
+body.pe-course-page > .page{display:none !important}
+
+@media (max-width:1199.98px){
+  body.pe-course-page .brand-motto{font-size:1.55rem !important;min-width:280px}
+  body.pe-course-page .institutional-top .brand-shield{
+    width:88px !important;height:102px !important;min-width:88px !important;transform:translateY(13px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:82px}
+}
+
+@media (max-width:991.98px){
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.6rem,6.3vw,4rem) !important}
+}
+
+@media (max-width:767.98px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:76px !important;height:90px !important;min-width:76px !important;transform:translateY(11px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:74px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.25rem,9vw,3.35rem) !important}
+  body.pe-course-page .page-content-shell{padding-top:14px}
+  body.pe-course-page .page-content-card{border-radius:14px;padding:15px}
+  body.pe-course-page .topic-back-home{right:12px;bottom:12px;padding-right:11px}
+  body.pe-course-page .topic-back-home img{width:44px;height:44px}
+}
+
+@media (max-width:430px){
+  body.pe-course-page .institutional-top .brand-shield{
+    width:66px !important;height:78px !important;min-width:66px !important;transform:translateY(9px)
+  }
+  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:68px}
+  body.pe-course-page .topic-course-hero .course-title{font-size:2.3rem !important}
+  body.pe-course-page .topic-back-home span{display:none}
+  body.pe-course-page .topic-back-home{padding:7px}
+}
+
+  </style>
+</head>
+
+<body class="pe-home pe-course-page page-listas">
+
+  <header class="institutional-top">
+    <div class="container-fluid pe-shell">
+      <div class="d-flex align-items-center justify-content-between gap-3 py-2 py-lg-3">
+        <div class="d-flex align-items-center gap-3 min-w-0">
+          <img class="brand-shield"
+               src="../images/uabc_logo.png"
+               alt="Escudo de la Universidad Autónoma de Baja California">
+
+          <div class="brand-university">
+            <div class="brand-name">
+              Universidad Autónoma<br class="d-none d-sm-block"> de Baja California
+            </div>
+          </div>
+
+          <div class="brand-divider d-none d-lg-block"></div>
+          <div class="brand-motto d-none d-lg-block">Por la realización plena del ser</div>
+        </div>
+
+        <div class="top-identity d-flex align-items-center gap-3">
+          <div class="uabc-brush d-none d-md-block">UABC</div>
+          <div class="brand-divider d-none d-md-block"></div>
+          <div class="somos-uabc text-end">
+            <span>SOMOS</span>
+            <strong>uABC</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-diagram-3-fill"></i>
+            TEMA 3 · SELECCIÓN
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Estructuras de Control de Selección</h1>
+          <p class="course-subtitle mb-0">Decisiones en C con if, if-else, anidación y switch</p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-code-square" aria-hidden="true"></i>
+            <span>“Evaluar una condición → elegir un camino → continuar el programa”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <aside class="course-info-card" aria-label="Información académica">
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-book"></i></div>
+              <div class="info-label">TEMA:</div>
+              <div class="info-value">Tema 3 · Selección</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-journal-code"></i></div>
+              <div class="info-label">MATERIA:</div>
+              <div class="info-value">Programación Estructurada</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-person-fill"></i></div>
+              <div class="info-label">DOCENTE:</div>
+              <div class="info-value">Pedro Núñez Yepiz</div>
+            </div>
+
+            <div class="info-row">
+              <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
+              <div class="info-label">CARRERA:</div>
+              <div class="info-value">Ingeniero en Software y Tecnologías Emergentes / Ingeniero en Computación</div>
+            </div>
+
+            <div class="info-row border-0">
+              <div class="info-icon"><i class="bi bi-bank2"></i></div>
+              <div class="info-label">FACULTAD:</div>
+              <div class="info-value">Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+<div class="note"><b>Propósito:</b> aprender a controlar el flujo de un programa mediante condiciones lógicas, utilizando selección simple, compuesta, anidación y la sentencia <code>switch</code>.</div>
+
+<nav class="topic-nav">
+  <a href="#concepto">Concepto</a>
+  <a href="#if-simple">if simple</a>
+  <a href="#if-else">if-else</a>
+  <a href="#anidacion">Anidación</a>
+  <a href="#multiple">“else if”</a>
+  <a href="#switch">switch</a>
+  <a href="#break">break</a>
+  <a href="#default">default</a>
+  <a href="#simulador">Simulador</a>
+  <a href="#quiz">Repaso</a>
+</nav>
+
+<section class="hero-grid" id="concepto">
+  <article class="cardx">
+    <div class="big-icon">🧭</div>
+    <h2>¿Qué es una estructura de selección?</h2>
+    <p>Permite que el programa <b>tome una decisión</b> a partir del resultado de una condición lógica.</p>
+    <div class="decision-machine">
+      <div class="dm-box">📥 Datos<br><small>edad, nota, opción...</small></div>
+      <div class="dm-arrow">→</div>
+      <div class="dm-box">◇ Condición<br><small>¿verdadero o falso?</small></div>
+      <div class="dm-arrow">→</div>
+      <div class="dm-box">🛣️ Camino<br><small>ejecutar una alternativa</small></div>
+    </div>
+    <div class="success-box">✅ En C, la base real son dos formas: <b>selección simple</b> y <b>selección compuesta</b>. La anidación surge al combinar estas decisiones.</div>
+  </article>
+  <article class="cardx multi">
+    <div class="big-icon">☔</div>
+    <h3>Analogía cotidiana</h3>
+    <p><b>“Si llueve, llevo paraguas; si no, uso lentes de sol.”</b></p>
+    <p>La condición divide el problema en caminos posibles. El programa solo sigue el camino correspondiente.</p>
+    <div class="note-box">💡 La selección evita que todos los programas ejecuten siempre exactamente las mismas instrucciones.</div>
+  </article>
+</section>
+
+<div class="section" id="if-simple">3.1.1 · SENTENCIA <code>if</code> · FORMA SIMPLE</div>
+<section class="grid2">
+  <article>
+    <p>La forma simple ejecuta un bloque <b>solo si la condición es verdadera</b>. Si es falsa, el bloque se omite y el programa continúa.</p>
+    <div class="code-shell"><div class="code-bar"><span>if_simple.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="pp">#include</span> <span class="str">&lt;stdio.h&gt;</span>
+
+<span class="type">int</span> <span class="fn">main</span>() {
+    <span class="type">int</span> edad;
+    <span class="fn">printf</span>(<span class="str">"Ingresa tu edad: "</span>);
+    <span class="fn">scanf</span>(<span class="str">"%d"</span>, &amp;edad);
+
+    <span class="kw">if</span> (edad <span class="op">&gt;=</span> <span class="num">18</span>) {
+        <span class="fn">printf</span>(<span class="str">"Eres mayor de edad.\n"</span>);
+    }
+
+    <span class="fn">printf</span>(<span class="str">"Fin del programa.\n"</span>);
+    <span class="kw">return</span> <span class="num">0</span>;
+}</pre></div>
+    <div class="success-box">✅ Buena práctica: usa siempre llaves <code>{ }</code>, incluso cuando el bloque tenga una sola instrucción.</div>
+  </article>
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_if_simple.svg" alt="Diagrama de flujo de una selección simple con if"><figcaption>La acción se ejecuta únicamente por la rama verdadera.</figcaption></figure>
+</section>
+
+<div class="section" id="if-else">3.1.2 · SELECCIÓN COMPUESTA · <code>if-else</code></div>
+<section class="grid2">
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_if_else.svg" alt="Diagrama de flujo de una selección compuesta if else"><figcaption>La condición produce dos caminos: verdadero y falso.</figcaption></figure>
+  <article>
+    <p>Se utiliza cuando el problema tiene <b>dos alternativas mutuamente excluyentes</b>. Esta es la forma compuesta de la selección.</p>
+    <div class="code-shell"><div class="code-bar"><span>if_else.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (temperatura <span class="op">&gt;</span> <span class="num">37.5</span>) {
+    <span class="fn">printf</span>(<span class="str">"Tienes fiebre.\n"</span>);
+}
+<span class="kw">else</span> {
+    <span class="fn">printf</span>(<span class="str">"Tu temperatura es normal.\n"</span>);
+}</pre></div>
+    <div class="grid3">
+      <div class="cardx simple"><h4>VALIDAR</h4><p>Entradas y rangos.</p></div>
+      <div class="cardx double"><h4>DECIDIR</h4><p>Aprobado / reprobado.</p></div>
+      <div class="cardx multi"><h4>RESPONDER</h4><p>Mostrar mensajes distintos.</p></div>
+    </div>
+  </article>
+</section>
+
+<div class="section" id="anidacion">3.1.3 · PROPIEDAD DE ANIDACIÓN</div>
+<div class="success-box"><b>Idea clave:</b> la <b>anidación</b> es una propiedad que sirve para <b>direccionar el flujo de los procesos</b>. Consiste en colocar una estructura de selección dentro de otra para decidir con mayor precisión qué camino seguirá el programa.</div>
+<div class="note-box"><b>Muy importante:</b> en esencia, en selección solo existen <b>dos tipos base</b>: <b>simple</b> y <b>compuesta</b>. La anidación <b>no es un tercer tipo independiente</b>; es el resultado de <b>juntar</b> condiciones simples y compuestas.</div>
+
+<div class="grid4">
+  <article class="cardx simple"><h4>Anidada por verdadero</h4><p>La segunda condición se evalúa solo cuando la primera fue verdadera.</p></article>
+  <article class="cardx double"><h4>Anidada por falso</h4><p>La segunda decisión se coloca dentro de la rama <code>else</code>.</p></article>
+  <article class="cardx multi"><h4>Anidada falso / verdadero</h4><p>Puede haber decisiones internas en ambas ramas.</p></article>
+  <article class="cardx switchx"><h4>En cascada</h4><p>Serie de decisiones enlazadas para clasificar varios casos.</p></article>
+</div>
+
+<div class="grid2">
+  <article>
+    <h3>✅ Anidada por verdadero</h3>
+    <div class="code-shell"><div class="code-bar"><span>anidada_verdadero.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (usuarioValido) {
+    <span class="kw">if</span> (passwordCorrecto) {
+        <span class="fn">printf</span>(<span class="str">"Entrar al sistema\n"</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="fn">printf</span>(<span class="str">"Solicitar reintento\n"</span>);
+    }
+}
+<span class="kw">else</span> {
+    <span class="fn">printf</span>(<span class="str">"Acceso denegado\n"</span>);
+}</pre></div>
+  </article>
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_anidacion_verdadero.svg" alt="Diagrama de anidación por verdadero"><figcaption>La segunda condición solo aparece dentro de la rama verdadera.</figcaption></figure>
+</div>
+
+<div class="grid2">
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_anidacion_falso.svg" alt="Diagrama de anidación por falso"><figcaption>La segunda decisión se toma únicamente cuando la primera condición resulta falsa.</figcaption></figure>
+  <article>
+    <h3>✅ Anidada por falso</h3>
+    <div class="code-shell"><div class="code-bar"><span>anidada_falso.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (tieneBeca) {
+    <span class="fn">printf</span>(<span class="str">"Aplicar descuento directo\n"</span>);
+}
+<span class="kw">else</span> {
+    <span class="kw">if</span> (promedio <span class="op">&gt;=</span> <span class="num">90</span>) {
+        <span class="fn">printf</span>(<span class="str">"Aplicar apoyo por mérito\n"</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="fn">printf</span>(<span class="str">"Sin descuento\n"</span>);
+    }
+}</pre></div>
+  </article>
+</div>
+
+<div class="grid2">
+  <article>
+    <h3>✅ Anidada por falso / verdadero</h3>
+    <div class="code-shell"><div class="code-bar"><span>anidada_mixta.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (esAdmin) {
+    <span class="kw">if</span> (activo) {
+        <span class="fn">printf</span>(<span class="str">"Panel de administración\n"</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="fn">printf</span>(<span class="str">"Cuenta desactivada\n"</span>);
+    }
+}
+<span class="kw">else</span> {
+    <span class="kw">if</span> (visitante) {
+        <span class="fn">printf</span>(<span class="str">"Página pública\n"</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="fn">printf</span>(<span class="str">"Acceso restringido\n"</span>);
+    }
+}</pre></div>
+  </article>
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_anidacion_mixta.svg" alt="Diagrama de anidación por falso y verdadero"><figcaption>Hay decisiones internas en ambas ramas del primer <code>if</code>.</figcaption></figure>
+</div>
+
+<div class="grid2">
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_anidacion_cascada.svg" alt="Diagrama de anidación en cascada"><figcaption>La anidación en cascada enlaza varias decisiones para llegar a una sola clasificación final.</figcaption></figure>
+  <article>
+    <h3>✅ Anidación en cascada</h3>
+    <div class="code-shell"><div class="code-bar"><span>cascada_notas.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (nota <span class="op">&gt;=</span> <span class="num">90</span>) {
+    <span class="fn">printf</span>(<span class="str">"A\n"</span>);
+}
+<span class="kw">else</span> {
+    <span class="kw">if</span> (nota <span class="op">&gt;=</span> <span class="num">80</span>) {
+        <span class="fn">printf</span>(<span class="str">"B\n"</span>);
+    }
+    <span class="kw">else</span> {
+        <span class="kw">if</span> (nota <span class="op">&gt;=</span> <span class="num">70</span>) {
+            <span class="fn">printf</span>(<span class="str">"C\n"</span>);
+        }
+        <span class="kw">else</span> {
+            <span class="fn">printf</span>(<span class="str">"F\n"</span>);
+        }
+    }
+}</pre></div>
+  </article>
+</div>
+
+<div class="warn-box">⚠️ <b>Buena práctica:</b> la anidación es poderosa, pero cuando se vuelve demasiado profunda puede dificultar la lectura. Conviene modularizar, usar sangría clara y evitar anidaciones innecesarias.</div>
+
+<div class="section" id="multiple">3.2.1 · “SELECCIÓN MÚLTIPLE” CON CADENA <code>if-else if-else</code></div>
+<div class="warn-box"><b>Corrección importante:</b> en C <b>no existe una estructura especial llamada <code>else if</code></b>. Lo que realmente existe es <b><code>else</code> seguido de otro <code>if</code></b>. Es una <b>forma práctica de escribir anidación</b> para simular una selección múltiple.</div>
+<div class="note-box">La escritura <code>else if (condición)</code> equivale conceptualmente a <code>else { if (condición) { ... } }</code>.</div>
+
+<section class="grid2">
+  <article>
+    <p>Se usa mucho por comodidad y legibilidad, pero <b>no debe confundirse con una estructura nueva del lenguaje</b>. Cuando la cadena crece demasiado, en buenas prácticas suele recomendarse <b>evitar abusar</b> de ella.</p>
+    <div class="code-shell"><div class="code-bar"><span>cadena_if.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">if</span> (calificacion <span class="op">==</span> <span class="str">'A'</span>) {
+    <span class="fn">printf</span>(<span class="str">"Excelente trabajo.\n"</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (calificacion <span class="op">==</span> <span class="str">'B'</span>) {
+    <span class="fn">printf</span>(<span class="str">"Muy bien.\n"</span>);
+}
+<span class="kw">else</span> <span class="kw">if</span> (calificacion <span class="op">==</span> <span class="str">'C'</span>) {
+    <span class="fn">printf</span>(<span class="str">"Suficiente.\n"</span>);
+}
+<span class="kw">else</span> {
+    <span class="fn">printf</span>(<span class="str">"Calificación inválida.\n"</span>);
+}</pre></div>
+    <div class="success-box">✅ Si son pocos casos puede ser aceptable. Si hay muchos valores discretos, generalmente <code>switch</code> será más claro.</div>
+  </article>
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_cadena_if_else_if_real.svg" alt="Diagrama que explica que else if realmente es else seguido de if"><figcaption>Visualmente parece una “cadena múltiple”, pero en realidad es anidación encadenada.</figcaption></figure>
+</section>
+
+<div class="grid3">
+  <article class="cardx simple"><h4>Ventaja</h4><p>Permite evaluar rangos y expresiones lógicas.</p></article>
+  <article class="cardx switchx"><h4>Riesgo</h4><p>Abusar de la cadena puede volver el código largo y difícil de mantener.</p></article>
+  <article class="cardx multi"><h4>Recomendación</h4><p>Para muchos valores constantes, suele convenir <code>switch</code>.</p></article>
+</div>
+
+<div class="section" id="switch">3.2.2 · SENTENCIA <code>switch</code></div>
+<section class="grid2">
+  <figure class="flow-card"><img src="../images/diagramas/diagrama_switch.svg" alt="Diagrama de flujo de una sentencia switch"><figcaption>Una expresión selecciona uno de varios casos constantes.</figcaption></figure>
+  <article>
+    <p><code>switch</code> es apropiado cuando una expresión se compara contra <b>varios valores constantes</b>. En muchos escenarios reemplaza mejor a largas cadenas de <code>else if</code>.</p>
+    <div class="code-shell"><div class="code-bar"><span>switch_base.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">switch</span> (expresion_entera) {
+    <span class="kw">case</span> valor1:
+        <span class="com">// instrucciones</span>
+        <span class="kw">break</span>;
+
+    <span class="kw">case</span> valor2:
+        <span class="com">// instrucciones</span>
+        <span class="kw">break</span>;
+
+    <span class="kw">default</span>:
+        <span class="com">// opción no contemplada</span>
+}</pre></div>
+  </article>
+</section>
+
+<div class="switch-rail">
+  <div class="case-card"><code>case 1:</code><p>✅ Constante entera</p></div>
+  <div class="case-card"><code>case 'A':</code><p>✅ Carácter constante</p></div>
+  <div class="case-card"><code>case 100+50:</code><p>✅ Expresión constante</p></div>
+  <div class="case-card"><code>case x:</code><p>❌ Variable: no válido</p></div>
+</div>
+
+<div class="section" id="break">3.2.2.2 · USO DE <code>break</code> Y FALL-THROUGH</div>
+<div class="grid2">
+  <article>
+    <h3>⚠️ Sin <code>break</code></h3>
+    <div class="code-shell"><div class="code-bar"><span>fallthrough.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> dia = <span class="num">2</span>;
+
+<span class="kw">switch</span> (dia) {
+    <span class="kw">case</span> <span class="num">1</span>:
+        <span class="fn">printf</span>(<span class="str">"Lunes\n"</span>);
+        <span class="kw">break</span>;
+
+    <span class="kw">case</span> <span class="num">2</span>:
+        <span class="fn">printf</span>(<span class="str">"Martes\n"</span>);
+
+    <span class="kw">case</span> <span class="num">3</span>:
+        <span class="fn">printf</span>(<span class="str">"Miércoles\n"</span>);
+        <span class="kw">break</span>;
+}</pre></div>
+    <div class="warn-box">Salida: <b>Martes</b> y después <b>Miércoles</b>.</div>
+  </article>
+  <article>
+    <h3>✅ Fall-through intencional</h3>
+    <div class="code-shell"><div class="code-bar"><span>mismo_caso.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="kw">switch</span> (opcion) {
+    <span class="kw">case</span> <span class="str">'a'</span>:
+    <span class="kw">case</span> <span class="str">'A'</span>:
+        <span class="fn">printf</span>(<span class="str">"Opción A seleccionada.\n"</span>);
+        <span class="kw">break</span>;
+}</pre></div>
+    <div class="success-box">✅ Dos valores distintos pueden compartir el mismo bloque.</div>
+  </article>
+</div>
+
+<div class="section" id="default">3.2.2.3 · CASO <code>default</code></div>
+<div class="code-shell"><div class="code-bar"><span>menu_switch.c</span><button class="copy-btn" onclick="copyCode(this)">Copiar</button></div><pre class="c-code"><span class="type">int</span> opcion;
+<span class="fn">printf</span>(<span class="str">"Menú: 1=Sumar, 2=Restar, 3=Salir\n"</span>);
+<span class="fn">scanf</span>(<span class="str">"%d"</span>, &amp;opcion);
+
+<span class="kw">switch</span> (opcion) {
+    <span class="kw">case</span> <span class="num">1</span>:
+        <span class="com">// sumar</span>
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">2</span>:
+        <span class="com">// restar</span>
+        <span class="kw">break</span>;
+    <span class="kw">case</span> <span class="num">3</span>:
+        <span class="fn">printf</span>(<span class="str">"Saliendo...\n"</span>);
+        <span class="kw">break</span>;
+    <span class="kw">default</span>:
+        <span class="fn">printf</span>(<span class="str">"Opción no válida.\n"</span>);
+}</pre></div>
+<div class="note-box">🛡️ Incluir <code>default</code> crea una salida segura para valores inesperados.</div>
+
+<div class="section">¿CUÁNDO USAR <code>if</code>, ANIDACIÓN Y <code>switch</code>?</div>
+<div class="compare"><table><thead><tr><th>Situación</th><th>Conviene</th><th>Razón</th></tr></thead><tbody>
+<tr><td>Condición única simple</td><td><b>if</b></td><td>Es la forma base de selección simple.</td></tr>
+<tr><td>Dos caminos excluyentes</td><td><b>if-else</b></td><td>Representa la forma compuesta.</td></tr>
+<tr><td>Necesitas decidir paso a paso</td><td><b>Anidación</b></td><td>Direcciona el flujo con decisiones encadenadas.</td></tr>
+<tr><td>Rangos o expresiones lógicas</td><td><b>if / anidación</b></td><td>Permite relaciones y condiciones complejas.</td></tr>
+<tr><td>Muchos valores constantes discretos</td><td><b>switch</b></td><td>Puede ser más claro que largas cadenas “else if”.</td></tr>
+</tbody></table></div>
+
+<div class="section" id="simulador">🧪 SIMULADOR INTERACTIVO DE SELECCIÓN</div>
+<div class="simulator">
+  <section class="panel">
+    <h3>Prueba una condición</h3>
+    <label for="nota">Nota del alumno</label>
+    <input id="nota" type="number" value="85" min="0" max="100" oninput="simular()">
+    <label for="opcion">Opción de menú</label>
+    <select id="opcion" onchange="simular()">
+      <option value="1">1 · Sumar</option>
+      <option value="2">2 · Restar</option>
+      <option value="3">3 · Salir</option>
+      <option value="99">99 · Inválida</option>
+    </select>
+    <button class="action-btn" onclick="simular()">Evaluar</button>
+  </section>
+  <section class="panel">
+    <h3>Consola</h3>
+    <div class="terminal" id="terminal"></div>
+  </section>
+</div>
+
+<div class="section" id="quiz">🎯 REPASO RÁPIDO</div>
+<div class="quiz">
+  <div class="quiz-q"><b>1. En C, ¿<code>else if</code> es una estructura nueva e independiente?</b>
+    <button onclick="quiz(this,false)">Sí, es una instrucción especial distinta.</button>
+    <button onclick="quiz(this,true)">No, realmente es <code>else</code> seguido de otro <code>if</code>.</button>
+    <div class="feedback"></div></div>
+  <div class="quiz-q"><b>2. ¿Qué expresa mejor la anidación?</b>
+    <button onclick="quiz(this,true)">La propiedad de dirigir el flujo uniendo decisiones simples y compuestas.</button>
+    <button onclick="quiz(this,false)">Un tercer tipo base de condición que sustituye a if.</button>
+    <div class="feedback"></div></div>
+  <div class="quiz-q"><b>3. ¿Qué evita normalmente que un <code>case</code> continúe ejecutando el siguiente?</b>
+    <button onclick="quiz(this,false)">default</button>
+    <button onclick="quiz(this,true)">break</button>
+    <div class="feedback"></div></div>
+</div>
+
+<div class="summary"><div class="bulb">💡</div><div><b>EN RESUMEN</b><br>En selección, la base real en C es <b>simple</b> y <b>compuesta</b>. La <b>anidación</b> surge de combinar esas decisiones para direccionar el flujo. La escritura <code>else if</code> no es una estructura especial del lenguaje: es una forma práctica de expresar anidación. Para muchos valores constantes, <code>switch</code> suele ser una alternativa más clara.</div></div>
+
+<div class="prof-box"><b>Frase de la unidad:</b><br>“Escribir un <code>if</code> es fácil. Diseñar correctamente el camino lógico del programa mediante anidación, prioridades y claridad… eso es programación estructurada.”<br><b>— Prof. Pedro Núñez Yepiz</b></div>
+    </div>
+  </main>
+
+  <footer class="institutional-footer">
+    <div class="container-fluid pe-shell">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+          <div>
+            <strong>Universidad Autónoma<br>de Baja California</strong>
+          </div>
+        </div>
+
+        <div class="footer-divider d-none d-lg-block"></div>
+        <div class="footer-motto d-none d-lg-block">Por la realización plena del ser</div>
+
+        <div class="footer-signature ms-lg-auto">
+          <span>@el_profe_Yepiz</span>
+          <span id="currentYear">2026</span>
+          <span aria-hidden="true">🤟</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <a class="topic-back-home" href="../index.html" aria-label="Regresar al contenido del curso">
+    <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
+    <span>Regresar al curso</span>
+  </a>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
+<script>
+function copyCode(btn){const pre=btn.closest('.code-shell').querySelector('pre');navigator.clipboard.writeText(pre.innerText).then(()=>{const t=btn.textContent;btn.textContent='¡Copiado!';setTimeout(()=>btn.textContent=t,1300);});}
+function simular(){const n=Number(document.getElementById('nota').value);const op=document.getElementById('opcion').value;let clasificacion='';if(n>=90) clasificacion='Excelente';else if(n>=80) clasificacion='Muy bien';else if(n>=70) clasificacion='Bien';else clasificacion='Reprobado';let accion='';switch(op){case '1': accion='case 1 → Sumar'; break;case '2': accion='case 2 → Restar'; break;case '3': accion='case 3 → Salir'; break;default: accion='default → Opción no válida';}document.getElementById('terminal').textContent=`NOTA = ${n}
+
+Cadena if / else if:
+→ ${clasificacion}
+
+IMPORTANTE:
+→ “else if” es realmente else + if
+
+OPCIÓN = ${op}
+
+switch:
+→ ${accion}`;}
+function quiz(btn,ok){const fb=btn.parentElement.querySelector('.feedback');fb.textContent=ok?'✅ Correcto':'❌ Revisa el concepto e inténtalo de nuevo';fb.style.color=ok?'#0f6b45':'#b42318';}
+simular();
+</script>
+<script src="../scripts/app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const year = document.getElementById("currentYear");
+      if (year) year.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>
