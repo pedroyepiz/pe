@@ -77,7 +77,7 @@
         <div>
           <b>ESTRUCTURA DEL EJEMPLO</b><br>
           El programa principal incluye <code>"karely_ruiz.h"</code>. En ese archivo
-          se encuentra la función <code>my_fgets()</code>, utilizada para leer una cadena.
+          se encuentran las funciones <code>my_fgets()</code>, utilizada para leer una cadena, y <code>my_int()</code>, utilizada para capturar y validar un número entero dentro de un rango.
           Después el programa usa <code>strlen()</code> para conocer su longitud y recorre
           la cadena carácter por carácter.
         </div>
@@ -137,38 +137,90 @@ void menu (void)
             Copiar código
           </button>
         </div>
-        <pre><code id="codigoLibreria">#include &lt;stdio.h&gt;
+        <pre><code id="codigoLibreria">//  propietario :  PEDRO NUÑEZ YEPIZ
+// FECHA.  13 DE MARZO 2026 ULTIMA MODF: 20 MARZO  
+//  V 1.1
+// AGREGO.  FUNCION my_fgets  y my_int
+#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 #include &lt;string.h&gt;
-#include &lt;math.h&gt;
 #include &lt;time.h&gt;
-#include &lt;conio.h&gt;
+#include &lt;dos.h&gt;
+#define N 15
+#define N2 20
+#define SALTO printf(&quot;\n&quot;);
+// DEFINICION DE TIPOS DE DATOS
 
+
+//PROTOTIPOS
 void my_fgets(char cadena[],int tam);
+int my_int(int ri, int rf, const char msge[])
 
+/*
+AQUI IRIA EL MAIN SI FUERA UN PROGRAMA PERO
+ESTA ES UNA LIBRERIA POR ESO
+DEBE ESTAR DESACTIVADO O 
+NO SE PONE...
 
-void my_fgets(char cadena[],int tam)
+int main ()
 {
-	int i = 0;
-	fflush(stdin);
-	fgets(cadena,tam,stdin);
-
-	while (cadena[i] != &#x27;\0&#x27;)
-	{
-		i++;
-	}
-	cadena[i-1] = &#x27;\0&#x27;;
+	
+}
+*/
+//DESARROLLO DE LAS FUNCIONES EN EL MISMO ORDEN
+//QUE LOS PROTOTIPOS
+//*******************************************************
+//my_fgets  ES UNA FUNCION QUE SIRVE PARA LEE L CADESN
+//EN LAS VERSIONES MAS NUEVAS DE C,  Y QUETA EL SALTO DEL RENGLO
+//Y LO SUSTITUYE POR EL CARACTER NULO
+//********************************************************
+void my_fgets(char string[],int tam)
+{
+  int i=0 ;
+  fflush(stdin);
+  fgets(string,tam,stdin);
+  while (string[i] != &#x27;\0&#x27;)
+  {
+    i++;
+  }
+  string[i-1]=&#x27;\0&#x27;;
+}
+//*********************************************************
+  //  FUNCION QUE SIRVE PARA VALIDAR UN MNUMERO ENTERO,
+//*****************************************************
+int my_int(int ri, int rf, const char msge[])
+{
+  int num;
+  char my_num[30];
+  do{
+    printf (&quot;%s&quot;,msge);
+    my_fgets(my_num,30);
+    num = atoi(my_num);
+  }while(num &lt; ri || num &gt; rf);
+  
+  return num;  // REGRESA  EL VALOR YA VALIDADO
 }
 </code></pre>
       </section>
+
+      <div class="summary mt-4">
+        <div class="bulb">🧰</div>
+        <div>
+          <b>FUNCIONES REUTILIZABLES DE LA LIBRERÍA</b><br>
+          La versión actual de <code>karely_ruiz.h</code> contiene dos funciones:
+          <code>my_fgets()</code> para leer cadenas y sustituir el salto de línea por
+          <code>'\0'</code>, y <code>my_int()</code> para leer un número como cadena,
+          convertirlo con <code>atoi()</code> y validar que se encuentre dentro del rango
+          indicado.
+        </div>
+      </div>
 
       <section class="gallery-intro mt-4">
         <h2>🔗 ¿Cómo se relacionan los dos archivos?</h2>
         <p>
           La instrucción <code>#include "karely_ruiz.h"</code> incorpora al programa
           principal las declaraciones y funciones contenidas en la biblioteca propia.
-          De esta forma, <code>programa.cpp</code> puede utilizar <code>my_fgets()</code>
-          sin volver a escribir su desarrollo.
+          De esta forma, <code>programa.cpp</code> puede utilizar <code>my_fgets()</code> y otras funciones reutilizables de la biblioteca, como <code>my_int()</code>, sin volver a escribir su desarrollo.
         </p>
       </section>
 
@@ -201,9 +253,38 @@ void my_fgets(char cadena[],int tam)
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
           crossorigin="anonymous"></script>
-
-  <script src="../scripts/codigo.js" defer></script>
-  <script src="../scripts/layout.js" defer></script>
+<script src="../scripts/layout.js" defer></script>
   <script src="../scripts/app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("[data-copy-target]").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
+          const elemento = document.getElementById(boton.dataset.copyTarget);
+          if (!elemento) return;
+
+          const texto = elemento.textContent;
+          const original = boton.textContent;
+
+          try {
+            await navigator.clipboard.writeText(texto);
+          } catch (e) {
+            const area = document.createElement("textarea");
+            area.value = texto;
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+          }
+
+          boton.textContent = "¡Copiado!";
+          setTimeout(function () {
+            boton.textContent = original;
+          }, 1500);
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
