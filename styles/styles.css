@@ -3196,7 +3196,7 @@ body.pe-home{
 .pe-home .top-identity{z-index:1}
 
 .pe-home .uabc-brush{
-  font-size:2.6rem;
+  font-size:4rem;
   font-weight:900;
   font-style:italic;
   letter-spacing:-.08em;
@@ -3643,6 +3643,7 @@ body.pe-home{
   border-bottom:7px solid rgba(242,183,5,.85);
   border-radius:50%;
   transform:rotate(-3deg);
+  display:none;
 }
 
 .pe-home .footer-inner{
@@ -3670,14 +3671,16 @@ body.pe-home{
 }
 
 .pe-home .footer-motto{
-  font-size:1.9rem;
+  font-size:1.6rem;
   color:#f6fbf9;
+  position:relative;
+  top:2px;
 }
 
 .pe-home .footer-signature{
   display:flex;
   align-items:center;
-  gap:6px;
+  gap:15px;
   font-size:.95rem;
   white-space:nowrap;
 }
