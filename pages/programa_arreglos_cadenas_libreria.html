@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Código base del Tema 6: arreglos, cadenas y biblioteca propia en C/C++.">
+  <title>Código base · Cadenas y biblioteca propia | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+</head>
+
+<body class="pe-home pe-course-page page-programa-pilas">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-file-earmark-code-fill"></i>
+            TEMA 6 · CÓDIGO BASE
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Cadenas y biblioteca propia</h1>
+
+          <p class="course-subtitle mb-0">
+            Ejemplo básico de manejo de cadenas en C/C++ y de cómo separar funciones
+            en una biblioteca propia para reutilizarlas desde el programa principal.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-code-slash" aria-hidden="true"></i>
+            <span>“Una biblioteca propia separa lo reutilizable del programa principal.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 6 · Arreglos · Cadenas"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="gallery-intro">
+        <h2>🧩 Propósito del ejemplo</h2>
+        <p>
+          Este material muestra dos ideas del Tema 6: primero, cómo declarar, leer,
+          recorrer e imprimir una <b>cadena</b>; segundo, cómo colocar una función
+          reutilizable en un archivo de biblioteca propio y mandarla llamar desde
+          el programa principal.
+        </p>
+      </section>
+
+      <div class="summary">
+        <div class="bulb">💡</div>
+        <div>
+          <b>ESTRUCTURA DEL EJEMPLO</b><br>
+          El programa principal incluye <code>"karely_ruiz.h"</code>. En ese archivo
+          se encuentra la función <code>my_fgets()</code>, utilizada para leer una cadena.
+          Después el programa usa <code>strlen()</code> para conocer su longitud y recorre
+          la cadena carácter por carácter.
+        </div>
+      </div>
+
+      <div class="code-label">Archivo 1 · Programa principal (.cpp)</div>
+
+      <section class="code-card">
+        <div class="code-head">
+          <div class="file-name">programa.cpp</div>
+          <button class="copy-btn" type="button" data-copy-target="codigoPrograma">
+            Copiar código
+          </button>
+        </div>
+        <pre><code id="codigoPrograma">// PROGRAMA QUE UTILZA UNA LIBRERIA 
+#include &quot;karely_ruiz.h&quot;
+
+void menu(void);
+
+int main ()
+{
+    menu();
+	return 0;
+}
+void menu (void)
+{
+	int tam;
+	char cadena[30]={&quot;KARELY RUIZ&quot;}, cadena2[30];
+	tam =strlen(cadena);
+	printf (&quot;%s TIENE %d CARACTERES \n&quot;,cadena,tam);
+    printf (&quot;DAME UN NOMBRE : &quot;);
+    my_fgets(cadena2,30);
+    tam =strlen(cadena2);
+	printf (&quot;%s TIENE %d CARACTERES \n&quot;,cadena2,tam);
+	SALTO;
+	// imrime por caracter la cadenas   en forma ascendente y desendente
+	for (int i 0; i &lt; tam; i++)
+	{
+		printf (&quot;%c\n&quot;,cadena2[i]);
+	}
+	SALTO;
+	for (int i = tam-1; i &gt;= 0; i--)
+	{
+		printf (&quot;%c\n&quot;,cadena2[i]);
+	}
+
+
+}</code></pre>
+      </section>
+
+      <div class="code-label mt-4">Archivo 2 · Biblioteca propia (.h)</div>
+
+      <section class="code-card">
+        <div class="code-head">
+          <div class="file-name">karely_ruiz.h</div>
+          <button class="copy-btn" type="button" data-copy-target="codigoLibreria">
+            Copiar código
+          </button>
+        </div>
+        <pre><code id="codigoLibreria">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;math.h&gt;
+#include &lt;time.h&gt;
+#include &lt;conio.h&gt;
+
+void my_fgets(char cadena[],int tam);
+
+
+void my_fgets(char cadena[],int tam)
+{
+	int i = 0;
+	fflush(stdin);
+	fgets(cadena,tam,stdin);
+
+	while (cadena[i] != &#x27;\0&#x27;)
+	{
+		i++;
+	}
+	cadena[i-1] = &#x27;\0&#x27;;
+}
+</code></pre>
+      </section>
+
+      <section class="gallery-intro mt-4">
+        <h2>🔗 ¿Cómo se relacionan los dos archivos?</h2>
+        <p>
+          La instrucción <code>#include "karely_ruiz.h"</code> incorpora al programa
+          principal las declaraciones y funciones contenidas en la biblioteca propia.
+          De esta forma, <code>programa.cpp</code> puede utilizar <code>my_fgets()</code>
+          sin volver a escribir su desarrollo.
+        </p>
+      </section>
+
+      <div class="summary">
+        <div class="bulb">📌</div>
+        <div>
+          <b>IDEA CLAVE PARA EL ALUMNO</b><br>
+          El archivo <code>.cpp</code> contiene la lógica principal del programa y el
+          archivo <code>.h</code> concentra código que puede reutilizarse. Esta separación
+          ayuda a construir programas más ordenados, modulares y fáciles de mantener.
+        </div>
+      </div>
+
+      <section class="gallery-intro mt-4">
+        <h2>🧠 Qué observar en el manejo de cadenas</h2>
+        <p>
+          En el ejemplo se declara una cadena con <code>char cadena[30]</code>, se obtiene
+          su longitud mediante <code>strlen()</code>, se captura otra cadena usando
+          <code>my_fgets()</code> y finalmente se recorre carácter por carácter en sentido
+          ascendente y descendente.
+        </p>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
+  <script src="../scripts/codigo.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>
