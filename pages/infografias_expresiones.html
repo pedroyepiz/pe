@@ -13,232 +13,12 @@
   <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
-
-  <style>
-
-
-
-/* ============================================================
-   UNIFORMIDAD VISUAL CON EL INDEX · PÁGINAS INTERNAS
-   ============================================================ */
-body.pe-home.pe-course-page{
-  background:
-    radial-gradient(circle at 10% 12%, rgba(0,104,71,.045), transparent 25%),
-    linear-gradient(180deg,#f4fbf8 0,#ffffff 34%,#f5faf8 100%);
-}
-
-body.pe-course-page .institutional-top{
-  position:sticky !important;
-  top:0;
-  z-index:2050;
-  overflow:visible;
-  width:100%;
-  box-shadow:0 4px 16px rgba(0,58,43,.18);
-}
-
-body.pe-course-page .institutional-top .brand-shield{
-  width:104px !important;
-  height:118px !important;
-  min-width:104px !important;
-  object-fit:contain;
-  background:transparent !important;
-  border:0 !important;
-  position:relative;
-  z-index:2060;
-  transform:translateY(16px);
-  filter:drop-shadow(0 5px 9px rgba(0,0,0,.22));
-}
-
-body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:92px}
-
-body.pe-course-page .brand-motto{
-  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  font-size:1.9rem !important;
-  font-weight:600 !important;
-  line-height:1.12;
-  text-transform:none !important;
-  color:#fff !important;
-  white-space:nowrap;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  min-width:330px;
-}
-
-body.pe-course-page .topic-course-hero{
-  position:relative;
-  overflow:hidden;
-  border-bottom:1px solid #d5e8df;
-  background:
-    radial-gradient(circle at 10% 10%,rgba(255,255,255,.58) 0 18%,transparent 19%),
-    linear-gradient(135deg,#d7eee5 0%,#e5f4ee 33%,#f8fcfa 58%,#d0e9df 79%,#bee0d3 100%);
-}
-
-body.pe-course-page .topic-course-hero::before{
-  content:"";
-  position:absolute;
-  width:720px;height:300px;
-  left:-165px;top:-125px;
-  border-radius:50%;
-  border:38px solid rgba(0,104,71,.08);
-  transform:rotate(-13deg);
-}
-
-body.pe-course-page .topic-course-hero::after{
-  content:"";
-  position:absolute;
-  width:620px;height:250px;
-  right:-125px;bottom:-145px;
-  border-radius:50%;
-  background:rgba(0,104,71,.07);
-  transform:rotate(-16deg);
-}
-
-body.pe-course-page .topic-course-hero .row{position:relative;z-index:1}
-body.pe-course-page .topic-course-hero .course-kicker{
-  color:#526d94;font-weight:900;letter-spacing:.12em
-}
-body.pe-course-page .topic-course-hero .course-title{
-  max-width:980px;
-  font-size:clamp(2.7rem,4.6vw,4.65rem) !important;
-  line-height:.97 !important;
-}
-body.pe-course-page .topic-number-pill{
-  display:inline-flex;align-items:center;gap:.55rem;
-  margin-bottom:.55rem;padding:.42rem .78rem;
-  border:1px solid rgba(0,104,71,.20);border-radius:999px;
-  background:rgba(255,255,255,.66);color:#075b43;
-  font-weight:850;font-size:.86rem;backdrop-filter:blur(5px)
-}
-
-body.pe-course-page .course-info-card{
-  background:linear-gradient(135deg,
-      rgba(224,246,237,.98) 0%,
-      rgba(194,233,217,.97) 48%,
-      rgba(225,247,239,.98) 100%) !important;
-  border:1px solid rgba(0,104,71,.38) !important;
-  box-shadow:0 14px 30px rgba(0,77,54,.15),inset 0 1px 0 rgba(255,255,255,.85) !important;
-}
-
-body.pe-course-page .course-info-card .info-row{
-  background:linear-gradient(90deg,rgba(255,255,255,.10),rgba(0,104,71,.035),rgba(255,255,255,.08));
-}
-
-body.pe-course-page .page-content-shell{padding-top:22px;padding-bottom:32px}
-body.pe-course-page .page-content-card{
-  background:#fff;border:1px solid #deebe5;border-radius:18px;
-  box-shadow:0 10px 30px rgba(7,67,48,.08);
-  padding:clamp(16px,2.4vw,28px);
-}
-body.pe-course-page .content{padding:0;overflow:visible}
-
-body.pe-course-page .topic-nav{
-  padding:12px;border:1px solid #d9e9e2;border-radius:14px;
-  background:linear-gradient(180deg,#fff,#f5fbf8);
-  box-shadow:0 5px 16px rgba(0,70,48,.06);
-}
-body.pe-course-page .section{
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,75,52,.10);
-}
-
-body.pe-course-page .gallery-intro{
-  border-radius:16px;
-  background:linear-gradient(135deg,#f5fbf8,#e8f5ef);
-  border:1px solid #d2e8dd;
-  padding:18px 20px;
-  margin-bottom:18px;
-}
-
-body.pe-course-page .topic-back-home{
-  position:fixed;right:22px;bottom:22px;z-index:2100;
-  display:flex;align-items:center;gap:9px;
-  padding:8px 14px 8px 8px;border:2px solid #006847;border-radius:999px;
-  background:#fff;color:#004b35;text-decoration:none;font-weight:800;
-  box-shadow:0 8px 22px rgba(0,0,0,.17);transition:.2s ease;
-}
-body.pe-course-page .topic-back-home:hover{
-  color:#004b35;background:#f0faf5;transform:translateY(-2px)
-}
-body.pe-course-page .topic-back-home img{
-  width:50px;height:50px;object-fit:contain
-}
-
-/* Ajuste de lightbox para convivir con header fijo */
-body.pe-course-page .infografia-lightbox{z-index:5000}
-
-/* Evitar que las clases heredadas de páginas antiguas reemplacen el layout general */
-body.pe-course-page > .page{display:none !important}
-
-@media (max-width:1199.98px){
-  body.pe-course-page .brand-motto{font-size:1.55rem !important;min-width:280px}
-  body.pe-course-page .institutional-top .brand-shield{
-    width:88px !important;height:102px !important;min-width:88px !important;transform:translateY(13px)
-  }
-  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:82px}
-}
-
-@media (max-width:991.98px){
-  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.6rem,6.3vw,4rem) !important}
-}
-
-@media (max-width:767.98px){
-  body.pe-course-page .institutional-top .brand-shield{
-    width:76px !important;height:90px !important;min-width:76px !important;transform:translateY(11px)
-  }
-  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:74px}
-  body.pe-course-page .topic-course-hero .course-title{font-size:clamp(2.25rem,9vw,3.35rem) !important}
-  body.pe-course-page .page-content-shell{padding-top:14px}
-  body.pe-course-page .page-content-card{border-radius:14px;padding:15px}
-  body.pe-course-page .topic-back-home{right:12px;bottom:12px;padding-right:11px}
-  body.pe-course-page .topic-back-home img{width:44px;height:44px}
-}
-
-@media (max-width:430px){
-  body.pe-course-page .institutional-top .brand-shield{
-    width:66px !important;height:78px !important;min-width:66px !important;transform:translateY(9px)
-  }
-  body.pe-course-page .institutional-top .pe-shell > .d-flex{min-height:68px}
-  body.pe-course-page .topic-course-hero .course-title{font-size:2.3rem !important}
-  body.pe-course-page .topic-back-home span{display:none}
-  body.pe-course-page .topic-back-home{padding:7px}
-}
-
-  </style>
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
 </head>
 
 <body class="pe-home pe-course-page page-infografias-pilas page-infografias-colas">
 
-  <header class="institutional-top">
-    <div class="container-fluid pe-shell">
-      <div class="d-flex align-items-center justify-content-between gap-3 py-2 py-lg-3">
-        <div class="d-flex align-items-center gap-3 min-w-0">
-          <img class="brand-shield"
-               src="../images/uabc_logo.png"
-               alt="Escudo de la Universidad Autónoma de Baja California">
-
-          <div class="brand-university">
-            <div class="brand-name">
-              Universidad Autónoma<br class="d-none d-sm-block"> de Baja California
-            </div>
-          </div>
-
-          <div class="brand-divider d-none d-lg-block"></div>
-          <div class="brand-motto d-none d-lg-block">Por la realización plena del ser</div>
-        </div>
-
-        <div class="top-identity d-flex align-items-center gap-3">
-          <div class="uabc-brush d-none d-md-block">UABC</div>
-          <div class="brand-divider d-none d-md-block"></div>
-          <div class="somos-uabc text-end">
-            <span>SOMOS</span>
-            <strong>uABC</strong>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+  <div id="site-header"></div>
 
   <section class="topic-course-hero">
     <div class="container-fluid pe-shell">
@@ -262,37 +42,7 @@ body.pe-course-page > .page{display:none !important}
         </div>
 
         <div class="col-xl-5">
-          <aside class="course-info-card" aria-label="Información académica">
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-book"></i></div>
-              <div class="info-label">TEMA:</div>
-              <div class="info-value">Tema 2 · Expresiones</div>
-            </div>
-
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-journal-code"></i></div>
-              <div class="info-label">MATERIA:</div>
-              <div class="info-value">Programación Estructurada</div>
-            </div>
-
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-person-fill"></i></div>
-              <div class="info-label">DOCENTE:</div>
-              <div class="info-value">Pedro Núñez Yepiz</div>
-            </div>
-
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
-              <div class="info-label">CARRERA:</div>
-              <div class="info-value">Ingeniero en Software y Tecnologías Emergentes / Ingeniero en Computación</div>
-            </div>
-
-            <div class="info-row border-0">
-              <div class="info-icon"><i class="bi bi-bank2"></i></div>
-              <div class="info-label">FACULTAD:</div>
-              <div class="info-value">Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</div>
-            </div>
-          </aside>
+          <div id="course-info" data-topic="Tema 2 · Expresiones"></div>
         </div>
       </div>
     </div>
@@ -349,33 +99,7 @@ body.pe-course-page > .page{display:none !important}
     </div>
   </main>
 
-  <footer class="institutional-footer">
-    <div class="container-fluid pe-shell">
-      <div class="footer-inner">
-        <div class="footer-brand">
-          <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
-          <div>
-            <strong>Universidad Autónoma<br>de Baja California</strong>
-          </div>
-        </div>
-
-        <div class="footer-divider d-none d-lg-block"></div>
-        <div class="footer-motto d-none d-lg-block">Por la realización plena del ser</div>
-
-        <div class="footer-signature ms-lg-auto">
-          <span>@el_profe_Yepiz</span>
-          <span id="currentYear">2026</span>
-          <span aria-hidden="true">🤟</span>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <a class="topic-back-home" href="../index.html" aria-label="Regresar al contenido del curso">
-    <img src="../images/uabc_logo.png" alt="" aria-hidden="true">
-    <span>Regresar al curso</span>
-  </a>
-
+  <div id="site-footer"></div>
 <div class="infografia-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Visor de infografías">
   <div class="lb-top">
     <div class="lb-title">Infografía</div>
@@ -400,8 +124,6 @@ body.pe-course-page > .page{display:none !important}
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
           crossorigin="anonymous"></script>
-
-<script src="../scripts/app.js" defer></script>
 <script src="../scripts/infografias.js" defer></script>
 
   <script>
@@ -410,5 +132,7 @@ body.pe-course-page > .page{display:none !important}
       if (year) year.textContent = new Date().getFullYear();
     });
   </script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
 </body>
 </html>
