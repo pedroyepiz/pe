@@ -3231,7 +3231,7 @@ body.pe-home{
 }
 .pe-home .somos-uabc strong{
   display:block;
-  font-size:1.65rem;
+  font-size:3rem;
   color:#ffc928;
   letter-spacing:.02em;
 }
@@ -3673,14 +3673,12 @@ body.pe-home{
 .pe-home .footer-motto{
   font-size:1.6rem;
   color:#f6fbf9;
-  position:relative;
-  top:2px;
 }
 
 .pe-home .footer-signature{
   display:flex;
   align-items:center;
-  gap:15px;
+  gap:6px;
   font-size:.95rem;
   white-space:nowrap;
 }
@@ -3792,171 +3790,28 @@ body.pe-home .footer-signature #currentYear{
 
 
 /* =====================================================================
-   AJUSTE HERO · FONDO MÁS VERDE + TÍTULO MÁS GRANDE
+   SISTEMA DE PÁGINA MAESTRA · PROGRAMACIÓN ESTRUCTURADA
    ===================================================================== */
 
-/* Fondo del área principal "Programación Estructurada" */
-body.pe-home .course-hero{
-  background:
-    radial-gradient(circle at 12% 8%, rgba(255,255,255,.55) 0 18%, transparent 19%),
-    linear-gradient(
-      135deg,
-      #d9efe7 0%,
-      #e7f6f1 32%,
-      #f6fbf9 56%,
-      #d4ece3 78%,
-      #c4e4d8 100%
-    ) !important;
+#site-header,
+#site-footer,
+#course-info{
+  width:100%;
 }
 
-/* Curvas decorativas un poco más visibles */
-body.pe-home .course-hero::before{
-  border-color:rgba(0,104,71,.085) !important;
-}
-
-body.pe-home .course-hero::after{
-  background:rgba(0,104,71,.075) !important;
-}
-
-/* Título principal más grande en escritorio */
-body.pe-home .course-title{
-  font-size:clamp(3.15rem,5.35vw,4.9rem) !important;
-  line-height:.95 !important;
-}
-
-/* TABLET */
-@media (max-width:1199.98px){
-  body.pe-home .course-title{
-    font-size:clamp(3rem,6vw,4.3rem) !important;
-  }
-}
-
-/* MÓVIL / TABLET VERTICAL */
-@media (max-width:767.98px){
-  body.pe-home .course-title{
-    font-size:clamp(2.65rem,9vw,3.75rem) !important;
-    line-height:.97 !important;
-  }
-
-  body.pe-home .course-hero{
-    background:
-      linear-gradient(
-        145deg,
-        #d3ebe1 0%,
-        #e4f4ee 42%,
-        #f7fbf9 66%,
-        #cbe7dc 100%
-      ) !important;
-  }
-}
-
-/* MÓVIL PEQUEÑO */
-@media (max-width:430px){
-  body.pe-home .course-title{
-    font-size:2.75rem !important;
-    line-height:.96 !important;
-  }
-}
-
-
-
-/* =====================================================================
-   ENCABEZADO INSTITUCIONAL FIJO AL HACER SCROLL
-   Mantiene visible la franja verde con logo UABC.
-   ===================================================================== */
-body.pe-home .institutional-top{
-  position:sticky !important;
+body.pe-home #site-header{
+  position:sticky;
   top:0;
   z-index:2050;
-  overflow:visible;
-  width:100%;
-  box-shadow:0 4px 16px rgba(0,58,43,.18);
 }
 
-/* El escudo puede seguir sobresaliendo ligeramente de la franja verde */
-body.pe-home .institutional-top .brand-shield{
-  z-index:2060;
+body.pe-home #site-header:empty{
+  min-height:76px;
+  background:#006847;
 }
 
-/* También se mantiene fijo en tablet y móvil */
-@media (max-width:767.98px){
-  body.pe-home .institutional-top{
-    position:sticky !important;
-    top:0;
-  }
-}
-
-
-
-/* =====================================================================
-   AJUSTE ENCABEZADO · LEMA INSTITUCIONAL
-   ===================================================================== */
-body.pe-home .brand-motto{
-  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  font-size:1.28rem !important;
-  font-weight:800 !important;
-  line-height:1.08;
-  letter-spacing:.01em;
-  text-transform:uppercase;
-  color:#ffffff !important;
-  white-space:nowrap;
-}
-
-/* Tablet */
-@media (max-width:1199.98px){
-  body.pe-home .brand-motto{
-    font-size:1.15rem !important;
-  }
-}
-
-/* En móvil se mantiene oculto por la clase d-none d-lg-block del HTML,
-   igual que en el diseño actual. */
-
-
-
-/* =====================================================================
-   AJUSTE FINAL DEL LEMA DEL ENCABEZADO
-   ===================================================================== */
-body.pe-home .brand-motto{
-  font-family:"Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
-  font-size:1.38rem !important;
-  font-weight:600 !important;
-  line-height:1.15;
-  letter-spacing:.01em;
-  text-transform:none !important;
-  color:#ffffff !important;
-  white-space:nowrap;
-
-  /* Centrado visual del lema dentro de su espacio */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  min-width:330px;
-}
-
-/* Tablet / escritorio mediano */
-@media (max-width:1199.98px){
-  body.pe-home .brand-motto{
-    font-size:1.25rem !important;
-    min-width:290px;
-  }
-}
-
-
-
-/* =====================================================================
-   AJUSTE FINAL · MISMO TAMAÑO DE LEMA EN HEADER Y FOOTER
-   ===================================================================== */
-body.pe-home .brand-motto{
-  font-size:1.9rem !important;
-}
-
-/* Mantener el mismo tamaño también en escritorio mediano/tablet
-   mientras el lema siga visible. */
-@media (max-width:1199.98px){
-  body.pe-home .brand-motto{
-    font-size:1.9rem !important;
-  }
+body.pe-home #site-footer:empty{
+  min-height:76px;
+  background:#006847;
 }
 
