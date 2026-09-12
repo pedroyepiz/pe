@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Infografía del Tema 8: typedef en C, alias de tipos y convenciones de nomenclatura.">
+  <title>Infografía de typedef | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- CSS centralizado del sitio -->
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+</head>
+
+<body class="pe-home pe-course-page page-infografias-typedef">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-tag-fill"></i>
+            TEMA 8 · MATERIAL VISUAL
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Infografía de typedef en C</h1>
+
+          <p class="course-subtitle mb-0">
+            Un alias para un tipo de dato existente: sintaxis, ventajas,
+            convenciones de nombres y uso de <code>typedef</code> con
+            estructuras.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-images" aria-hidden="true"></i>
+            <span>“Un buen typedef le da nombre, orden y semántica a tu código en C.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <!-- PÁGINA MAESTRA · DATOS ACADÉMICOS -->
+          <div id="course-info" data-topic="Tema 8 · typedef"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="gallery-intro">
+        <h2>🏷️ Material visual · typedef en C</h2>
+
+        <p>
+          Esta infografía resume los conceptos principales del Tema 8:
+          qué es <code>typedef</code>, para qué sirve, su sintaxis,
+          la analogía del apodo, convenciones de nomenclatura,
+          alias para tipos simples y su aplicación con
+          <code>struct</code>.
+        </p>
+
+        <p class="mb-0">
+          Selecciona la imagen para visualizarla a mayor tamaño y utilizar
+          las herramientas de navegación y zoom.
+        </p>
+      </section>
+
+      <section class="infografia-grid">
+
+        <article class="infografia-card">
+          <button class="infografia-open"
+                  type="button"
+                  data-infografia="../images/infografias/infografia_typedef.png"
+                  data-title="typedef en C · Un alias para un tipo de dato existente"
+                  aria-label="Abrir infografía de typedef en C">
+
+            <div class="infografia-thumb">
+              <img src="../images/infografias/infografia_typedef.png"
+                   alt="Infografía educativa sobre typedef en C"
+                   loading="lazy">
+              <div class="infografia-zoom">
+                <i class="bi bi-arrows-fullscreen"></i>
+                <span>Ampliar</span>
+              </div>
+            </div>
+
+            <div class="infografia-caption">
+              <div class="infografia-number">INFOGRAFÍA · TEMA 8</div>
+              <h3>TYPEDEF EN C</h3>
+              <p>
+                Alias de tipos, sintaxis, ventajas, convención de prefijos,
+                tipos simples y <code>typedef struct</code>.
+              </p>
+            </div>
+
+          </button>
+        </article>
+
+      </section>
+
+      <section class="gallery-intro mt-4">
+        <h2>🧠 ¿Qué debes identificar en la infografía?</h2>
+
+        <div class="row g-3 mt-1">
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">1️⃣</div>
+              <div>
+                <b>ALIAS</b><br>
+                <code>typedef</code> asigna un nombre alternativo a un tipo
+                que ya existe.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">2️⃣</div>
+              <div>
+                <b>SEMÁNTICA</b><br>
+                Un nombre como <code>Tkey</code> comunica mejor el propósito
+                del dato.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">3️⃣</div>
+              <div>
+                <b>CONVENCIÓN</b><br>
+                En la clase se utilizan prefijos para reconocer rápidamente
+                tipos definidos por el programador.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">4️⃣</div>
+              <div>
+                <b>STRUCT</b><br>
+                <code>typedef</code> simplifica la declaración y reutilización
+                de estructuras.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="summary mt-4">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          <code>typedef</code> no cambia el significado interno del tipo:
+          crea un nombre alternativo que puede hacer el programa más claro,
+          semántico y fácil de mantener.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- VISOR DE INFOGRAFÍAS -->
+  <div class="infografia-viewer"
+       id="infografiaViewer"
+       aria-hidden="true">
+
+    <div class="infografia-viewer-backdrop" data-viewer-close></div>
+
+    <div class="infografia-viewer-dialog"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="viewerTitle">
+
+      <div class="infografia-viewer-header">
+        <div>
+          <div class="viewer-kicker">PROGRAMACIÓN ESTRUCTURADA · TEMA 8</div>
+          <h2 id="viewerTitle">Infografía</h2>
+        </div>
+
+        <button class="viewer-close"
+                type="button"
+                data-viewer-close
+                aria-label="Cerrar visor">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="infografia-viewer-stage">
+        <img id="viewerImage"
+             src=""
+             alt="">
+      </div>
+
+      <div class="infografia-viewer-controls">
+        <button type="button"
+                data-viewer-zoom-out
+                aria-label="Alejar">
+          <i class="bi bi-zoom-out"></i>
+        </button>
+
+        <button type="button"
+                data-viewer-reset
+                aria-label="Restablecer zoom">
+          <i class="bi bi-arrow-counterclockwise"></i>
+          <span>100%</span>
+        </button>
+
+        <button type="button"
+                data-viewer-zoom-in
+                aria-label="Acercar">
+          <i class="bi bi-zoom-in"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
+  <!-- Scripts centralizados -->
+  <script src="../scripts/infografias.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>

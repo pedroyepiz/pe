@@ -1,0 +1,581 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Tema 8: typedef en C, alias de tipos, convenciones de nomenclatura y abstracción.">
+  <title>Tema 8 · typedef | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_08_typedef.css">
+</head>
+
+<body class="pe-home pe-course-page page-tema-08">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-tag-fill"></i>
+            TEMA 8 · TYPEDEF EN C
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Alias y abstracción de tipos</h1>
+
+          <p class="course-subtitle mb-0">
+            Un alias para un tipo de dato existente: claridad, mantenimiento,
+            estandarización y mejor lectura del código.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-type" aria-hidden="true"></i>
+            <span>“Cambiar el nombre no cambia el tipo, pero sí puede cambiar la claridad del programa.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 8 · typedef"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2><code>typedef</code> crea un alias, no un tipo nuevo</h2>
+          <p>
+            La palabra clave <code>typedef</code> permite crear un <b>sinónimo</b>
+            para un tipo de dato existente. El compilador trata al alias y al tipo
+            original como equivalentes.
+          </p>
+        </div>
+
+        <div class="concept-badge">
+          <i class="bi bi-person-badge-fill"></i>
+          <strong>ALIAS</strong>
+          <span>Un nombre alternativo para un tipo existente</span>
+        </div>
+      </section>
+
+      <nav class="topic-nav" aria-label="Navegación del Tema 8">
+        <a href="#que-es">8.1 ¿Qué es?</a>
+        <a href="#para-que">8.2 ¿Para qué sirve?</a>
+        <a href="#sintaxis">8.3 Sintaxis</a>
+        <a href="#convencion">Convención de clase</a>
+        <a href="#struct">typedef + struct</a>
+        <a href="#cabeceras">8.4 Archivos .h</a>
+        <a href="#embebidos">Tipos de ancho fijo</a>
+        <a href="#practica">Ejemplos</a>
+        <a href="#quiz">Quiz</a>
+      </nav>
+
+      <section class="lesson-section" id="que-es">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>8.1 · ¿Qué es <code>typedef</code>?</h2>
+        </div>
+
+        <p>
+          <code>typedef</code> significa <b>Type Definition</b> y permite asignar un
+          nuevo nombre a un tipo que ya existe.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">alias_basico.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoAliasBasico">Copiar código</button>
+          </div>
+          <pre><code id="codigoAliasBasico">typedef unsigned short int Tentero;
+
+Tentero edad;
+Tentero cantidad;</code></pre>
+        </section>
+
+        <div class="analogy-card">
+          <div class="analogy-icon">👤</div>
+          <div>
+            <b>Analogía del apodo:</b> “José Antonio Pérez García” puede ser llamado
+            “Chepe”. Sigue siendo la misma persona. De la misma forma,
+            <code>Tentero</code> sigue representando el tipo original; solo cambia
+            el nombre con el que lo usamos en el programa.
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">⚠️</div>
+          <div>
+            <b>NO CONFUNDIR</b><br>
+            <code>typedef</code> no crea automáticamente un tipo con comportamiento nuevo.
+            Crea un nombre alternativo para un tipo ya existente.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="para-que">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>8.2 · ¿Para qué sirve?</h2>
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">📖</div>
+            <h3>Legibilidad</h3>
+            <p>
+              <code>Tkey matricula;</code> comunica mejor la intención que
+              <code>int matricula;</code>.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧰</div>
+            <h3>Mantenimiento</h3>
+            <p>
+              Si el tipo base cambia, puede modificarse en un solo
+              <code>typedef</code> en lugar de cambiar muchas declaraciones.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧩</div>
+            <h3>Simplificación</h3>
+            <p>
+              Reduce la complejidad visual de tipos compuestos, estructuras y otras
+              declaraciones largas.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧭</div>
+            <h3>Estandarización</h3>
+            <p>
+              Una convención de nombres permite reconocer rápidamente qué tipos fueron
+              definidos por el programador.
+            </p>
+          </article>
+        </div>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">mantenimiento.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoMantenimiento">Copiar código</button>
+          </div>
+          <pre><code id="codigoMantenimiento">/* Hoy */
+typedef int Tkey;
+
+Tkey matricula;
+Tkey id_alumno;
+
+/* Si después se requiere un rango mayor: */
+typedef long long Tkey;
+
+/* Las variables siguen usando Tkey */</code></pre>
+        </section>
+      </section>
+
+      <section class="lesson-section" id="sintaxis">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>8.3 · Sintaxis básica</h2>
+        </div>
+
+        <div class="syntax-box">
+          <code>typedef &lt;tipo_existente&gt; &lt;nuevo_nombre_alias&gt;;</code>
+        </div>
+
+        <div class="two-col">
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">Tipos simples</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoSimples">Copiar</button>
+            </div>
+            <pre><code id="codigoSimples">typedef int Tentero;
+typedef int Tkey;
+typedef float Tpromedio;
+typedef char Tcaracter;
+
+Tentero contador;
+Tkey matricula;
+Tpromedio calificacion;</code></pre>
+          </section>
+
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">Semántica</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoSemantica">Copiar</button>
+            </div>
+            <pre><code id="codigoSemantica">typedef int Tkey;
+
+Tkey matricula = 12345;
+Tkey id_usuario = 9001;
+
+/* Ambos siguen siendo int,
+   pero el alias comunica que
+   representan llaves o IDs. */</code></pre>
+          </section>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="convencion">
+        <div class="section-heading">
+          <i class="bi bi-diagram-2-fill"></i>
+          <h2>Convención de nomenclatura de clase</h2>
+        </div>
+
+        <p>
+          El manual propone un sistema visual para distinguir tipos simples aliasados
+          y tipos compuestos definidos por el programador.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Tipo</th>
+                <th>Prefijo</th>
+                <th>Ejemplo</th>
+                <th>Lectura visual</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Tipos simples</td>
+                <td><code>T</code></td>
+                <td><code>Tentero</code>, <code>Tkey</code>, <code>Tflag</code></td>
+                <td>Tipo básico aliasado por nosotros.</td>
+              </tr>
+              <tr>
+                <td>Tipos compuestos / estructuras</td>
+                <td><code>sT</code></td>
+                <td><code>sTalum</code>, <code>sTnom</code>, <code>sTproducto</code></td>
+                <td>Estructura definida por nosotros.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">🎓</div>
+          <div>
+            <b>REGLA DE LA CLASE</b><br>
+            La convención no es una obligación del lenguaje C; es una disciplina de
+            nomenclatura que ayuda a leer y mantener los programas del curso.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="struct">
+        <div class="section-heading">
+          <i class="bi bi-box-seam-fill"></i>
+          <h2><code>typedef</code> aplicado a <code>struct</code></h2>
+        </div>
+
+        <p>
+          Una de las aplicaciones más útiles de <code>typedef</code> es simplificar
+          la declaración de estructuras.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">alumno.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoStruct">Copiar código</button>
+          </div>
+          <pre><code id="codigoStruct">typedef int Tkey;
+
+typedef struct _nom
+{
+    char nombre[30];
+    char appat[30];
+    char apmat[30];
+} sTnom;
+
+typedef struct _talum
+{
+    int status;
+    Tkey matri;
+    sTnom nombre;
+    int edad;
+    int sexo;
+} sTalum;
+
+int main(void)
+{
+    sTalum alumno1;
+
+    alumno1.matri = 2026001;
+    alumno1.edad = 20;
+
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="note-box">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            <b>Lectura semántica:</b> cuando ves <code>Tkey matri;</code>, sabes que
+            <code>matri</code> representa una llave. Cuando ves <code>sTnom nombre;</code>,
+            sabes que <code>nombre</code> es una estructura definida por el programador.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="cabeceras">
+        <div class="section-heading">
+          <i class="bi bi-file-earmark-code-fill"></i>
+          <h2>8.4 · Buenas prácticas y archivos de cabecera</h2>
+        </div>
+
+        <p>
+          El manual recomienda centralizar los <code>typedef</code> en un archivo
+          de cabecera, por ejemplo <code>tipos.h</code> o <code>definiciones.h</code>,
+          para reutilizarlos en diferentes programas.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">tipos.h</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoTiposH">Copiar código</button>
+          </div>
+          <pre><code id="codigoTiposH">#ifndef TIPOS_H
+#define TIPOS_H
+
+typedef int Tentero;
+typedef int Tkey;
+
+typedef struct _nom
+{
+    char nombre[30];
+    char appat[30];
+    char apmat[30];
+} sTnom;
+
+#endif</code></pre>
+        </section>
+
+        <div class="two-col">
+          <article class="concept-card">
+            <div class="concept-icon">🧱</div>
+            <h3>Centralizar</h3>
+            <p>
+              Evita tener definiciones dispersas en muchos archivos fuente.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🛡️</div>
+            <h3>Guardas de inclusión</h3>
+            <p>
+              <code>#ifndef</code>, <code>#define</code> y <code>#endif</code> evitan
+              inclusiones repetidas del mismo archivo.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="embebidos">
+        <div class="section-heading">
+          <i class="bi bi-cpu-fill"></i>
+          <h2>Conexión con sistemas embebidos y tipos de ancho fijo</h2>
+        </div>
+
+        <p>
+          El manual relaciona <code>typedef</code> con la idea de abstracción que se
+          utiliza en sistemas embebidos. En C moderno, la cabecera
+          <code>&lt;stdint.h&gt;</code> ofrece tipos como <code>uint8_t</code>,
+          <code>int16_t</code> y <code>uint32_t</code>, cuyo ancho está especificado
+          cuando la implementación los proporciona.
+        </p>
+
+        <div class="type-grid">
+          <article><code>uint8_t</code><span>Entero sin signo de 8 bits</span></article>
+          <article><code>int16_t</code><span>Entero con signo de 16 bits</span></article>
+          <article><code>uint32_t</code><span>Entero sin signo de 32 bits</span></article>
+        </div>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">stdint.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoStdint">Copiar código</button>
+          </div>
+          <pre><code id="codigoStdint">#include &lt;stdint.h&gt;
+
+uint8_t nivel = 255;
+int16_t temperatura = -120;
+uint32_t contador = 1000000;</code></pre>
+        </section>
+
+        <div class="warning-box">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            <b>Precisión importante:</b> el tamaño de tipos como <code>int</code> depende
+            de la implementación. Por eso, cuando el ancho exacto es importante,
+            los tipos de <code>&lt;stdint.h&gt;</code> pueden ser más adecuados.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="practica">
+        <div class="section-heading">
+          <i class="bi bi-terminal-fill"></i>
+          <h2>Ejemplos para practicar</h2>
+        </div>
+
+        <div class="practice-grid">
+          <article>
+            <b>Ejemplo 1 · Llave primaria</b>
+            <pre><code>typedef int Tkey;
+Tkey matricula = 36276;</code></pre>
+          </article>
+
+          <article>
+            <b>Ejemplo 2 · Bandera</b>
+            <pre><code>typedef int Tflag;
+Tflag activo = 1;</code></pre>
+          </article>
+
+          <article>
+            <b>Ejemplo 3 · Precio</b>
+            <pre><code>typedef float Tprecio;
+Tprecio costo = 149.50f;</code></pre>
+          </article>
+
+          <article>
+            <b>Ejemplo 4 · Estructura</b>
+            <pre><code>typedef struct _punto
+{
+    int x;
+    int y;
+} sTpunto;</code></pre>
+          </article>
+        </div>
+
+        <div class="exercise-box">
+          <h3>💡 Ejercicio rápido</h3>
+          <p>Si encuentras esta declaración:</p>
+          <div class="syntax-box"><code>sTnom datos_contacto;</code></div>
+          <p>¿Qué puedes deducir solo leyendo el nombre del tipo?</p>
+          <ul>
+            <li>La <code>s</code> indica que trabajamos con una estructura según la convención de clase.</li>
+            <li>La <code>T</code> indica que es un tipo definido por nosotros.</li>
+            <li><code>nom</code> sugiere que representa datos relacionados con un nombre.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <div class="section-heading">
+          <i class="bi bi-check2-square"></i>
+          <h2>Buenas prácticas</h2>
+        </div>
+
+        <div class="practice-grid">
+          <article><b>1.</b> Usa alias que comuniquen intención, no nombres ambiguos.</article>
+          <article><b>2.</b> Mantén una convención de nombres consistente en todo el proyecto.</article>
+          <article><b>3.</b> Centraliza los tipos compartidos en archivos <code>.h</code>.</article>
+          <article><b>4.</b> No abuses de <code>typedef</code> si el alias no mejora la lectura.</article>
+          <article><b>5.</b> Documenta el propósito de los alias importantes.</article>
+          <article><b>6.</b> Usa tipos de ancho fijo cuando el tamaño exacto del dato sea relevante.</article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="quiz">
+        <div class="section-heading">
+          <i class="bi bi-patch-question-fill"></i>
+          <h2>Quiz rápido · Tema 8</h2>
+        </div>
+
+        <div class="quiz-grid">
+
+          <article class="quiz-q" data-answer="b">
+            <h3>1. ¿Qué hace <code>typedef</code>?</h3>
+            <button type="button" data-opt="a">A) Crea una función nueva</button>
+            <button type="button" data-opt="b">B) Crea un alias para un tipo existente</button>
+            <button type="button" data-opt="c">C) Reserva memoria dinámica</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>2. ¿Cuál es la sintaxis correcta?</h3>
+            <button type="button" data-opt="a">A) typedef = int Tentero;</button>
+            <button type="button" data-opt="b">B) type int Tentero;</button>
+            <button type="button" data-opt="c">C) typedef int Tentero;</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>3. Según nuestra convención, ¿qué sugiere <code>Tkey</code>?</h3>
+            <button type="button" data-opt="a">A) Un tipo simple aliasado por nosotros</button>
+            <button type="button" data-opt="b">B) Una función</button>
+            <button type="button" data-opt="c">C) Un arreglo bidimensional</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>4. ¿Qué ventaja tiene centralizar typedefs en un archivo .h?</h3>
+            <button type="button" data-opt="a">A) Hace que el programa no necesite compilador</button>
+            <button type="button" data-opt="b">B) Facilita reutilización y mantenimiento</button>
+            <button type="button" data-opt="c">C) Elimina la necesidad de variables</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>5. ¿Qué significa <code>sTalum</code> en la convención de clase?</h3>
+            <button type="button" data-opt="a">A) Un entero del sistema</button>
+            <button type="button" data-opt="b">B) Una constante matemática</button>
+            <button type="button" data-opt="c">C) Una estructura definida por nosotros</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>6. ¿Qué cabecera ofrece tipos como <code>uint8_t</code>?</h3>
+            <button type="button" data-opt="a">A) stdint.h</button>
+            <button type="button" data-opt="b">B) math.h</button>
+            <button type="button" data-opt="c">C) stdio.h</button>
+            <div class="quiz-feedback" aria-live="polite"></div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="summary final-summary">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          <code>typedef</code> permite crear nombres alternativos para tipos existentes.
+          Bien utilizado mejora la legibilidad, la organización y el mantenimiento.
+          En nuestra convención de clase, <code>T...</code> identifica tipos simples
+          aliasados y <code>sT...</code> identifica estructuras definidas por nosotros.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/tema_08_typedef.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>
