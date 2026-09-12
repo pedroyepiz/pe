@@ -1,0 +1,598 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Tema 9: Recursión en C. Conceptos, caso base, pila de llamadas, factorial, Fibonacci, ventajas, desventajas y aplicaciones.">
+  <title>Tema 9 · Recursión | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_09_recursion.css">
+</head>
+
+<body class="pe-home pe-course-page page-tema-09">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-arrow-repeat"></i>
+            TEMA 9 · RECURSIÓN
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Solución recursiva</h1>
+
+          <p class="course-subtitle mb-0">
+            Resolver un problema haciendo que una función se llame a sí misma,
+            reduciendo el problema hasta alcanzar un caso base.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-layers-fill" aria-hidden="true"></i>
+            <span>“Una función recursiva debe saber cuándo continuar y, sobre todo, cuándo detenerse.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 9 · Recursión"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2>Dividir el problema hasta llegar a una solución simple</h2>
+          <p>
+            La <b>recursión</b> es una técnica en la que una función se llama a sí misma
+            para resolver una versión más pequeña del mismo problema. Cada llamada debe
+            acercarse al <b>caso base</b>, que es la condición que detiene la recursión.
+          </p>
+        </div>
+
+        <div class="concept-badge">
+          <i class="bi bi-arrow-repeat"></i>
+          <strong>RECURSIÓN</strong>
+          <span>Llamadas sucesivas hasta alcanzar un caso base</span>
+        </div>
+      </section>
+
+      <nav class="topic-nav" aria-label="Navegación del Tema 9">
+        <a href="#que-es">9.1 ¿Qué es?</a>
+        <a href="#funciona">9.2 ¿Cómo funciona?</a>
+        <a href="#detiene">9.3 Caso base</a>
+        <a href="#memoria">9.4 Memoria</a>
+        <a href="#estructura">9.5 Cómo estructurarla</a>
+        <a href="#factorial">9.6 Factorial</a>
+        <a href="#fibonacci">9.7 Fibonacci</a>
+        <a href="#usos">9.8 Usos</a>
+        <a href="#ventajas">9.9 Ventajas y desventajas</a>
+        <a href="#quiz">Repaso</a>
+      </nav>
+
+      <section class="lesson-section" id="que-es">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>9.1 · ¿Qué es la recursión?</h2>
+        </div>
+
+        <p>
+          Una función es <b>recursiva</b> cuando, directa o indirectamente, vuelve a
+          invocarse a sí misma. La idea es reemplazar un problema grande por una versión
+          más pequeña del mismo problema.
+        </p>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">🔁</div>
+            <h3>Llamada recursiva</h3>
+            <p>La función se vuelve a llamar con datos más pequeños o más cercanos al objetivo.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🛑</div>
+            <h3>Caso base</h3>
+            <p>Es la condición que evita que la función siga llamándose indefinidamente.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">📉</div>
+            <h3>Reducción</h3>
+            <p>Cada llamada debe reducir el problema para garantizar que el caso base será alcanzado.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧠</div>
+            <h3>Abstracción</h3>
+            <p>Permite expresar algunos algoritmos complejos de forma compacta y cercana a su definición matemática.</p>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">💡</div>
+          <div>
+            <b>REGLA FUNDAMENTAL</b><br>
+            Toda función recursiva correcta necesita dos partes:
+            <b>un caso base</b> y <b>una llamada recursiva que se acerque a ese caso base</b>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="funciona">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>9.2 · ¿Cómo funciona?</h2>
+        </div>
+
+        <p>
+          Cuando una función recursiva se llama a sí misma, la llamada actual queda
+          suspendida temporalmente mientras espera el resultado de la siguiente llamada.
+          Esto se repite hasta llegar al caso base.
+        </p>
+
+        <div class="recursion-flow">
+          <div><span>1</span><b>Problema original</b><small>Ejemplo: factorial(4)</small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>2</span><b>Reduce</b><small>4 × factorial(3)</small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>3</span><b>Reduce otra vez</b><small>3 × factorial(2)</small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>4</span><b>Caso base</b><small>factorial(0) = 1</small></div>
+        </div>
+
+        <div class="analogy-card">
+          <div class="analogy-icon">🪆</div>
+          <div>
+            <b>Analogía de las muñecas rusas:</b> cada muñeca contiene otra más pequeña.
+            Llegas a la más pequeña y entonces comienzas a cerrar una por una. En recursión,
+            primero se hacen las llamadas y después se van resolviendo al regresar.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="detiene">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>9.3 · ¿Cómo se detiene la recursión?</h2>
+        </div>
+
+        <p>
+          La recursión se detiene mediante el <b>caso base</b>. Es una condición que
+          puede resolverse directamente sin volver a llamar a la función.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">forma_general.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoFormaGeneral">Copiar código</button>
+          </div>
+          <pre><code id="codigoFormaGeneral">tipo funcion(parametro)
+{
+    if (caso_base)
+    {
+        return resultado_directo;
+    }
+
+    return operacion(
+        funcion(problema_mas_pequeno)
+    );
+}</code></pre>
+        </section>
+
+        <div class="warning-box">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            <b>Si no existe un caso base o nunca se alcanza:</b> la función seguirá
+            creando llamadas hasta agotar la memoria disponible para la pila de llamadas,
+            produciendo normalmente un <i>stack overflow</i>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="memoria">
+        <div class="section-heading">
+          <i class="bi bi-4-circle-fill"></i>
+          <h2>9.4 · ¿Cómo maneja la memoria?</h2>
+        </div>
+
+        <p>
+          Cada llamada a una función recursiva genera un nuevo <b>marco de activación</b>
+          en la pila de llamadas (<i>call stack</i>). Allí se conservan, entre otros datos,
+          los parámetros, variables locales y la información necesaria para regresar a la
+          llamada anterior.
+        </p>
+
+        <div class="stack-demo">
+          <div class="stack-title">Pila durante factorial(4)</div>
+          <div class="stack-box">factorial(0) → devuelve 1</div>
+          <div class="stack-box">factorial(1) → espera resultado</div>
+          <div class="stack-box">factorial(2) → espera resultado</div>
+          <div class="stack-box">factorial(3) → espera resultado</div>
+          <div class="stack-box">factorial(4) → espera resultado</div>
+          <div class="stack-base">main()</div>
+        </div>
+
+        <div class="two-col">
+          <article class="concept-card">
+            <div class="concept-icon">⬆️</div>
+            <h3>Al llamar</h3>
+            <p>Se agrega un nuevo marco a la pila. Las llamadas anteriores quedan esperando.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">⬇️</div>
+            <h3>Al regresar</h3>
+            <p>Los marcos se retiran en orden inverso y cada llamada recibe el resultado que esperaba.</p>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">📚</div>
+          <div>
+            <b>LIFO</b><br>
+            La pila de llamadas trabaja como una pila: <b>la última llamada que entra es
+            la primera que termina</b>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="estructura">
+        <div class="section-heading">
+          <i class="bi bi-5-circle-fill"></i>
+          <h2>9.5 · ¿Cómo estructurar una función recursiva?</h2>
+        </div>
+
+        <div class="practice-grid">
+          <article><b>1 · Define el caso base</b><p>Identifica el problema más pequeño que puede resolverse directamente.</p></article>
+          <article><b>2 · Reduce el problema</b><p>Modifica el parámetro para acercarte claramente al caso base.</p></article>
+          <article><b>3 · Realiza la llamada recursiva</b><p>La función vuelve a llamarse con el problema reducido.</p></article>
+          <article><b>4 · Combina el resultado</b><p>Usa el valor regresado por la llamada recursiva para construir la solución actual.</p></article>
+          <article><b>5 · Verifica el avance</b><p>Asegúrate de que cada llamada esté más cerca de terminar.</p></article>
+          <article><b>6 · Evalúa si conviene</b><p>No todo problema necesita recursión; a veces una solución iterativa es más eficiente.</p></article>
+        </div>
+
+        <div class="note-box">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            <b>Pregunta que debes hacerte:</b> “¿puedo expresar la solución de este problema
+            usando una versión más pequeña del mismo problema?” Si la respuesta es sí,
+            probablemente existe una formulación recursiva natural.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="factorial">
+        <div class="section-heading">
+          <i class="bi bi-6-circle-fill"></i>
+          <h2>9.6 · Ejemplo clásico: factorial</h2>
+        </div>
+
+        <p>
+          El factorial de un número entero no negativo se define como:
+          <code>n! = n × (n-1) × (n-2) ... × 1</code>. Además, por definición,
+          <code>0! = 1</code>.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">factorial_recursivo.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoFactorial">Copiar código</button>
+          </div>
+          <pre><code id="codigoFactorial">#include &lt;stdio.h&gt;
+
+long long factorial(int n)
+{
+    if (n == 0 || n == 1)
+    {
+        return 1;
+    }
+
+    return n * factorial(n - 1);
+}
+
+int main(void)
+{
+    int n = 5;
+
+    printf("%d! = %lld\n", n, factorial(n));
+
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="trace-box">
+          <h3>Traza de <code>factorial(4)</code></h3>
+          <pre><code>factorial(4)
+= 4 * factorial(3)
+= 4 * 3 * factorial(2)
+= 4 * 3 * 2 * factorial(1)
+= 4 * 3 * 2 * 1
+= 24</code></pre>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="fibonacci">
+        <div class="section-heading">
+          <i class="bi bi-7-circle-fill"></i>
+          <h2>9.7 · Fibonacci: ejemplo de recursión poco práctica</h2>
+        </div>
+
+        <p>
+          La sucesión de Fibonacci se define con dos casos base:
+          <code>F(0)=0</code> y <code>F(1)=1</code>. Los demás términos se calculan como:
+          <code>F(n)=F(n-1)+F(n-2)</code>.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">fibonacci_recursivo.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoFibonacci">Copiar código</button>
+          </div>
+          <pre><code id="codigoFibonacci">#include &lt;stdio.h&gt;
+
+long long fibonacci(int n)
+{
+    if (n == 0)
+    {
+        return 0;
+    }
+
+    if (n == 1)
+    {
+        return 1;
+    }
+
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+int main(void)
+{
+    printf("F(10) = %lld\n", fibonacci(10));
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="fib-tree">
+          <div class="fib-node root">F(5)</div>
+          <div class="fib-row">
+            <div class="fib-node">F(4)</div>
+            <div class="fib-node">F(3)</div>
+          </div>
+          <div class="fib-caption">
+            Muchas llamadas se repiten: <code>F(3)</code>, <code>F(2)</code>,
+            <code>F(1)</code> y otras se calculan varias veces.
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            <b>¿Por qué no es práctico así?</b><br>
+            La versión recursiva directa de Fibonacci repite una gran cantidad de cálculos.
+            El número de llamadas crece rápidamente y, además, cada llamada utiliza espacio
+            en la pila. Por eso puede consumir mucho tiempo y memoria comparada con una
+            solución iterativa o una versión con memoización.
+          </div>
+        </div>
+
+        <div class="two-col">
+          <section class="code-card">
+            <div class="code-head"><div class="file-name">Versión iterativa</div><button class="copy-btn" type="button" data-copy-target="codigoFibIterativo">Copiar</button></div>
+            <pre><code id="codigoFibIterativo">long long fibonacci_iterativo(int n)
+{
+    long long a = 0;
+    long long b = 1;
+
+    for (int i = 0; i &lt; n; i++)
+    {
+        long long temp = a + b;
+        a = b;
+        b = temp;
+    }
+
+    return a;
+}</code></pre>
+          </section>
+
+          <article class="concept-card">
+            <div class="concept-icon">⚖️</div>
+            <h3>Lección importante</h3>
+            <p>
+              Que un problema tenga una definición recursiva no significa que la
+              implementación recursiva ingenua sea siempre la mejor opción.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="usos">
+        <div class="section-heading">
+          <i class="bi bi-8-circle-fill"></i>
+          <h2>9.8 · ¿Dónde se utiliza la recursión?</h2>
+        </div>
+
+        <div class="use-grid">
+          <article><i class="bi bi-diagram-3-fill"></i><b>Árboles</b><span>Recorridos preorden, inorden y postorden.</span></article>
+          <article><i class="bi bi-folder2-open"></i><b>Directorios</b><span>Explorar carpetas y subcarpetas.</span></article>
+          <article><i class="bi bi-search"></i><b>Búsqueda</b><span>Algoritmos divide y vencerás y búsqueda binaria.</span></article>
+          <article><i class="bi bi-arrow-down-up"></i><b>Ordenamiento</b><span>Quicksort y mergesort.</span></article>
+          <article><i class="bi bi-braces"></i><b>Expresiones</b><span>Procesamiento de estructuras sintácticas y expresiones anidadas.</span></article>
+          <article><i class="bi bi-puzzle-fill"></i><b>Backtracking</b><span>Laberintos, combinaciones y problemas de decisión.</span></article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="ventajas">
+        <div class="section-heading">
+          <i class="bi bi-9-circle-fill"></i>
+          <h2>9.9 · Ventajas y desventajas</h2>
+        </div>
+
+        <div class="two-col">
+          <div class="pros-card">
+            <h3>✅ Ventajas</h3>
+            <ul>
+              <li>Puede producir soluciones más cortas y elegantes.</li>
+              <li>Es natural para árboles y estructuras jerárquicas.</li>
+              <li>Se adapta muy bien a algoritmos de dividir y vencer.</li>
+              <li>Permite expresar directamente ciertas definiciones matemáticas.</li>
+              <li>Puede mejorar la claridad conceptual de algunos algoritmos.</li>
+            </ul>
+          </div>
+
+          <div class="cons-card">
+            <h3>⚠️ Desventajas</h3>
+            <ul>
+              <li>Cada llamada consume espacio en la pila.</li>
+              <li>Puede provocar desbordamiento de pila si la profundidad es grande.</li>
+              <li>Puede ser más lenta por el costo de las llamadas a función.</li>
+              <li>Es más difícil de depurar para quien apenas aprende el concepto.</li>
+              <li>Una mala formulación puede repetir trabajo de manera excesiva, como Fibonacci ingenuo.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">🎯</div>
+          <div>
+            <b>CRITERIO DE ELECCIÓN</b><br>
+            Usa recursión cuando simplifique realmente el problema y la profundidad de
+            llamadas sea razonable. Si una solución iterativa es más simple y eficiente,
+            no es obligatorio usar recursión.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <div class="section-heading">
+          <i class="bi bi-check2-square"></i>
+          <h2>Errores comunes</h2>
+        </div>
+
+        <div class="practice-grid">
+          <article><b>1.</b> Olvidar el caso base.</article>
+          <article><b>2.</b> Tener un caso base que nunca se alcanza.</article>
+          <article><b>3.</b> No reducir el problema en cada llamada.</article>
+          <article><b>4.</b> Usar recursión en problemas donde repite trabajo innecesario.</article>
+          <article><b>5.</b> No considerar la profundidad máxima de la pila.</article>
+          <article><b>6.</b> Confundir la llamada recursiva con un ciclo normal.</article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="quiz">
+        <div class="section-heading">
+          <i class="bi bi-patch-question-fill"></i>
+          <h2>Preguntas de repaso · Tema 9</h2>
+        </div>
+
+        <div class="quiz-grid">
+
+          <article class="quiz-q" data-answer="b">
+            <h3>1. ¿Qué caracteriza a una función recursiva?</h3>
+            <button type="button" data-opt="a">A) Siempre utiliza un ciclo for</button>
+            <button type="button" data-opt="b">B) Se llama a sí misma directa o indirectamente</button>
+            <button type="button" data-opt="c">C) No puede regresar valores</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>2. ¿Qué evita una recursión infinita?</h3>
+            <button type="button" data-opt="a">A) Una variable global</button>
+            <button type="button" data-opt="b">B) El compilador</button>
+            <button type="button" data-opt="c">C) El caso base</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>3. ¿Dónde se almacenan las llamadas pendientes?</h3>
+            <button type="button" data-opt="a">A) En la pila de llamadas</button>
+            <button type="button" data-opt="b">B) Únicamente en el disco duro</button>
+            <button type="button" data-opt="c">C) En un archivo de texto</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>4. ¿Cuál es el caso base típico del factorial?</h3>
+            <button type="button" data-opt="a">A) n == 100</button>
+            <button type="button" data-opt="b">B) n == 0 o n == 1</button>
+            <button type="button" data-opt="c">C) n &lt; 0</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>5. ¿Por qué Fibonacci recursivo ingenuo es ineficiente?</h3>
+            <button type="button" data-opt="a">A) Porque no tiene caso base</button>
+            <button type="button" data-opt="b">B) Porque usa variables long long</button>
+            <button type="button" data-opt="c">C) Porque repite muchos cálculos y genera muchas llamadas</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>6. ¿En cuál problema suele ser natural usar recursión?</h3>
+            <button type="button" data-opt="a">A) Recorrer un árbol</button>
+            <button type="button" data-opt="b">B) Imprimir un solo número</button>
+            <button type="button" data-opt="c">C) Declarar una variable int</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>7. ¿Qué debe ocurrir en cada llamada recursiva?</h3>
+            <button type="button" data-opt="a">A) El problema debe crecer</button>
+            <button type="button" data-opt="b">B) El problema debe acercarse al caso base</button>
+            <button type="button" data-opt="c">C) Se debe reiniciar main()</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>8. ¿Qué puede suceder si hay demasiadas llamadas recursivas?</h3>
+            <button type="button" data-opt="a">A) La memoria se vuelve infinita</button>
+            <button type="button" data-opt="b">B) El programa se convierte en iterativo</button>
+            <button type="button" data-opt="c">C) Puede ocurrir un stack overflow</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="summary final-summary">
+        <div class="bulb">✅</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          La recursión permite resolver un problema usando versiones más pequeñas del
+          mismo problema. Toda solución recursiva necesita un <b>caso base</b>, una
+          <b>reducción clara</b> y una llamada recursiva. Cada llamada utiliza espacio en
+          la pila, por lo que debes valorar siempre su claridad frente a su costo en tiempo
+          y memoria.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/pages/tema_09_recursion.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>

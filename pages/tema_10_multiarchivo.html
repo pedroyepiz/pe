@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Tema 10: Programación multiarchivo y ejecución de archivos externos en C con system().">
+  <title>Tema 10 · Multiarchivo | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_10_multiarchivo.css">
+</head>
+
+<body class="pe-home pe-course-page page-tema-10">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-files"></i>
+            TEMA 10 · MULTIARCHIVO
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Programas en varios archivos</h1>
+
+          <p class="course-subtitle mb-0">
+            Organización del código en archivos <code>.c</code> y <code>.h</code>,
+            compilación separada y ejecución de programas o comandos externos mediante
+            <code>system()</code>.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i>
+            <span>“Un programa grande se entiende mejor cuando cada archivo tiene una responsabilidad clara.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 10 · Multiarchivo"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2>Separar, reutilizar y conectar</h2>
+          <p>
+            La programación multiarchivo divide un programa en piezas con responsabilidades
+            específicas. Un archivo puede contener el programa principal, otro las
+            declaraciones compartidas y otro la implementación de funciones. Además,
+            un programa en C puede solicitar al sistema operativo que ejecute un comando
+            o programa externo mientras está funcionando.
+          </p>
+        </div>
+
+        <div class="concept-badge">
+          <i class="bi bi-diagram-3-fill"></i>
+          <strong>MULTIARCHIVO</strong>
+          <span>Un solo programa organizado en varios archivos</span>
+        </div>
+      </section>
+
+      <nav class="topic-nav" aria-label="Navegación del Tema 10">
+        <a href="#que-es">10.1 Multiarchivo</a>
+        <a href="#estructura">10.2 Estructura</a>
+        <a href="#compilacion">10.3 Compilación</a>
+        <a href="#system">10.4 system()</a>
+        <a href="#parametros">10.5 Parámetros</a>
+        <a href="#comandos">10.6 Construcción</a>
+        <a href="#ejemplo">10.7 Ejemplo completo</a>
+        <a href="#retorno">10.8 Código de salida</a>
+        <a href="#seguridad">10.9 Seguridad</a>
+        <a href="#externos">10.10 Archivos externos</a>
+        <a href="#quiz">Repaso</a>
+      </nav>
+
+      <section class="lesson-section" id="que-es">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>10.1 · ¿Qué es un programa multiarchivo?</h2>
+        </div>
+
+        <p>
+          Un programa multiarchivo distribuye su código en varios archivos fuente y de
+          cabecera. Todos forman parte del mismo proyecto y, al compilarse y enlazarse,
+          producen un único programa ejecutable.
+        </p>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">📄</div>
+            <h3><code>main.c</code></h3>
+            <p>Contiene normalmente el punto de entrada y coordina el flujo principal.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">📘</div>
+            <h3><code>funciones.h</code></h3>
+            <p>Declara prototipos, tipos, macros y elementos compartidos.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">⚙️</div>
+            <h3><code>funciones.c</code></h3>
+            <p>Implementa el cuerpo de las funciones declaradas en el encabezado.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🔗</div>
+            <h3>Enlazador</h3>
+            <p>Une los módulos compilados para generar el ejecutable final.</p>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">💡</div>
+          <div>
+            <b>VENTAJA PRINCIPAL</b><br>
+            Separar el código permite organizar mejor un proyecto grande, reutilizar funciones,
+            facilitar el mantenimiento y trabajar por módulos.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="estructura">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>10.2 · Estructura típica de un proyecto</h2>
+        </div>
+
+        <div class="file-flow">
+          <article>
+            <i class="bi bi-file-earmark-code-fill"></i>
+            <b>main.c</b>
+            <span>Usa las funciones del proyecto.</span>
+          </article>
+          <i class="bi bi-arrow-right"></i>
+          <article>
+            <i class="bi bi-file-earmark-text-fill"></i>
+            <b>funciones.h</b>
+            <span>Declara la interfaz.</span>
+          </article>
+          <i class="bi bi-arrow-right"></i>
+          <article>
+            <i class="bi bi-file-earmark-binary-fill"></i>
+            <b>funciones.c</b>
+            <span>Implementa la lógica.</span>
+          </article>
+        </div>
+
+        <div class="two-col">
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">funciones.h</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoHeader">Copiar</button>
+            </div>
+            <pre><code id="codigoHeader">#ifndef FUNCIONES_H
+#define FUNCIONES_H
+
+int suma(int a, int b);
+void menu(void);
+
+#endif</code></pre>
+          </section>
+
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">funciones.c</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoImplementacion">Copiar</button>
+            </div>
+            <pre><code id="codigoImplementacion">#include &lt;stdio.h&gt;
+#include "funciones.h"
+
+int suma(int a, int b)
+{
+    return a + b;
+}
+
+void menu(void)
+{
+    printf("MENU PRINCIPAL\n");
+}</code></pre>
+          </section>
+        </div>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">main.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoMain">Copiar código</button>
+          </div>
+          <pre><code id="codigoMain">#include &lt;stdio.h&gt;
+#include "funciones.h"
+
+int main(void)
+{
+    menu();
+    printf("RESULTADO: %d\n", suma(3, 5));
+
+    return 0;
+}</code></pre>
+        </section>
+      </section>
+
+      <section class="lesson-section" id="compilacion">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>10.3 · ¿Cómo se compilan varios archivos?</h2>
+        </div>
+
+        <p>
+          En un proyecto multiarchivo, cada archivo fuente puede compilarse por separado y
+          después enlazarse con los demás. Un compilador como GCC también permite realizar
+          ambos pasos con un solo comando.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">Terminal · GCC</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoCompilacion">Copiar</button>
+          </div>
+          <pre><code id="codigoCompilacion">gcc main.c funciones.c -o programa</code></pre>
+        </section>
+
+        <div class="note-box">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            El archivo <code>.h</code> normalmente se incluye mediante <code>#include</code>;
+            los archivos <code>.c</code> son los que se compilan y enlazan para formar el ejecutable.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="system">
+        <div class="section-heading">
+          <i class="bi bi-4-circle-fill"></i>
+          <h2>10.4 · Ejecución de archivos externos con <code>system()</code></h2>
+        </div>
+
+        <p>
+          El material de clase amplía el tema multiarchivo mostrando cómo un programa en C
+          puede pedir al sistema operativo que ejecute otro programa, comando o script.
+          Para ello se utiliza <code>system()</code>, declarada en
+          <code>&lt;stdlib.h&gt;</code>.
+        </p>
+
+        <div class="analogy-card">
+          <div class="analogy-icon">☎️</div>
+          <div>
+            <b>Analogía del teléfono:</b> el programa principal necesita un servicio externo.
+            En lugar de hacerlo directamente, “llama” al sistema operativo mediante
+            <code>system()</code> y le entrega el comando que desea ejecutar.
+          </div>
+        </div>
+
+        <div class="syntax-box">
+          <code>int system(const char *command);</code>
+        </div>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">system_basico.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoSystemBasico">Copiar código</button>
+          </div>
+          <pre><code id="codigoSystemBasico">#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    system("dir");      /* Windows */
+    /* system("ls"); */ /* Linux / macOS */
+
+    return 0;
+}</code></pre>
+        </section>
+      </section>
+
+      <section class="lesson-section" id="parametros">
+        <div class="section-heading">
+          <i class="bi bi-5-circle-fill"></i>
+          <h2>10.5 · ¿Para qué enviar parámetros?</h2>
+        </div>
+
+        <p>
+          Un programa externo suele necesitar datos. Si tenemos un ejecutable llamado
+          <code>calculadora.exe</code>, podemos ejecutarlo con información adicional:
+        </p>
+
+        <div class="comparison-strip">
+          <article>
+            <b>Sin parámetros</b>
+            <code>calculadora.exe</code>
+            <span>El programa se ejecuta, pero no recibe los números que debe procesar.</span>
+          </article>
+          <article>
+            <b>Con parámetros</b>
+            <code>calculadora.exe 50 100</code>
+            <span>El programa externo puede interpretar 50 y 100 como argumentos.</span>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">🧩</div>
+          <div>
+            El comando completo que recibe <code>system()</code> es una cadena.
+            Por eso, si los valores vienen de variables, debemos construir primero esa cadena.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="comandos">
+        <div class="section-heading">
+          <i class="bi bi-6-circle-fill"></i>
+          <h2>10.6 · Construcción de comandos con variables</h2>
+        </div>
+
+        <p>
+          El material de clase utiliza <code>sprintf()</code> para escribir dentro de una
+          cadena el nombre del ejecutable y los parámetros que deseamos enviar.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">construir_comando.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoConstruccion">Copiar código</button>
+          </div>
+          <pre><code id="codigoConstruccion">char comando[100];
+
+sprintf(comando,
+        "nombre_programa.exe param1 param2");
+
+int resultado = system(comando);</code></pre>
+        </section>
+
+        <div class="warning-box">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            Si un parámetro contiene espacios, debe enviarse entre comillas. Por ejemplo:
+            <code>prog.exe "Baja California"</code>. De lo contrario, el sistema operativo
+            puede interpretarlo como varios argumentos separados.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="ejemplo">
+        <div class="section-heading">
+          <i class="bi bi-7-circle-fill"></i>
+          <h2>10.7 · Ejemplo práctico completo</h2>
+        </div>
+
+        <p>
+          Supongamos que existe un programa externo llamado <code>saludo.exe</code> que
+          recibe un nombre y una edad. El programa principal construye el comando y lo ejecuta.
+        </p>
+
+        <section class="code-card">
+          <div class="code-head">
+            <div class="file-name">main.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoEjemplo">Copiar código</button>
+          </div>
+          <pre><code id="codigoEjemplo">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    char nombre[50];
+    int edad;
+    char comando[150];
+    int estado_retorno;
+
+    printf("INGRESE NOMBRE: ");
+    scanf("%49s", nombre);
+
+    printf("INGRESE EDAD: ");
+    scanf("%d", &amp;edad);
+
+    sprintf(comando,
+            "saludo.exe \"%s\" %d",
+            nombre,
+            edad);
+
+    printf("\nEJECUTANDO COMANDO: %s\n",
+           comando);
+
+    estado_retorno = system(comando);
+
+    if (estado_retorno == 0)
+    {
+        printf("EL PROGRAMA EXTERNO TERMINÓ CON ÉXITO.\n");
+    }
+    else
+    {
+        printf("EL PROGRAMA EXTERNO TERMINÓ CON CÓDIGO: %d\n",
+               estado_retorno);
+    }
+
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="note-box">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            En este ejemplo, <code>sprintf()</code> no imprime en pantalla: escribe el texto
+            formateado dentro de la variable <code>comando</code>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="retorno">
+        <div class="section-heading">
+          <i class="bi bi-8-circle-fill"></i>
+          <h2>10.8 · ¿Qué devuelve realmente <code>system()</code>?</h2>
+        </div>
+
+        <p>
+          Un punto importante del material es que el valor devuelto por <code>system()</code>
+          <b>no representa la cantidad de argumentos</b>. Representa información relacionada
+          con el estado de terminación del comando o programa ejecutado.
+        </p>
+
+        <div class="two-col">
+          <article class="concept-card">
+            <div class="concept-icon">❌</div>
+            <h3>Interpretación incorrecta</h3>
+            <p><code>system()</code> no sirve para contar los argumentos enviados.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">✅</div>
+            <h3>Interpretación correcta</h3>
+            <p>El valor de retorno se usa para conocer el resultado de la ejecución del comando.</p>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">📌</div>
+          <div>
+            Para conocer cuántos argumentos recibió <b>nuestro propio programa</b>,
+            usamos <code>argc</code>. Para conocer el resultado del programa externo,
+            analizamos el valor devuelto por <code>system()</code>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="seguridad">
+        <div class="section-heading">
+          <i class="bi bi-9-circle-fill"></i>
+          <h2>10.9 · Buenas prácticas, seguridad y compatibilidad</h2>
+        </div>
+
+        <div class="practice-grid">
+          <article>
+            <b>1 · Usa comillas</b>
+            <p>Protege argumentos con espacios: <code>"Baja California"</code>.</p>
+          </article>
+
+          <article>
+            <b>2 · Valida entradas</b>
+            <p>No construyas comandos a partir de texto del usuario sin verificarlo.</p>
+          </article>
+
+          <article>
+            <b>3 · Evita comandos arbitrarios</b>
+            <p>Permitir al usuario controlar el comando puede representar un riesgo grave.</p>
+          </article>
+
+          <article>
+            <b>4 · Revisa el retorno</b>
+            <p>No asumas que el programa externo se ejecutó correctamente.</p>
+          </article>
+
+          <article>
+            <b>5 · Considera el sistema operativo</b>
+            <p>Windows, Linux y macOS tienen comandos y rutas diferentes.</p>
+          </article>
+
+          <article>
+            <b>6 · Usa rutas claras</b>
+            <p>Si el ejecutable no está en la carpeta esperada, especifica una ruta válida.</p>
+          </article>
+        </div>
+
+        <div class="warning-box">
+          <i class="bi bi-shield-exclamation"></i>
+          <div>
+            <b>Seguridad:</b> <code>system()</code> debe usarse con cuidado. Si un usuario
+            puede introducir directamente el contenido del comando, podría ejecutar acciones
+            no deseadas. En proyectos reales, evita construir comandos con entrada no confiable.
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Tarea</th>
+                <th>Windows</th>
+                <th>Linux / macOS</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Listar archivos</td><td><code>dir</code></td><td><code>ls</code></td></tr>
+              <tr><td>Copiar archivo</td><td><code>copy</code></td><td><code>cp</code></td></tr>
+              <tr><td>Abrir editor</td><td><code>notepad.exe</code></td><td>Depende del entorno instalado</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="externos">
+        <div class="section-heading">
+          <i class="bi bi-0-circle-fill"></i>
+          <h2>10.10 · Ejecución de archivos externos</h2>
+        </div>
+
+        <p>
+          Además de ejecutar un programa compilado, <code>system()</code> puede invocar
+          scripts o comandos del sistema. El material propone como práctica crear un archivo
+          externo y enviarle parámetros desde C.
+        </p>
+
+        <div class="two-col">
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">prueba.bat · Windows</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoBat">Copiar</button>
+            </div>
+            <pre><code id="codigoBat">@echo off
+echo HOLA DESDE EL ARCHIVO EXTERNO %1 %2</code></pre>
+          </section>
+
+          <section class="code-card">
+            <div class="code-head">
+              <div class="file-name">main.c</div>
+              <button class="copy-btn" type="button" data-copy-target="codigoBatMain">Copiar</button>
+            </div>
+            <pre><code id="codigoBatMain">#include &lt;stdlib.h&gt;
+
+int main(void)
+{
+    system("prueba.bat Juan Perez");
+    return 0;
+}</code></pre>
+          </section>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">🔌</div>
+          <div>
+            <b>CONEXIÓN ENTRE PROGRAMAS</b><br>
+            Con esta técnica, un programa en C puede coordinarse con ejecutables,
+            scripts y utilidades externas. Esto amplía mucho lo que puede hacer,
+            pero también exige mayor cuidado con rutas, parámetros y seguridad.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section">
+        <div class="section-heading">
+          <i class="bi bi-check2-square"></i>
+          <h2>En resumen: multiarchivo vs ejecución externa</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Concepto</th>
+                <th>Multiarchivo</th>
+                <th>Ejecución externa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Objetivo</th>
+                <td>Organizar un mismo programa en varios archivos.</td>
+                <td>Solicitar al sistema operativo ejecutar otro programa o comando.</td>
+              </tr>
+              <tr>
+                <th>Archivos</th>
+                <td><code>.c</code>, <code>.h</code> y módulos compilados.</td>
+                <td><code>.exe</code>, scripts, comandos u otras herramientas.</td>
+              </tr>
+              <tr>
+                <th>Herramienta principal</th>
+                <td>Compilación + enlazado.</td>
+                <td><code>system()</code> de <code>&lt;stdlib.h&gt;</code>.</td>
+              </tr>
+              <tr>
+                <th>Relación</th>
+                <td>Los módulos terminan formando un solo ejecutable.</td>
+                <td>El programa ejecuta otro proceso externo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="quiz">
+        <div class="section-heading">
+          <i class="bi bi-patch-question-fill"></i>
+          <h2>Preguntas de repaso · Tema 10</h2>
+        </div>
+
+        <div class="quiz-grid">
+
+          <article class="quiz-q" data-answer="b">
+            <h3>1. ¿Para qué se usa un archivo <code>.h</code>?</h3>
+            <button type="button" data-opt="a">A) Para guardar únicamente imágenes</button>
+            <button type="button" data-opt="b">B) Para declaraciones, prototipos y elementos compartidos</button>
+            <button type="button" data-opt="c">C) Para sustituir al compilador</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>2. ¿Qué archivo contiene normalmente la implementación de las funciones?</h3>
+            <button type="button" data-opt="a">A) El archivo .html</button>
+            <button type="button" data-opt="b">B) El archivo .png</button>
+            <button type="button" data-opt="c">C) Un archivo .c</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>3. ¿En qué biblioteca está declarada <code>system()</code>?</h3>
+            <button type="button" data-opt="a">A) stdlib.h</button>
+            <button type="button" data-opt="b">B) math.h</button>
+            <button type="button" data-opt="c">C) string.h</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>4. ¿Qué recibe <code>system()</code>?</h3>
+            <button type="button" data-opt="a">A) Dos enteros obligatoriamente</button>
+            <button type="button" data-opt="b">B) Una cadena que representa el comando</button>
+            <button type="button" data-opt="c">C) Un arreglo de floats</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>5. ¿Qué función puede usarse para construir una cadena con variables?</h3>
+            <button type="button" data-opt="a">A) sqrt()</button>
+            <button type="button" data-opt="b">B) getchar()</button>
+            <button type="button" data-opt="c">C) sprintf()</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>6. ¿Qué devuelve <code>system()</code>?</h3>
+            <button type="button" data-opt="a">A) Información sobre el resultado de la ejecución</button>
+            <button type="button" data-opt="b">B) La cantidad de argumentos enviados</button>
+            <button type="button" data-opt="c">C) Siempre el número 1</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>7. ¿Qué problema existe si un parámetro tiene espacios?</h3>
+            <button type="button" data-opt="a">A) Ninguno, siempre funciona igual</button>
+            <button type="button" data-opt="b">B) Puede interpretarse como varios argumentos si no se usan comillas</button>
+            <button type="button" data-opt="c">C) El compilador elimina el parámetro</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>8. ¿Cuál es una buena práctica al usar <code>system()</code>?</h3>
+            <button type="button" data-opt="a">A) Ejecutar cualquier texto introducido por el usuario</button>
+            <button type="button" data-opt="b">B) Ignorar el valor de retorno</button>
+            <button type="button" data-opt="c">C) Validar entradas y limitar los comandos permitidos</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+        </div>
+      </section>
+
+      <div class="summary final-summary">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          La programación multiarchivo organiza un proyecto en módulos y separa interfaz,
+          implementación y programa principal. La función <code>system()</code> agrega una
+          capacidad diferente: permite solicitar al sistema operativo la ejecución de un
+          comando o programa externo. Ambas técnicas ayudan a construir programas más
+          organizados, reutilizables y conectados con su entorno.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/pages/tema_10_multiarchivo.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>

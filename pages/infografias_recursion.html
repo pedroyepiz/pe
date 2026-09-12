@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Infografía del Tema 9: Recursión en C.">
+  <title>Infografía de Recursión | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- CSS CENTRALIZADO DEL SITIO -->
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+</head>
+
+<body class="pe-home pe-course-page page-infografias-recursion">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-arrow-repeat"></i>
+            TEMA 9 · MATERIAL VISUAL
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Infografía de Recursión en C</h1>
+
+          <p class="course-subtitle mb-0">
+            Concepto de recursión, caso base, llamadas recursivas, manejo de memoria,
+            pila de llamadas, factorial, Fibonacci, ventajas, desventajas y aplicaciones.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-images" aria-hidden="true"></i>
+            <span>“Piensa en pequeño, avanza paso a paso y regresa con la respuesta.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <!-- PÁGINA MAESTRA · DATOS ACADÉMICOS -->
+          <div id="course-info" data-topic="Tema 9 · Recursión"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="gallery-intro">
+        <h2>🔁 Galería visual del tema</h2>
+
+        <p>
+          Esta infografía complementa el <b>Tema 9 · Recursión</b>. Resume qué es la
+          recursión, para qué sirve, cómo funciona, cómo se detiene mediante el
+          <b>caso base</b>, cómo utiliza la <b>pila de llamadas</b> y cuáles son sus
+          principales ventajas, riesgos y aplicaciones.
+        </p>
+
+        <p class="mb-0">
+          Selecciona la imagen para verla a mayor tamaño y utilizar las herramientas
+          de zoom del visor.
+        </p>
+      </section>
+
+      <section class="infografia-grid">
+
+        <article class="infografia-card destacada">
+          <img class="infografia-thumb"
+               src="../images/infografias/infografia_recursion.png"
+               alt="Infografía educativa sobre recursión en C"
+               loading="lazy"
+               tabindex="0"
+               data-infografia
+               data-src="../images/infografias/infografia_recursion.png"
+               data-title="Recursión en C · Tema 9">
+
+          <div class="infografia-info">
+            <h3>1 · Recursión en C</h3>
+
+            <p>
+              Explica el caso base y el caso recursivo, la reducción progresiva del problema,
+              el consumo de memoria en el <i>stack</i>, cómo estructurar una función recursiva
+              y ejemplos clásicos como <b>factorial</b> y <b>Fibonacci</b>.
+            </p>
+
+            <button class="ver-btn"
+                    type="button"
+                    data-infografia
+                    data-src="../images/infografias/infografia_recursion.png"
+                    data-title="Recursión en C · Tema 9">
+              🔍 Ver y ampliar
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="gallery-intro mt-4">
+        <h2>🧠 Puntos clave que debes identificar</h2>
+
+        <div class="row g-3 mt-1">
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">1️⃣</div>
+              <div>
+                <b>CASO BASE</b><br>
+                Es la condición que detiene la recursión.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">2️⃣</div>
+              <div>
+                <b>REDUCCIÓN</b><br>
+                Cada llamada debe acercar el problema al caso base.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">3️⃣</div>
+              <div>
+                <b>MEMORIA</b><br>
+                Cada llamada ocupa espacio en la pila de llamadas.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">4️⃣</div>
+              <div>
+                <b>EFICIENCIA</b><br>
+                No siempre la solución recursiva es la más práctica.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="summary mt-4">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          Una función recursiva se llama a sí misma para resolver versiones más pequeñas
+          de un problema. Debe contar con un <b>caso base</b>, reducir correctamente el
+          problema y utilizarse con criterio para evitar llamadas innecesarias o un
+          desbordamiento de la pila.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <!-- VISOR COMPARTIDO DE INFOGRAFÍAS -->
+  <div class="infografia-lightbox"
+       aria-hidden="true"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Visor de infografías">
+
+    <div class="lb-top">
+      <div class="lb-title">Infografía</div>
+
+      <div class="lb-actions">
+        <button type="button" data-lb-zoom-out>− Zoom</button>
+        <button type="button" data-lb-reset>100%</button>
+        <button type="button" data-lb-zoom-in>+ Zoom</button>
+        <button type="button" data-lb-close>✕ Cerrar</button>
+      </div>
+    </div>
+
+    <div class="lb-stage">
+      <img src="" alt="">
+    </div>
+
+    <div class="lb-bottom">
+      <button type="button" data-lb-prev>← Anterior</button>
+      <button type="button" data-lb-next>Siguiente →</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
+  <!-- SCRIPTS MAESTROS -->
+  <script src="../scripts/infografias.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>

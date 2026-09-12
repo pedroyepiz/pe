@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Infografía del Tema 10: Ejecución de archivos externos en C.">
+  <title>Infografía Tema 10 · Archivos externos | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- CSS CENTRALIZADO DEL SITIO -->
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+</head>
+
+<body class="pe-home pe-course-page page-infografias-tema-10">
+
+  <!-- PÁGINA MAESTRA · HEADER -->
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-box-arrow-up-right"></i>
+            TEMA 10 · MATERIAL VISUAL
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Infografía · Ejecución de archivos externos en C</h1>
+
+          <p class="course-subtitle mb-0">
+            Uso de <code>system()</code>, comandos externos, parámetros,
+            <code>argc</code>, <code>argv</code>, buenas prácticas y cuidados
+            de seguridad al interactuar con el sistema operativo.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-images" aria-hidden="true"></i>
+            <span>“Amplía las capacidades de tus programas con el poder del sistema operativo.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <!-- PÁGINA MAESTRA · DATOS ACADÉMICOS -->
+          <div id="course-info" data-topic="Tema 10 · Multiarchivo y archivos externos"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="gallery-intro">
+        <h2>🖥️ Galería visual del tema</h2>
+
+        <p>
+          Esta infografía complementa el <b>Tema 10 · Multiarchivo</b>, especialmente
+          la sección dedicada a la <b>ejecución de archivos externos en C</b>.
+          Resume cómo un programa puede solicitar al sistema operativo que ejecute
+          comandos, programas o scripts utilizando <code>system()</code>.
+        </p>
+
+        <p class="mb-0">
+          Selecciona la imagen para verla a mayor tamaño y utilizar las herramientas
+          de navegación y zoom.
+        </p>
+      </section>
+
+      <section class="infografia-grid">
+
+        <article class="infografia-card destacada">
+          <img class="infografia-thumb"
+               src="../images/infografias/infografia_archivos_externos.png"
+               alt="Infografía sobre ejecución de archivos externos en C"
+               loading="lazy"
+               tabindex="0"
+               data-infografia
+               data-src="../images/infografias/infografia_archivos_externos.png"
+               data-title="Ejecución de archivos externos en C · Tema 10">
+
+          <div class="infografia-info">
+            <h3>1 · Ejecución de archivos externos en C</h3>
+
+            <p>
+              Explica qué es <code>system()</code>, para qué sirve, cómo se ejecuta
+              un comando externo, el significado de <code>argc</code> y
+              <code>argv</code>, el envío de parámetros y los principales cuidados
+              de seguridad y compatibilidad.
+            </p>
+
+            <button class="ver-btn"
+                    type="button"
+                    data-infografia
+                    data-src="../images/infografias/infografia_archivos_externos.png"
+                    data-title="Ejecución de archivos externos en C · Tema 10">
+              🔍 Ver y ampliar
+            </button>
+          </div>
+        </article>
+
+      </section>
+
+      <section class="gallery-intro mt-4">
+        <h2>🧠 Puntos clave que debes identificar</h2>
+
+        <div class="row g-3 mt-1">
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">1️⃣</div>
+              <div>
+                <b>SYSTEM()</b><br>
+                Envía un comando al intérprete del sistema operativo.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">2️⃣</div>
+              <div>
+                <b>PARÁMETROS</b><br>
+                Los programas externos pueden recibir argumentos mediante
+                <code>argc</code> y <code>argv</code>.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">3️⃣</div>
+              <div>
+                <b>RETORNO</b><br>
+                El valor de retorno permite conocer el resultado de la ejecución.
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <div class="summary h-100">
+              <div class="bulb">4️⃣</div>
+              <div>
+                <b>SEGURIDAD</b><br>
+                No se deben ejecutar comandos construidos con entradas no validadas.
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="summary mt-4">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          La ejecución de archivos externos permite que un programa en C se comunique
+          con comandos, scripts u otros programas. Esta técnica amplía sus capacidades,
+          pero debe utilizarse con cuidado, validando parámetros y considerando las
+          diferencias entre sistemas operativos.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- PÁGINA MAESTRA · FOOTER -->
+  <div id="site-footer"></div>
+
+  <!-- VISOR COMPARTIDO DE INFOGRAFÍAS -->
+  <div class="infografia-lightbox"
+       aria-hidden="true"
+       role="dialog"
+       aria-modal="true"
+       aria-label="Visor de infografías">
+
+    <div class="lb-top">
+      <div class="lb-title">Infografía</div>
+
+      <div class="lb-actions">
+        <button type="button" data-lb-zoom-out>− Zoom</button>
+        <button type="button" data-lb-reset>100%</button>
+        <button type="button" data-lb-zoom-in>+ Zoom</button>
+        <button type="button" data-lb-close>✕ Cerrar</button>
+      </div>
+    </div>
+
+    <div class="lb-stage">
+      <img src="" alt="">
+    </div>
+
+    <div class="lb-bottom">
+      <button type="button" data-lb-prev>← Anterior</button>
+      <button type="button" data-lb-next>Siguiente →</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"></script>
+
+  <!-- SCRIPTS MAESTROS -->
+  <script src="../scripts/infografias.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>
