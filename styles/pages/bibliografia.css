@@ -310,3 +310,50 @@
   .page-bibliografia .book-card{grid-template-columns:1fr}
   .page-bibliografia .book-icon{width:52px;height:58px}
 }
+
+/* ===== Ajustes para portadas de libros ===== */
+.page-bibliografia .book-card{
+  grid-template-columns:112px minmax(0,1fr);
+  align-items:start;
+}
+
+.page-bibliografia .book-cover{
+  width:96px;
+  min-width:96px;
+  border-radius:14px;
+  overflow:hidden;
+  border:1px solid #d7e1dc;
+  background:#f8fbfa;
+  box-shadow:0 8px 18px rgba(0,0,0,.08);
+}
+
+.page-bibliografia .book-cover img{
+  display:block;
+  width:100%;
+  height:140px;
+  object-fit:cover;
+}
+
+.page-bibliografia .book-content{
+  min-width:0;
+}
+
+.page-bibliografia .book-content p{
+  margin:0 0 10px;
+}
+
+@media(max-width:575.98px){
+  .page-bibliografia .book-card{
+    grid-template-columns:80px minmax(0,1fr);
+    gap:12px;
+  }
+
+  .page-bibliografia .book-cover{
+    width:72px;
+    min-width:72px;
+  }
+
+  .page-bibliografia .book-cover img{
+    height:108px;
+  }
+}
