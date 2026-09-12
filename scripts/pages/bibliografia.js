@@ -2,44 +2,34 @@
   "use strict";
 
   /*
-   * CONFIGURACIÓN DEL REPOSITORIO PÚBLICO
-   * Si cambia la rama o carpeta, solo modifica este objeto.
+   * BIBLIOGRAFÍA EN GOOGLE DRIVE
+   * Cada tarjeta del HTML contiene data-drive-id con el ID del PDF.
    */
-  const GITHUB = {
-    owner: "pedroyepiz",
-    repo: "BIBLIOGRAFIAS",
-    branch: "main",
-    folder: "prog_estruct"
-  };
+  const DRIVE_FOLDER =
+    "https://drive.google.com/drive/folders/1FJu34OcEleYsAF8YvTG1nv-RVDH1cnOf?usp=drive_link";
 
-  function encodePath(path) {
-    return path
-      .split("/")
-      .map((part) => encodeURIComponent(part))
-      .join("/");
+  function viewUrl(fileId) {
+    return `https://drive.google.com/file/d/${fileId}/view?usp=drive_link`;
   }
 
-  function blobUrl(fileName) {
-    const filePath = encodePath(`${GITHUB.folder}/${fileName}`);
-    return `https://github.com/${GITHUB.owner}/${GITHUB.repo}/blob/${GITHUB.branch}/${filePath}`;
-  }
-
-  function rawUrl(fileName) {
-    const filePath = encodePath(`${GITHUB.folder}/${fileName}`);
-    return `https://raw.githubusercontent.com/${GITHUB.owner}/${GITHUB.repo}/${GITHUB.branch}/${filePath}`;
+  function downloadUrl(fileId) {
+    return `https://drive.google.com/uc?export=download&id=${fileId}`;
   }
 
   function configurarEnlaces() {
     document.querySelectorAll("[data-book]").forEach((card) => {
-      const fileName = card.dataset.file;
-      if (!fileName) return;
+      const fileId = card.dataset.driveId;
+      if (!fileId) return;
 
       const view = card.querySelector('[data-action="view"]');
       const download = card.querySelector('[data-action="download"]');
 
-      if (view) view.href = blobUrl(fileName);
-      if (download) download.href = rawUrl(fileName);
+      if (view) view.href = viewUrl(fileId);
+      if (download) download.href = downloadUrl(fileId);
     });
+
+    const repo = document.querySelector(".repo-btn");
+    if (repo) repo.href = DRIVE_FOLDER;
   }
 
   function configurarBusqueda() {
