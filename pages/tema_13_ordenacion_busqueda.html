@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Tema 13: Métodos de Ordenación y Búsqueda en C. Incluye clasificación, eficiencia Big O, código y animaciones didácticas.">
+  <title>Tema 13 · Métodos de Ordenación y Búsqueda | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_13_ordenacion_busqueda.css">
+</head>
+
+<body class="pe-home pe-course-page page-tema-13">
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-sort-down-alt"></i>
+            TEMA 13 · ORDENACIÓN Y BÚSQUEDA
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Métodos de Ordenación y Búsqueda</h1>
+
+          <p class="course-subtitle mb-0">
+            Técnicas para organizar información y localizar datos de forma eficiente.
+            Incluye clasificación, eficiencia, código en C y animaciones didácticas
+            para visualizar paso a paso cómo trabaja cada algoritmo.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-search"></i>
+            <span>“Ordenar ayuda a organizar; buscar permite encontrar con eficiencia.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 13 · Métodos de Ordenación y Búsqueda"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2>Ordenar primero, buscar después</h2>
+          <p>
+            En programación, una colección de datos puede representarse mediante arreglos,
+            vectores o registros. Cuando esa información crece, se vuelve necesario
+            <b>organizarla</b> para trabajar mejor con ella. Ahí aparecen los algoritmos
+            de <b>ordenación</b>, que reorganizan los elementos; y los algoritmos de
+            <b>búsqueda</b>, que permiten localizar un dato específico.
+          </p>
+          <p>
+            La ventaja de estudiar estos métodos no es únicamente aprender a programarlos,
+            sino entender <b>cómo piensan los algoritmos</b>: comparan, intercambian,
+            insertan, dividen el problema y aprovechan estructuras ya ordenadas para
+            reducir trabajo.
+          </p>
+        </div>
+
+        <div class="concept-badge">
+          <i class="bi bi-bar-chart-steps"></i>
+          <strong>EFICIENCIA</strong>
+          <span>Compara algoritmos por tiempo, memoria y escalabilidad</span>
+        </div>
+      </section>
+
+      <nav class="topic-nav" aria-label="Navegación del Tema 13">
+        <a href="#ordenacion">13.1 Ordenación</a>
+        <a href="#clasificacion">13.2 Clasificación</a>
+        <a href="#eficiencia">13.3 Eficiencia</a>
+        <a href="#tabla">13.4 Tabla Big O</a>
+        <a href="#metodos">13.5 Métodos principales</a>
+        <a href="#animaciones">13.6 Animaciones</a>
+        <a href="#busqueda">13.7 Búsqueda</a>
+        <a href="#secuencial">13.8 Secuencial</a>
+        <a href="#binaria">13.9 Binaria</a>
+        <a href="#comparacion">13.10 Comparación</a>
+        <a href="#quiz">Repaso</a>
+      </nav>
+
+      <section class="lesson-section" id="ordenacion">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>13.1 · ¿Qué son los métodos de ordenación?</h2>
+        </div>
+
+        <p>
+          Un método de ordenación es un algoritmo que reorganiza una colección de datos
+          siguiendo un criterio definido. En C, normalmente se trabaja con arreglos
+          de enteros, flotantes, caracteres o incluso arreglos de <code>struct</code>.
+        </p>
+        <p>
+          El objetivo de ordenar es facilitar procesos posteriores como:
+        </p>
+
+        <ul class="styled-list">
+          <li>Presentar resultados de forma clara y ordenada.</li>
+          <li>Preparar datos para búsquedas más eficientes.</li>
+          <li>Comparar valores mínimos, máximos o rangos.</li>
+          <li>Trabajar con reportes, estadísticas o listados.</li>
+          <li>Mejorar la organización lógica de la información.</li>
+        </ul>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">⬆️</div>
+            <h3>Ascendente</h3>
+            <p>Ejemplo: 2, 5, 8, 12, 20.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">⬇️</div>
+            <h3>Descendente</h3>
+            <p>Ejemplo: 20, 12, 8, 5, 2.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🔤</div>
+            <h3>Alfabético</h3>
+            <p>Ordena cadenas o palabras por criterio lexicográfico.</p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🗂️</div>
+            <h3>Por campo</h3>
+            <p>En registros, puede ordenarse por matrícula, nombre, promedio, etc.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="clasificacion">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>13.2 · ¿Cómo se catalogan los métodos de ordenación?</h2>
+        </div>
+
+        <p>
+          No todos los algoritmos ordenan de la misma forma. Su clasificación ayuda a
+          entender la estrategia que usan.
+        </p>
+
+        <div class="classification-grid">
+          <article>
+            <h3><i class="bi bi-memory"></i> Internos</h3>
+            <p>Trabajan con datos que caben completamente en memoria principal.</p>
+            <span>Ejemplos: burbuja, selección, inserción, quicksort.</span>
+          </article>
+
+          <article>
+            <h3><i class="bi bi-device-hdd"></i> Externos</h3>
+            <p>Se aplican cuando la cantidad de datos es tan grande que requiere almacenamiento secundario.</p>
+            <span>Ejemplo clásico: mezcla externa.</span>
+          </article>
+
+          <article>
+            <h3><i class="bi bi-shuffle"></i> Por intercambio</h3>
+            <p>Comparan elementos e intercambian posiciones si están desordenados.</p>
+            <span>Ejemplos: burbuja, quicksort.</span>
+          </article>
+
+          <article>
+            <h3><i class="bi bi-arrow-down-up"></i> Por inserción</h3>
+            <p>Van construyendo una zona ordenada e insertan ahí el siguiente elemento.</p>
+            <span>Ejemplos: inserción y shell sort.</span>
+          </article>
+
+          <article>
+            <h3><i class="bi bi-check2-square"></i> Por selección</h3>
+            <p>Eligen repetidamente el menor o mayor valor restante.</p>
+            <span>Ejemplo: selección directa.</span>
+          </article>
+
+          <article>
+            <h3><i class="bi bi-diagram-3-fill"></i> Divide y vencerás</h3>
+            <p>Dividen el problema en partes más pequeñas, las resuelven y luego combinan resultados.</p>
+            <span>Ejemplos: merge sort y quick sort.</span>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="eficiencia">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>13.3 · Eficiencia de los métodos de ordenación</h2>
+        </div>
+
+        <p>La eficiencia de un algoritmo se mide por tiempo, memoria, escalabilidad y estabilidad.</p>
+
+        <div class="metric-grid">
+          <article>
+            <h3><i class="bi bi-stopwatch-fill"></i> Tiempo</h3>
+            <p>Cuántas operaciones realiza al ordenar <code>n</code> elementos.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-memory"></i> Memoria</h3>
+            <p>Cuánta memoria adicional necesita además del arreglo original.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-arrows-angle-expand"></i> Escalabilidad</h3>
+            <p>Qué tan bien se comporta cuando la cantidad de datos crece mucho.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-wrench-adjustable-circle-fill"></i> Estabilidad</h3>
+            <p>Si conserva o no el orden relativo de elementos iguales.</p>
+          </article>
+        </div>
+
+        <p>
+          La notación <b>Big O</b> expresa cómo crece el costo del algoritmo cuando aumenta
+          la cantidad de elementos <code>n</code>.
+        </p>
+
+        <div class="complexity-strip">
+          <div><strong>O(1)</strong><span>Constante</span></div>
+          <div><strong>O(log n)</strong><span>Logarítmica</span></div>
+          <div><strong>O(n)</strong><span>Lineal</span></div>
+          <div><strong>O(n log n)</strong><span>Muy eficiente para ordenar</span></div>
+          <div><strong>O(n²)</strong><span>Costosa en listas grandes</span></div>
+        </div>
+
+        <div class="note-box">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            Un algoritmo sencillo puede ser suficiente cuando el arreglo es pequeño.
+            Pero cuando el tamaño crece, la diferencia entre un método
+            <code>O(n²)</code> y uno <code>O(n log n)</code> se vuelve muy importante.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="tabla">
+        <div class="section-heading">
+          <i class="bi bi-4-circle-fill"></i>
+          <h2>13.4 · Tabla de métodos de ordenación y eficiencia Big O</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Método</th>
+                <th>Tipo</th>
+                <th>Estable</th>
+                <th>Mejor caso</th>
+                <th>Promedio</th>
+                <th>Peor caso</th>
+                <th>Memoria extra</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Burbuja</b></td><td>Intercambio</td><td>Sí</td><td>O(n)*</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+              <tr><td><b>Selección</b></td><td>Selección</td><td>No</td><td>O(n²)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+              <tr><td><b>Inserción</b></td><td>Inserción</td><td>Sí</td><td>O(n)</td><td>O(n²)</td><td>O(n²)</td><td>O(1)</td></tr>
+              <tr><td><b>Shell Sort</b></td><td>Inserción mejorada</td><td>No</td><td>Depende de los saltos</td><td>≈ O(n^1.5)</td><td>≈ O(n²)</td><td>O(1)</td></tr>
+              <tr><td><b>Merge Sort</b></td><td>Divide y vencerás</td><td>Sí</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n)</td></tr>
+              <tr><td><b>Quick Sort</b></td><td>Divide y vencerás</td><td>No</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n²)</td><td>O(log n)</td></tr>
+              <tr><td><b>Heap Sort</b></td><td>Montículo (heap)</td><td>No</td><td>O(n log n)</td><td>O(n log n)</td><td>O(n log n)</td><td>O(1)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p class="table-note">
+          *En burbuja, el mejor caso puede ser <code>O(n)</code> si se usa una bandera
+          que detecte que ya no hubo intercambios.
+        </p>
+      </section>
+
+      <section class="lesson-section" id="metodos">
+        <div class="section-heading">
+          <i class="bi bi-5-circle-fill"></i>
+          <h2>13.5 · Explicación ampliada de los métodos de ordenación</h2>
+        </div>
+
+        <div class="detail-grid">
+          <article class="detail-card">
+            <h3>Burbuja</h3>
+            <p><b>¿En qué consiste?</b> Recorre el arreglo comparando pares consecutivos. Si están en orden incorrecto, los intercambia.</p>
+            <p><b>Idea clave:</b> en cada pasada “sube” el valor más grande hacia el final.</p>
+            <p><b>Ventaja:</b> muy fácil de comprender e implementar.</p>
+            <p><b>Desventaja:</b> realiza demasiadas comparaciones cuando el arreglo es grande.</p>
+            <p><b>Cuándo usarlo:</b> fines didácticos o listas muy pequeñas.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Selección</h3>
+            <p><b>¿En qué consiste?</b> Busca el menor elemento del tramo no ordenado y lo coloca en su posición correcta.</p>
+            <p><b>Idea clave:</b> en cada pasada fija definitivamente un elemento.</p>
+            <p><b>Ventaja:</b> hace pocos intercambios.</p>
+            <p><b>Desventaja:</b> sigue necesitando muchas comparaciones.</p>
+            <p><b>Cuándo usarlo:</b> cuando se desea una implementación clara y simple.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Inserción</h3>
+            <p><b>¿En qué consiste?</b> Toma cada elemento y lo inserta en la posición correcta dentro de la parte ya ordenada.</p>
+            <p><b>Idea clave:</b> funciona como ordenar cartas en la mano.</p>
+            <p><b>Ventaja:</b> es muy bueno cuando los datos ya están casi ordenados.</p>
+            <p><b>Desventaja:</b> en el peor caso sigue siendo O(n²).</p>
+            <p><b>Cuándo usarlo:</b> arreglos pequeños o casi ordenados.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Shell Sort</h3>
+            <p><b>¿En qué consiste?</b> Compara elementos separados por “saltos” y reduce gradualmente esa separación.</p>
+            <p><b>Idea clave:</b> mueve más rápido elementos lejanos a su zona correcta.</p>
+            <p><b>Ventaja:</b> mejora notablemente a inserción directa.</p>
+            <p><b>Desventaja:</b> su eficiencia depende mucho de la secuencia de saltos.</p>
+            <p><b>Cuándo usarlo:</b> cuando se necesita una mejora intermedia sin mucha complejidad.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Merge Sort</h3>
+            <p><b>¿En qué consiste?</b> Divide el arreglo en mitades, ordena cada mitad y luego las fusiona.</p>
+            <p><b>Idea clave:</b> aplica “divide y vencerás”.</p>
+            <p><b>Ventaja:</b> garantiza O(n log n) y es estable.</p>
+            <p><b>Desventaja:</b> requiere memoria extra.</p>
+            <p><b>Cuándo usarlo:</b> cuando importa la estabilidad o se procesan muchos datos.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Quick Sort</h3>
+            <p><b>¿En qué consiste?</b> Elige un pivote, separa los menores a un lado y los mayores al otro, y repite el proceso.</p>
+            <p><b>Idea clave:</b> divide el problema alrededor del pivote.</p>
+            <p><b>Ventaja:</b> suele ser uno de los más rápidos en la práctica.</p>
+            <p><b>Desventaja:</b> un mal pivote puede llevarlo a O(n²).</p>
+            <p><b>Cuándo usarlo:</b> ordenación general muy eficiente en la práctica.</p>
+          </article>
+
+          <article class="detail-card">
+            <h3>Heap Sort</h3>
+            <p><b>¿En qué consiste?</b> Usa un heap para colocar repetidamente el mayor elemento al final.</p>
+            <p><b>Idea clave:</b> aprovecha una estructura jerárquica.</p>
+            <p><b>Ventaja:</b> siempre se mantiene en O(n log n).</p>
+            <p><b>Desventaja:</b> es menos intuitivo que otros métodos.</p>
+            <p><b>Cuándo usarlo:</b> cuando se busca rendimiento predecible.</p>
+          </article>
+        </div>
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">burbuja_seleccion.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoBurbujaSeleccion">Copiar código</button>
+          </div>
+          <pre><code id="codigoBurbujaSeleccion"><span class="tok-comment">// Método tipo burbuja / selección simple</span>
+<span class="tok-type">void</span> burbuja_seleccion(<span class="tok-type">int</span> vect[], <span class="tok-type">int</span> m)
+{
+    <span class="tok-type">int</span> i, j;
+    <span class="tok-type">int</span> temp;
+
+    <span class="tok-key">for</span> (i = <span class="tok-num">0</span>; i &lt; m - <span class="tok-num">1</span>; i++)
+    {
+        <span class="tok-key">for</span> (j = i + <span class="tok-num">1</span>; j &lt; m; j++)
+        {
+            <span class="tok-key">if</span> (vect[j] &lt; vect[i])
+            {
+                temp = vect[j];
+                vect[j] = vect[i];
+                vect[i] = temp;
+            }
+        }
+    }
+}</code></pre>
+        </section>
+
+        <div class="summary">
+          <div class="bulb">🧠</div>
+          <div>
+            El código anterior es muy útil para clase porque muestra la lógica de comparar e
+            intercambiar. Ayuda a entender la idea de ordenación aunque existan algoritmos
+            más eficientes.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="animaciones">
+        <div class="section-heading">
+          <i class="bi bi-6-circle-fill"></i>
+          <h2>13.6 · Animaciones didácticas de los métodos de ordenación</h2>
+        </div>
+
+        <p>
+          Sí, <b>sí se puede</b> poner una animación para cada método. De hecho, es muy útil
+          porque el alumno ve cómo se mueven los valores, cuál se compara, cuál se intercambia
+          y cómo va apareciendo la parte ya ordenada.
+        </p>
+
+        <div class="note-box">
+          <i class="bi bi-play-circle-fill"></i>
+          <div>
+            Haz clic en <b>Animar</b> para visualizar el algoritmo. Las cajas verdes indican
+            elementos comparados o reubicados. La franja inferior describe la acción.
+          </div>
+        </div>
+
+        <div class="animation-grid">
+          <article class="anim-card" data-method="burbuja">
+            <div class="anim-top"><h3>Burbuja</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Compara vecinos e intercambia si están invertidos.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="seleccion">
+            <div class="anim-top"><h3>Selección</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Busca el mínimo y lo coloca en la siguiente posición correcta.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="insercion">
+            <div class="anim-top"><h3>Inserción</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Inserta cada valor en la zona ordenada.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="shell">
+            <div class="anim-top"><h3>Shell Sort</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Ordena con saltos y luego refina con separaciones menores.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="merge">
+            <div class="anim-top"><h3>Merge Sort</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Divide el arreglo y fusiona partes ordenadas.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="quick">
+            <div class="anim-top"><h3>Quick Sort</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Usa un pivote para dividir y ordenar subarreglos.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+          <article class="anim-card" data-method="heap">
+            <div class="anim-top"><h3>Heap Sort</h3><button class="btn btn-sm btn-success anim-play">Animar</button></div>
+            <p>Construye un heap máximo y extrae el mayor.</p>
+            <div class="anim-board"></div><div class="anim-status">Listo para iniciar.</div>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="busqueda">
+        <div class="section-heading">
+          <i class="bi bi-7-circle-fill"></i>
+          <h2>13.7 · Métodos de búsqueda</h2>
+        </div>
+
+        <p>Un método de búsqueda intenta localizar un valor dentro de una colección.</p>
+        <div class="two-col">
+          <article class="concept-card"><div class="concept-icon">🔎</div><h3>Búsqueda secuencial</h3><p>Revisa los elementos uno por uno desde el inicio hasta encontrar el valor.</p></article>
+          <article class="concept-card"><div class="concept-icon">⚡</div><h3>Búsqueda binaria</h3><p>Divide repetidamente la zona de búsqueda a la mitad. Requiere datos ordenados.</p></article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="secuencial">
+        <div class="section-heading">
+          <i class="bi bi-8-circle-fill"></i>
+          <h2>13.8 · Búsqueda secuencial</h2>
+        </div>
+
+        <p>También llamada búsqueda lineal. Recorre la colección desde la primera posición hasta encontrar el elemento o llegar al final.</p>
+
+        <div class="algorithm-flow">
+          <span>Inicio</span><i class="bi bi-arrow-right"></i>
+          <span>Comparar dato actual</span><i class="bi bi-arrow-right"></i>
+          <span>¿Es el buscado?</span><i class="bi bi-arrow-right"></i>
+          <span>Sí: regresar posición<br>No: continuar</span>
+        </div>
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">busqueda_secuencial.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoSecuencial">Copiar código</button>
+          </div>
+          <pre><code id="codigoSecuencial"><span class="tok-type">int</span> busqueda_secuencial(<span class="tok-type">int</span> datos[], <span class="tok-type">int</span> n, <span class="tok-type">int</span> valor)
+{
+    <span class="tok-key">for</span> (<span class="tok-type">int</span> i = <span class="tok-num">0</span>; i &lt; n; i++)
+    {
+        <span class="tok-key">if</span> (datos[i] == valor)
+        {
+            <span class="tok-key">return</span> i;
+        }
+    }
+
+    <span class="tok-key">return</span> -<span class="tok-num">1</span>;
+}</code></pre>
+        </section>
+
+        <div class="summary"><div class="bulb">📌</div><div><b>Complejidad:</b> O(n). No requiere que los datos estén ordenados.</div></div>
+      </section>
+
+      <section class="lesson-section" id="binaria">
+        <div class="section-heading">
+          <i class="bi bi-9-circle-fill"></i>
+          <h2>13.9 · Búsqueda binaria</h2>
+        </div>
+
+        <p>La búsqueda binaria compara el valor buscado con el elemento central y reduce la zona de búsqueda.</p>
+
+        <div class="warning-box"><i class="bi bi-exclamation-triangle-fill"></i><div><b>Condición indispensable:</b> el arreglo debe estar previamente ordenado.</div></div>
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">busqueda_binaria.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoBinaria">Copiar código</button>
+          </div>
+          <pre><code id="codigoBinaria"><span class="tok-type">int</span> busqueda_binaria(<span class="tok-type">int</span> datos[], <span class="tok-type">int</span> n, <span class="tok-type">int</span> valor)
+{
+    <span class="tok-type">int</span> izquierda = <span class="tok-num">0</span>;
+    <span class="tok-type">int</span> derecha = n - <span class="tok-num">1</span>;
+
+    <span class="tok-key">while</span> (izquierda &lt;= derecha)
+    {
+        <span class="tok-type">int</span> medio = izquierda + (derecha - izquierda) / <span class="tok-num">2</span>;
+
+        <span class="tok-key">if</span> (datos[medio] == valor)
+        {
+            <span class="tok-key">return</span> medio;
+        }
+
+        <span class="tok-key">if</span> (datos[medio] &lt; valor)
+        {
+            izquierda = medio + <span class="tok-num">1</span>;
+        }
+        <span class="tok-key">else</span>
+        {
+            derecha = medio - <span class="tok-num">1</span>;
+        }
+    }
+
+    <span class="tok-key">return</span> -<span class="tok-num">1</span>;
+}</code></pre>
+        </section>
+
+        <div class="summary"><div class="bulb">⚡</div><div><b>Complejidad:</b> O(log n). Es mucho más eficiente que la búsqueda secuencial cuando los datos son grandes y ya están ordenados.</div></div>
+      </section>
+
+      <section class="lesson-section" id="comparacion">
+        <div class="section-heading">
+          <i class="bi bi-10-circle-fill"></i>
+          <h2>13.10 · Comparación de métodos de búsqueda</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead><tr><th>Método</th><th>¿Requiere orden?</th><th>Mejor caso</th><th>Peor caso</th><th>Uso recomendado</th></tr></thead>
+            <tbody>
+              <tr><td><b>Secuencial</b></td><td>No</td><td>O(1)</td><td>O(n)</td><td>Listas pequeñas o desordenadas.</td></tr>
+              <tr><td><b>Binaria</b></td><td>Sí</td><td>O(1)</td><td>O(log n)</td><td>Listas grandes y ordenadas.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary"><div class="bulb">🎯</div><div>Si los datos ya están ordenados, la búsqueda binaria suele ser la mejor opción. Si no lo están y solo realizarás una búsqueda, puede ser más práctico usar búsqueda secuencial.</div></div>
+      </section>
+
+      <section class="lesson-section" id="quiz">
+        <div class="section-heading"><i class="bi bi-patch-question-fill"></i><h2>Preguntas de repaso · Tema 13</h2></div>
+        <div class="quiz-grid">
+          <article class="quiz-q" data-answer="b"><h3>1. ¿Qué hace un algoritmo de ordenación?</h3><button type="button" data-opt="a">A) Elimina elementos duplicados</button><button type="button" data-opt="b">B) Reorganiza datos según un criterio</button><button type="button" data-opt="c">C) Convierte enteros en cadenas</button><div class="quiz-feedback"></div></article>
+          <article class="quiz-q" data-answer="c"><h3>2. ¿Cuál de estos métodos tiene promedio O(n log n)?</h3><button type="button" data-opt="a">A) Burbuja</button><button type="button" data-opt="b">B) Selección</button><button type="button" data-opt="c">C) Quick Sort</button><div class="quiz-feedback"></div></article>
+          <article class="quiz-q" data-answer="a"><h3>3. ¿Qué condición necesita la búsqueda binaria?</h3><button type="button" data-opt="a">A) Datos ordenados</button><button type="button" data-opt="b">B) Datos repetidos</button><button type="button" data-opt="c">C) Un arreglo de caracteres</button><div class="quiz-feedback"></div></article>
+          <article class="quiz-q" data-answer="b"><h3>4. ¿Qué complejidad tiene la búsqueda secuencial en el peor caso?</h3><button type="button" data-opt="a">A) O(log n)</button><button type="button" data-opt="b">B) O(n)</button><button type="button" data-opt="c">C) O(n²)</button><div class="quiz-feedback"></div></article>
+          <article class="quiz-q" data-answer="c"><h3>5. ¿Cuál método suele ser bueno cuando los datos están casi ordenados?</h3><button type="button" data-opt="a">A) Selección</button><button type="button" data-opt="b">B) Heap Sort</button><button type="button" data-opt="c">C) Inserción</button><div class="quiz-feedback"></div></article>
+          <article class="quiz-q" data-answer="a"><h3>6. ¿Qué significa O(n²)?</h3><button type="button" data-opt="a">A) Que el trabajo crece aproximadamente de forma cuadrática</button><button type="button" data-opt="b">B) Que siempre tarda dos segundos</button><button type="button" data-opt="c">C) Que no usa memoria</button><div class="quiz-feedback"></div></article>
+        </div>
+      </section>
+
+      <div class="summary final-summary">
+        <div class="bulb">✅</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          Los métodos de ordenación permiten reorganizar datos y los métodos de búsqueda permiten localizarlos.
+          Su análisis implica comparar eficiencia, consumo de memoria, estabilidad y facilidad de implementación.
+          Además, las animaciones ayudan mucho a que el alumno entienda el proceso paso a paso.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/pages/tema_13_ordenacion_busqueda.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>
