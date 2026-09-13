@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
   <link rel="stylesheet" href="../styles/pages/tema_08_typedef.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
 </head>
 
 <body class="pe-home pe-course-page page-tema-08">
@@ -99,7 +100,7 @@
           nuevo nombre a un tipo que ya existe.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">alias_basico.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoAliasBasico">Copiar código</button>
@@ -174,7 +175,7 @@ Tentero cantidad;</code></pre>
           </article>
         </div>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">mantenimiento.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoMantenimiento">Copiar código</button>
@@ -203,7 +204,7 @@ typedef long long Tkey;
         </div>
 
         <div class="two-col">
-          <section class="code-card">
+          <section class="code-card code-dark">
             <div class="code-head">
               <div class="file-name">Tipos simples</div>
               <button class="copy-btn" type="button" data-copy-target="codigoSimples">Copiar</button>
@@ -218,7 +219,7 @@ Tkey matricula;
 Tpromedio calificacion;</code></pre>
           </section>
 
-          <section class="code-card">
+          <section class="code-card code-dark">
             <div class="code-head">
               <div class="file-name">Semántica</div>
               <button class="copy-btn" type="button" data-copy-target="codigoSemantica">Copiar</button>
@@ -294,7 +295,7 @@ Tkey id_usuario = 9001;
           la declaración de estructuras.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">alumno.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoStruct">Copiar código</button>
@@ -350,7 +351,7 @@ int main(void)
           para reutilizarlos en diferentes programas.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">tipos.h</div>
             <button class="copy-btn" type="button" data-copy-target="codigoTiposH">Copiar código</button>
@@ -411,7 +412,7 @@ typedef struct _nom
           <article><code>uint32_t</code><span>Entero sin signo de 32 bits</span></article>
         </div>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">stdint.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoStdint">Copiar código</button>
@@ -442,25 +443,25 @@ uint32_t contador = 1000000;</code></pre>
         <div class="practice-grid">
           <article>
             <b>Ejemplo 1 · Llave primaria</b>
-            <pre><code>typedef int Tkey;
+            <pre class="practice-code"><code>typedef int Tkey;
 Tkey matricula = 36276;</code></pre>
           </article>
 
           <article>
             <b>Ejemplo 2 · Bandera</b>
-            <pre><code>typedef int Tflag;
+            <pre class="practice-code"><code>typedef int Tflag;
 Tflag activo = 1;</code></pre>
           </article>
 
           <article>
             <b>Ejemplo 3 · Precio</b>
-            <pre><code>typedef float Tprecio;
+            <pre class="practice-code"><code>typedef float Tprecio;
 Tprecio costo = 149.50f;</code></pre>
           </article>
 
           <article>
             <b>Ejemplo 4 · Estructura</b>
-            <pre><code>typedef struct _punto
+            <pre class="practice-code"><code>typedef struct _punto
 {
     int x;
     int y;

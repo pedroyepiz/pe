@@ -18,6 +18,7 @@
   <!-- CSS centralizado del sitio -->
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/infografias_base.css">
 </head>
 
 <body class="pe-home pe-course-page page-infografias-bibliotecas">
@@ -76,193 +77,215 @@
         </p>
       </section>
 
-      <section class="infografia-grid">
+      <section class="mt-4">
+        <div class="row g-4">
 
-        <article class="infografia-card destacada">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas.png"
-               alt="Infografía general sobre biblioteca de funciones en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas.png"
-               data-title="Biblioteca de funciones en C · Vista general">
+          <!-- INFOGRAFÍA PRINCIPAL · GRANDE -->
+          <div class="col-12">
+            <article class="infografia-card destacada h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas.png"
+                   alt="Infografía general sobre biblioteca de funciones en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas.png"
+                   data-title="Biblioteca de funciones en C · Vista general">
 
-          <div class="infografia-info">
-            <h3>1 · Biblioteca de funciones en C</h3>
-            <p>
-              Presenta qué es una biblioteca, para qué sirve, la diferencia entre
-              bibliotecas del sistema y propias, la estructura básica con archivo
-              <code>.h</code> y archivo de implementación, y buenas prácticas.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas.png"
-                    data-title="Biblioteca de funciones en C · Vista general">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>1 · Biblioteca de funciones en C</h3>
+                <p>
+                  Presenta qué es una biblioteca, para qué sirve, la diferencia entre
+                  bibliotecas del sistema y propias, la estructura básica con archivo
+                  <code>.h</code> y archivo de implementación, y buenas prácticas.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas.png"
+                        data-title="Biblioteca de funciones en C · Vista general">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
-               alt="Infografía de librerías del sistema en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
-               data-title="Librerías del sistema en C">
+          <!-- INFOGRAFÍAS COMPLEMENTARIAS · DOS COLUMNAS -->
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
+                   alt="Infografía de librerías del sistema en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
+                   data-title="Librerías del sistema en C">
 
-          <div class="infografia-info">
-            <h3>2 · Librerías del sistema en C</h3>
-            <p>
-              Resume el papel de los archivos de cabecera del sistema, la directiva
-              <code>#include</code> y el uso de bibliotecas estándar como
-              <code>stdio.h</code> y <code>stdlib.h</code> para entrada, salida,
-              memoria y utilidades generales.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
-                    data-title="Librerías del sistema en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>2 · Librerías del sistema en C</h3>
+                <p>
+                  Resume el papel de los archivos de cabecera del sistema, la directiva
+                  <code>#include</code> y el uso de bibliotecas estándar como
+                  <code>stdio.h</code> y <code>stdlib.h</code>.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_stdio_stdlib.png"
+                        data-title="Librerías del sistema en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_string.png"
-               alt="Infografía de string.h en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_string.png"
-               data-title="string.h en C">
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_string.png"
+                   alt="Infografía de string.h en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_string.png"
+                   data-title="string.h en C">
 
-          <div class="infografia-info">
-            <h3>3 · string.h en C</h3>
-            <p>
-              Explica el manejo de cadenas mediante funciones como <code>strlen()</code>,
-              <code>strcpy()</code>, <code>strcat()</code>, <code>strcmp()</code> y otras
-              rutinas útiles para copiar, unir, comparar y buscar texto.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_string.png"
-                    data-title="string.h en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>3 · string.h en C</h3>
+                <p>
+                  Explica el manejo de cadenas mediante funciones como
+                  <code>strlen()</code>, <code>strcpy()</code>, <code>strcat()</code>,
+                  <code>strcmp()</code> y otras rutinas útiles.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_string.png"
+                        data-title="string.h en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_math.png"
-               alt="Infografía de math.h en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_math.png"
-               data-title="math.h en C">
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_math.png"
+                   alt="Infografía de math.h en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_math.png"
+                   data-title="math.h en C">
 
-          <div class="infografia-info">
-            <h3>4 · math.h en C</h3>
-            <p>
-              Muestra funciones matemáticas frecuentes como <code>sqrt()</code>,
-              <code>pow()</code>, <code>fabs()</code>, <code>ceil()</code>,
-              <code>floor()</code> y <code>round()</code>, además de sus cuidados
-              y aplicaciones típicas.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_math.png"
-                    data-title="math.h en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>4 · math.h en C</h3>
+                <p>
+                  Muestra funciones matemáticas frecuentes como <code>sqrt()</code>,
+                  <code>pow()</code>, <code>fabs()</code>, <code>ceil()</code>,
+                  <code>floor()</code> y <code>round()</code>.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_math.png"
+                        data-title="math.h en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_time.png"
-               alt="Infografía de time.h en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_time.png"
-               data-title="time.h en C">
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_time.png"
+                   alt="Infografía de time.h en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_time.png"
+                   data-title="time.h en C">
 
-          <div class="infografia-info">
-            <h3>5 · time.h en C</h3>
-            <p>
-              Presenta el manejo de fecha y hora mediante <code>time_t</code>,
-              <code>struct tm</code>, <code>localtime()</code>, <code>mktime()</code>,
-              <code>strftime()</code> y <code>difftime()</code>.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_time.png"
-                    data-title="time.h en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>5 · time.h en C</h3>
+                <p>
+                  Presenta el manejo de fecha y hora mediante <code>time_t</code>,
+                  <code>struct tm</code>, <code>localtime()</code>, <code>mktime()</code>,
+                  <code>strftime()</code> y <code>difftime()</code>.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_time.png"
+                        data-title="time.h en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_conio.png"
-               alt="Infografía de conio.h en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_conio.png"
-               data-title="conio.h en C">
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_conio.png"
+                   alt="Infografía de conio.h en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_conio.png"
+                   data-title="conio.h en C">
 
-          <div class="infografia-info">
-            <h3>6 · conio.h en C</h3>
-            <p>
-              Describe una biblioteca de consola tradicional con funciones como
-              <code>getch()</code>, <code>getche()</code> y <code>kbhit()</code>,
-              aclarando su uso educativo y sus limitaciones de portabilidad.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_conio.png"
-                    data-title="conio.h en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>6 · conio.h en C</h3>
+                <p>
+                  Describe una biblioteca de consola tradicional con funciones como
+                  <code>getch()</code>, <code>getche()</code> y <code>kbhit()</code>,
+                  aclarando su uso educativo y sus limitaciones de portabilidad.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_conio.png"
+                        data-title="conio.h en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
-        <article class="infografia-card">
-          <img class="infografia-thumb"
-               src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
-               alt="Infografía de librerías propias en C"
-               loading="lazy"
-               tabindex="0"
-               data-infografia
-               data-src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
-               data-title="Librerías propias en C">
+          <div class="col-12 col-lg-6">
+            <article class="infografia-card h-100">
+              <img class="infografia-thumb w-100"
+                   src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
+                   alt="Infografía de librerías propias en C"
+                   loading="lazy"
+                   tabindex="0"
+                   data-infografia
+                   data-src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
+                   data-title="Librerías propias en C">
 
-          <div class="infografia-info">
-            <h3>7 · Librerías propias en C</h3>
-            <p>
-              Explica cómo crear tus propias bibliotecas para organizar funciones,
-              reutilizar código, declarar prototipos y encapsular rutinas como
-              <code>my_fgets()</code> y <code>my_int()</code> dentro de un archivo
-              de cabecera reutilizable.
-            </p>
-            <button class="ver-btn" type="button"
-                    data-infografia
-                    data-src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
-                    data-title="Librerías propias en C">
-              🔍 Ver y ampliar
-            </button>
+              <div class="infografia-info">
+                <h3>7 · Librerías propias en C</h3>
+                <p>
+                  Explica cómo crear tus propias bibliotecas para organizar funciones,
+                  reutilizar código, declarar prototipos y encapsular rutinas dentro de
+                  un archivo de cabecera reutilizable.
+                </p>
+
+                <button class="ver-btn" type="button"
+                        data-infografia
+                        data-src="../images/infografias/infografia_bibliotecas_libreria_propia.png"
+                        data-title="Librerías propias en C">
+                  🔍 Ver y ampliar
+                </button>
+              </div>
+            </article>
           </div>
-        </article>
 
+        </div>
       </section>
 
       <div class="summary">

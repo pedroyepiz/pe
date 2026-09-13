@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
   <link rel="stylesheet" href="../styles/pages/tema_09_recursion.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
 </head>
 
 <body class="pe-home pe-course-page page-tema-09">
@@ -180,7 +181,7 @@
           puede resolverse directamente sin volver a llamar a la función.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">forma_general.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoFormaGeneral">Copiar código</button>
@@ -292,7 +293,7 @@
           <code>0! = 1</code>.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">factorial_recursivo.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoFactorial">Copiar código</button>
@@ -321,7 +322,7 @@ int main(void)
 
         <div class="trace-box">
           <h3>Traza de <code>factorial(4)</code></h3>
-          <pre><code>factorial(4)
+          <pre class="practice-code"><code>factorial(4)
 = 4 * factorial(3)
 = 4 * 3 * factorial(2)
 = 4 * 3 * 2 * factorial(1)
@@ -342,7 +343,7 @@ int main(void)
           <code>F(n)=F(n-1)+F(n-2)</code>.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">fibonacci_recursivo.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoFibonacci">Copiar código</button>
@@ -395,7 +396,7 @@ int main(void)
         </div>
 
         <div class="two-col">
-          <section class="code-card">
+          <section class="code-card code-dark">
             <div class="code-head"><div class="file-name">Versión iterativa</div><button class="copy-btn" type="button" data-copy-target="codigoFibIterativo">Copiar</button></div>
             <pre><code id="codigoFibIterativo">long long fibonacci_iterativo(int n)
 {

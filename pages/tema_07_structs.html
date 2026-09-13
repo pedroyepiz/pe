@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
   <link rel="stylesheet" href="../styles/pages/tema_07_structs.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
 </head>
 
 <body class="pe-home pe-course-page page-tema-07">
@@ -91,6 +92,7 @@
         <a href="#union">7.7 Union</a>
         <a href="#enum">7.8 Enum</a>
         <a href="#comparacion">Comparación</a>
+        <a href="#videos">7.9 Videos</a>
         <a href="#quiz">Quiz</a>
       </nav>
 
@@ -139,7 +141,7 @@
         </div>
 
         <div class="code-label">Declaración básica de una estructura</div>
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">struct_alumno.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoStructBasico">Copiar código</button>
@@ -185,7 +187,7 @@ int main(void)
           <code>Ts_alum alumno1;</code>.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">typedef_struct.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoTypedef">Copiar código</button>
@@ -228,7 +230,7 @@ int main(void)
           permite dividir una entidad compleja en partes lógicas más pequeñas.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">alumno_anidado.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoAnidado">Copiar código</button>
@@ -296,7 +298,7 @@ int main(void)
         </p>
 
         <div class="two-col">
-          <section class="code-card">
+          <section class="code-card code-dark">
             <div class="code-head">
               <div class="file-name">Por valor</div>
               <button class="copy-btn" type="button" data-copy-target="codigoValor">Copiar</button>
@@ -309,7 +311,7 @@ int main(void)
 }</code></pre>
           </section>
 
-          <section class="code-card">
+          <section class="code-card code-dark">
             <div class="code-head">
               <div class="file-name">Por referencia</div>
               <button class="copy-btn" type="button" data-copy-target="codigoReferencia">Copiar</button>
@@ -346,7 +348,7 @@ cambiar_edad(&amp;alumno1, 21);</code></pre>
           colección de registros.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">grupo_alumnos.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoArregloStruct">Copiar código</button>
@@ -387,7 +389,7 @@ grupo[3].matri = 2024015;</code></pre>
           estructuras enlazadas.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">puntero_struct.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoPunteroStruct">Copiar código</button>
@@ -425,7 +427,7 @@ printf("%d\n", ptr-&gt;matri);</code></pre>
           miembro contiene un valor válido a la vez.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">union_dato.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoUnion">Copiar código</button>
@@ -468,7 +470,7 @@ printf("%.2f\n", dato.decimal);</code></pre>
           <code>HOMBRE</code>.
         </p>
 
-        <section class="code-card">
+        <section class="code-card code-dark">
           <div class="code-head">
             <div class="file-name">enum_alumno.c</div>
             <button class="copy-btn" type="button" data-copy-target="codigoEnum">Copiar código</button>
@@ -652,6 +654,91 @@ alumno1.sexo = MUJER;</code></pre>
           mediante constantes con nombre.
         </div>
       </div>
+
+
+      <section class="lesson-section" id="videos">
+        <div class="section-heading">
+          <i class="bi bi-youtube"></i>
+          <h2>7.9 · Videos de apoyo · Structs en C</h2>
+        </div>
+
+        <p>
+          Para complementar el Tema 7, consulta estas explicaciones del
+          <b>canal de YouTube de El Profe Yepiz</b>. Los videos forman parte del
+          material original del curso y refuerzan el uso de <code>struct</code>,
+          la declaración de estructuras, variables, campos y ejemplos prácticos.
+        </p>
+
+        <div class="row g-4 mt-2">
+
+          <div class="col-12 col-xl-6">
+            <article class="concept-card h-100">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <i class="bi bi-play-btn-fill fs-3 text-danger"></i>
+                <div>
+                  <h3 class="mb-1">Structs en C · Parte 1</h3>
+                  <div class="small text-muted">Material original · El Profe Yepiz</div>
+                </div>
+              </div>
+
+              <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+                <iframe
+                  src="https://www.youtube.com/embed/BcKOur8j28s"
+                  title="Structs en C - Parte 1 - El Profe Yepiz"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </div>
+
+              <p class="mt-3 mb-0">
+                Primera parte de la explicación sobre estructuras en C. Refuerza la
+                declaración de <code>struct</code>, la creación de variables y el acceso
+                a los campos de una estructura.
+              </p>
+            </article>
+          </div>
+
+          <div class="col-12 col-xl-6">
+            <article class="concept-card h-100">
+              <div class="d-flex align-items-center gap-2 mb-3">
+                <i class="bi bi-play-btn-fill fs-3 text-danger"></i>
+                <div>
+                  <h3 class="mb-1">Structs en C · Parte 2</h3>
+                  <div class="small text-muted">Material original · El Profe Yepiz</div>
+                </div>
+              </div>
+
+              <div class="ratio ratio-16x9 rounded overflow-hidden shadow-sm">
+                <iframe
+                  src="https://www.youtube.com/embed/MVc5byIpsQY?start=2"
+                  title="Structs en C - Parte 2 - El Profe Yepiz"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen>
+                </iframe>
+              </div>
+
+              <p class="mt-3 mb-0">
+                Segunda parte del tema. El video inicia aproximadamente en el segundo 2,
+                tal como en el enlace proporcionado, y complementa la explicación práctica
+                del uso de estructuras en C.
+              </p>
+            </article>
+          </div>
+
+        </div>
+
+        <div class="note-box mt-4">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            Estos videos se encuentran embebidos dentro del sitio para que el alumno
+            pueda consultarlos sin salir de la página del Tema 7.
+          </div>
+        </div>
+      </section>
 
     </div>
   </main>
