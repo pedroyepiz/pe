@@ -443,3 +443,55 @@
   }
 }
 
+/* ================================================================
+   BIBLIOGRAFÍA · AJUSTES DE UNIFORMIDAD CON EL RESTO DEL SITIO
+   ================================================================ */
+
+.pe-course-page.page-bibliografia .page-content-card.content{
+  padding-left: clamp(24px, 3.2vw, 46px) !important;
+  padding-right: clamp(24px, 3.2vw, 46px) !important;
+}
+
+.pe-course-page.page-bibliografia .resource-intro,
+.pe-course-page.page-bibliografia .lesson-section{
+  padding-left: clamp(16px, 2vw, 24px);
+  padding-right: clamp(16px, 2vw, 24px);
+}
+
+.pe-course-page.page-bibliografia .reference-card,
+.pe-course-page.page-bibliografia .book-card,
+.pe-course-page.page-bibliografia .usage-grid article,
+.pe-course-page.page-bibliografia .summary,
+.pe-course-page.page-bibliografia .warning-box{
+  padding: clamp(16px, 1.8vw, 22px) !important;
+}
+
+.pe-course-page.page-bibliografia .book-grid,
+.pe-course-page.page-bibliografia .reference-columns{
+  gap: clamp(18px, 2vw, 26px) !important;
+}
+
+.pe-course-page.page-bibliografia .library-toolbar{
+  margin-top: 18px;
+  margin-bottom: 24px;
+}
+
+.pe-course-page.page-bibliografia .book-content p,
+.pe-course-page.page-bibliografia .reference-card p,
+.pe-course-page.page-bibliografia .usage-grid p{
+  line-height: 1.58;
+}
+
+@media (max-width: 767.98px){
+  .pe-course-page.page-bibliografia .page-content-card.content{
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .pe-course-page.page-bibliografia .resource-intro,
+  .pe-course-page.page-bibliografia .lesson-section{
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
