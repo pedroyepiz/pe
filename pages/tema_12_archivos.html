@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Tema 12: manejo de archivos en C. Archivos de texto, binarios, acceso aleatorio e índices mediante un vector de índices.">
+  <title>Tema 12 · Archivos en C | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_12_archivos.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
+</head>
+
+<body class="pe-home pe-course-page page-tema-12">
+
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-folder2-open"></i>
+            TEMA 12 · ARCHIVOS
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Manejo de Archivos en C</h1>
+          <p class="course-subtitle mb-0">
+            Persistencia de datos, archivos de texto y binarios, acceso aleatorio
+            e indexación mediante un vector de índices.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-device-hdd-fill" aria-hidden="true"></i>
+            <span>“La memoria guarda mientras el programa vive; el archivo conserva cuando el programa termina.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 12 · Archivos"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2>De datos temporales a información persistente</h2>
+          <p>
+            Las variables y arreglos existen principalmente mientras el programa se está ejecutando.
+            Un <b>archivo</b> permite conservar información en almacenamiento externo para recuperarla,
+            modificarla o procesarla posteriormente.
+          </p>
+          <p>
+            En C, el manejo de archivos se realiza principalmente mediante la biblioteca
+            <code>&lt;stdio.h&gt;</code>, un puntero de tipo <code>FILE *</code> y funciones
+            especializadas de apertura, lectura, escritura, posicionamiento y cierre.
+          </p>
+        </div>
+        <div class="concept-badge">
+          <i class="bi bi-database-fill"></i>
+          <strong>PERSISTENCIA</strong>
+          <span>Guardar datos más allá de la ejecución del programa</span>
+        </div>
+      </section>
+
+      <nav class="topic-nav" aria-label="Navegación del Tema 12">
+        <a href="#definiciones">12.1 Definiciones</a>
+        <a href="#generalidades">12.2 Generalidades</a>
+        <a href="#apertura">12.3 Modos de apertura</a>
+        <a href="#funciones">12.4 Funciones</a>
+        <a href="#texto">12.5 Texto</a>
+        <a href="#binarios">12.6 Binarios</a>
+        <a href="#aleatorio">12.7 Acceso aleatorio</a>
+        <a href="#indexados">12.8 Indexados</a>
+        <a href="#mantenimiento">12.9 Mantenimiento</a>
+        <a href="#integrador">12.10 Integrador</a>
+        <a href="#quiz">Repaso</a>
+      </nav>
+
+      <section class="lesson-section" id="definiciones">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>12.1 · Definiciones fundamentales</h2>
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">📄</div>
+            <h3>Archivo</h3>
+            <p>Conjunto de datos almacenados de forma permanente en un medio externo.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">🧾</div>
+            <h3>Registro</h3>
+            <p>Unidad lógica de información. En C suele representarse mediante un <code>struct</code>.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">📍</div>
+            <h3>Cursor</h3>
+            <p>Posición actual desde la que se leerá o escribirá dentro del archivo.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">🔌</div>
+            <h3>Flujo</h3>
+            <p>Camino lógico por el que los datos entran al programa o salen hacia un archivo.</p>
+          </article>
+        </div>
+
+        <div class="summary">
+          <div class="bulb">💡</div>
+          <div>
+            <b>IDEA CLAVE</b><br>
+            La RAM es volátil. Los archivos permiten conservar información cuando el programa termina
+            y volver a utilizarla en ejecuciones posteriores.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="generalidades">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>12.2 · Generalidades y clasificación de archivos</h2>
+        </div>
+
+        <p>
+          El material de referencia clasifica los archivos desde cuatro puntos de vista:
+          dirección del flujo, representación de los datos, tipo de acceso y longitud de los registros.
+        </p>
+
+        <div class="classification-grid">
+          <article>
+            <h3><i class="bi bi-arrow-left-right"></i> Dirección del flujo</h3>
+            <p><b>Entrada:</b> archivo → programa.</p>
+            <p><b>Salida:</b> programa → archivo.</p>
+            <p><b>Entrada/Salida:</b> ambas operaciones.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-file-text"></i> Representación</h3>
+            <p><b>Texto:</b> la información se representa como caracteres.</p>
+            <p><b>Binario:</b> se almacenan bytes con la representación interna de los datos.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-signpost-split-fill"></i> Tipo de acceso</h3>
+            <p><b>Secuencial:</b> se procesa en orden.</p>
+            <p><b>Aleatorio:</b> permite saltar a una posición concreta.</p>
+          </article>
+          <article>
+            <h3><i class="bi bi-rulers"></i> Longitud de registro</h3>
+            <p><b>Variable:</b> los registros pueden tener tamaños diferentes.</p>
+            <p><b>Constante:</b> todos ocupan el mismo número de bytes.</p>
+          </article>
+        </div>
+
+        <div class="table-responsive mt-4">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Tipo</th><th>Características</th><th>Uso didáctico</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Texto</b></td><td>Legible por personas; cómodo para líneas y reportes.</td><td>Listados, configuraciones, bitácoras.</td></tr>
+              <tr><td><b>Binario</b></td><td>Conserva bytes de estructuras y datos; no es legible directamente.</td><td>Registros, acceso directo, archivos <code>.dat</code>.</td></tr>
+              <tr><td><b>Secuencial</b></td><td>Los registros se recorren uno después de otro.</td><td>Procesamiento completo de archivos.</td></tr>
+              <tr><td><b>Aleatorio</b></td><td>Se calcula la posición y se mueve el cursor con <code>fseek()</code>.</td><td>Consulta/modificación por número de registro.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="apertura">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>12.3 · Apertura, escritura y cierre</h2>
+        </div>
+
+        <p>
+          En C se utiliza <code>FILE *</code> para trabajar con un archivo. La función
+          <code>fopen()</code> intenta abrirlo y devuelve <code>NULL</code> si no puede hacerlo.
+        </p>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">apertura_basica.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoApertura">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoApertura">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    FILE *archivo;
+
+    archivo = fopen("datos.txt", "r");
+
+    if (archivo == NULL)
+    {
+        printf("No se pudo abrir el archivo.\n");
+        return 1;
+    }
+
+    fclose(archivo);
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="table-responsive mt-4">
+          <table class="table topic-table align-middle mode-table">
+            <thead>
+              <tr>
+                <th>Modo</th><th>Uso</th><th>Si existe</th><th>Si no existe</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>"r"</code></td><td>Lectura</td><td>Abre desde el inicio</td><td>Falla</td></tr>
+              <tr><td><code>"w"</code></td><td>Escritura</td><td><b>Borra el contenido</b></td><td>Crea</td></tr>
+              <tr><td><code>"a"</code></td><td>Agregar</td><td>Escribe al final</td><td>Crea</td></tr>
+              <tr><td><code>"r+"</code></td><td>Lectura / escritura</td><td>Conserva contenido</td><td>Falla</td></tr>
+              <tr><td><code>"w+"</code></td><td>Lectura / escritura</td><td><b>Borra el contenido</b></td><td>Crea</td></tr>
+              <tr><td><code>"a+"</code></td><td>Lectura / agregar</td><td>Escritura al final</td><td>Crea</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warning-box">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            Para archivos binarios se agrega <code>b</code>: <code>"rb"</code>, <code>"wb"</code>,
+            <code>"r+b"</code>, <code>"w+b"</code>. En Windows esta diferencia es especialmente importante.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="funciones">
+        <div class="section-heading">
+          <i class="bi bi-4-circle-fill"></i>
+          <h2>12.4 · Funciones en C para manejo de archivos</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle function-table">
+            <thead>
+              <tr><th>Función</th><th>Propósito</th><th>Uso típico</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>fopen()</code></td><td>Abrir o crear.</td><td>Inicio del trabajo con el archivo.</td></tr>
+              <tr><td><code>fclose()</code></td><td>Cerrar y liberar recursos.</td><td>Al terminar.</td></tr>
+              <tr><td><code>fgetc()</code> / <code>fputc()</code></td><td>Leer/escribir un carácter.</td><td>Procesamiento carácter por carácter.</td></tr>
+              <tr><td><code>fgets()</code> / <code>fputs()</code></td><td>Leer/escribir cadenas.</td><td>Archivos de texto.</td></tr>
+              <tr><td><code>fprintf()</code> / <code>fscanf()</code></td><td>E/S con formato.</td><td>Texto estructurado.</td></tr>
+              <tr><td><code>fread()</code> / <code>fwrite()</code></td><td>Leer/escribir bloques de bytes.</td><td>Archivos binarios y <code>struct</code>.</td></tr>
+              <tr><td><code>fseek()</code></td><td>Mover el cursor.</td><td>Acceso aleatorio.</td></tr>
+              <tr><td><code>ftell()</code></td><td>Conocer la posición actual.</td><td>Tamaños y posiciones.</td></tr>
+              <tr><td><code>rewind()</code></td><td>Regresar al inicio.</td><td>Reiniciar un recorrido.</td></tr>
+              <tr><td><code>feof()</code></td><td>Consultar indicador de fin.</td><td>Comprobación posterior a lectura.</td></tr>
+              <tr><td><code>fflush()</code></td><td>Forzar vaciado del buffer de salida.</td><td>Escritura pendiente.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="note-box">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            Una práctica segura es comprobar el valor de retorno de las funciones de lectura/escritura.
+            En especial, <code>fread()</code> y <code>fwrite()</code> devuelven cuántos elementos
+            pudieron procesar correctamente.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="texto">
+        <div class="section-heading">
+          <i class="bi bi-5-circle-fill"></i>
+          <h2>12.5 · Archivos de texto</h2>
+        </div>
+
+        <p>
+          Un archivo de texto almacena información como caracteres. Es apropiado cuando interesa
+          que el contenido pueda ser leído o editado fácilmente con un editor de texto.
+        </p>
+
+        <div class="two-col">
+          <article class="concept-card">
+            <div class="concept-icon">✍️</div>
+            <h3>Escritura</h3>
+            <p><code>fprintf()</code>, <code>fputs()</code> y <code>fputc()</code>.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">📖</div>
+            <h3>Lectura</h3>
+            <p><code>fscanf()</code>, <code>fgets()</code> y <code>fgetc()</code>.</p>
+          </article>
+        </div>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">archivo_texto.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoTexto">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoTexto">#include &lt;stdio.h&gt;
+
+int main(void)
+{
+    FILE *f;
+    char nombre[40];
+    int edad;
+
+    f = fopen("alumnos.txt", "w");
+
+    if (f == NULL)
+    {
+        printf("Error al crear el archivo.\n");
+        return 1;
+    }
+
+    fprintf(f, "ANA 20\n");
+    fprintf(f, "LUIS 21\n");
+
+    fclose(f);
+
+    f = fopen("alumnos.txt", "r");
+
+    if (f == NULL)
+        return 1;
+
+    while (fscanf(f, "%39s %d", nombre, &amp;edad) == 2)
+    {
+        printf("%s - %d\n", nombre, edad);
+    }
+
+    fclose(f);
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="summary">
+          <div class="bulb">📌</div>
+          <div>
+            <b>VENTAJA:</b> fácil de consultar.<br>
+            <b>LIMITACIÓN:</b> convertir texto a números o estructuras requiere interpretación y formato consistente.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="binarios">
+        <div class="section-heading">
+          <i class="bi bi-6-circle-fill"></i>
+          <h2>12.6 · Archivos binarios</h2>
+        </div>
+
+        <p>
+          Los archivos binarios permiten guardar registros completos con <code>fwrite()</code>
+          y recuperarlos con <code>fread()</code>. Son especialmente útiles cuando todos los
+          registros tienen longitud constante.
+        </p>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">registros_binarios.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoBinario">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoBinario">#include &lt;stdio.h&gt;
+
+typedef struct
+{
+    int matricula;
+    char nombre[30];
+    float promedio;
+} stAlumno;
+
+int main(void)
+{
+    FILE *f;
+    stAlumno alumno = {36276, "ANA LOPEZ", 9.4f};
+
+    f = fopen("alumnos.dat", "wb");
+
+    if (f == NULL)
+        return 1;
+
+    fwrite(&amp;alumno, sizeof(stAlumno), 1, f);
+
+    fclose(f);
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="concept-grid mt-4">
+          <article class="concept-card"><div class="concept-icon">⚡</div><h3>Rápidos</h3><p>Evitan convertir cada campo a texto.</p></article>
+          <article class="concept-card"><div class="concept-icon">📦</div><h3>Registros</h3><p>Se adaptan naturalmente a datos definidos con <code>struct</code>.</p></article>
+          <article class="concept-card"><div class="concept-icon">📏</div><h3>Tamaño fijo</h3><p>Facilita calcular la posición de cualquier registro.</p></article>
+          <article class="concept-card"><div class="concept-icon">🔒</div><h3>No legibles</h3><p>No se interpretan correctamente con un editor de texto común.</p></article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="aleatorio">
+        <div class="section-heading">
+          <i class="bi bi-7-circle-fill"></i>
+          <h2>12.7 · Acceso aleatorio con <code>fseek()</code></h2>
+        </div>
+
+        <p>
+          Si los registros tienen el mismo tamaño, su posición puede calcularse como si el archivo
+          fuera un arreglo almacenado en disco.
+        </p>
+
+        <div class="formula-card">
+          <span>posición en bytes</span>
+          <strong>=</strong>
+          <code>numero_registro * sizeof(tipo_registro)</code>
+        </div>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">acceso_directo.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoAleatorio">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoAleatorio">long numero = 5;
+stAlumno alumno;
+
+fseek(archivo,
+      numero * sizeof(stAlumno),
+      SEEK_SET);
+
+if (fread(&amp;alumno, sizeof(stAlumno), 1, archivo) == 1)
+{
+    printf("%d %s %.2f\n",
+           alumno.matricula,
+           alumno.nombre,
+           alumno.promedio);
+}</code></pre>
+        </section>
+
+        <div class="three-step">
+          <article><span>1</span><b>Calcular</b><p>Determinar el desplazamiento.</p></article>
+          <article><span>2</span><b>Posicionar</b><p>Mover el cursor con <code>fseek()</code>.</p></article>
+          <article><span>3</span><b>Leer</b><p>Recuperar el registro con <code>fread()</code>.</p></article>
+        </div>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">tamano_archivo.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoTamano">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoTamano">fseek(archivo, 0, SEEK_END);
+
+long bytes = ftell(archivo);
+long registros = bytes / sizeof(stAlumno);
+
+rewind(archivo);</code></pre>
+        </section>
+      </section>
+
+      <section class="lesson-section" id="indexados">
+        <div class="section-heading">
+          <i class="bi bi-8-circle-fill"></i>
+          <h2>12.8 · Archivos indexados usando un vector de índices</h2>
+        </div>
+
+        <p>
+          Para esta unidad utilizaremos un enfoque didáctico: el archivo binario principal conserva
+          los registros completos y en memoria mantenemos un <b>vector de índices</b>. Cada elemento
+          del vector guarda una <b>clave</b> y la <b>posición del registro</b> dentro del archivo.
+        </p>
+
+        <div class="index-diagram">
+          <div class="index-box">
+            <strong>VECTOR DE ÍNDICES EN RAM</strong>
+            <code>[clave → posición]</code>
+            <code>[36270 → 4]</code>
+            <code>[36276 → 0]</code>
+            <code>[36310 → 2]</code>
+          </div>
+          <i class="bi bi-arrow-right-circle-fill"></i>
+          <div class="index-box data">
+            <strong>ARCHIVO PRINCIPAL</strong>
+            <code>alumnos.dat</code>
+            <span>Registro 0</span>
+            <span>Registro 1</span>
+            <span>Registro 2...</span>
+          </div>
+        </div>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">indice.h</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoIndiceStruct">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoIndiceStruct">typedef struct
+{
+    int clave;       // matrícula u otra llave
+    long posicion;   // número de registro en alumnos.dat
+} stIndice;
+
+stIndice indice[1000];
+int n_indices = 0;</code></pre>
+        </section>
+
+        <h3 class="subsection-title">Construir el vector de índices</h3>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">construir_indice.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoConstruirIndice">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoConstruirIndice">void construir_indice(FILE *f,
+                      stIndice indice[],
+                      int *n)
+{
+    stAlumno alumno;
+    long pos = 0;
+
+    *n = 0;
+    rewind(f);
+
+    while (fread(&amp;alumno, sizeof(stAlumno), 1, f) == 1)
+    {
+        indice[*n].clave = alumno.matricula;
+        indice[*n].posicion = pos;
+
+        (*n)++;
+        pos++;
+    }
+}</code></pre>
+        </section>
+
+        <div class="note-box">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            Después de construir el vector se puede <b>ordenar por clave</b> sin mover físicamente
+            los registros del archivo principal. Sobre el vector ordenado puede aplicarse una
+            búsqueda binaria.
+          </div>
+        </div>
+
+        <h3 class="subsection-title">Buscar en el índice y recuperar el registro</h3>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">buscar_indexado.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoBusquedaIndice">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoBusquedaIndice">int buscar_indice(stIndice indice[], int n, int clave)
+{
+    int ini = 0;
+    int fin = n - 1;
+
+    while (ini &lt;= fin)
+    {
+        int medio = ini + (fin - ini) / 2;
+
+        if (indice[medio].clave == clave)
+            return medio;
+
+        if (indice[medio].clave &lt; clave)
+            ini = medio + 1;
+        else
+            fin = medio - 1;
+    }
+
+    return -1;
+}
+
+/* Después de encontrarlo: */
+
+int p = buscar_indice(indice, n_indices, 36276);
+
+if (p != -1)
+{
+    long registro = indice[p].posicion;
+
+    fseek(archivo,
+          registro * sizeof(stAlumno),
+          SEEK_SET);
+
+    fread(&amp;alumno, sizeof(stAlumno), 1, archivo);
+}</code></pre>
+        </section>
+
+        <div class="summary">
+          <div class="bulb">🎯</div>
+          <div>
+            <b>PRINCIPIO DEL ARCHIVO INDEXADO</b><br>
+            No ordenamos continuamente todo el archivo de datos. Ordenamos un vector pequeño que
+            contiene <b>clave + posición</b>. La búsqueda se realiza sobre ese vector y después
+            usamos la posición encontrada para ir directamente al registro.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="mantenimiento">
+        <div class="section-heading">
+          <i class="bi bi-9-circle-fill"></i>
+          <h2>12.9 · Eliminación, borrado lógico y mantenimiento</h2>
+        </div>
+
+        <p>
+          El material de referencia señala que no existe una función que elimine directamente bytes
+          intermedios y desplace automáticamente todo lo que sigue. Por eso se utilizan estrategias
+          de mantenimiento.
+        </p>
+
+        <div class="two-col">
+          <article class="concept-card">
+            <div class="concept-icon">🚫</div>
+            <h3>Borrado lógico</h3>
+            <p>Agregar un campo de estado, por ejemplo <code>valido</code>, y marcar el registro sin quitarlo físicamente.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">🧹</div>
+            <h3>Empaquetado</h3>
+            <p>Crear un archivo temporal y copiar únicamente los registros válidos.</p>
+          </article>
+        </div>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">borrado_logico.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoBorrado">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoBorrado">typedef struct
+{
+    char valido;     // 'S' = activo, 'N' = eliminado
+    int matricula;
+    char nombre[30];
+} stAlumno;
+
+/* marcar como eliminado */
+alumno.valido = 'N';</code></pre>
+        </section>
+
+        <div class="warning-box">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            Si cambia el archivo principal, el <b>vector de índices también debe actualizarse
+            o reconstruirse</b>. Un índice desactualizado puede apuntar al registro equivocado.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="integrador">
+        <div class="section-heading">
+          <i class="bi bi-10-circle-fill"></i>
+          <h2>12.10 · Programa integrador · archivo binario con registros</h2>
+        </div>
+
+        <p>
+          El siguiente ejemplo sintetiza el flujo principal: abrir o crear un archivo binario,
+          insertar registros al final, consultar por número de registro y cerrar correctamente.
+        </p>
+
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">archivo_registros.c</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoIntegrador">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoIntegrador">#include &lt;stdio.h&gt;
+
+typedef struct
+{
+    char valido;
+    int matricula;
+    char nombre[30];
+    float promedio;
+} stAlumno;
+
+int main(void)
+{
+    FILE *f;
+    stAlumno alumno;
+    long numero;
+
+    f = fopen("alumnos.dat", "r+b");
+
+    if (f == NULL)
+        f = fopen("alumnos.dat", "w+b");
+
+    if (f == NULL)
+    {
+        printf("No se pudo abrir el archivo.\n");
+        return 1;
+    }
+
+    /* INSERTAR AL FINAL */
+    alumno.valido = 'S';
+    alumno.matricula = 36276;
+    snprintf(alumno.nombre, sizeof(alumno.nombre), "ANA LOPEZ");
+    alumno.promedio = 9.4f;
+
+    fseek(f, 0, SEEK_END);
+    fwrite(&amp;alumno, sizeof(stAlumno), 1, f);
+
+    /* CONSULTAR REGISTRO 0 */
+    numero = 0;
+
+    fseek(f,
+          numero * sizeof(stAlumno),
+          SEEK_SET);
+
+    if (fread(&amp;alumno, sizeof(stAlumno), 1, f) == 1)
+    {
+        if (alumno.valido == 'S')
+        {
+            printf("%d %s %.2f\n",
+                   alumno.matricula,
+                   alumno.nombre,
+                   alumno.promedio);
+        }
+    }
+
+    fclose(f);
+    return 0;
+}</code></pre>
+        </section>
+
+        <div class="flow-strip">
+          <div><span>1</span><b>Abrir</b><small><code>fopen()</code></small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>2</span><b>Posicionar</b><small><code>fseek()</code></small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>3</span><b>Leer / escribir</b><small><code>fread() / fwrite()</code></small></div>
+          <i class="bi bi-arrow-right"></i>
+          <div><span>4</span><b>Cerrar</b><small><code>fclose()</code></small></div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="quiz">
+        <div class="section-heading">
+          <i class="bi bi-patch-question-fill"></i>
+          <h2>Preguntas de repaso · Tema 12</h2>
+        </div>
+
+        <div class="quiz-grid">
+          <article class="quiz-q" data-answer="b">
+            <h3>1. ¿Qué devuelve <code>fopen()</code> cuando no puede abrir un archivo?</h3>
+            <button type="button" data-opt="a">EOF</button>
+            <button type="button" data-opt="b">NULL</button>
+            <button type="button" data-opt="c">0 bytes</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>2. ¿Qué modo sobrescribe un archivo existente?</h3>
+            <button type="button" data-opt="a">"r"</button>
+            <button type="button" data-opt="b">"a"</button>
+            <button type="button" data-opt="c">"w"</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>3. ¿Qué funciones se usan normalmente para estructuras en binario?</h3>
+            <button type="button" data-opt="a">fread() y fwrite()</button>
+            <button type="button" data-opt="b">puts() y gets()</button>
+            <button type="button" data-opt="c">printf() y scanf()</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="b">
+            <h3>4. ¿Qué hace <code>fseek()</code>?</h3>
+            <button type="button" data-opt="a">Cierra el archivo</button>
+            <button type="button" data-opt="b">Mueve el cursor</button>
+            <button type="button" data-opt="c">Borra un registro</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="c">
+            <h3>5. ¿Qué guarda nuestro vector de índices?</h3>
+            <button type="button" data-opt="a">Todo el archivo duplicado</button>
+            <button type="button" data-opt="b">Solo el nombre del archivo</button>
+            <button type="button" data-opt="c">Clave y posición del registro</button>
+            <div class="quiz-feedback"></div>
+          </article>
+
+          <article class="quiz-q" data-answer="a">
+            <h3>6. ¿Qué debe hacerse si cambia la organización del archivo principal?</h3>
+            <button type="button" data-opt="a">Actualizar o reconstruir el índice</button>
+            <button type="button" data-opt="b">Cambiar de lenguaje</button>
+            <button type="button" data-opt="c">Eliminar fclose()</button>
+            <div class="quiz-feedback"></div>
+          </article>
+        </div>
+      </section>
+
+      <div class="summary final-summary">
+        <div class="bulb">✅</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          Los archivos permiten persistir información. Los archivos de texto facilitan la lectura humana;
+          los binarios son adecuados para registros y acceso directo. <code>fseek()</code> permite
+          posicionarse dentro del archivo y un <b>vector de índices</b> permite ordenar y buscar claves
+          sin mover físicamente los registros del archivo principal.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/pages/tema_12_archivos.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>

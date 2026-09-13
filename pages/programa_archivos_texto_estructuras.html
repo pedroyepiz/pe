@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Código base del Tema 12: ejemplo de archivo de texto en C/C++ usando un vector de estructuras Ts_alum.">
+  <title>Código base · Archivos de texto con estructuras | Programación Estructurada</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
+</head>
+
+<body class="pe-home pe-course-page page-programa-pilas">
+
+  <div id="site-header"></div>
+
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
+
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-file-earmark-text-fill"></i>
+            TEMA 12 · CÓDIGO BASE
+          </div>
+
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+
+          <h1 class="course-title">Archivos de texto usando estructuras</h1>
+
+          <p class="course-subtitle mb-0">
+            Ejemplo de creación y lectura de un archivo de texto a partir de un vector de
+            registros de tipo <code>Ts_alum</code>.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-database-check" aria-hidden="true"></i>
+            <span>“Del vector en memoria al archivo: guardar, cerrar y recuperar información.”</span>
+          </div>
+        </div>
+
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema 12 · Archivos · Código base"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
+
+      <section class="gallery-intro">
+        <h2>📂 Propósito del ejemplo</h2>
+        <p>
+          Este programa trabaja con un vector de registros <code>Ts_alum</code> y muestra
+          cómo convertir esos registros en líneas de un <b>archivo de texto</b>.
+          La función <code>crea_arch()</code> abre el archivo con modo <code>"w"</code>,
+          recorre el vector y escribe cada registro activo con <code>fprintf()</code>.
+        </p>
+        <p>
+          Posteriormente, <code>lee_arch()</code> abre el archivo con modo <code>"r"</code>
+          y lo muestra carácter por carácter utilizando <code>fgetc()</code>.
+        </p>
+      </section>
+
+      <div class="summary">
+        <div class="bulb">💡</div>
+        <div>
+          <b>IDEA CLAVE</b><br>
+          El vector mantiene los registros en memoria. El archivo de texto permite
+          conservar una representación legible de esos datos después de terminar el programa.
+        </div>
+      </div>
+
+      <section class="lesson-section">
+        <div class="section-heading">
+          <i class="bi bi-diagram-3-fill"></i>
+          <h2>Flujo del ejemplo</h2>
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">🧑‍🎓</div>
+            <h3>1. Registros</h3>
+            <p>El programa trabaja con un vector <code>Ts_alum vec_reg[1000]</code>.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">📝</div>
+            <h3>2. Crear archivo</h3>
+            <p><code>crea_arch()</code> abre con <code>"w"</code> y escribe con <code>fprintf()</code>.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">💾</div>
+            <h3>3. Persistencia</h3>
+            <p>Los datos activos quedan almacenados en un archivo de texto.</p>
+          </article>
+          <article class="concept-card">
+            <div class="concept-icon">📖</div>
+            <h3>4. Leer archivo</h3>
+            <p><code>lee_arch()</code> abre con <code>"r"</code> y lee usando <code>fgetc()</code>.</p>
+          </article>
+        </div>
+      </section>
+
+      <div class="code-label">Parte clave · Crear archivo de texto</div>
+
+      <section class="code-card code-dark">
+        <div class="code-head">
+          <div class="file-name">crea_arch()</div>
+          <button class="copy-btn" type="button" data-copy-target="codigoCrear">
+            <i class="bi bi-copy"></i> Copiar código
+          </button>
+        </div>
+        <pre><code id="codigoCrear">void crea_arch(const char nombre[],Ts_alum v[], int m);
+void  lee_arch(const char nombre[]);
+
+//****  main principal  *********
+int main()
+{
+   srand(time(NULL));
+   menu();
+
+	return 0;
+}</code></pre>
+      </section>
+
+      <div class="summary mt-4">
+        <div class="bulb">🔎</div>
+        <div>
+          <b>QUÉ HACE <code>crea_arch()</code></b><br>
+          Abre el archivo indicado por el usuario, imprime un encabezado y recorre el vector.
+          Solo escribe los registros cuyo campo <code>status</code> vale <code>1</code>.
+          El registro se convierte a una línea de texto mediante <code>fprintf()</code>.
+        </div>
+      </div>
+
+      <div class="code-label mt-4">Parte clave · Leer archivo de texto</div>
+
+      <section class="code-card code-dark">
+        <div class="code-head">
+          <div class="file-name">lee_arch()</div>
+          <button class="copy-btn" type="button" data-copy-target="codigoLeer">
+            <i class="bi bi-copy"></i> Copiar código
+          </button>
+        </div>
+        <pre><code id="codigoLeer">void  lee_arch(const char nombre[]);
+
+//****  main principal  *********
+int main()
+{
+   srand(time(NULL));
+   menu();
+
+	return 0;
+}</code></pre>
+      </section>
+
+      <div class="note-box mt-4">
+        <i class="bi bi-info-circle-fill"></i>
+        <div>
+          En este ejemplo la lectura se hace carácter por carácter con <code>fgetc()</code>
+          y la salida se envía a <code>stdout</code> mediante <code>fprintf()</code>.
+        </div>
+      </div>
+
+      <section class="lesson-section mt-4">
+        <div class="section-heading">
+          <i class="bi bi-file-earmark-code-fill"></i>
+          <h2>Programa completo</h2>
+        </div>
+
+        <p>
+          A continuación se conserva el programa proporcionado completo para que el alumno
+          pueda copiarlo, revisarlo y relacionar las opciones del menú con las funciones de archivos.
+        </p>
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">archivos.cpp</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoCompleto">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoCompleto">#include "karely_ruiz.h"
+//*** PROTOTIPOS DE FUNCIONES  ******
+
+int msges();
+void menu();
+Ts_alum add_reg ();
+void buscar (Ts_alum vec_reg[], int m);
+void imprimir(Ts_alum v[], int m);
+Ts_alum add_aut();
+void imp_reg(Ts_alum reg);
+void eliminar (Ts_alum vec_reg[], int m);
+void crea_arch(const char nombre[],Ts_alum v[], int m);
+void  lee_arch(const char nombre[]);
+
+//****  main principal  *********
+int main()
+{
+   srand(time(NULL));
+   menu();
+
+	return 0;
+}
+//  *** DESARROLLO DE LAS FUNCIONES  ******
+//*********************
+int msges()
+{ int op;
+  system ("CLS");
+  printf ("   M  E   N   U \n");
+  printf("1.- AGREGAR REGISTO (MANUAL) \n");
+  printf("2.- AGREGAR REGISTRO (AUTOM) \n");
+  printf("3.- IMPRIMIR TODO  \n");
+  printf("4.- BUSCAR  \n");
+  printf("5.- ORDENAR \n");
+  printf("6.- ELIMINAR \n");
+  printf("7.- CREA ARCHIVO \n");
+  printf("8.- LEE ARCHIVO \n");
+  printf("20.- SALIR  \n");
+  op = my_int(1,20,"ESCOGE UNA OPCION: ");
+  return op;
+}
+//****************
+void menu()
+{
+  Ts_alum reg, vec_reg[1000];
+  char nombre[30];
+  int vect[N]; //DECLARAR EL VECTOR QUE SE UTILZARA EN TODO EL PROGRAMA
+  int i,j,op;
+  i=0;
+  do{
+      op=msges();
+      switch (op)
+      {
+        case 1:
+              for (j = 0; j&lt; 10 ; j++)
+              {
+                vec_reg[i]=add_reg();
+                i++;
+              }
+              break;
+        case 2:
+           for (j = 0; j&lt; 10 ; j++)
+              {
+               
+                  vec_reg[i]=add_aut();
+                  i++;
+               }
+              break;
+        case 3:
+               imprimir(vec_reg,i);
+               break;
+        case 4:
+              buscar(vec_reg,i);
+              break;
+         case 5:
+              burbuja_seleccion(vec_reg,i);
+              break;      
+          case 6:
+              eliminar (vec_reg,i);
+              break; 
+          case 7:
+              system("CLS");
+              printf ("DAME EL NOMBRE DEL ARCHIVO CON TODO Y EXTENSION ");
+              my_fgets(nombre,30);
+              crea_arch (nombre,vec_reg,i ); 
+              break;
+          case 8:
+              system("CLS");
+              printf ("DAME EL NOMBRE DEL ARCHIVO CON TODO Y EXTENSION ");
+              my_fgets(nombre,30);
+              lee_arch (nombre); 
+              break; 
+          
+      }
+
+    }while (op != 20);
+
+
+}
+
+//*********************
+Ts_alum add_reg ()
+{
+  Ts_alum reg;
+   reg.status = 1;
+   
+   reg.matri = my_int(300000,399999, "MATRICULA");
+   printf ("NOMBRE : ");
+   my_fgets(reg.nombre.nombre,30);
+   printf ("APELLIDO PATERNO: ");
+   my_fgets(reg.nombre.appat,30);
+   printf ("APELLIDO MATERNO: ");
+   my_fgets(reg.nombre.apmat,30);
+   reg.edad=my_int(15,75,"EDAD: ");
+   reg.sexo = my_int(1,2,"SEXO: 1.- HOMBRE  2.- MUJER ");
+   return reg;
+}
+
+//*************************
+void imp_vect (int vect[],int m)
+{
+    system ("CLS");
+    for (int i=0;i&lt;m;i++)
+    {
+        printf(" %3d  ----&gt; [ %3d ]\n",i,vect[i]);
+    }
+    system ("PAUSE");
+    
+}
+//****************************
+void buscar (Ts_alum vec_reg[], int m)
+{
+    int num,pos;
+    system ("CLS");
+    num = my_int(300000,399000,"QUE MATRICULA BUSCAS? ");
+    pos = busq_sec(vec_reg,m,num);
+    if (pos == -1)
+    {
+      printf ("%d REGISTRO NO EXISTE \n",num);
+    }
+    else
+    {
+      if (pos == -2)
+      {
+          printf ("REGISTRO DADO DE BAJA");
+      }
+      else
+      {
+         imp_reg(vec_reg [pos]);
+       }
+    }
+    system ("PAUSE");
+
+}
+
+//****************************
+
+
+//****
+
+
+//*******************************
+void imprimir(Ts_alum v[], int m)
+{
+  char sex[10];
+  system("CLS");
+  printf("No  Matricula    Nombre     Ap_Pat       Ap_mat    edad   sexo\n");
+  for(int i=0; i&lt;m ;i++)
+  {
+    if (v[i].status == 1)
+    {
+      if (v[i].sexo == 1)
+      {
+        strcpy(sex,"HOMBRE");
+      }
+      else
+      {
+        strcpy(sex,"MUJER");
+      }
+      printf("%3d %7d %-15s %-15s %-15s %4d %-6s\n",i,v[i].matri,v[i].nombre.nombre,
+                           v[i].nombre.appat, v[i].nombre.apmat,v[i].edad,sex);
+   }
+  }
+
+  system("pause");
+}
+
+
+
+Ts_alum add_aut()
+{
+  char apell[30][15]={"HERNANDEZ","GARCIA","MARTINEZ","LOPEZ","GONZALEZ","PEREZ","RODRIGUEZ","SANCHEZ","RAMIREZ","CRUZ","FLORES","GOMEZ","MORALES","VAZQUEZ","REYES","JIMENEZ","TORRES","DIAZ","GUTIERREZ","RUIZ","MENDOZA","AGUILAR","ORTIZ","MORENO","CASTILLO","ROMERO","ALVAREZ","CHAVEZ","RIVERA","JUAREZ"};
+  char nom_hom[20][15]={"JUAN","JOSE","ANTONIO","ALEJANDRO","DAVID","CARLOS","LUIS","MIGUEL","ANGEL","FERNANDO","DANIEL","JAVIER","DIEGO","ANDRES","SERGIO","RAUL","EDUARDO","RICARDO","MARIO","ALBERTO"};
+  char nom_muj[20][15]={"SOFIA","VALENTINA","CAMILA","MARIA","GUADALUPE","ANA","LAURA","ANDREA","DANIELA","PAULA","ELENA","ROSA","PATRICIA","LUCIA","FERNANDA","CAROLINA","MONICA","GABRIELA","ISABEL","ALEJANDRA"};
+  Ts_alum reg;
+  reg.status = 1;
+  reg.matri = (rand()%20000)+350000;
+  strcpy(reg.nombre.appat,apell[rand()%30]);
+  strcpy(reg.nombre.apmat,apell[rand()%30]);
+  reg.sexo=(rand()%2) + 1;
+  reg.edad =(rand()%60) + 15;
+  if (reg.sexo== 1)
+  {
+    strcpy(reg.nombre.nombre,nom_hom[rand()%20]);
+  }
+  else
+  {
+    strcpy(reg.nombre.nombre,nom_muj[rand()%20]);
+  }
+  return reg;
+}
+
+//**********************************
+
+void imp_reg(Ts_alum reg)
+{
+
+  system ("CLS");
+  printf ("DATOS DEL ALUMNO\n\n");
+  printf ("MATRICULA        : %d\n",reg.matri);
+  printf ("APELLIDO PATERNO : %s\n",reg.nombre.appat);
+  printf ("APELLIDO MATERNO : %s\n",reg.nombre.apmat);
+  printf ("NOMBRE           : %s\n",reg.nombre.nombre);
+  printf ("EDAD             : %d\n",reg.edad);
+  if (reg.sexo == 1)
+  {
+    printf ("SEXO             : HOMBRE\n");
+  }
+  else
+  {
+    printf ("SEXO             : MUJER\n");
+  }  
+ 
+  
+}
+
+//****************************
+void eliminar (Ts_alum vec_reg[], int m)
+{
+    int num,pos,resp;
+    system ("CLS");
+    num = my_int(300000,399000,"QUE MATRICULA QUIERES ELIMINAR? ");
+    pos = busq_sec(vec_reg,m,num);
+    if (pos == -1)
+    {
+      printf ("%d NO EXISTE EL AMUMNO \n",num);
+    }
+    else
+    {
+      imp_reg(vec_reg [pos]);
+      printf ("QUIERES ELIMINAR EL REGISTRO\n");
+      resp =my_int (1,2,"1.- SI     2.- NO");
+      if (resp == 1 )
+      {
+          vec_reg [pos].status  = 0;
+      }
+      
+    }
+    system ("PAUSE");
+
+}
+
+//*******
+void crea_arch(const char nombre[],Ts_alum v[], int m)
+{
+
+   FILE *arch;
+   arch = fopen(nombre,"w");
+   if (arch)
+   {
+     //***  esta parte que se modifica para sdar una salida a un 
+    // archivo de texto////
+      char sex[10];
+      fprintf(arch,"No  Matricula    Nombre     Ap_Pat       Ap_mat    edad   sexo\n");
+      for(int i=0; i&lt;m ;i++)
+      {
+        if (v[i].status == 1)
+        {
+          if (v[i].sexo == 1)
+          {
+            strcpy(sex,"HOMBRE");
+          }
+        else
+        {
+          strcpy(sex,"MUJER");
+        }
+        fprintf(arch,"%3d %7d %-15s %-15s %-15s %4d %-6s\n",i,v[i].matri,v[i].nombre.nombre,
+                           v[i].nombre.appat, v[i].nombre.apmat,v[i].edad,sex);
+   }
+  }
+
+     //**
+     fclose(arch);
+   }
+   else
+   {
+    printf (" NO SE PUDO ABRIR EL ARCHIVO \n");
+    system ("PAUSE");
+   } 
+}
+//****
+void  lee_arch(const char nombre[])
+{
+   char caracter;
+   FILE *arch;
+   arch = fopen(nombre,"r");
+   if (arch)
+   {
+     
+     while ( ! feof(arch) )
+     {
+        caracter=fgetc(arch);
+        fprintf (stdout,"%c",caracter);
+     }
+     system ("PAUSE");
+     
+     
+     fclose(arch);
+   }
+   else
+   {
+    printf (" NO SE PUDO ABRIR EL ARCHIVO \n");
+    system ("PAUSE");
+   } 
+}
+//*****
+
+
+
+
+
+
+</code></pre>
+        </section>
+      </section>
+
+      <section class="lesson-section">
+        <div class="section-heading">
+          <i class="bi bi-journal-code"></i>
+          <h2>Biblioteca utilizada por el programa</h2>
+        </div>
+
+        <p>
+          El programa incluye <code>"karely_ruiz.h"</code>. En el archivo proporcionado se
+          encuentran funciones auxiliares como <code>my_fgets()</code> y <code>my_int()</code>,
+          utilizadas para capturar cadenas y validar números enteros.
+        </p>
+
+        <section class="code-card code-dark">
+          <div class="code-head">
+            <div class="file-name">karely_ruiz.h</div>
+            <button class="copy-btn" type="button" data-copy-target="codigoLibreria">
+              <i class="bi bi-copy"></i> Copiar código
+            </button>
+          </div>
+          <pre><code id="codigoLibreria">//  propietario :  PEDRO NUÑEZ YEPIZ
+// FECHA.  13 DE MARZO 2026 ULTIMA MODF: 20 MARZO  
+//  V 1.1
+// AGREGO.  FUNCION my_fgets  y my_int
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;time.h&gt;
+#include &lt;dos.h&gt;
+#define N 15
+#define N2 20
+#define SALTO printf("\n");
+// DEFINICION DE TIPOS DE DATOS
+
+
+//PROTOTIPOS
+void my_fgets(char cadena[],int tam);
+int my_int(int ri, int rf, const char msge[])
+
+/*
+AQUI IRIA EL MAIN SI FUERA UN PROGRAMA PERO
+ESTA ES UNA LIBRERIA POR ESO
+DEBE ESTAR DESACTIVADO O 
+NO SE PONE...
+
+int main ()
+{
+	
+}
+*/
+//DESARROLLO DE LAS FUNCIONES EN EL MISMO ORDEN
+//QUE LOS PROTOTIPOS
+//*******************************************************
+//my_fgets  ES UNA FUNCION QUE SIRVE PARA LEE L CADESN
+//EN LAS VERSIONES MAS NUEVAS DE C,  Y QUETA EL SALTO DEL RENGLO
+//Y LO SUSTITUYE POR EL CARACTER NULO
+//********************************************************
+void my_fgets(char string[],int tam)
+{
+  int i=0 ;
+  fflush(stdin);
+  fgets(string,tam,stdin);
+  while (string[i] != '\0')
+  {
+    i++;
+  }
+  string[i-1]='\0';
+}
+//*********************************************************
+  //  FUNCION QUE SIRVE PARA VALIDAR UN MNUMERO ENTERO,
+//*****************************************************
+int my_int(int ri, int rf, const char msge[])
+{
+  int num;
+  char my_num[30];
+  do{
+    printf ("%s",msge);
+    my_fgets(my_num,30);
+    num = atoi(my_num);
+  }while(num &lt; ri || num &gt; rf);
+  
+  return num;  // REGRESA  EL VALOR YA VALIDADO
+}
+</code></pre>
+        </section>
+      </section>
+
+      <div class="warning-box">
+        <i class="bi bi-exclamation-triangle-fill"></i>
+        <div>
+          <b>Observación del material:</b> el programa utiliza el tipo <code>Ts_alum</code>
+          y otras funciones auxiliares. La definición de <code>Ts_alum</code> no aparece en
+          el archivo <code>karely_ruiz.h</code> proporcionado en esta versión, por lo que este
+          HTML conserva exactamente el código fuente entregado sin inventar definiciones faltantes.
+        </div>
+      </div>
+
+      <div class="summary final-summary">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          Este ejemplo muestra cómo tomar registros almacenados en un vector de estructuras,
+          convertirlos a texto con <code>fprintf()</code>, cerrar el archivo con
+          <code>fclose()</code> y posteriormente abrirlo y recorrerlo con <code>fgetc()</code>.
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll("[data-copy-target]").forEach(function (boton) {
+        boton.addEventListener("click", async function () {
+          const elemento = document.getElementById(boton.dataset.copyTarget);
+          if (!elemento) return;
+
+          const texto = elemento.textContent;
+          const original = boton.innerHTML;
+
+          try {
+            await navigator.clipboard.writeText(texto);
+          } catch (e) {
+            const area = document.createElement("textarea");
+            area.value = texto;
+            document.body.appendChild(area);
+            area.select();
+            document.execCommand("copy");
+            area.remove();
+          }
+
+          boton.innerHTML = '<i class="bi bi-check2"></i> ¡Copiado!';
+          setTimeout(function () {
+            boton.innerHTML = original;
+          }, 1500);
+        });
+      });
+    });
+  </script>
+
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+</body>
+</html>
