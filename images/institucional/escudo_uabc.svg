@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 190" role="img" aria-label="Emblema UABC estilizado">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#f4c542"/><stop offset="1" stop-color="#d69f18"/></linearGradient></defs>
+<path d="M18 8h124v106c0 34-26 57-62 68-36-11-62-34-62-68z" fill="#fff" stroke="url(#g)" stroke-width="8"/>
+<path d="M34 28h92v82c0 25-18 42-46 52-28-10-46-27-46-52z" fill="#087447"/>
+<text x="80" y="80" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="36" fill="#fff">U</text>
+<text x="80" y="112" text-anchor="middle" font-family="Arial,sans-serif" font-weight="700" font-size="21" fill="#f4c542">UABC</text>
+<path d="M48 124h64" stroke="#f4c542" stroke-width="5"/><circle cx="80" cy="142" r="9" fill="#f4c542"/>
+</svg>

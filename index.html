@@ -1,529 +1,97 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Material didáctico de Programación Estructurada - UABC FIAD - ISyTE">
   <meta name="theme-color" content="#006847">
-
-  <title>Programación Estructurada | UABC · FIAD</title>
-
-  <!-- Bootstrap 5.3.8 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-        rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-        crossorigin="anonymous">
-
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-  <!-- Hoja general del curso -->
+  <meta name="description" content="Sitio académico UABC FIAD de la materia Metodología de la Programación.">
+  <title>Metodología de la Programación · UABC FIAD</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="styles/styles.css">
+  <link rel="stylesheet" href="styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="styles/pages/tema_codigo_ide_general.css">
 </head>
-
-<body class="pe-home">
-
-  <!-- =========================================================
-       BARRA INSTITUCIONAL
-       ========================================================= -->
+<body class="pe-home" data-depth="">
   <div id="site-header"></div>
 
-  <!-- =========================================================
-       HERO / DATOS DE LA MATERIA
-       ========================================================= -->
-  <section class="course-hero">
-    <div class="container-fluid pe-shell">
-      <div class="row g-4 align-items-center py-4 py-xl-5">
-
-        <div class="col-xl-7">
-          <div class="course-kicker">CURSO</div>
-          <h1 class="course-title">Programación Estructurada</h1>
-          <p class="course-subtitle mb-0">Lógica, algoritmos y soluciones para un mejor futuro</p>
-
-          <div class="hero-line"></div>
-
-          <div class="course-quote">
-            <i class="bi bi-laptop" aria-hidden="true"></i>
-            <span>“Programar es pensar con lógica para transformar ideas en soluciones”</span>
-          </div>
-        </div>
-
-        <div class="col-xl-5">
-          <aside class="course-info-card" aria-label="Información del curso">
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-book"></i></div>
-              <div class="info-label">MATERIA:</div>
-              <div class="info-value">Programación Estructurada</div>
-            </div>
-
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-person-fill"></i></div>
-              <div class="info-label">DOCENTE:</div>
-              <div class="info-value">Pedro Núñez Yepiz</div>
-            </div>
-
-            <div class="info-row">
-              <div class="info-icon"><i class="bi bi-mortarboard-fill"></i></div>
-              <div class="info-label">CARRERA:</div>
-              <div class="info-value">Ingeniero en Software y Tecnologías Emergentes / Ingeniero en Computación</div>
-            </div>
-
-            <div class="info-row border-0">
-              <div class="info-icon"><i class="bi bi-bank2"></i></div>
-              <div class="info-label">FACULTAD:</div>
-              <div class="info-value">Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</div>
-            </div>
-          </aside>
-        </div>
-
+  <section class="hero hero-reference">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">CURSO</div>
+        <h1>Metodología de la<br>Programación</h1>
+        <p class="hero-subtitle">Aprende a analizar problemas y transformarlos en soluciones lógicas mediante algoritmos.</p>
+        <div class="hero-line"></div>
+        <p class="quote"><i class="bi bi-pc-display-horizontal" aria-hidden="true"></i><span>“Antes de programar una solución, hay que aprender a pensar el problema.”</span></p>
       </div>
+
+      <div class="hero-art">
+        <img src="images/temas/hero_flujo.svg" alt="Diagrama de flujo que representa el análisis y solución de problemas">
+      </div>
+
+      <dl class="course-info">
+        <div><dt><i class="bi bi-book"></i><span>MATERIA:</span></dt><dd>Metodología de la Programación</dd></div>
+        <div><dt><i class="bi bi-person-fill"></i><span>DOCENTE:</span></dt><dd>Pedro Núñez Yepiz</dd></div>
+        <div><dt><i class="bi bi-mortarboard-fill"></i><span>CARRERA:</span></dt><dd>Tronco Común de Ingeniería</dd></div>
+        <div><dt><i class="bi bi-bank2"></i><span>FACULTAD:</span></dt><dd>Facultad de Ingeniería, Arquitectura y Diseño (FIAD)</dd></div>
+      </dl>
     </div>
   </section>
 
-  <!-- =========================================================
-       CONTENIDO DEL CURSO
-       ========================================================= -->
-  <main class="container-fluid pe-shell pb-4">
-
+  <main class="container course-main">
     <div class="section-heading">
-      <i class="bi bi-book-half"></i>
-      <h2>Contenido del curso</h2>
+      <h2><i class="bi bi-book-fill"></i> Contenido del curso</h2>
+      <p>Explora las unidades, consulta el material y practica con ejemplos.</p>
     </div>
 
-    <section class="row g-3 course-grid" aria-label="Temas del curso">
+    <section class="units-grid" aria-label="Unidades del curso">
+      <article class="unit-card blue">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-list-task"></i></div><div><small>UNIDAD I</small><h3>Metodología para la solución de problemas</h3></div></div>
+        <p>Análisis, entradas, procesos, salidas, algoritmos y pruebas.</p>
+        <div class="card-actions"><a class="btn btn-primary" href="pages/unidad_01_metodologia_solucion_problemas.html">Abrir unidad <span>→</span></a><button class="btn btn-secondary disabled" disabled title="Aún no disponible"><i class="bi bi-bar-chart-fill"></i> Infografías</button></div>
+      </article>
 
-      <!-- TEMA 0 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-blue">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-laptop"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 0</div>
-              <h3>Introducción</h3>
-              <p>Panorama general</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_00_introduccion.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_introduccion.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
+      <article class="unit-card green">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-calculator-fill"></i></div><div><small>UNIDAD II</small><h3>Expresiones</h3></div></div>
+        <p>Operadores aritméticos, relacionales, lógicos y jerarquía.</p>
+        <div class="card-actions"><a class="btn btn-primary" href="pages/unidad_02_expresiones.html">Abrir unidad <span>→</span></a><button class="btn btn-secondary disabled" disabled title="Aún no disponible"><i class="bi bi-bar-chart-fill"></i> Infografías</button></div>
+      </article>
 
-      <!-- TEMA 1 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-green">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon binary-icon" aria-hidden="true"><span>1 0</span><span>0 1</span></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 1</div>
-              <h3>Tipos de datos</h3>
-              <p>Datos y variables</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_01_tipos_datos.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_tipos_datos.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
+      <article class="unit-card purple">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-diagram-3-fill"></i></div><div><small>UNIDAD III</small><h3>Estructuras de control de selección</h3></div></div>
+        <p>Selección simple, doble, anidada y múltiple.</p>
+        <div class="card-actions"><button class="btn btn-primary disabled" disabled title="Aún no disponible">Próximamente</button><button class="btn btn-secondary disabled" disabled title="Aún no disponible"><i class="bi bi-bar-chart-fill"></i> Infografías</button></div>
+      </article>
 
-      <!-- TEMA 2 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-orange">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-calculator-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 2</div>
-              <h3>Expresiones</h3>
-              <p>Operadores y expresiones</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_02_expresiones.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_expresiones.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
+      <article class="unit-card orange">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-arrow-repeat"></i></div><div><small>UNIDAD IV</small><h3>Estructuras de control de iteración</h3></div></div>
+        <p>Para, Mientras, Repetir, contadores y banderas.</p>
+        <div class="card-actions"><button class="btn btn-primary disabled" disabled title="Aún no disponible">Próximamente</button><button class="btn btn-secondary disabled" disabled title="Aún no disponible"><i class="bi bi-bar-chart-fill"></i> Infografías</button></div>
+      </article>
 
-      <!-- TEMA 3 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-blue">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-diagram-3-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 3</div>
-              <h3>Selección</h3>
-              <p>Decisiones en programas</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_03_seleccion.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_seleccion.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
+      <article class="unit-card red">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div><div><small>UNIDAD V</small><h3>Datos agrupados</h3></div></div>
+        <p>Arreglos, vectores, matrices y cadenas.</p>
+        <div class="card-actions"><button class="btn btn-primary disabled" disabled title="Aún no disponible">Próximamente</button><button class="btn btn-secondary disabled" disabled title="Aún no disponible"><i class="bi bi-bar-chart-fill"></i> Infografías</button></div>
+      </article>
 
-      <!-- TEMA 4 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-green">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-arrow-repeat"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 4</div>
-              <h3>Iteración</h3>
-              <p>Ciclos y repetición</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_04_iteracion.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_ciclos.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 5 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-orange">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-gear-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 5</div>
-              <h3>Funciones</h3>
-              <p>Modularidad y reutilización</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_05_funciones.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_funciones.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 6 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-blue">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-grid-3x3-gap-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 6</div>
-              <h3>Arreglos</h3>
-              <p>Colecciones de datos</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_06_arreglos.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_arreglos.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 7 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-green">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-box-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 7</div>
-              <h3>Structs</h3>
-              <p>Estructuras de datos</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_07_structs.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_struct_union_enum.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 8 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-orange">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon code-icon">&lt;/&gt;</div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 8</div>
-              <h3>Typedef</h3>
-              <p>Tipos de datos definidos</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_08_typedef.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_typedef.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 9 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-blue">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-arrow-clockwise"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 9</div>
-              <h3>Recursión</h3>
-              <p>Solución recursiva</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_09_recursion.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_recursion.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-            </span>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 10 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-green">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-folder-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 10</div>
-              <h3>Multiarchivo</h3>
-              <p>Programas en varios archivos</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_10_multiarchivo.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_multiarchivo.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-            </span>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 11 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-orange">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-bookshelf"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 11</div>
-              <h3>Biblioteca de funciones</h3>
-              <p>Funciones reutilizables</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_11_biblioteca_funciones.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_bibliotecas.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- TEMA 12 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-blue">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 12</div>
-              <h3>Archivos</h3>
-              <p>Manejo de archivos</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_12_archivos.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <span class="course-btn infographic-btn is-disabled" aria-disabled="true"
-                  data-bs-toggle="tooltip" title="Infografía todavía no disponible">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </span>
-          </div>
-        </article>
-      </div>
-
-
-      <!-- TEMA 13 -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-orange">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-sort-down-alt"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">TEMA 13</div>
-              <h3>Métodos de Ordenación y Búsqueda</h3>
-              <p>Ordenar y localizar información</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/tema_13_ordenacion_busqueda.html">
-              <span>Abrir tema</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/infografias_ordenacion_busqueda.html">
-              <i class="bi bi-bar-chart-line-fill"></i><span>Infografía</span>
-            </a>
-          </div>
-        </article>
-      </div>
-
-      <!-- BIBLIOGRAFÍA -->
-      <div class="col-12 col-md-6 col-xl-3">
-        <article class="course-card theme-green">
-          <div class="course-accent"></div>
-          <div class="course-card-body">
-            <div class="topic-icon"><i class="bi bi-book-fill"></i></div>
-            <div class="topic-copy">
-              <div class="topic-number">RECURSOS</div>
-              <h3>Bibliografía</h3>
-              <p>Referencias y material adicional</p>
-            </div>
-          </div>
-          <div class="course-actions">
-            <a class="course-btn topic-btn"
-               href="pages/bibliografia.html">
-              <span>Abrir</span><i class="bi bi-arrow-right"></i>
-            </a>
-            <a class="course-btn infographic-btn"
-               href="pages/profe_yepiz.html">
-              <i class="bi bi-person-badge-fill"></i><span>El Profe Yepiz</span>
-            </a>
-            </span>
-          </div>
-        </article>
-      </div>
-
+      <article class="unit-card resources">
+        <div class="unit-top"><div class="unit-icon"><i class="bi bi-book-half"></i></div><div><small>RECURSOS</small><h3>Bibliografía</h3></div></div>
+        <p>Referencias y material adicional.</p>
+        <div class="card-actions"><a class="btn btn-primary" href="pages/bibliografia.html">Abrir <span>→</span></a><a class="btn btn-secondary" href="pages/profe_yepiz.html"><i class="bi bi-person-badge-fill"></i> El Profe Yepiz</a></div>
+      </article>
     </section>
 
-    <!-- =========================================================
-         CÓDIGO BASE
-         ========================================================= -->
-    <section class="code-base-panel mt-3 mt-lg-4">
-      <div class="code-base-intro">
-        <div class="code-base-icon">&lt;/&gt;</div>
-        <div>
-          <h2>Código base en C</h2>
-          <p>Ejemplos de código para consultar y utilizar en las prácticas del curso.</p>
-        </div>
-      </div>
-
-      <div class="code-base-links">
-
-        <a class="quick-code" href="pages/programa_esqueleto_funciones.html">
-          <i class="bi bi-gear-fill"></i><span>Funciones</span><i class="bi bi-arrow-right"></i>
-        </a>
-
-        <a class="quick-code" href="pages/programa_arreglos_cadenas_libreria.html">
-          <i class="bi bi-grid-3x3-gap-fill"></i><span>Arreglos</span><i class="bi bi-arrow-right"></i>
-        </a>
-
-        <a class="quick-code" href="pages/programa_archivos_texto_estructuras.html">
-          <i class="bi bi-file-earmark-text-fill"></i><span>Archivos</span><i class="bi bi-arrow-right"></i>
-        </a>
-      </div>
+    <section class="resource-strip">
+      <a class="pseint-logo-link" href="https://pseint.sourceforge.net/" target="_blank" rel="noopener noreferrer" aria-label="Abrir sitio oficial de PSeInt">
+        <img src="images/temas/pseint_logo.svg" alt="PSeInt · pseudocódigo y diagramas de flujo">
+      </a>
+      <div class="grow"><h3>PSeInt y pseudocódigo</h3><p>Ejemplos, algoritmos y prácticas del curso.</p></div>
+      <div class="resource-icons" aria-label="Recursos PSeInt"><span><i class="bi bi-play-fill"></i></span><span><i class="bi bi-file-earmark-text-fill"></i></span><span><i class="bi bi-diagram-3-fill"></i></span><span><i class="bi bi-lightbulb-fill"></i></span></div>
     </section>
-
   </main>
 
-  <!-- =========================================================
-       PIE INSTITUCIONAL
-       ========================================================= -->
   <div id="site-footer"></div>
-
-  <!-- Bootstrap JS bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-          crossorigin="anonymous"></script>
-
-  <!-- JavaScript exclusivo del INDEX: no crea botón de regreso -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      if (window.bootstrap && bootstrap.Tooltip) {
-        document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (element) {
-          new bootstrap.Tooltip(element);
-        });
-      }
-    });
-  </script>
   <script src="scripts/layout.js" defer></script>
+  <script src="scripts/app.js" defer></script>
 </body>
 </html>

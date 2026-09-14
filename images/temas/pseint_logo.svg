@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 150" role="img" aria-labelledby="title desc">
+<title id="title">PSeInt</title><desc id="desc">Identificador visual de PSeInt para pseudocódigo y diagramas de flujo</desc>
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#1455d9"/><stop offset="1" stop-color="#2836b8"/></linearGradient></defs>
+<rect x="4" y="4" width="352" height="142" rx="24" fill="#fff" stroke="#d9e6f8" stroke-width="4"/>
+<g transform="translate(22 19)">
+  <rect x="0" y="5" width="72" height="96" rx="12" fill="#eef5ff" stroke="#2057d4" stroke-width="5"/>
+  <path d="M17 28h38M17 43h31M17 58h38" stroke="#2057d4" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="18" cy="82" r="8" fill="#14a36f"/><rect x="34" y="72" width="22" height="20" rx="5" fill="#f7b718"/>
+  <path d="M26 82h8" stroke="#0a7e59" stroke-width="4"/><path d="M45 92v10" stroke="#2057d4" stroke-width="4"/>
+</g>
+<text x="116" y="78" font-family="Segoe UI, Arial, sans-serif" font-size="55" font-weight="800" fill="url(#g)">PSeInt</text>
+<text x="118" y="108" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="600" fill="#52709a">Pseudocódigo · Diagramas de flujo</text>
+</svg>

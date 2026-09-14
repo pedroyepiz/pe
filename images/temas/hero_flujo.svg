@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img" aria-label="Diagrama de flujo de ejemplo">
+<defs><linearGradient id="bg" x1="0" y1="1"><stop stop-color="#eafaf5"/><stop offset="1" stop-color="#f8fdff"/></linearGradient><filter id="s"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-opacity=".18"/></filter></defs>
+<rect width="620" height="360" rx="30" fill="url(#bg)"/>
+<g font-family="Arial,sans-serif" font-weight="700" text-anchor="middle" filter="url(#s)">
+<rect x="235" y="20" width="150" height="52" rx="26" fill="#12ad71"/><text x="310" y="53" fill="white" font-size="20">INICIO</text>
+<line x1="310" y1="72" x2="310" y2="104" stroke="#16496b" stroke-width="5"/><polygon points="310,112 302,98 318,98" fill="#16496b"/>
+<rect x="235" y="112" width="150" height="58" rx="9" fill="#4ab2ff"/><text x="310" y="148" fill="#08395c" font-size="18">Leer datos</text>
+<line x1="310" y1="170" x2="310" y2="195" stroke="#16496b" stroke-width="5"/>
+<polygon points="310,195 386,245 310,295 234,245" fill="#ffd23f" stroke="#d48a00" stroke-width="3"/><text x="310" y="240" fill="#3f3500" font-size="17">¿Condición?</text>
+<text x="310" y="263" fill="#3f3500" font-size="15">Sí / No</text>
+<line x1="234" y1="245" x2="135" y2="245" stroke="#16496b" stroke-width="5"/><line x1="386" y1="245" x2="485" y2="245" stroke="#16496b" stroke-width="5"/>
+<rect x="45" y="217" width="120" height="56" rx="9" fill="#23c58a"/><text x="105" y="251" fill="white" font-size="16">Proceso A</text>
+<rect x="455" y="217" width="120" height="56" rx="9" fill="#9855e8"/><text x="515" y="251" fill="white" font-size="16">Proceso B</text>
+<text x="190" y="226" fill="#16496b" font-size="16">Sí</text><text x="430" y="226" fill="#16496b" font-size="16">No</text>
+</g>
+<g transform="translate(30,28) rotate(-5)"><rect width="150" height="115" rx="10" fill="#fff" stroke="#b8d3e6" stroke-width="4"/><text x="18" y="30" font-family="monospace" font-size="14" fill="#145cff">Inicio</text><text x="18" y="53" font-family="monospace" font-size="14" fill="#145cff">  Leer x</text><text x="18" y="76" font-family="monospace" font-size="14" fill="#145cff">  Si ...</text><text x="18" y="99" font-family="monospace" font-size="14" fill="#145cff">Fin</text></g>
+<g transform="translate(500,28)"><circle cx="45" cy="38" r="24" fill="#ffd23f"/><path d="M34 63h22M36 72h18" stroke="#d38d00" stroke-width="5" stroke-linecap="round"/><path d="M45 0v-13M78 12l10-10M12 12 2 2M88 38h13M2 38h13" stroke="#f7b500" stroke-width="6" stroke-linecap="round"/></g>
+</svg>
