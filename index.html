@@ -23,30 +23,34 @@
 
   <style>
     .course-hero-visual{
-      min-height:180px;
+      width:100%;
+      min-height:190px;
       display:flex;
       align-items:center;
       justify-content:center;
     }
 
     .course-hero-visual img{
-      filter:drop-shadow(0 12px 22px rgba(0,104,71,.14));
+      max-height:240px;
+      width:auto;
+      object-fit:contain;
+      filter:drop-shadow(0 12px 24px rgba(0,104,71,.14));
     }
 
     @media (max-width:1199.98px){
       .course-hero-visual{
         min-height:auto;
-        margin:8px 0;
+        margin:8px 0 14px;
       }
 
       .course-hero-visual img{
-        max-height:190px !important;
+        max-height:210px;
       }
     }
 
     @media (max-width:575.98px){
       .course-hero-visual img{
-        max-height:150px !important;
+        max-height:165px;
       }
     }
   </style>
@@ -80,13 +84,11 @@
           </div>
         </div>
 
-        <!-- IMAGEN TEMÁTICA DEL CURSO -->
         <div class="col-xl-2 d-flex justify-content-center align-items-center">
-          <div class="course-hero-visual text-center w-100">
+          <div class="course-hero-visual">
             <img src="images/programacion_estructurada.png"
-                 alt="Ilustración de Programación Estructurada"
-                 class="img-fluid"
-                 style="max-height:230px;width:auto;object-fit:contain;">
+                 alt="Ilustración colorida de programación estructurada con código y diagramas de flujo"
+                 class="img-fluid">
           </div>
         </div>
 
