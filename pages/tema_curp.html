@@ -1,526 +1,844 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tema especial · CURP | Programación Estructurada</title>
-  <meta name="description" content="Guía completa sobre la CURP para estudiantes de Programación Estructurada.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="CURP: estructura, reglas, excepciones y proceso de generación para estudiantes de Programación Estructurada.">
+  <title>CURP | Programación Estructurada</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- Estilos maestros del sitio (si ya existen en tu proyecto) -->
+  <!-- ESTILOS MAESTROS DEL SITIO -->
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
   <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
 
-  <!-- Estilo específico de esta página -->
-  <link rel="stylesheet" href="../styles/pages/tema_curp.css">
+  <style>
+    .curp-chain{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.38rem;
+      margin:1rem 0 .4rem;
+    }
+    .curp-chain span{
+      min-width:2.1rem;
+      min-height:2.4rem;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding:.25rem .45rem;
+      border-radius:.6rem;
+      background:#eef7f2;
+      border:1px solid #cfe4d8;
+      color:#0d513d;
+      font-weight:800;
+      font-family:Consolas,"Cascadia Code",monospace;
+    }
+    .curp-breakdown{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:1rem;
+    }
+    .curp-step{
+      border:1px solid #dce9e3;
+      border-radius:14px;
+      padding:1rem;
+      background:#fff;
+    }
+    .curp-step strong{color:#075b42}
+    .curp-example{
+      font-family:Consolas,"Cascadia Code",monospace;
+      font-weight:800;
+      letter-spacing:.05em;
+      color:#0d513d;
+      word-break:break-word;
+    }
+    .curp-pos{
+      display:inline-grid;
+      place-items:center;
+      width:2rem;
+      height:2rem;
+      border-radius:50%;
+      background:#006847;
+      color:white;
+      font-weight:800;
+      margin-right:.45rem;
+    }
+    .curp-flow{
+      display:grid;
+      grid-template-columns:repeat(6,minmax(0,1fr));
+      gap:.75rem;
+    }
+    .curp-flow article{
+      border:1px solid #dce9e3;
+      border-radius:12px;
+      padding:.9rem;
+      background:#f9fcfa;
+      text-align:center;
+    }
+    .curp-flow .n{
+      width:2rem;height:2rem;border-radius:50%;
+      display:inline-grid;place-items:center;
+      background:#006847;color:#fff;font-weight:800;
+      margin-bottom:.45rem;
+    }
+    .curp-figure{
+      border:1px solid #dce9e3;
+      border-radius:16px;
+      padding:1rem;
+      background:#fff;
+    }
+    .curp-figure img{
+      width:100%;
+      height:auto;
+      border-radius:10px;
+    }
+    .curp-figure figcaption{
+      margin-top:.75rem;
+      color:#5f6f69;
+      font-size:.95rem;
+    }
+    .practice-curp{
+      font-family:Consolas,"Cascadia Code",monospace;
+      font-weight:800;
+      color:#0d513d;
+    }
+    @media (max-width:991.98px){
+      .curp-breakdown{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .curp-flow{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+    @media (max-width:575.98px){
+      .curp-breakdown,.curp-flow{grid-template-columns:1fr}
+    }
+  </style>
 </head>
-<body>
+
+<body class="pe-home pe-course-page page-tema-curp">
+
   <div id="site-header"></div>
 
-  <main class="container-fluid pe-shell py-4 py-lg-5">
-    <div class="page-card">
-      <section class="hero-curp">
-        <div class="row g-4 align-items-center">
-          <div class="col-xl-7">
-            <div class="badge-topic">TEMA ESPECIAL · IDENTIFICADORES OFICIALES</div>
-            <h1>CURP</h1>
-            <p class="lead mb-3">Clave Única de Registro de Población</p>
-            <p class="hero-text">
-              La <strong>CURP</strong> es una clave alfanumérica de <strong>18 caracteres</strong> que permite
-              <strong>registrar e identificar de manera individual</strong> a las personas. Esta página reúne los elementos
-              más importantes para que el alumno <strong>comprenda su estructura</strong> y pueda desarrollar un
-              <strong>programa que genere, analice o valide una CURP</strong> con fines didácticos.
-            </p>
-            <div class="hero-note">
-              <i class="bi bi-lightbulb-fill"></i>
-              <span><strong>Enfoque del tema:</strong> entender la lógica de construcción, reglas, excepciones, ejemplos y la base técnica necesaria para programarla.</span>
-            </div>
-          </div>
-          <div class="col-xl-5">
-            <div class="hero-image-box">
-              <img src="../images/curp/ejemplo_constancia_curp.png" alt="Ejemplo visual de una constancia CURP" class="img-fluid rounded-4 shadow-sm">
-            </div>
-          </div>
-        </div>
-      </section>
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center py-4 py-xl-5">
 
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-bookmark-check-fill"></i> ¿Qué es la CURP y para qué sirve?</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-xl-3">
-            <article class="info-card h-100">
-              <h3>¿Qué es?</h3>
-              <p>Es la <strong>Clave Única de Registro de Población</strong>. El instructivo normativo la define como una <strong>secuencia alfanumérica de 18 caracteres</strong> asignada a las personas físicas domiciliadas en territorio nacional y a nacionales en el extranjero.</p>
-            </article>
+        <div class="col-xl-7">
+          <div class="topic-number-pill">
+            <i class="bi bi-person-vcard-fill"></i>
+            TEMA ESPECIAL · CURP
           </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="info-card h-100">
-              <h3>¿Para qué sirve?</h3>
-              <p>Permite identificar de forma individual a cada persona en trámites de <strong>escuela, salud, empleo, gobierno, bancos y otros registros</strong>.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="info-card h-100">
-              <h3>¿Por qué es importante?</h3>
-              <p>Porque es un dato de identidad ampliamente usado por sistemas informáticos y bases de datos. Ayuda a evitar duplicidades y a enlazar registros personales.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-3">
-            <article class="info-card h-100 accent-card">
-              <h3>Dato clave para programar</h3>
-              <p>La CURP <strong>no es totalmente libre</strong>: usa reglas sobre nombres, fecha, sexo, entidad federativa, consonantes internas y un <strong>dígito verificador</strong>.</p>
-            </article>
-          </div>
-        </div>
-      </section>
 
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-diagram-3-fill"></i> Estructura general de la CURP</h2>
-          <p class="section-subtitle">Se construye con datos personales básicos y una parte final de control.</p>
-        </div>
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
 
-        <div class="figure-card mb-4">
-          <img src="../images/curp/infografia_curp_general.png" alt="Infografía general de la CURP" class="img-fluid rounded-4">
-          <p class="figure-caption">Infografía general de apoyo para comprender la CURP.</p>
-        </div>
+          <h1 class="course-title">Clave Única de Registro de Población</h1>
 
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="step-card h-100">
-              <h3>Desglose por posiciones</h3>
-              <ul class="clean-list">
-                <li><strong>1 a 4:</strong> letras derivadas de apellidos y nombre.</li>
-                <li><strong>5 a 10:</strong> fecha de nacimiento en formato <code>AAMMDD</code>.</li>
-                <li><strong>11:</strong> sexo (<code>H</code> o <code>M</code>).</li>
-                <li><strong>12 y 13:</strong> código de la entidad federativa de nacimiento.</li>
-                <li><strong>14 a 16:</strong> consonantes internas de apellidos y nombre.</li>
-                <li><strong>17:</strong> diferenciador de homonimia y siglo.</li>
-                <li><strong>18:</strong> dígito verificador.</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="step-card h-100">
-              <h3>Ejemplo completo</h3>
-              <div class="example-line">SABC560626MDFLRN09</div>
-              <ul class="clean-list compact">
-                <li><strong>SABC</strong> → nombre y apellidos.</li>
-                <li><strong>560626</strong> → 26/06/1956.</li>
-                <li><strong>M</strong> → mujer.</li>
-                <li><strong>DF</strong> → entidad federativa de nacimiento.</li>
-                <li><strong>LRN</strong> → consonantes internas.</li>
-                <li><strong>0</strong> → diferenciador/homonimia.</li>
-                <li><strong>9</strong> → dígito verificador.</li>
-              </ul>
-            </div>
+          <p class="course-subtitle mb-0">
+            Estructura, reglas, excepciones y proceso de generación de los 18 caracteres.
+          </p>
+
+          <div class="hero-line"></div>
+
+          <div class="course-quote">
+            <i class="bi bi-diagram-3-fill" aria-hidden="true"></i>
+            <span>“Entender cómo se forma una CURP es un excelente ejercicio de análisis, validación y manejo de cadenas.”</span>
           </div>
         </div>
 
-        <div class="figure-grid mt-4">
-          <figure class="figure-card">
-            <img src="../images/curp/diagrama_estructura_curp.png" alt="Diagrama de la estructura de una CURP" class="img-fluid rounded-4">
-            <figcaption class="figure-caption">Diagrama simplificado de la estructura de la CURP.</figcaption>
-          </figure>
-          <figure class="figure-card">
-            <img src="../images/curp/constancia_curp_anotada.png" alt="Constancia de CURP con partes anotadas" class="img-fluid rounded-4">
-            <figcaption class="figure-caption">Partes visibles de una constancia CURP.</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-1-circle-fill"></i> Cómo se generan los primeros 4 caracteres</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-lg-6">
-            <div class="step-card h-100">
-              <h3>Regla general</h3>
-              <ol class="number-list">
-                <li><strong>Carácter 1:</strong> inicial del primer apellido.</li>
-                <li><strong>Carácter 2:</strong> primera vocal interna del primer apellido.</li>
-                <li><strong>Carácter 3:</strong> inicial del segundo apellido.</li>
-                <li><strong>Carácter 4:</strong> inicial del primer nombre.</li>
-              </ol>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="step-card h-100">
-              <h3>Ejemplo</h3>
-              <p><strong>Nombre:</strong> Salgado Briseño Concepción</p>
-              <ul class="clean-list compact">
-                <li>Primer apellido: <strong>Salgado</strong> → <strong>S</strong> + <strong>A</strong></li>
-                <li>Segundo apellido: <strong>Briseño</strong> → <strong>B</strong></li>
-                <li>Nombre: <strong>Concepción</strong> → <strong>C</strong></li>
-              </ul>
-              <div class="example-line small">Resultado: <strong>SABC</strong></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-exclamation-diamond-fill"></i> Reglas y excepciones que el alumno debe conocer</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Nombres comunes</h3>
-              <p>Si el nombre inicia con <strong>María</strong> o <strong>José</strong> y existe un segundo nombre, normalmente se toma la inicial del <strong>siguiente nombre significativo</strong>.</p>
-              <p class="rule-example">Ejemplo: <strong>María Fernanda</strong> → se usa <strong>F</strong>.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Sin segundo apellido</h3>
-              <p>Cuando una persona no tiene segundo apellido, el sistema puede utilizar <strong>X</strong> como carácter de sustitución en la posición correspondiente.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Sin vocal o consonante interna</h3>
-              <p>Si no existe una vocal interna o consonante interna útil, se utiliza <strong>X</strong>.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Partículas y artículos</h3>
-              <p>En apellidos y nombres compuestos se suelen omitir partículas como <strong>DE, DEL, LA, LAS, LOS, Y, MC, MAC, VAN, VON</strong>, entre otras, para localizar la parte significativa.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Palabras inconvenientes</h3>
-              <p>Si los primeros cuatro caracteres forman una palabra ofensiva o inconveniente, RENAPO aplica una sustitución (frecuentemente la segunda letra cambia por <strong>X</strong>).</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="rule-card h-100">
-              <h3>Normalización de texto</h3>
-              <p>Para programar, conviene normalizar a <strong>mayúsculas</strong>, quitar acentos y considerar el tratamiento especial de caracteres no válidos o particulares.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-calendar-date-fill"></i> Fecha de nacimiento, sexo y entidad federativa</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-lg-4">
-            <div class="step-card h-100">
-              <h3>Posiciones 5 a 10</h3>
-              <p>Se registra la fecha de nacimiento como <strong>AAMMDD</strong>.</p>
-              <div class="example-line small">15/02/1990 → 900215</div>
-              <p class="mb-0">Es importante validar año, mes, día y casos especiales como años bisiestos.</p>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="step-card h-100">
-              <h3>Posición 11</h3>
-              <p>Se usa la letra del sexo:</p>
-              <ul class="clean-list compact">
-                <li><strong>H</strong> → Hombre</li>
-                <li><strong>M</strong> → Mujer</li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="step-card h-100">
-              <h3>Posiciones 12 y 13</h3>
-              <p>Corresponden al código de la entidad federativa de nacimiento. Para un programa, es recomendable guardar estos códigos en un <strong>arreglo</strong>, <strong>tabla</strong> o <strong>diccionario</strong>.</p>
-            </div>
-          </div>
+        <div class="col-xl-5">
+          <div id="course-info" data-topic="Tema especial · CURP"></div>
         </div>
 
-        <div class="table-card mt-4">
-          <h3 class="mb-3">Catálogo didáctico de entidades</h3>
-          <div class="table-responsive">
-            <table class="table table-bordered align-middle mb-0 entity-table">
-              <thead>
-                <tr>
-                  <th>Código</th><th>Entidad</th>
-                  <th>Código</th><th>Entidad</th>
-                  <th>Código</th><th>Entidad</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>AS</td><td>Aguascalientes</td><td>BC</td><td>Baja California</td><td>BS</td><td>Baja California Sur</td></tr>
-                <tr><td>CC</td><td>Campeche</td><td>CL</td><td>Coahuila</td><td>CM</td><td>Colima</td></tr>
-                <tr><td>CS</td><td>Chiapas</td><td>CH</td><td>Chihuahua</td><td>DF</td><td>Ciudad de México / histórico DF</td></tr>
-                <tr><td>DG</td><td>Durango</td><td>GT</td><td>Guanajuato</td><td>GR</td><td>Guerrero</td></tr>
-                <tr><td>HG</td><td>Hidalgo</td><td>JC</td><td>Jalisco</td><td>MC</td><td>Estado de México</td></tr>
-                <tr><td>MN</td><td>Michoacán</td><td>MS</td><td>Morelos</td><td>NT</td><td>Nayarit</td></tr>
-                <tr><td>NL</td><td>Nuevo León</td><td>OC</td><td>Oaxaca</td><td>PL</td><td>Puebla</td></tr>
-                <tr><td>QT</td><td>Querétaro</td><td>QR</td><td>Quintana Roo</td><td>SP</td><td>San Luis Potosí</td></tr>
-                <tr><td>SL</td><td>Sinaloa</td><td>SR</td><td>Sonora</td><td>TC</td><td>Tabasco</td></tr>
-                <tr><td>TS</td><td>Tamaulipas</td><td>TL</td><td>Tlaxcala</td><td>VZ</td><td>Veracruz</td></tr>
-                <tr><td>YN</td><td>Yucatán</td><td>ZS</td><td>Zacatecas</td><td>NE</td><td>Nacido en el extranjero</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      </div>
+    </div>
+  </section>
 
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-gear-fill"></i> Posiciones 14 a 18: consonantes internas, homonimia y dígito verificador</h2>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-6 col-xl-4">
-            <article class="info-card h-100">
-              <h3>Posiciones 14 a 16</h3>
-              <p>Se forman con la <strong>primera consonante interna</strong> del primer apellido, del segundo apellido y del nombre. Si no existe consonante útil, se usa <strong>X</strong>.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="info-card h-100">
-              <h3>Posición 17</h3>
-              <p>Funciona como <strong>diferenciador de homonimia y siglo</strong>. Esta parte depende de reglas administrativas del sistema y no siempre se deduce solo con los datos personales.</p>
-            </article>
-          </div>
-          <div class="col-md-6 col-xl-4">
-            <article class="info-card h-100 accent-card">
-              <h3>Posición 18</h3>
-              <p>Es el <strong>dígito verificador</strong>. Se calcula matemáticamente a partir de los primeros 17 caracteres y ayuda a validar la consistencia de la clave.</p>
-            </article>
-          </div>
-        </div>
+  <main class="container-fluid pe-shell page-content-shell">
+    <div class="page-content-card content">
 
-        <div class="code-dark mt-4">
-          <div class="code-header">
-            <span>Algoritmo base para calcular el dígito verificador</span>
-            <button class="copy-btn" type="button" data-copy-target="codigo-curp-dv">Copiar código</button>
-          </div>
-          <pre id="codigo-curp-dv"><code>// Tabla de equivalencias para CURP
-// 0-9 => 0-9, A=>10, B=>11, ..., N=>23, Ñ=>24, O=>25, ..., Z=>36
-
-int valorCurp(char c) {
-    const char *tabla = "0123456789ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-    for (int i = 0; tabla[i] != ' '; i++) {
-        if (tabla[i] == c) return i;
-    }
-    return 0;
-}
-
-int digitoVerificador(const char curp17[]) {
-    int suma = 0;
-
-    for (int i = 0; i < 17; i++) {
-        int valor = valorCurp(curp17[i]);
-        int peso = 18 - (i + 1);   // 17, 16, 15, ..., 1
-        suma += valor * peso;
-    }
-
-    int residuo = suma % 10;
-    return (10 - residuo) % 10;
-}</code></pre>
-        </div>
-
-        <div class="callout mt-4">
-          <strong>Importante:</strong> una práctica académica puede calcular la posición 18 sin problema; en cambio, la posición 17 se explica conceptualmente, pero en un sistema real depende de criterios de asignación y control oficial.
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-code-slash"></i> Sugerencia de algoritmo para el programa</h2>
-          <p class="section-subtitle">Muy útil para convertir esta teoría en una práctica de programación.</p>
-        </div>
-        <div class="code-dark">
-          <div class="code-header">
-            <span>Pseudocódigo general</span>
-            <button class="copy-btn" type="button" data-copy-target="codigo-curp-pseudo">Copiar código</button>
-          </div>
-          <pre id="codigo-curp-pseudo"><code>Leer nombre, apellidoPaterno, apellidoMaterno, fechaNacimiento, sexo, entidad
-
-Normalizar datos:
-    - convertir a mayúsculas
-    - quitar acentos
-    - eliminar artículos o partículas si es necesario
-
-Generar posiciones 1 a 4:
-    1 = inicial del apellido paterno
-    2 = primera vocal interna del apellido paterno
-    3 = inicial del apellido materno o X si no existe
-    4 = inicial del nombre (considerar reglas de María/José)
-
-Generar posiciones 5 a 10:
-    fecha en formato AAMMDD
-
-Generar posición 11:
-    sexo (H o M)
-
-Generar posiciones 12 y 13:
-    buscar código de la entidad federativa
-
-Generar posiciones 14 a 16:
-    primera consonante interna de apellido paterno,
-    apellido materno y nombre
-
-Generar posición 17:
-    valor de homonimia/siglo (didáctico o de prueba)
-
-Generar posición 18:
-    calcular dígito verificador con fórmula oficial
-
-Mostrar CURP completa</code></pre>
-        </div>
-      </section>
-
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-link-45deg"></i> Instructivo normativo y consulta técnica</h2>
-        </div>
-        <div class="resource-card">
+      <section class="topic-intro">
+        <div>
+          <div class="section-kicker">IDEA CENTRAL</div>
+          <h2>¿Qué es la CURP?</h2>
           <p>
-            Para referencia técnica y consulta complementaria, se recomienda revisar el instructivo normativo y la publicación oficial relacionada.
+            La <strong>CURP</strong> es la <strong>Clave Única de Registro de Población</strong>.
+            Está formada por <strong>18 caracteres alfanuméricos</strong> y se utiliza para
+            identificar de manera individual a una persona dentro de distintos registros y trámites.
           </p>
-          <div class="resource-links">
-            <a class="resource-btn" href="https://www.gob.mx/cms/uploads/attachment/file/337251/Instructivo_Normativo_para_la_Asignacion_de_la_CURP.pdf" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-file-earmark-pdf-fill"></i> Descargar instructivo (PDF)
-            </a>
-            <a class="resource-btn secondary" href="https://sidof.segob.gob.mx/notas/docFuente/5632965" target="_blank" rel="noopener noreferrer">
-              <i class="bi bi-box-arrow-up-right"></i> Ver publicación oficial / DOF
-            </a>
-          </div>
-          <p class="small-note mb-0">
-            Nota: el PDF puede depender del acceso del portal oficial. Si no abre directamente, el alumno puede usar el enlace oficial del DOF como respaldo.
+          <p>
+            Para un estudiante de Programación Estructurada, la CURP resulta especialmente útil
+            porque obliga a trabajar con <strong>cadenas, posiciones, validaciones, fechas,
+            selección, búsqueda de caracteres, tablas de equivalencias y reglas especiales</strong>.
           </p>
+        </div>
+
+        <div class="concept-badge">
+          <i class="bi bi-person-badge-fill"></i>
+          <strong>18 CARACTERES</strong>
+          <span>Datos personales + reglas + caracteres de control</span>
         </div>
       </section>
 
-      <section class="section-block">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-list-check"></i> Ejemplos didácticos de CURP</h2>
-          <p class="section-subtitle">Ejemplos con fines académicos para analizar la lógica de construcción.</p>
+      <nav class="topic-nav" aria-label="Navegación del tema CURP">
+        <a href="#definicion">Definición</a>
+        <a href="#estructura">Estructura</a>
+        <a href="#primeros4">1–4</a>
+        <a href="#fecha">5–10</a>
+        <a href="#sexo-entidad">11–13</a>
+        <a href="#consonantes">14–16</a>
+        <a href="#ultimos">17–18</a>
+        <a href="#excepciones">Excepciones</a>
+        <a href="#proceso">Proceso completo</a>
+        <a href="#ejemplos">Ejemplos</a>
+        <a href="#practica">Práctica</a>
+      </nav>
+
+      <section class="lesson-section" id="definicion">
+        <div class="section-heading">
+          <i class="bi bi-1-circle-fill"></i>
+          <h2>1 · ¿Qué es y para qué sirve?</h2>
         </div>
-        <div class="table-card">
-          <div class="table-responsive">
-            <table class="table table-striped align-middle mb-0 practice-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Datos base</th>
-                  <th>CURP ejemplo</th>
-                  <th>Observación</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Salgado Briseño Concepción</td>
-                  <td>26/06/1956 · Mujer · DF</td>
-                  <td><code>SABC560626MDFLRN09</code></td>
-                  <td>Ejemplo clásico para explicar toda la estructura.</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Sánchez Santos Oscar</td>
-                  <td>05/09/1970 · Hombre · DF</td>
-                  <td><code>SASO700905HDFNNS00</code></td>
-                  <td>Permite observar la construcción con dos apellidos comunes.</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>Flores Fermán Jovani Jair</td>
-                  <td>06/11/2001 · Hombre · Puebla</td>
-                  <td><code>FOFJ011106HPLLRVA1</code></td>
-                  <td>Ilustra un caso con año posterior a 2000.</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>García Pérez Luis Alberto</td>
-                  <td>05/01/2001 · Mujer · San Luis Potosí</td>
-                  <td><code>GARC010105MSLPLA8</code></td>
-                  <td>Útil para practicar posiciones 12 y 13.</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>Pérez Hernández Juan</td>
-                  <td>10/12/1973 · Hombre · Baja California</td>
-                  <td><code>PEHJ731210HBCRPN05</code></td>
-                  <td>Bueno para revisar consonantes internas y dígito verificador.</td>
-                </tr>
-              </tbody>
-            </table>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">🪪</div>
+            <h3>Identificación</h3>
+            <p>
+              La CURP permite identificar de forma individual a una persona en registros
+              administrativos y bases de datos.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🏫</div>
+            <h3>Trámites</h3>
+            <p>
+              Se utiliza en trámites escolares, de salud, empleo, gobierno, servicios y otros registros.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🔢</div>
+            <h3>18 caracteres</h3>
+            <p>
+              Combina letras y números derivados de nombres, apellidos, fecha de nacimiento,
+              sexo, entidad federativa y caracteres de control.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧠</div>
+            <h3>Uso didáctico</h3>
+            <p>
+              Es un caso práctico para aprender a dividir un problema grande en varias funciones y reglas pequeñas.
+            </p>
+          </article>
+        </div>
+
+        <div class="note-box mt-4">
+          <i class="bi bi-info-circle-fill"></i>
+          <div>
+            Para fines académicos podemos estudiar cómo se construye la clave. Sin embargo,
+            una CURP oficial debe provenir de los registros y procedimientos correspondientes;
+            no basta con “calcularla” manualmente para afirmar que es una CURP oficial.
           </div>
         </div>
       </section>
 
-      <section class="section-block mb-0">
-        <div class="section-title-wrap">
-          <h2 class="section-title"><i class="bi bi-patch-question-fill"></i> Prueba rápida · 5 preguntas para practicar</h2>
+      <section class="lesson-section" id="estructura">
+        <div class="section-heading">
+          <i class="bi bi-2-circle-fill"></i>
+          <h2>2 · Estructura general de los 18 caracteres</h2>
+        </div>
+
+        <p>
+          Una forma útil de estudiarla consiste en dividirla por bloques. Cada bloque tiene un origen distinto.
+        </p>
+
+        <div class="curp-chain" aria-label="Ejemplo de una CURP">
+          <span>S</span><span>A</span><span>B</span><span>C</span>
+          <span>5</span><span>6</span><span>0</span><span>6</span><span>2</span><span>6</span>
+          <span>M</span><span>D</span><span>F</span>
+          <span>L</span><span>R</span><span>N</span>
+          <span>0</span><span>9</span>
+        </div>
+
+        <div class="curp-breakdown mt-4">
+          <article class="curp-step">
+            <strong>Posiciones 1–4</strong>
+            <p class="mb-0">Iniciales y vocal interna obtenidas del nombre y apellidos.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posiciones 5–10</strong>
+            <p class="mb-0">Fecha de nacimiento en formato <code>AAMMDD</code>.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posición 11</strong>
+            <p class="mb-0">Sexo de la persona: <code>H</code> o <code>M</code>.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posiciones 12–13</strong>
+            <p class="mb-0">Código correspondiente al lugar de nacimiento.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posiciones 14–16</strong>
+            <p class="mb-0">Primeras consonantes internas de apellidos y nombre.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posición 17</strong>
+            <p class="mb-0">Carácter diferenciador relacionado con homonimia y siglo.</p>
+          </article>
+          <article class="curp-step">
+            <strong>Posición 18</strong>
+            <p class="mb-0">Dígito verificador.</p>
+          </article>
+        </div>
+
+        <div class="row g-4 mt-2">
+          <div class="col-lg-6">
+            <figure class="curp-figure h-100">
+              <img src="../images/curp/diagrama_estructura_curp.png"
+                   alt="Diagrama de la estructura de una CURP"
+                   loading="lazy">
+              <figcaption>
+                Diagrama de apoyo: muestra qué parte del nombre, fecha y datos personales alimenta cada bloque.
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="col-lg-6">
+            <figure class="curp-figure h-100">
+              <img src="../images/curp/constancia_curp_anotada.png"
+                   alt="Ejemplo de constancia CURP con sus elementos principales"
+                   loading="lazy">
+              <figcaption>
+                Ejemplo visual de una constancia CURP. Se utiliza como referencia documental, no como infografía.
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="primeros4">
+        <div class="section-heading">
+          <i class="bi bi-3-circle-fill"></i>
+          <h2>3 · Generación de los caracteres 1 al 4</h2>
+        </div>
+
+        <p>
+          Los primeros cuatro caracteres se obtienen principalmente del primer apellido,
+          segundo apellido y nombre. Ésta es una de las partes que requiere mayor cuidado
+          porque existen reglas y excepciones.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Posición</th>
+                <th>Se obtiene de</th>
+                <th>Regla general</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="curp-pos">1</span></td>
+                <td>Primer apellido</td>
+                <td>Primera letra del primer apellido.</td>
+              </tr>
+              <tr>
+                <td><span class="curp-pos">2</span></td>
+                <td>Primer apellido</td>
+                <td>Primera vocal interna, es decir, la primera vocal después de la inicial.</td>
+              </tr>
+              <tr>
+                <td><span class="curp-pos">3</span></td>
+                <td>Segundo apellido</td>
+                <td>Primera letra del segundo apellido.</td>
+              </tr>
+              <tr>
+                <td><span class="curp-pos">4</span></td>
+                <td>Nombre</td>
+                <td>Primera letra del nombre significativo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary mt-4">
+          <div class="bulb">📌</div>
+          <div>
+            <b>EJEMPLO</b><br>
+            Para <strong>Salgado Briseño Concepción</strong>:
+            <strong>S</strong> de Salgado +
+            <strong>A</strong> como primera vocal interna +
+            <strong>B</strong> de Briseño +
+            <strong>C</strong> de Concepción =
+            <span class="curp-example">SABC</span>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="fecha">
+        <div class="section-heading">
+          <i class="bi bi-4-circle-fill"></i>
+          <h2>4 · Generación de los caracteres 5 al 10 · Fecha de nacimiento</h2>
+        </div>
+
+        <p>
+          Estas seis posiciones representan la fecha de nacimiento usando dos dígitos para el año,
+          dos para el mes y dos para el día:
+        </p>
+
+        <div class="syntax-box">
+          <strong>AAMMDD</strong> = Año (2) + Mes (2) + Día (2)
+        </div>
+
+        <div class="concept-grid mt-4">
+          <article class="concept-card">
+            <div class="concept-icon">📅</div>
+            <h3>Año</h3>
+            <p>Se toman los últimos dos dígitos del año.</p>
+            <p class="mb-0"><strong>1990 → 90</strong></p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🗓️</div>
+            <h3>Mes</h3>
+            <p>Siempre utiliza dos posiciones.</p>
+            <p class="mb-0"><strong>Junio → 06</strong></p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">📆</div>
+            <h3>Día</h3>
+            <p>También utiliza dos posiciones.</p>
+            <p class="mb-0"><strong>Día 15 → 15</strong></p>
+          </article>
+        </div>
+
+        <div class="summary mt-4">
+          <div class="bulb">✅</div>
+          <div>
+            <b>EJEMPLO</b><br>
+            15 de febrero de 1990 → <span class="curp-example">900215</span>
+          </div>
+        </div>
+
+        <div class="warning-box mt-4">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            Al programarlo hay que validar fechas reales: meses del 01 al 12, número correcto de días
+            por mes y casos de febrero en años bisiestos.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="sexo-entidad">
+        <div class="section-heading">
+          <i class="bi bi-5-circle-fill"></i>
+          <h2>5 · Caracteres 11, 12 y 13 · Sexo y entidad de nacimiento</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-5">
+            <article class="concept-card h-100">
+              <div class="concept-icon">👤</div>
+              <h3>Carácter 11 · Sexo</h3>
+              <p>Se utiliza una sola letra:</p>
+              <ul>
+                <li><strong>H</strong> = Hombre</li>
+                <li><strong>M</strong> = Mujer</li>
+              </ul>
+              <p class="mb-0">
+                El valor debe corresponder con la información del documento probatorio.
+              </p>
+            </article>
+          </div>
+
+          <div class="col-lg-7">
+            <article class="concept-card h-100">
+              <div class="concept-icon">🗺️</div>
+              <h3>Caracteres 12 y 13 · Entidad federativa</h3>
+              <p>
+                Se utiliza un código de dos letras correspondiente al lugar de nacimiento.
+                Para un programa conviene manejar este catálogo como una tabla de búsqueda.
+              </p>
+              <p class="mb-0">
+                Ejemplos: <strong>BC</strong> = Baja California,
+                <strong>NL</strong> = Nuevo León,
+                <strong>YN</strong> = Yucatán,
+                <strong>NE</strong> = nacido en el extranjero.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="consonantes">
+        <div class="section-heading">
+          <i class="bi bi-6-circle-fill"></i>
+          <h2>6 · Caracteres 14 al 16 · Consonantes internas</h2>
+        </div>
+
+        <p>
+          Se utiliza la primera consonante interna que aparece después de la inicial de cada palabra significativa.
+          No se toma nuevamente la inicial.
+        </p>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Posición</th>
+                <th>Origen</th>
+                <th>Qué se busca</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>14</td>
+                <td>Primer apellido</td>
+                <td>Primera consonante interna.</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>Segundo apellido</td>
+                <td>Primera consonante interna.</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>Nombre significativo</td>
+                <td>Primera consonante interna.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="summary mt-4">
+          <div class="bulb">🔍</div>
+          <div>
+            <b>EJEMPLO</b><br>
+            Salgado → <strong>L</strong>,
+            Briseño → <strong>R</strong>,
+            Concepción → <strong>N</strong>.
+            Resultado: <span class="curp-example">LRN</span>.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="ultimos">
+        <div class="section-heading">
+          <i class="bi bi-7-circle-fill"></i>
+          <h2>7 · Caracteres 17 y 18 · Homonimia, siglo y verificación</h2>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <article class="concept-card h-100">
+              <div class="concept-icon">🔀</div>
+              <h3>Carácter 17</h3>
+              <p>
+                Es un carácter diferenciador utilizado para distinguir claves que pudieran coincidir
+                en sus primeros 16 caracteres y también está relacionado con el siglo de nacimiento.
+              </p>
+              <p class="mb-0">
+                No debe inventarse libremente; forma parte de las reglas de asignación administrativa.
+              </p>
+            </article>
+          </div>
+
+          <div class="col-lg-6">
+            <article class="concept-card h-100">
+              <div class="concept-icon">✓</div>
+              <h3>Carácter 18</h3>
+              <p>
+                Es el dígito verificador. Sirve para comprobar que la estructura alfanumérica de la CURP
+                mantiene consistencia con el procedimiento de validación correspondiente.
+              </p>
+              <p class="mb-0">
+                Para esta página interesa entender su función, no implementar el cálculo en código.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="excepciones">
+        <div class="section-heading">
+          <i class="bi bi-8-circle-fill"></i>
+          <h2>8 · Excepciones y reglas especiales</h2>
+        </div>
+
+        <div class="concept-grid">
+          <article class="concept-card">
+            <div class="concept-icon">👩</div>
+            <h3>María y José</h3>
+            <p>
+              Si María o José aparecen acompañados de otro nombre, puede utilizarse el siguiente
+              nombre significativo para ciertas posiciones.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">✖️</div>
+            <h3>Sin segundo apellido</h3>
+            <p>
+              Cuando falta el segundo apellido, se utiliza una <strong>X</strong> en la posición correspondiente.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🔎</div>
+            <h3>Sin vocal o consonante interna</h3>
+            <p>
+              Si no existe una vocal o consonante interna válida, también se utiliza <strong>X</strong>.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">🧹</div>
+            <h3>Partículas</h3>
+            <p>
+              En nombres y apellidos compuestos se deben considerar reglas para partículas,
+              preposiciones y conjunciones antes de elegir letras internas.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">⚠️</div>
+            <h3>Palabras inconvenientes</h3>
+            <p>
+              Si los primeros cuatro caracteres forman una palabra inconveniente,
+              se aplica una sustitución para evitarla.
+            </p>
+          </article>
+
+          <article class="concept-card">
+            <div class="concept-icon">Á</div>
+            <h3>Normalización</h3>
+            <p>
+              Para procesar nombres conviene trabajar en mayúsculas y controlar acentos,
+              caracteres especiales y la letra Ñ conforme a las reglas que se definan.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="proceso">
+        <div class="section-heading">
+          <i class="bi bi-9-circle-fill"></i>
+          <h2>9 · Proceso completo para construir una CURP de forma didáctica</h2>
+        </div>
+
+        <div class="curp-flow">
+          <article>
+            <div class="n">1</div>
+            <strong>Capturar</strong>
+            <p class="mb-0">Nombre, apellidos, fecha, sexo y lugar de nacimiento.</p>
+          </article>
+          <article>
+            <div class="n">2</div>
+            <strong>Normalizar</strong>
+            <p class="mb-0">Preparar nombres y apellidos para aplicar las reglas.</p>
+          </article>
+          <article>
+            <div class="n">3</div>
+            <strong>Generar 1–4</strong>
+            <p class="mb-0">Iniciales y vocal interna.</p>
+          </article>
+          <article>
+            <div class="n">4</div>
+            <strong>Generar 5–13</strong>
+            <p class="mb-0">Fecha, sexo y entidad.</p>
+          </article>
+          <article>
+            <div class="n">5</div>
+            <strong>Generar 14–16</strong>
+            <p class="mb-0">Consonantes internas.</p>
+          </article>
+          <article>
+            <div class="n">6</div>
+            <strong>Completar 17–18</strong>
+            <p class="mb-0">Caracteres de control y verificación.</p>
+          </article>
+        </div>
+
+        <div class="note-box mt-4">
+          <i class="bi bi-lightbulb-fill"></i>
+          <div>
+            Para desarrollar el programa conviene resolver cada bloque como un problema independiente:
+            una función para normalizar texto, otra para buscar vocal interna, otra para consonante interna,
+            otra para convertir la fecha y otra para localizar el código de la entidad.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="ejemplos">
+        <div class="section-heading">
+          <i class="bi bi-10-circle-fill"></i>
+          <h2>10 · Ejemplos de análisis</h2>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table topic-table align-middle">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Datos</th>
+                <th>Ejemplo didáctico</th>
+                <th>Qué practicar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Salgado Briseño Concepción</td>
+                <td>26/06/1956 · Mujer · DF</td>
+                <td class="practice-curp">SABC560626MDFLRN09</td>
+                <td>Separar los 18 caracteres por bloques.</td>
+              </tr>
+              <tr>
+                <td>Sánchez Santos Oscar</td>
+                <td>05/09/1970 · Hombre · DF</td>
+                <td class="practice-curp">SASO700905HDFNNS00</td>
+                <td>Iniciales y consonantes internas.</td>
+              </tr>
+              <tr>
+                <td>Flores Fermán Jovani Jair</td>
+                <td>06/11/2001 · Hombre · Puebla</td>
+                <td class="practice-curp">FOFJ011106HPLLRVA1</td>
+                <td>Fecha posterior al año 2000.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="warning-box mt-4">
+          <i class="bi bi-exclamation-triangle-fill"></i>
+          <div>
+            Los ejemplos de esta sección son didácticos. Para trámites reales siempre debe consultarse
+            la CURP oficial de la persona en los servicios correspondientes.
+          </div>
+        </div>
+      </section>
+
+      <section class="lesson-section" id="normativa">
+        <div class="section-heading">
+          <i class="bi bi-file-earmark-pdf-fill"></i>
+          <h2>11 · Consulta del Instructivo Normativo</h2>
+        </div>
+
+        <p>
+          Para ampliar las reglas, procedimientos y casos especiales de asignación,
+          consulta el documento normativo correspondiente.
+        </p>
+
+        <a class="btn btn-success me-2 mb-2"
+           href="https://www.gob.mx/cms/uploads/attachment/file/337251/Instructivo_Normativo_para_la_Asignacion_de_la_CURP.pdf"
+           target="_blank"
+           rel="noopener noreferrer">
+          <i class="bi bi-file-earmark-pdf-fill"></i> Consultar instructivo
+        </a>
+
+        <a class="btn btn-outline-success mb-2"
+           href="https://sidof.segob.gob.mx/notas/docFuente/5632965"
+           target="_blank"
+           rel="noopener noreferrer">
+          <i class="bi bi-box-arrow-up-right"></i> Publicación oficial
+        </a>
+      </section>
+
+      <section class="lesson-section" id="practica">
+        <div class="section-heading">
+          <i class="bi bi-patch-question-fill"></i>
+          <h2>12 · Práctica de repaso</h2>
         </div>
 
         <div class="quiz-grid">
-          <article class="quiz-card">
-            <h3>Pregunta 1</h3>
-            <p>Si una persona se llama <strong>María Fernanda López Ruiz</strong>, ¿qué letra debería considerarse normalmente para la <strong>posición 4</strong>?</p>
-            <details><summary>Ver respuesta</summary><p>La <strong>F</strong>, porque “María” es nombre común y se toma el siguiente nombre significativo.</p></details>
+          <article class="quiz-q">
+            <h3>1. Primeros cuatro caracteres</h3>
+            <p>
+              Para una persona llamada <strong>María Fernanda López Ruiz</strong>,
+              identifica qué elementos utilizarías para formar los primeros cuatro caracteres.
+            </p>
+            <details>
+              <summary>Ver orientación</summary>
+              <p>
+                Analiza inicial y vocal interna del primer apellido, inicial del segundo apellido
+                y aplica la regla de María/José para elegir el nombre significativo.
+              </p>
+            </details>
           </article>
-          <article class="quiz-card">
-            <h3>Pregunta 2</h3>
-            <p>¿Qué formato deben llevar las posiciones <strong>5 a 10</strong> de la CURP?</p>
-            <details><summary>Ver respuesta</summary><p><strong>AAMMDD</strong> (año, mes y día con dos dígitos).</p></details>
+
+          <article class="quiz-q">
+            <h3>2. Fecha</h3>
+            <p>
+              ¿Cómo representarías en las posiciones 5 a 10 la fecha <strong>29/02/2004</strong>?
+            </p>
+            <details>
+              <summary>Ver respuesta</summary>
+              <p><strong>040229</strong>.</p>
+            </details>
           </article>
-          <article class="quiz-card">
-            <h3>Pregunta 3</h3>
-            <p>Si una persona nació en <strong>Baja California</strong>, ¿qué código se coloca en las posiciones <strong>12 y 13</strong>?</p>
-            <details><summary>Ver respuesta</summary><p><strong>BC</strong>.</p></details>
+
+          <article class="quiz-q">
+            <h3>3. Entidad</h3>
+            <p>
+              Si la persona nació en <strong>Baja California</strong>, ¿qué código utilizarías
+              para las posiciones 12 y 13?
+            </p>
+            <details>
+              <summary>Ver respuesta</summary>
+              <p><strong>BC</strong>.</p>
+            </details>
           </article>
-          <article class="quiz-card">
-            <h3>Pregunta 4</h3>
-            <p>¿Qué se hace si no existe consonante interna útil para una de las posiciones 14, 15 o 16?</p>
-            <details><summary>Ver respuesta</summary><p>Se utiliza <strong>X</strong>.</p></details>
+
+          <article class="quiz-q">
+            <h3>4. Consonante inexistente</h3>
+            <p>
+              ¿Qué carácter utilizarías si no existe una consonante interna válida?
+            </p>
+            <details>
+              <summary>Ver respuesta</summary>
+              <p><strong>X</strong>.</p>
+            </details>
           </article>
-          <article class="quiz-card">
-            <h3>Pregunta 5</h3>
-            <p>¿Cuál es la función principal del <strong>carácter 18</strong>?</p>
-            <details><summary>Ver respuesta</summary><p>Es el <strong>dígito verificador</strong> y sirve para validar matemáticamente la consistencia de la CURP.</p></details>
+
+          <article class="quiz-q">
+            <h3>5. Análisis completo</h3>
+            <p>
+              Toma el ejemplo <span class="practice-curp">SABC560626MDFLRN09</span>
+              y separa sus siete bloques: 1–4, 5–10, 11, 12–13, 14–16, 17 y 18.
+            </p>
+            <details>
+              <summary>Ver respuesta</summary>
+              <p>
+                <strong>SABC | 560626 | M | DF | LRN | 0 | 9</strong>
+              </p>
+            </details>
           </article>
         </div>
       </section>
 
-      <section class="final-note">
-        <p>
-          <strong>Conclusión:</strong> la CURP es un excelente tema para practicar <strong>manejo de cadenas</strong>,
-          <strong>validación de datos</strong>, <strong>arreglos</strong>, <strong>tablas de búsqueda</strong>,
-          <strong>funciones</strong> y <strong>descomposición del problema</strong> en Programación Estructurada.
-        </p>
-      </section>
+      <div class="summary final-summary">
+        <div class="bulb">🎯</div>
+        <div>
+          <b>EN RESUMEN</b><br>
+          Para entender una CURP conviene verla como una cadena de 18 posiciones:
+          las primeras se forman con nombres y apellidos, después se incorpora la fecha,
+          el sexo, la entidad de nacimiento, consonantes internas y finalmente caracteres de control.
+          El reto de programación está en aplicar correctamente las reglas y validar cada dato antes
+          de formar la cadena final.
+        </div>
+      </div>
+
     </div>
   </main>
 
   <div id="site-footer"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../scripts/layout.js"></script>
-  <script src="../scripts/app.js"></script>
-  <script>
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = document.getElementById(btn.dataset.copyTarget);
-        if (!target) return;
-        navigator.clipboard.writeText(target.innerText).then(() => {
-          const original = btn.textContent;
-          btn.textContent = '¡Copiado!';
-          setTimeout(() => btn.textContent = original, 1400);
-        });
-      });
-    });
-  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
 </body>
 </html>
