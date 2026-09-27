@@ -14,9 +14,288 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+
+  <style>
+    /* =========================================================
+       MEJORAR HTML INFOGRAFÍAS · UNIFORMIDAD UABC 2026
+       ========================================================= */
+    .pe-infografias-uniforme{
+      --uabc-green:#006847;
+      --uabc-green-dark:#07543b;
+      --uabc-green-deep:#064833;
+      --uabc-gold:#f2b705;
+      --uabc-mint:#f3faf7;
+      --uabc-border:#cfe6dc;
+      --text-main:#14382f;
+      --text-muted:#5c7169;
+    }
+
+    .pe-infografias-uniforme .page-content-card.content{
+      padding:clamp(18px,3vw,40px);
+    }
+
+    .pe-infografias-uniforme .gallery-intro{
+      position:relative;
+      overflow:hidden;
+      margin:0 0 26px;
+      padding:22px 24px;
+      background:linear-gradient(135deg,#f3faf7 0%,#ffffff 58%,#fff8df 100%);
+      border:1px solid var(--uabc-border);
+      border-left:5px solid var(--uabc-gold);
+      border-radius:18px;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    .pe-infografias-uniforme .gallery-intro::after{
+      content:"";
+      position:absolute;
+      right:-38px;
+      top:-38px;
+      width:130px;
+      height:130px;
+      border-radius:50%;
+      background:rgba(242,183,5,.10);
+      pointer-events:none;
+    }
+
+    .pe-infografias-uniforme .gallery-intro h2{
+      position:relative;
+      z-index:1;
+      margin:0 0 .55rem;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.35rem,2.2vw,1.8rem);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+
+    .pe-infografias-uniforme .gallery-intro p{
+      position:relative;
+      z-index:1;
+      margin:0;
+      color:#45635a;
+      line-height:1.7;
+      font-size:1rem;
+    }
+
+    .pe-infografias-uniforme .gallery-intro p + p{
+      margin-top:.65rem;
+    }
+
+    .pe-infografias-uniforme .infografia-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .pe-infografias-uniforme .infografia-card{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      overflow:hidden;
+      height:100%;
+      background:#fff;
+      border:1px solid #d7e8e0;
+      border-radius:18px;
+      box-shadow:0 10px 28px rgba(0,82,57,.08);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .pe-infografias-uniforme .infografia-card:hover{
+      transform:translateY(-3px);
+      border-color:#afd4c3;
+      box-shadow:0 16px 34px rgba(0,82,57,.12);
+    }
+
+    .pe-infografias-uniforme .infografia-card.destacada{
+      grid-column:1 / -1;
+      border-top:5px solid var(--uabc-gold);
+    }
+
+    .pe-infografias-uniforme .infografia-thumb{
+      display:block;
+      width:100%;
+      aspect-ratio:1 / 1;
+      object-fit:contain;
+      object-position:center;
+      padding:14px;
+      background:linear-gradient(180deg,#f6fbf8 0%,#edf7f2 100%);
+      border:0;
+      border-bottom:1px solid #e0ece6;
+      cursor:zoom-in;
+      transition:transform .18s ease;
+    }
+
+    .pe-infografias-uniforme .infografia-card:hover .infografia-thumb{
+      transform:scale(1.012);
+    }
+
+    .pe-infografias-uniforme .infografia-info{
+      display:flex;
+      flex-direction:column;
+      flex:1 1 auto;
+      gap:.8rem;
+      padding:22px 24px 24px;
+    }
+
+    .pe-infografias-uniforme .infografia-info h3{
+      margin:0;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.08rem,1.55vw,1.32rem);
+      font-weight:900;
+      line-height:1.3;
+      letter-spacing:-.01em;
+    }
+
+    .pe-infografias-uniforme .infografia-info p{
+      margin:0;
+      color:var(--text-muted);
+      font-size:.98rem;
+      line-height:1.68;
+    }
+
+    .pe-infografias-uniforme .ver-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      width:max-content;
+      min-height:44px;
+      margin-top:auto;
+      padding:.76rem 1.05rem;
+      border:1px solid var(--uabc-green);
+      border-radius:12px;
+      background:linear-gradient(180deg,#087454 0%,#006847 100%);
+      color:#fff;
+      font-weight:850;
+      font-size:.95rem;
+      line-height:1;
+      cursor:pointer;
+      box-shadow:0 5px 14px rgba(0,104,71,.18);
+      transition:background .16s ease, transform .16s ease, box-shadow .16s ease;
+    }
+
+    .pe-infografias-uniforme .ver-btn:hover,
+    .pe-infografias-uniforme .ver-btn:focus-visible{
+      background:var(--uabc-green-dark);
+      border-color:var(--uabc-green-dark);
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(0,104,71,.24);
+      outline:none;
+    }
+
+    .pe-infografias-uniforme .summary{
+      margin-top:26px;
+      padding:18px 20px;
+      border:1px solid #d3e7de;
+      border-left:5px solid var(--uabc-gold);
+      border-radius:16px;
+      background:#f7fcf9;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    .pe-infografias-uniforme .page-navigation{
+      margin:26px 0 4px;
+      padding:.85rem .95rem;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      background:#f1faf6;
+      border:1px solid var(--uabc-border);
+      border-radius:14px;
+      box-shadow:0 5px 16px rgba(0,70,45,.06);
+    }
+
+    .pe-infografias-uniforme .page-nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      width:max-content;
+      min-height:42px;
+      padding:.68rem .95rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.previous,
+    .pe-infografias-uniforme .page-nav-btn.next{
+      background:var(--uabc-green);
+      color:#fff;
+      box-shadow:0 4px 12px rgba(0,104,71,.14);
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.previous{justify-self:start}
+    .pe-infografias-uniforme .page-nav-btn.next{justify-self:end}
+
+    .pe-infografias-uniforme .page-nav-btn.home{
+      justify-self:center;
+      background:#fff;
+      color:var(--uabc-green);
+      border:1px solid #b9dccd;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.disabled{
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    @media (max-width:767.98px){
+      .pe-infografias-uniforme .page-content-card.content{padding:14px}
+      .pe-infografias-uniforme .infografia-grid{grid-template-columns:1fr;gap:18px}
+      .pe-infografias-uniforme .infografia-card.destacada{grid-column:auto}
+      .pe-infografias-uniforme .infografia-thumb{padding:10px}
+      .pe-infografias-uniforme .infografia-info{padding:18px 18px 19px;gap:.72rem}
+      .pe-infografias-uniforme .infografia-info p{font-size:.95rem}
+      .pe-infografias-uniforme .ver-btn{width:100%;min-height:46px}
+    }
+
+    @media (max-width:575.98px){
+      .pe-infografias-uniforme .gallery-intro{padding:17px;border-radius:14px}
+      .pe-infografias-uniforme .infografia-card{border-radius:15px}
+      .pe-infografias-uniforme .page-navigation{
+        grid-template-columns:1fr 1fr;
+        gap:.7rem;
+      }
+      .pe-infografias-uniforme .page-nav-btn{
+        width:100%;
+        justify-content:center !important;
+      }
+      .pe-infografias-uniforme .page-nav-btn.home{
+        grid-column:1/-1;
+        grid-row:1;
+      }
+      .pe-infografias-uniforme .page-nav-btn.previous{
+        grid-column:1;
+        grid-row:2;
+      }
+      .pe-infografias-uniforme .page-nav-btn.next{
+        grid-column:2;
+        grid-row:2;
+      }
+    }
+  </style>
+
+
+  <style>
+    .pe-infografias-uniforme .infografia-grid-bootstrap > [class*="col-"]{
+      display:flex;
+    }
+    .pe-infografias-uniforme .infografia-grid-bootstrap .infografia-card{
+      width:100%;
+    }
+  </style>
+
 </head>
 
-<body class="pe-home pe-course-page page-infografias-pilas page-infografias-colas">
+<body class="pe-home pe-course-page page-infografias-pilas page-infografias-colas pe-infografias-uniforme">
 
   <div id="site-header"></div>
 
@@ -63,13 +342,13 @@
 
   <article class="infografia-card destacada">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_ciclos.png"
+         src="../images/infografias/miniaturas/mini_infografia_ciclos.webp"
          alt="Infografía general de ciclos en C"
          loading="lazy"
          tabindex="0"
          data-infografia
          data-src="../images/infografias/infografia_ciclos.png"
-         data-title="Ciclos en C · Conceptos fundamentales">
+         data-title="Ciclos en C · Conceptos fundamentales" decoding="async">
     <div class="infografia-info">
       <h3>1 · Ciclos en C · Conceptos fundamentales</h3>
       <p>
@@ -80,19 +359,19 @@
       <button class="ver-btn" type="button"
               data-infografia
               data-src="../images/infografias/infografia_ciclos.png"
-              data-title="Ciclos en C · Conceptos fundamentales">🔍 Ver y ampliar</button>
+              data-title="Ciclos en C · Conceptos fundamentales"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_ciclos_determinados.png"
+         src="../images/infografias/miniaturas/mini_infografia_ciclos_determinados.webp"
          alt="Infografía de ciclos determinados en C"
          loading="lazy"
          tabindex="0"
          data-infografia
          data-src="../images/infografias/infografia_ciclos_determinados.png"
-         data-title="Ciclos Determinados en C">
+         data-title="Ciclos Determinados en C" decoding="async">
     <div class="infografia-info">
       <h3>2 · Ciclos Determinados en C</h3>
       <p>
@@ -103,19 +382,19 @@
       <button class="ver-btn" type="button"
               data-infografia
               data-src="../images/infografias/infografia_ciclos_determinados.png"
-              data-title="Ciclos Determinados en C">🔍 Ver y ampliar</button>
+              data-title="Ciclos Determinados en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_ciclos_indeterminados.png"
+         src="../images/infografias/miniaturas/mini_infografia_ciclos_indeterminados.webp"
          alt="Infografía de ciclos indeterminados en C"
          loading="lazy"
          tabindex="0"
          data-infografia
          data-src="../images/infografias/infografia_ciclos_indeterminados.png"
-         data-title="Ciclos Indeterminados en C">
+         data-title="Ciclos Indeterminados en C" decoding="async">
     <div class="infografia-info">
       <h3>3 · Ciclos Indeterminados en C</h3>
       <p>
@@ -126,19 +405,19 @@
       <button class="ver-btn" type="button"
               data-infografia
               data-src="../images/infografias/infografia_ciclos_indeterminados.png"
-              data-title="Ciclos Indeterminados en C">🔍 Ver y ampliar</button>
+              data-title="Ciclos Indeterminados en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_ciclos_mixtos.png"
+         src="../images/infografias/miniaturas/mini_infografia_ciclos_mixtos.webp"
          alt="Infografía de ciclos mixtos en C"
          loading="lazy"
          tabindex="0"
          data-infografia
          data-src="../images/infografias/infografia_ciclos_mixtos.png"
-         data-title="Ciclos Mixtos en C">
+         data-title="Ciclos Mixtos en C" decoding="async">
     <div class="infografia-info">
       <h3>4 · Ciclos Mixtos en C</h3>
       <p>
@@ -149,7 +428,7 @@
       <button class="ver-btn" type="button"
               data-infografia
               data-src="../images/infografias/infografia_ciclos_mixtos.png"
-              data-title="Ciclos Mixtos en C">🔍 Ver y ampliar</button>
+              data-title="Ciclos Mixtos en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
@@ -165,6 +444,13 @@
   </div>
 </div>
     </div>
+  
+      <nav class="page-navigation" aria-label="Navegación entre páginas de infografías">
+        <a class="page-nav-btn previous" href="infografias_seleccion.html"><i class="bi bi-arrow-left"></i><span>Anterior</span></a>
+        <a class="page-nav-btn home" href="../index.html"><i class="bi bi-house-door-fill"></i><span>Inicio</span></a>
+        <a class="page-nav-btn next" href="infografias_funciones.html"><span>Siguiente</span><i class="bi bi-arrow-right"></i></a>
+      </nav>
+
   </main>
 
   <div id="site-footer"></div>

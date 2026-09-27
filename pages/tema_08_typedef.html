@@ -14,6 +14,362 @@
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
   <link rel="stylesheet" href="../styles/pages/tema_08_typedef.css">
   <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
+
+  <style>
+    /* =========================================================
+       UNIFORMIDAD HTML · TEMA 8
+       ========================================================= */
+
+    .page-tema-08 .page-content-card.content{
+      padding:clamp(24px,3vw,44px);
+    }
+
+    /* PROPÓSITO */
+    .page-tema-08 .purpose-box{
+      margin:0 0 18px;
+      padding:14px 18px;
+      background:#fff7df;
+      border:1px solid #f2df9f;
+      border-left:4px solid #d9a300;
+      border-radius:8px;
+      color:#17382f;
+      line-height:1.55;
+      box-shadow:none;
+    }
+
+    .page-tema-08 .purpose-box b{color:#0d3f31}
+    .page-tema-08 .purpose-box code{
+      background:transparent;
+      color:#b42318;
+      padding:0;
+    }
+
+    /* MENÚ INTERNO TIPO CHIPS */
+    .page-tema-08 .topic-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      align-items:center;
+      margin:0 0 24px;
+      padding:10px 12px;
+      background:#f7fcf9;
+      border:1px solid #cfe6dc;
+      border-radius:12px;
+      box-shadow:0 3px 12px rgba(0,70,45,.05);
+    }
+
+    .page-tema-08 .topic-nav a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      padding:.48rem .8rem;
+      border:1px solid #c9ded5;
+      border-radius:999px;
+      background:#fff;
+      color:#005b40;
+      text-decoration:none;
+      font-weight:800;
+      font-size:.9rem;
+      line-height:1;
+      box-shadow:0 2px 7px rgba(0,70,45,.06);
+      transition:.15s ease;
+    }
+
+    .page-tema-08 .topic-nav a:hover,
+    .page-tema-08 .topic-nav a:focus{
+      background:#006847;
+      border-color:#006847;
+      color:#fff;
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    /* FRANJA VERDE EN CADA APARTADO */
+    .page-tema-08 .lesson-section > .section-heading{
+      display:flex;
+      align-items:center;
+      gap:.55rem;
+      width:100%;
+      margin:0 0 16px;
+      padding:10px 16px;
+      background:linear-gradient(90deg,#00583f 0%,#006847 100%);
+      color:#fff;
+      border-left:5px solid #f2b705;
+      border-radius:8px;
+      box-shadow:0 4px 12px rgba(0,75,52,.12);
+    }
+
+    .page-tema-08 .lesson-section > .section-heading i{
+      color:#fff;
+      font-size:1.05rem;
+      line-height:1;
+      flex:0 0 auto;
+    }
+
+    .page-tema-08 .lesson-section > .section-heading h2{
+      margin:0;
+      color:#fff;
+      font-size:1rem;
+      font-weight:800;
+      line-height:1.25;
+    }
+
+    .page-tema-08 .lesson-section > .section-heading h2 code{
+      color:#fff;
+      background:transparent;
+      padding:0;
+    }
+
+    .page-tema-08 .lesson-section{margin-top:30px}
+
+    /* TARJETAS E ICONOS */
+    .page-tema-08 .concept-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .page-tema-08 .concept-card{
+      height:100%;
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:.35rem;
+      padding:18px;
+      background:#fff;
+      border:1px solid #d8e8e1;
+      border-radius:14px;
+      box-shadow:0 4px 14px rgba(0,70,45,.05);
+    }
+
+    .page-tema-08 .concept-icon,
+    .page-tema-08 .analogy-icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      margin:0 0 .45rem 0;
+      border-radius:12px;
+      background:#eef8f3;
+      border:1px solid #d5e9df;
+      font-size:1.7rem;
+      line-height:1;
+      flex:0 0 auto;
+    }
+
+    .page-tema-08 .concept-card h3{
+      margin:.1rem 0 .25rem;
+      line-height:1.2;
+    }
+
+    .page-tema-08 .concept-card p{
+      margin:0;
+      line-height:1.55;
+    }
+
+    .page-tema-08 .analogy-card{
+      display:grid;
+      grid-template-columns:auto 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    /* DOS COLUMNAS */
+    .page-tema-08 .two-col{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:18px;
+      align-items:stretch;
+    }
+
+    /* EJEMPLOS */
+    .page-tema-08 .practice-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    /* QUIZ */
+    .page-tema-08 .quiz-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .page-tema-08 .quiz-q{
+      background:#fff;
+      border:1px solid #d8e8e1;
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 4px 14px rgba(0,70,45,.05);
+    }
+
+    .page-tema-08 .quiz-q h3{
+      margin:0 0 .85rem;
+      color:#0b5139;
+      font-size:1.03rem;
+      font-weight:800;
+      line-height:1.35;
+    }
+
+    .page-tema-08 .quiz-q > button{
+      display:block;
+      width:100%;
+      margin:.55rem 0;
+      padding:.72rem .85rem;
+      text-align:left;
+      border:1px solid #cfe1d8;
+      border-radius:10px;
+      background:#fff;
+      color:#173f34;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+
+    .page-tema-08 .quiz-q > button:hover{
+      background:#f5fbf8;
+      border-color:#78b49c;
+    }
+
+    .page-tema-08 .quiz-q > button.is-correct{
+      background:#e8f7ee;
+      border-color:#2f9b64;
+      color:#0d633e;
+    }
+
+    .page-tema-08 .quiz-q > button.is-wrong{
+      background:#fff0f0;
+      border-color:#d76b6b;
+      color:#9c2d2d;
+    }
+
+    .page-tema-08 .quiz-feedback{
+      min-height:0;
+      margin-top:.75rem;
+      padding:.7rem .85rem;
+      border-radius:10px;
+      font-weight:800;
+    }
+
+    .page-tema-08 .quiz-feedback:empty{display:none}
+
+    .page-tema-08 .quiz-feedback.correct{
+      display:block;
+      background:#e8f7ee;
+      color:#0d633e;
+      border:1px solid #bfe1cc;
+    }
+
+    .page-tema-08 .quiz-feedback.wrong{
+      display:block;
+      background:#fff1f1;
+      color:#9c2d2d;
+      border:1px solid #edc2c2;
+    }
+
+    /* NAVEGACIÓN INFERIOR */
+    .page-tema-08 .page-navigation{
+      margin:1.5rem 0 2rem;
+      padding:.7rem .85rem;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      background:#f1faf6;
+      border:1px solid #cfe6dc;
+      border-radius:12px;
+      box-shadow:0 4px 14px rgba(0,70,45,.06);
+    }
+
+    .page-tema-08 .page-nav-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      width:max-content;
+      text-decoration:none;
+      border-radius:9px;
+      padding:.62rem .9rem;
+      font-weight:800;
+    }
+
+    .page-tema-08 .page-nav-btn.previous,
+    .page-tema-08 .page-nav-btn.next{
+      background:#006847;
+      color:#fff;
+    }
+
+    .page-tema-08 .page-nav-btn.previous{justify-self:start}
+    .page-tema-08 .page-nav-btn.next{justify-self:end}
+
+    .page-tema-08 .page-nav-btn.home{
+      justify-self:center;
+      background:#fff;
+      color:#006847;
+      border:1px solid #b9dccd;
+    }
+
+    .page-tema-08 .page-nav-btn:hover{
+      transform:translateY(-1px);
+      filter:brightness(.98);
+    }
+
+    @media (max-width:1199.98px){
+      .page-tema-08 .concept-grid{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:767.98px){
+      .page-tema-08 .quiz-grid,
+      .page-tema-08 .two-col,
+      .page-tema-08 .practice-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:575.98px){
+      .page-tema-08 .concept-grid{grid-template-columns:1fr}
+
+      .page-tema-08 .topic-nav{
+        gap:.45rem;
+        padding:9px;
+      }
+
+      .page-tema-08 .topic-nav a{
+        font-size:.84rem;
+        padding:.44rem .68rem;
+      }
+
+      .page-tema-08 .lesson-section > .section-heading{
+        padding:9px 12px;
+      }
+
+      .page-tema-08 .page-navigation{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .page-tema-08 .page-nav-btn.home{
+        grid-column:1 / -1;
+        grid-row:1;
+      }
+
+      .page-tema-08 .page-nav-btn.previous{
+        grid-column:1;
+        grid-row:2;
+      }
+
+      .page-tema-08 .page-nav-btn.next{
+        grid-column:2;
+        grid-row:2;
+      }
+    }
+  </style>
+
 </head>
 
 <body class="pe-home pe-course-page page-tema-08">
@@ -58,6 +414,13 @@
 
   <main class="container-fluid pe-shell page-content-shell">
     <div class="page-content-card content">
+
+      <div class="note purpose-box">
+        <b>Propósito:</b> comprender cómo <code>typedef</code> permite crear alias para tipos existentes,
+        mejorar la legibilidad y el mantenimiento del código, aplicar una convención de nombres,
+        simplificar estructuras y organizar definiciones reutilizables en archivos de cabecera.
+      </div>
+
 
       <section class="topic-intro">
         <div>
@@ -569,6 +932,25 @@ Tprecio costo = 149.50f;</code></pre>
       </div>
 
     </div>
+
+
+    <nav class="page-navigation" aria-label="Navegación entre temas">
+      <a class="page-nav-btn previous" href="tema_07_structs.html">
+        <i class="bi bi-arrow-left"></i>
+        Anterior
+      </a>
+
+      <a class="page-nav-btn home" href="../index.html">
+        <i class="bi bi-house-door"></i>
+        Inicio
+      </a>
+
+      <a class="page-nav-btn next" href="tema_09_recursion.html">
+        Siguiente
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </nav>
+
   </main>
 
   <!-- PÁGINA MAESTRA · FOOTER -->
@@ -578,5 +960,52 @@ Tprecio costo = 149.50f;</code></pre>
   <script src="../scripts/tema_08_typedef.js" defer></script>
   <script src="../scripts/layout.js" defer></script>
   <script src="../scripts/app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".quiz-q[data-answer]").forEach(function (question) {
+        const correctAnswer = question.dataset.answer;
+        const buttons = question.querySelectorAll("button[data-opt]");
+        const feedback = question.querySelector(".quiz-feedback");
+
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            buttons.forEach(function (btn) {
+              btn.classList.remove("is-correct", "is-wrong");
+            });
+
+            if (button.dataset.opt === correctAnswer) {
+              button.classList.add("is-correct");
+              feedback.textContent = "✓ Correcto";
+              feedback.className = "quiz-feedback correct";
+            } else {
+              button.classList.add("is-wrong");
+              feedback.textContent = "✗ Respuesta incorrecta. Revisa el tema y vuelve a intentarlo.";
+              feedback.className = "quiz-feedback wrong";
+            }
+          });
+        });
+      });
+
+      document.querySelectorAll(".copy-btn[data-copy-target]").forEach(function (button) {
+        button.addEventListener("click", async function () {
+          const target = document.getElementById(button.dataset.copyTarget);
+          if (!target) return;
+
+          try {
+            await navigator.clipboard.writeText(target.innerText);
+            const oldText = button.textContent;
+            button.textContent = "Copiado";
+            setTimeout(function () {
+              button.textContent = oldText;
+            }, 1200);
+          } catch (e) {
+            /* El script propio del tema puede resolver el copiado en navegadores antiguos. */
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>

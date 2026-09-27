@@ -14,9 +14,627 @@
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+
+  <style>
+    /* =========================================================
+       UNIFORMIDAD HTML · INFOGRAFÍAS DE FUNCIONES · REDISEÑO 2026
+       ========================================================= */
+
+    .page-infografias-funciones{
+      --uabc-green:#006847;
+      --uabc-green-dark:#07543b;
+      --uabc-green-deep:#064833;
+      --uabc-gold:#f2b705;
+      --uabc-mint:#f3faf7;
+      --uabc-border:#cfe6dc;
+      --text-main:#14382f;
+      --text-muted:#5c7169;
+      --card-shadow:0 10px 28px rgba(0,82,57,.08);
+    }
+
+    .page-infografias-funciones .page-content-card.content{
+      padding:clamp(18px,3vw,40px);
+    }
+
+    /* INTRODUCCIÓN */
+    .page-infografias-funciones .gallery-intro{
+      position:relative;
+      margin:0 0 26px;
+      padding:22px 24px;
+      overflow:hidden;
+      background:
+        linear-gradient(135deg,#f3faf7 0%,#ffffff 58%,#fff8df 100%);
+      border:1px solid var(--uabc-border);
+      border-left:5px solid var(--uabc-gold);
+      border-radius:18px;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    .page-infografias-funciones .gallery-intro::after{
+      content:"";
+      position:absolute;
+      right:-38px;
+      top:-38px;
+      width:130px;
+      height:130px;
+      border-radius:50%;
+      background:rgba(242,183,5,.10);
+      pointer-events:none;
+    }
+
+    .page-infografias-funciones .gallery-intro h2{
+      position:relative;
+      z-index:1;
+      margin:0 0 .55rem;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.35rem,2.2vw,1.8rem);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+
+    .page-infografias-funciones .gallery-intro p{
+      position:relative;
+      z-index:1;
+      max-width:900px;
+      margin:0;
+      color:#45635a;
+      font-size:1rem;
+      line-height:1.7;
+    }
+
+    /* GALERÍA */
+    .page-infografias-funciones .infografia-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .page-infografias-funciones .infografia-card{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid #d7e8e0;
+      border-radius:18px;
+      box-shadow:var(--card-shadow);
+      transition:
+        transform .18s ease,
+        box-shadow .18s ease,
+        border-color .18s ease;
+    }
+
+    .page-infografias-funciones .infografia-card:hover{
+      transform:translateY(-3px);
+      border-color:#afd4c3;
+      box-shadow:0 16px 34px rgba(0,82,57,.12);
+    }
+
+    /* Primera tarjeta destacada */
+    .page-infografias-funciones .infografia-card.destacada{
+      grid-column:1 / -1;
+      display:grid;
+      grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);
+      border-top:5px solid var(--uabc-gold);
+    }
+
+    /* Contenedor visual de miniatura:
+       las infografías son cuadradas, por eso NO se recortan */
+    .page-infografias-funciones .infografia-thumb{
+      display:block;
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:contain;
+      object-position:center;
+      padding:14px;
+      background:
+        linear-gradient(180deg,#f6fbf8 0%,#edf7f2 100%);
+      border:0;
+      border-bottom:1px solid #e0ece6;
+      cursor:zoom-in;
+      transition:transform .18s ease;
+    }
+
+    .page-infografias-funciones .infografia-card:hover .infografia-thumb{
+      transform:scale(1.012);
+    }
+
+    .page-infografias-funciones .infografia-card.destacada .infografia-thumb{
+      height:100%;
+      min-height:100%;
+      aspect-ratio:1/1;
+      border-bottom:0;
+      border-right:1px solid #e0ece6;
+    }
+
+    /* TEXTO */
+    .page-infografias-funciones .infografia-info{
+      display:flex;
+      flex-direction:column;
+      flex:1 1 auto;
+      gap:.8rem;
+      padding:22px 24px 24px;
+    }
+
+    .page-infografias-funciones .infografia-info h3{
+      margin:0;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.08rem,1.55vw,1.32rem);
+      font-weight:900;
+      line-height:1.3;
+      letter-spacing:-.01em;
+    }
+
+    .page-infografias-funciones .infografia-info p{
+      margin:0;
+      color:var(--text-muted);
+      font-size:.98rem;
+      line-height:1.68;
+    }
+
+    /* BOTÓN PRINCIPAL */
+    .page-infografias-funciones .ver-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      width:max-content;
+      min-height:44px;
+      margin-top:auto;
+      padding:.76rem 1.05rem;
+      border:1px solid var(--uabc-green);
+      border-radius:12px;
+      background:linear-gradient(180deg,#087454 0%,#006847 100%);
+      color:#fff;
+      font-weight:850;
+      font-size:.95rem;
+      line-height:1;
+      cursor:pointer;
+      box-shadow:0 5px 14px rgba(0,104,71,.18);
+      transition:
+        background .16s ease,
+        transform .16s ease,
+        box-shadow .16s ease;
+    }
+
+    .page-infografias-funciones .ver-btn i{
+      font-size:1rem;
+    }
+
+    .page-infografias-funciones .ver-btn:hover,
+    .page-infografias-funciones .ver-btn:focus-visible{
+      background:var(--uabc-green-dark);
+      border-color:var(--uabc-green-dark);
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(0,104,71,.24);
+      outline:none;
+    }
+
+    /* RESUMEN */
+    .page-infografias-funciones .summary{
+      margin-top:26px;
+      padding:18px 20px;
+      border:1px solid #d3e7de;
+      border-left:5px solid var(--uabc-gold);
+      border-radius:16px;
+      background:#f7fcf9;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    /* NAVEGACIÓN INFERIOR */
+    .page-infografias-funciones .page-navigation{
+      margin:26px 0 4px;
+      padding:.85rem .95rem;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      background:#f1faf6;
+      border:1px solid var(--uabc-border);
+      border-radius:14px;
+      box-shadow:0 5px 16px rgba(0,70,45,.06);
+    }
+
+    .page-infografias-funciones .page-nav-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:.5rem;
+      width:max-content;
+      min-height:42px;
+      padding:.68rem .95rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+
+    .page-infografias-funciones .page-nav-btn:hover{
+      transform:translateY(-1px);
+    }
+
+    .page-infografias-funciones .page-nav-btn.previous,
+    .page-infografias-funciones .page-nav-btn.next{
+      background:var(--uabc-green);
+      color:#fff;
+      box-shadow:0 4px 12px rgba(0,104,71,.14);
+    }
+
+    .page-infografias-funciones .page-nav-btn.previous{justify-self:start}
+    .page-infografias-funciones .page-nav-btn.next{justify-self:end}
+
+    .page-infografias-funciones .page-nav-btn.home{
+      justify-self:center;
+      background:#fff;
+      color:var(--uabc-green);
+      border:1px solid #b9dccd;
+    }
+
+    /* TABLET */
+    @media (max-width:991.98px){
+      .page-infografias-funciones .infografia-card.destacada{
+        grid-template-columns:1fr;
+      }
+
+      .page-infografias-funciones .infografia-card.destacada .infografia-thumb{
+        height:auto;
+        min-height:0;
+        border-right:0;
+        border-bottom:1px solid #e0ece6;
+      }
+    }
+
+    /* MÓVIL */
+    @media (max-width:767.98px){
+      .page-infografias-funciones .page-content-card.content{
+        padding:14px;
+      }
+
+      .page-infografias-funciones .infografia-grid{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+
+      .page-infografias-funciones .infografia-card.destacada{
+        grid-column:auto;
+      }
+
+      .page-infografias-funciones .infografia-thumb{
+        padding:10px;
+      }
+
+      .page-infografias-funciones .infografia-info{
+        padding:18px 18px 19px;
+        gap:.72rem;
+      }
+
+      .page-infografias-funciones .infografia-info p{
+        font-size:.95rem;
+      }
+
+      .page-infografias-funciones .ver-btn{
+        width:100%;
+        min-height:46px;
+      }
+    }
+
+    @media (max-width:575.98px){
+      .page-infografias-funciones .gallery-intro{
+        padding:17px;
+        border-radius:14px;
+      }
+
+      .page-infografias-funciones .infografia-card{
+        border-radius:15px;
+      }
+
+      .page-infografias-funciones .page-navigation{
+        grid-template-columns:1fr 1fr;
+        gap:.7rem;
+      }
+
+      .page-infografias-funciones .page-nav-btn{
+        width:100%;
+        justify-content:center !important;
+      }
+
+      .page-infografias-funciones .page-nav-btn.home{
+        grid-column:1 / -1;
+        grid-row:1;
+      }
+
+      .page-infografias-funciones .page-nav-btn.previous{
+        grid-column:1;
+        grid-row:2;
+      }
+
+      .page-infografias-funciones .page-nav-btn.next{
+        grid-column:2;
+        grid-row:2;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* =========================================================
+       MEJORAR HTML INFOGRAFÍAS · UNIFORMIDAD UABC 2026
+       ========================================================= */
+    .pe-infografias-uniforme{
+      --uabc-green:#006847;
+      --uabc-green-dark:#07543b;
+      --uabc-green-deep:#064833;
+      --uabc-gold:#f2b705;
+      --uabc-mint:#f3faf7;
+      --uabc-border:#cfe6dc;
+      --text-main:#14382f;
+      --text-muted:#5c7169;
+    }
+
+    .pe-infografias-uniforme .page-content-card.content,
+    .pe-infografias-uniforme .gallery-panel{
+      padding:clamp(18px,3vw,40px);
+      background:#fff;
+      border:1px solid #d7e8e0;
+      border-radius:20px;
+      box-shadow:0 10px 30px rgba(0,82,57,.07);
+    }
+
+    .pe-infografias-uniforme .gallery-intro,
+    .pe-infografias-uniforme .gallery-intro-modern{
+      position:relative;
+      overflow:hidden;
+      margin:0 0 26px;
+      padding:22px 24px;
+      background:linear-gradient(135deg,#f3faf7 0%,#ffffff 58%,#fff8df 100%);
+      border:1px solid var(--uabc-border);
+      border-left:5px solid var(--uabc-gold);
+      border-radius:18px;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    .pe-infografias-uniforme .gallery-intro::after,
+    .pe-infografias-uniforme .gallery-intro-modern::after{
+      content:"";
+      position:absolute;
+      right:-38px;
+      top:-38px;
+      width:130px;
+      height:130px;
+      border-radius:50%;
+      background:rgba(242,183,5,.10);
+      pointer-events:none;
+    }
+
+    .pe-infografias-uniforme .gallery-intro h2,
+    .pe-infografias-uniforme .gallery-intro-modern h2{
+      position:relative;
+      z-index:1;
+      margin:0 0 .55rem;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.35rem,2.2vw,1.8rem);
+      font-weight:900;
+      letter-spacing:-.02em;
+    }
+
+    .pe-infografias-uniforme .gallery-intro p,
+    .pe-infografias-uniforme .gallery-intro-modern p{
+      position:relative;
+      z-index:1;
+      margin:0;
+      color:#45635a;
+      font-size:1rem;
+      line-height:1.7;
+    }
+
+    .pe-infografias-uniforme .gallery-intro p + p{margin-top:.65rem}
+
+    .pe-infografias-uniforme .infografia-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:22px;
+      align-items:stretch;
+    }
+
+    .pe-infografias-uniforme .infografia-card,
+    .pe-infografias-uniforme .infografia-card-modern{
+      display:flex;
+      flex-direction:column;
+      min-width:0;
+      overflow:hidden;
+      height:100%;
+      background:#fff;
+      border:1px solid #d7e8e0;
+      border-radius:18px;
+      box-shadow:0 10px 28px rgba(0,82,57,.08);
+      transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .pe-infografias-uniforme .infografia-card:hover,
+    .pe-infografias-uniforme .infografia-card-modern:hover{
+      transform:translateY(-3px);
+      border-color:#afd4c3;
+      box-shadow:0 16px 34px rgba(0,82,57,.12);
+    }
+
+    .pe-infografias-uniforme .infografia-card.destacada{
+      grid-column:1 / -1;
+      border-top:5px solid var(--uabc-gold);
+    }
+
+    .pe-infografias-uniforme .infografia-thumb,
+    .pe-infografias-uniforme .infografia-preview img{
+      display:block;
+      width:100%;
+      aspect-ratio:1/1;
+      object-fit:contain;
+      object-position:center;
+      padding:14px;
+      background:linear-gradient(180deg,#f6fbf8 0%,#edf7f2 100%);
+      border:0;
+      border-bottom:1px solid #e0ece6;
+      cursor:zoom-in;
+      transition:transform .18s ease;
+    }
+
+    .pe-infografias-uniforme .infografia-card:hover .infografia-thumb,
+    .pe-infografias-uniforme .infografia-card-modern:hover .infografia-preview img{
+      transform:scale(1.012);
+    }
+
+    .pe-infografias-uniforme .infografia-info,
+    .pe-infografias-uniforme .infografia-copy{
+      display:flex;
+      flex-direction:column;
+      flex:1 1 auto;
+      gap:.8rem;
+      padding:22px 24px 24px;
+    }
+
+    .pe-infografias-uniforme .infografia-info h3,
+    .pe-infografias-uniforme .infografia-copy h3{
+      margin:0;
+      color:var(--uabc-green-deep);
+      font-size:clamp(1.08rem,1.55vw,1.32rem);
+      font-weight:900;
+      line-height:1.3;
+      letter-spacing:-.01em;
+    }
+
+    .pe-infografias-uniforme .infografia-info p,
+    .pe-infografias-uniforme .infografia-copy p{
+      margin:0;
+      color:var(--text-muted);
+      font-size:.98rem;
+      line-height:1.68;
+    }
+
+    .pe-infografias-uniforme .ver-btn,
+    .pe-infografias-uniforme .ver-btn-modern{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.55rem;
+      width:max-content;
+      min-height:44px;
+      margin-top:auto;
+      padding:.76rem 1.05rem;
+      border:1px solid var(--uabc-green);
+      border-radius:12px;
+      background:linear-gradient(180deg,#087454 0%,#006847 100%);
+      color:#fff;
+      font-weight:850;
+      font-size:.95rem;
+      line-height:1;
+      cursor:pointer;
+      box-shadow:0 5px 14px rgba(0,104,71,.18);
+      transition:background .16s ease, transform .16s ease, box-shadow .16s ease;
+    }
+
+    .pe-infografias-uniforme .ver-btn:hover,
+    .pe-infografias-uniforme .ver-btn:focus-visible,
+    .pe-infografias-uniforme .ver-btn-modern:hover,
+    .pe-infografias-uniforme .ver-btn-modern:focus-visible{
+      background:var(--uabc-green-dark);
+      border-color:var(--uabc-green-dark);
+      transform:translateY(-1px);
+      box-shadow:0 8px 18px rgba(0,104,71,.24);
+      outline:none;
+    }
+
+    .pe-infografias-uniforme .summary{
+      margin-top:26px;
+      padding:18px 20px;
+      border:1px solid #d3e7de;
+      border-left:5px solid var(--uabc-gold);
+      border-radius:16px;
+      background:#f7fcf9;
+      box-shadow:0 5px 16px rgba(0,82,57,.04);
+    }
+
+    .pe-infografias-uniforme .page-navigation{
+      margin:26px 0 4px;
+      padding:.85rem .95rem;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      background:#f1faf6;
+      border:1px solid var(--uabc-border);
+      border-radius:14px;
+      box-shadow:0 5px 16px rgba(0,70,45,.06);
+    }
+
+    .pe-infografias-uniforme .page-nav-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:.5rem;
+      width:max-content;
+      min-height:42px;
+      padding:.68rem .95rem;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:800;
+      transition:transform .16s ease, box-shadow .16s ease;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.previous,
+    .pe-infografias-uniforme .page-nav-btn.next{
+      background:var(--uabc-green);
+      color:#fff;
+      box-shadow:0 4px 12px rgba(0,104,71,.14);
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.previous{justify-self:start}
+    .pe-infografias-uniforme .page-nav-btn.next{justify-self:end}
+
+    .pe-infografias-uniforme .page-nav-btn.home{
+      justify-self:center;
+      background:#fff;
+      color:var(--uabc-green);
+      border:1px solid #b9dccd;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn.disabled{
+      visibility:hidden;
+      pointer-events:none;
+    }
+
+    .pe-infografias-uniforme .page-nav-btn:hover{transform:translateY(-1px)}
+
+    .pe-infografias-uniforme .infografia-grid-bootstrap > [class*="col-"]{display:flex}
+    .pe-infografias-uniforme .infografia-grid-bootstrap .infografia-card{width:100%}
+
+    @media (max-width:767.98px){
+      .pe-infografias-uniforme .page-content-card.content,
+      .pe-infografias-uniforme .gallery-panel{padding:14px}
+      .pe-infografias-uniforme .infografia-grid{grid-template-columns:1fr;gap:18px}
+      .pe-infografias-uniforme .infografia-card.destacada{grid-column:auto}
+      .pe-infografias-uniforme .infografia-thumb,
+      .pe-infografias-uniforme .infografia-preview img{padding:10px}
+      .pe-infografias-uniforme .infografia-info,
+      .pe-infografias-uniforme .infografia-copy{padding:18px 18px 19px;gap:.72rem}
+      .pe-infografias-uniforme .ver-btn,
+      .pe-infografias-uniforme .ver-btn-modern{width:100%;min-height:46px}
+    }
+
+    @media (max-width:575.98px){
+      .pe-infografias-uniforme .gallery-intro,
+      .pe-infografias-uniforme .gallery-intro-modern{padding:17px;border-radius:14px}
+      .pe-infografias-uniforme .infografia-card,
+      .pe-infografias-uniforme .infografia-card-modern{border-radius:15px}
+      .pe-infografias-uniforme .page-navigation{grid-template-columns:1fr 1fr;gap:.7rem}
+      .pe-infografias-uniforme .page-nav-btn{width:100%}
+      .pe-infografias-uniforme .page-nav-btn.home{grid-column:1/-1;grid-row:1}
+      .pe-infografias-uniforme .page-nav-btn.previous{grid-column:1;grid-row:2}
+      .pe-infografias-uniforme .page-nav-btn.next{grid-column:2;grid-row:2}
+    }
+  </style>
+
 </head>
 
-<body class="pe-home pe-course-page page-infografias-pilas page-infografias-colas">
+<body class="pe-home pe-course-page page-infografias-pilas page-infografias-colas page-infografias-funciones pe-uniform-page pe-infografias-uniforme">
 
   <div id="site-header"></div>
 
@@ -59,96 +677,96 @@
 
   <article class="infografia-card destacada">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_funciones.png"
+         src="../images/infografias/miniaturas/mini_infografia_funciones.webp"
          alt="Infografía general de funciones en C"
-         loading="lazy"
+         loading="lazy" decoding="async"
          tabindex="0"
          data-infografia
-         data-src="../images/infografias/infografia_funciones.png"
+         data-src="../images/infografias/miniaturas/mini_infografia_funciones.webp"
          data-title="Funciones en C · Conceptos fundamentales">
     <div class="infografia-info">
       <h3>1 · Funciones en C · Conceptos fundamentales</h3>
       <p>Qué son las funciones, para qué sirven, tipos, prototipo, desarrollo, llamada, argumentos, parámetros, variables locales y globales, ventajas, errores comunes y buenas prácticas.</p>
       <button class="ver-btn" type="button"
               data-infografia
-              data-src="../images/infografias/infografia_funciones.png"
-              data-title="Funciones en C · Conceptos fundamentales">🔍 Ver y ampliar</button>
+              data-src="../images/infografias/miniaturas/mini_infografia_funciones.webp"
+              data-title="Funciones en C · Conceptos fundamentales"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_funciones_desechables_reutilziables.png"
+         src="../images/infografias/miniaturas/mini_infografia_funciones_desechables_reutilziables.webp"
          alt="Infografía de funciones reutilizables y desechables"
-         loading="lazy"
+         loading="lazy" decoding="async"
          tabindex="0"
          data-infografia
-         data-src="../images/infografias/infografia_funciones_desechables_reutilziables.png"
+         data-src="../images/infografias/miniaturas/mini_infografia_funciones_desechables_reutilziables.webp"
          data-title="Funciones reutilizables vs funciones desechables">
     <div class="infografia-info">
       <h3>2 · Funciones reutilizables vs desechables</h3>
       <p>Cómo diseñar y planificar funciones, cuándo conviene reutilizar, señales de una función reutilizable, cuándo una función es local o desechable y cómo reducir dependencias.</p>
       <button class="ver-btn" type="button"
               data-infografia
-              data-src="../images/infografias/infografia_funciones_desechables_reutilziables.png"
-              data-title="Funciones reutilizables vs funciones desechables">🔍 Ver y ampliar</button>
+              data-src="../images/infografias/miniaturas/mini_infografia_funciones_desechables_reutilziables.webp"
+              data-title="Funciones reutilizables vs funciones desechables"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_funciones_valor_retorno.png"
+         src="../images/infografias/miniaturas/mini_infografia_funciones_valor_retorno.webp"
          alt="Infografía de funciones con retorno en C"
-         loading="lazy"
+         loading="lazy" decoding="async"
          tabindex="0"
          data-infografia
-         data-src="../images/infografias/infografia_funciones_valor_retorno.png"
+         data-src="../images/infografias/miniaturas/mini_infografia_funciones_valor_retorno.webp"
          data-title="Funciones con retorno en C">
     <div class="infografia-info">
       <h3>3 · Funciones con retorno en C</h3>
       <p>Funciones que procesan datos y devuelven un resultado mediante <code>return</code>. Incluye prototipo, desarrollo, llamadas, tipos de retorno, argumentos, parámetros y ejemplos.</p>
       <button class="ver-btn" type="button"
               data-infografia
-              data-src="../images/infografias/infografia_funciones_valor_retorno.png"
-              data-title="Funciones con retorno en C">🔍 Ver y ampliar</button>
+              data-src="../images/infografias/miniaturas/mini_infografia_funciones_valor_retorno.webp"
+              data-title="Funciones con retorno en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_funciones_void.png"
+         src="../images/infografias/miniaturas/mini_infografia_funciones_void.webp"
          alt="Infografía de funciones void en C"
-         loading="lazy"
+         loading="lazy" decoding="async"
          tabindex="0"
          data-infografia
-         data-src="../images/infografias/infografia_funciones_void.png"
+         data-src="../images/infografias/miniaturas/mini_infografia_funciones_void.webp"
          data-title="Funciones void en C">
     <div class="infografia-info">
       <h3>4 · Funciones void en C</h3>
       <p>Funciones que ejecutan acciones sin devolver un valor. Explica sintaxis, llamadas, usos con y sin parámetros, ventajas, desventajas, analogías y errores comunes.</p>
       <button class="ver-btn" type="button"
               data-infografia
-              data-src="../images/infografias/infografia_funciones_void.png"
-              data-title="Funciones void en C">🔍 Ver y ampliar</button>
+              data-src="../images/infografias/miniaturas/mini_infografia_funciones_void.webp"
+              data-title="Funciones void en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
   <article class="infografia-card">
     <img class="infografia-thumb"
-         src="../images/infografias/infografia_parametros.png"
+         src="../images/infografias/miniaturas/mini_infografia_parametros.webp"
          alt="Infografía de funciones con parámetros en C"
-         loading="lazy"
+         loading="lazy" decoding="async"
          tabindex="0"
          data-infografia
-         data-src="../images/infografias/infografia_parametros.png"
+         data-src="../images/infografias/miniaturas/mini_infografia_parametros.webp"
          data-title="Funciones con parámetros en C">
     <div class="infografia-info">
       <h3>5 · Funciones con parámetros en C</h3>
       <p>Parámetros por valor, variables como argumentos, cadenas, arreglos y punteros como parámetros, además de la diferencia entre parámetros y argumentos.</p>
       <button class="ver-btn" type="button"
               data-infografia
-              data-src="../images/infografias/infografia_parametros.png"
-              data-title="Funciones con parámetros en C">🔍 Ver y ampliar</button>
+              data-src="../images/infografias/miniaturas/mini_infografia_parametros.webp"
+              data-title="Funciones con parámetros en C"><i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía</button>
     </div>
   </article>
 
@@ -161,6 +779,13 @@
   </div>
 </div>
     </div>
+
+      <nav class="page-navigation" aria-label="Navegación entre páginas de infografías">
+        <a class="page-nav-btn previous" href="infografias_ciclos.html"><i class="bi bi-arrow-left"></i><span>Anterior</span></a>
+        <a class="page-nav-btn home" href="../index.html"><i class="bi bi-house-door-fill"></i><span>Inicio</span></a>
+        <a class="page-nav-btn next" href="infografias_arreglos.html"><span>Siguiente</span><i class="bi bi-arrow-right"></i></a>
+      </nav>
+
   </main>
 
   <div id="site-footer"></div>

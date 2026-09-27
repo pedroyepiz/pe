@@ -17,9 +17,83 @@
 
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+
+  <style>
+    /* =========================================================
+       UNIFORMIDAD HTML · PROFE YEPIZ
+       Se conserva exactamente el contenido original.
+       ========================================================= */
+
+    .page-profe-yepiz.pe-uniform-page{
+      background:
+        linear-gradient(180deg,#f3faf7 0%,#ffffff 34%,#f6fbf8 100%);
+    }
+
+    .page-profe-yepiz.pe-uniform-page .page-content-shell{
+      padding-top:clamp(18px,3vw,34px) !important;
+      padding-bottom:clamp(22px,4vw,42px) !important;
+    }
+
+    .page-profe-yepiz.pe-uniform-page .page-content-card{
+      padding:clamp(10px,1.8vw,18px) !important;
+      background:#ffffff;
+      border:1px solid #cfe6dc;
+      border-radius:18px;
+      box-shadow:0 10px 28px rgba(0,80,56,.08);
+      overflow:hidden;
+    }
+
+    .page-profe-yepiz.pe-uniform-page figure{
+      margin:0;
+    }
+
+    .page-profe-yepiz.pe-uniform-page figure img{
+      display:block;
+      width:100%;
+      height:auto;
+      margin:0 auto;
+      border-radius:14px !important;
+      border:1px solid rgba(0,104,71,.10);
+      box-shadow:0 6px 18px rgba(0,70,48,.08) !important;
+    }
+
+    /* Mejora móvil sin alterar la imagen ni su contenido */
+    @media (max-width:767.98px){
+      .page-profe-yepiz.pe-uniform-page .page-content-shell{
+        padding-left:10px;
+        padding-right:10px;
+      }
+
+      .page-profe-yepiz.pe-uniform-page .page-content-card{
+        padding:7px !important;
+        border-radius:14px;
+      }
+
+      .page-profe-yepiz.pe-uniform-page figure{
+        overflow:auto;
+        -webkit-overflow-scrolling:touch;
+        border-radius:10px;
+      }
+
+      .page-profe-yepiz.pe-uniform-page figure img{
+        width:auto;
+        max-width:none;
+        min-width:760px;
+        height:auto;
+        border-radius:10px !important;
+      }
+    }
+
+    @media (max-width:420px){
+      .page-profe-yepiz.pe-uniform-page figure img{
+        min-width:700px;
+      }
+    }
+  </style>
+
 </head>
 
-<body class="pe-home pe-course-page page-profe-yepiz">
+<body class="pe-home pe-course-page page-profe-yepiz pe-uniform-page">
 
   <!-- ENCABEZADO MAESTRO -->
   <div id="site-header"></div>

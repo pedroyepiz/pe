@@ -13,6 +13,7 @@
   <!-- CSS MAESTRO DEL SITIO -->
   <link rel="stylesheet" href="../styles/styles.css">
   <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/tema_codigo_ide_general.css">
 
   <style>
     .curp-chain{
@@ -179,6 +180,367 @@
       .page-nav-btn.next{grid-column:2;grid-row:2}
     }
   </style>
+
+  <style>
+    /* Ajustes de uniformidad con el Prompt Maestro */
+    .page-tema-curp .page-content-card.content{
+      padding:clamp(24px,3vw,44px);
+    }
+
+    .page-tema-curp .note{
+      margin-bottom:18px;
+    }
+
+    .page-tema-curp .topic-nav{
+      margin-bottom:22px;
+    }
+
+    .page-tema-curp .hero-grid{
+      margin-bottom:24px;
+    }
+
+    .page-tema-curp .lesson-section{
+      margin-top:28px;
+    }
+
+    .page-tema-curp .section{
+      margin-bottom:14px;
+    }
+
+    .page-tema-curp .cards4,
+    .page-tema-curp .cards3{
+      gap:16px;
+    }
+
+    .page-tema-curp .cardx{
+      height:100%;
+    }
+
+    .page-tema-curp .table-wrap{
+      margin:18px 0;
+      overflow-x:auto;
+    }
+
+    .page-tema-curp .data-table{
+      width:100%;
+      min-width:680px;
+    }
+
+    .page-tema-curp .page-navigation{
+      margin:1.5rem 0 2rem;
+      padding:.7rem .85rem;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      background:#f1faf6;
+      border:1px solid #cfe6dc;
+      border-radius:12px;
+      box-shadow:0 4px 14px rgba(0,70,45,.06);
+    }
+
+    .page-tema-curp .page-nav-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:.45rem;
+      width:max-content;
+      text-decoration:none;
+      border-radius:9px;
+      padding:.62rem .9rem;
+      font-weight:800;
+    }
+
+    .page-tema-curp .page-nav-btn.previous,
+    .page-tema-curp .page-nav-btn.next{
+      background:#006847;
+      color:#fff;
+    }
+
+    .page-tema-curp .page-nav-btn.previous{justify-self:start}
+    .page-tema-curp .page-nav-btn.next{justify-self:end}
+
+    .page-tema-curp .page-nav-btn.home{
+      justify-self:center;
+      background:#fff;
+      color:#006847;
+      border:1px solid #b9dccd;
+    }
+
+    @media (max-width:575.98px){
+      .page-tema-curp .page-navigation{
+        grid-template-columns:1fr 1fr;
+      }
+      .page-tema-curp .page-nav-btn.home{
+        grid-column:1 / -1;
+        grid-row:1;
+      }
+      .page-tema-curp .page-nav-btn.previous{
+        grid-column:1;
+        grid-row:2;
+      }
+      .page-tema-curp .page-nav-btn.next{
+        grid-column:2;
+        grid-row:2;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* Franja institucional para cada apartado */
+    .page-tema-curp .section{
+      display:block;
+      width:100%;
+      margin:0 0 14px;
+      padding:10px 16px;
+      background:linear-gradient(90deg,#00583f 0%, #006847 100%);
+      color:#ffffff;
+      border-radius:8px;
+      border-left:5px solid #f2b705;
+      box-shadow:0 4px 12px rgba(0,75,52,.12);
+      font-weight:800;
+      letter-spacing:.01em;
+      line-height:1.25;
+      text-transform:none;
+    }
+
+    .page-tema-curp .lesson-section{
+      margin-top:30px;
+    }
+
+    @media (max-width:575.98px){
+      .page-tema-curp .section{
+        padding:9px 12px;
+        font-size:.98rem;
+        border-radius:7px;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* MENÚ INTERNO · CHIPS COMO EL RESTO DEL SITIO */
+    .page-tema-curp .topic-nav{
+      display:flex;
+      flex-wrap:wrap;
+      gap:.55rem;
+      align-items:center;
+      margin:0 0 24px;
+      padding:10px 12px;
+      background:#f7fcf9;
+      border:1px solid #cfe6dc;
+      border-radius:12px;
+      box-shadow:0 3px 12px rgba(0,70,45,.05);
+    }
+
+    .page-tema-curp .topic-nav a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:34px;
+      padding:.48rem .8rem;
+      border:1px solid #c9ded5;
+      border-radius:999px;
+      background:#ffffff;
+      color:#005b40;
+      text-decoration:none;
+      font-weight:800;
+      font-size:.9rem;
+      line-height:1;
+      box-shadow:0 2px 7px rgba(0,70,45,.06);
+      transition:transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+    }
+
+    .page-tema-curp .topic-nav a:hover,
+    .page-tema-curp .topic-nav a:focus{
+      background:#006847;
+      color:#ffffff;
+      border-color:#006847;
+      transform:translateY(-1px);
+      outline:none;
+    }
+
+    /* TARJETAS DE EXCEPCIONES: iconos bien alineados, sin huecos gigantes */
+    .page-tema-curp .cards4{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .page-tema-curp .cardx{
+      display:flex;
+      flex-direction:column;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:.35rem;
+      padding:18px;
+      min-height:0;
+    }
+
+    .page-tema-curp .cardx .icon{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:48px;
+      height:48px;
+      margin:0 0 .45rem 0;
+      border-radius:12px;
+      background:#eef8f3;
+      border:1px solid #d5e9df;
+      font-size:1.7rem;
+      line-height:1;
+      flex:0 0 auto;
+    }
+
+    .page-tema-curp .cardx h3,
+    .page-tema-curp .cardx h4{
+      margin:.1rem 0 .25rem;
+      line-height:1.2;
+    }
+
+    .page-tema-curp .cardx p{
+      margin:0;
+      line-height:1.55;
+    }
+
+    /* CUESTIONARIO INTERACTIVO */
+    .page-tema-curp .quiz-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:16px;
+    }
+
+    .page-tema-curp .quiz-q{
+      background:#ffffff;
+      border:1px solid #d8e8e1;
+      border-radius:14px;
+      padding:18px;
+      box-shadow:0 4px 14px rgba(0,70,45,.05);
+    }
+
+    .page-tema-curp .quiz-q h3{
+      margin-top:0;
+      color:#0b5139;
+      font-size:1.05rem;
+      font-weight:800;
+    }
+
+    .page-tema-curp .quiz-options{
+      display:grid;
+      gap:.55rem;
+      margin-top:.8rem;
+    }
+
+    .page-tema-curp .quiz-option-btn{
+      width:100%;
+      text-align:left;
+      border:1px solid #cfe1d8;
+      border-radius:10px;
+      background:#ffffff;
+      color:#173f34;
+      padding:.72rem .85rem;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+    }
+
+    .page-tema-curp .quiz-option-btn:hover{
+      border-color:#78b49c;
+      background:#f5fbf8;
+    }
+
+    .page-tema-curp .quiz-option-btn.is-correct{
+      background:#e8f7ee;
+      border-color:#2f9b64;
+      color:#0d633e;
+    }
+
+    .page-tema-curp .quiz-option-btn.is-wrong{
+      background:#fff0f0;
+      border-color:#d76b6b;
+      color:#9c2d2d;
+    }
+
+    .page-tema-curp .quiz-feedback{
+      display:none;
+      margin-top:.8rem;
+      padding:.7rem .85rem;
+      border-radius:10px;
+      font-weight:800;
+    }
+
+    .page-tema-curp .quiz-feedback.show{
+      display:block;
+    }
+
+    .page-tema-curp .quiz-feedback.correct{
+      background:#e8f7ee;
+      color:#0d633e;
+      border:1px solid #bfe1cc;
+    }
+
+    .page-tema-curp .quiz-feedback.wrong{
+      background:#fff1f1;
+      color:#9c2d2d;
+      border:1px solid #edc2c2;
+    }
+
+    @media (max-width:991.98px){
+      .page-tema-curp .cards4{
+        grid-template-columns:repeat(2,minmax(0,1fr));
+      }
+    }
+
+    @media (max-width:767.98px){
+      .page-tema-curp .quiz-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width:575.98px){
+      .page-tema-curp .cards4{
+        grid-template-columns:1fr;
+      }
+
+      .page-tema-curp .topic-nav{
+        gap:.45rem;
+        padding:9px;
+      }
+
+      .page-tema-curp .topic-nav a{
+        font-size:.84rem;
+        padding:.44rem .68rem;
+      }
+    }
+  </style>
+
+
+  <style>
+    /* SOLO AJUSTE DE DISTRIBUCIÓN: 3 COLUMNAS */
+    .page-tema-curp .hero-card .cards3,
+    .page-tema-curp .concept-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      align-items:stretch;
+    }
+
+    .page-tema-curp .hero-card .cards3 .cardx,
+    .page-tema-curp .concept-grid .cardx{
+      width:100%;
+      height:100%;
+      margin:0;
+    }
+
+    @media (max-width:767.98px){
+      .page-tema-curp .hero-card .cards3,
+      .page-tema-curp .concept-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+
 </head>
 
 <body class="pe-home pe-course-page page-tema-curp">
@@ -223,7 +585,10 @@
 
     <div class="page-content-card content">
 
+      <div class="note"><b>Propósito:</b> comprender cómo se estructura la CURP, de dónde se obtiene cada grupo de caracteres, qué reglas y excepciones deben considerarse y cómo analizar manualmente su formación antes de automatizar el proceso.</div>
+
       <nav class="topic-nav" aria-label="Contenido del tema CURP">
+        <a href="#introduccion">Introducción</a>
         <a href="#que-es">¿Qué es?</a>
         <a href="#estructura">Estructura</a>
         <a href="#caracteres-1-4">1–4</a>
@@ -237,34 +602,51 @@
         <a href="#cuestionario">Cuestionario</a>
       </nav>
 
-      <section class="topic-intro">
-        <div>
-          <div class="section-kicker">IDEA CENTRAL</div>
-          <h2>La CURP como problema de análisis</h2>
+      <section class="hero-grid" id="introduccion">
+        <article class="hero-card">
+          <h2>🧠 La CURP como problema de análisis</h2>
           <p>
-            La <strong>Clave Única de Registro de Población (CURP)</strong> es una clave alfanumérica de
-            <strong>18 caracteres</strong>. Para estudiar cómo se forma conviene analizarla como una cadena
-            dividida en bloques, donde cada posición tiene un origen y una regla.
+            La <strong>Clave Única de Registro de Población (CURP)</strong> es una clave alfanumérica
+            de <strong>18 caracteres</strong>. Para comprenderla conviene dividirla en bloques y estudiar
+            qué dato origina cada posición.
           </p>
-          <p>
-            Este tema no pretende sustituir la asignación oficial de la CURP. El objetivo académico es
-            comprender <strong>qué información se utiliza, cómo se transforma y qué excepciones deben
-            considerarse</strong> antes de intentar resolver el problema mediante un programa.
-          </p>
-        </div>
 
-        <div class="concept-badge">
-          <i class="bi bi-diagram-3-fill"></i>
-          <strong>18 POSICIONES</strong>
-          <span>Cada carácter tiene una función específica</span>
-        </div>
+          <div class="cards3">
+            <div class="cardx">
+              <div class="icon">🪪</div>
+              <h4>Identificación</h4>
+              <p>Relaciona a una persona con registros y trámites.</p>
+            </div>
+
+            <div class="cardx">
+              <div class="icon">🧩</div>
+              <h4>Estructura</h4>
+              <p>Cada carácter tiene una posición, un origen y una regla.</p>
+            </div>
+
+            <div class="cardx">
+              <div class="icon">🧠</div>
+              <h4>Análisis</h4>
+              <p>Es un buen ejercicio para entender cadenas, fechas y validaciones.</p>
+            </div>
+          </div>
+        </article>
+
+        <aside class="hero-card">
+          <h3>🔢 18 caracteres</h3>
+          <p>
+            La CURP combina información de nombres, apellidos, fecha de nacimiento,
+            sexo, entidad de nacimiento y caracteres de control.
+          </p>
+
+          <div class="note-box">
+            El objetivo académico es <b>entender las reglas</b> antes de pensar en automatizarlas.
+          </div>
+        </aside>
       </section>
 
       <section class="lesson-section" id="que-es">
-        <div class="section-heading">
-          <i class="bi bi-1-circle-fill"></i>
-          <h2>1 · ¿Qué es la CURP y para qué sirve?</h2>
-        </div>
+        <div class="section">1 · ¿QUÉ ES LA CURP Y PARA QUÉ SIRVE?</div>
 
         <p>
           La CURP es un identificador utilizado para distinguir individualmente a una persona dentro de
@@ -272,27 +654,27 @@
           fecha de nacimiento, sexo, lugar de nacimiento y caracteres de control.
         </p>
 
-        <div class="concept-grid">
-          <article class="concept-card">
-            <div class="concept-icon">🪪</div>
+        <div class="cards4">
+          <article class="cardx">
+            <div class="icon">🪪</div>
             <h3>Identificación</h3>
             <p>Permite relacionar a una persona con distintos registros y trámites.</p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🏫</div>
+          <article class="cardx">
+            <div class="icon">🏫</div>
             <h3>Uso cotidiano</h3>
             <p>Se solicita en trámites escolares, laborales, de salud, administrativos y gubernamentales.</p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🧩</div>
+          <article class="cardx">
+            <div class="icon">🧩</div>
             <h3>Estructura definida</h3>
             <p>No es una cadena al azar: cada bloque responde a una regla de formación.</p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🧠</div>
+          <article class="cardx">
+            <div class="icon">🧠</div>
             <h3>Valor didáctico</h3>
             <p>Es un excelente ejercicio para practicar análisis, cadenas, validaciones y reglas especiales.</p>
           </article>
@@ -309,10 +691,7 @@
       </section>
 
       <section class="lesson-section" id="estructura">
-        <div class="section-heading">
-          <i class="bi bi-2-circle-fill"></i>
-          <h2>2 · Estructura general de la CURP</h2>
-        </div>
+        <div class="section">2 · ESTRUCTURA GENERAL DE LA CURP</div>
 
         <p>
           Para comprenderla es útil separar sus 18 posiciones en siete bloques. En el siguiente ejemplo
@@ -386,18 +765,14 @@
       </section>
 
       <section class="lesson-section" id="caracteres-1-4">
-        <div class="section-heading">
-          <i class="bi bi-3-circle-fill"></i>
-          <h2>3 · Caracteres 1 al 4 · Nombre y apellidos</h2>
-        </div>
+        <div class="section">3 · CARACTERES 1 AL 4 · NOMBRE Y APELLIDOS</div>
 
         <p>
           Los primeros cuatro caracteres son especialmente importantes porque dependen de la forma en que
           estén escritos los apellidos y nombres. Aquí aparecen varias de las excepciones más comunes.
         </p>
 
-        <div class="table-responsive">
-          <table class="table topic-table align-middle">
+        <div class="table-wrap"><table class="data-table">
             <thead>
               <tr>
                 <th>Posición</th>
@@ -427,8 +802,7 @@
                 <td>Se toma la inicial del nombre significativo, considerando reglas especiales.</td>
               </tr>
             </tbody>
-          </table>
-        </div>
+</table></div>
 
         <div class="summary mt-4">
           <div class="bulb">📌</div>
@@ -450,10 +824,7 @@
       </section>
 
       <section class="lesson-section" id="caracteres-5-10">
-        <div class="section-heading">
-          <i class="bi bi-4-circle-fill"></i>
-          <h2>4 · Caracteres 5 al 10 · Fecha de nacimiento</h2>
-        </div>
+        <div class="section">4 · CARACTERES 5 AL 10 · FECHA DE NACIMIENTO</div>
 
         <p>
           Este bloque utiliza seis dígitos. Los dos primeros corresponden al año, los dos siguientes al mes
@@ -465,22 +836,22 @@
         </div>
 
         <div class="concept-grid mt-4">
-          <article class="concept-card">
-            <div class="concept-icon">📅</div>
+          <article class="cardx">
+            <div class="icon">📅</div>
             <h3>Año</h3>
             <p>Se usan los dos últimos dígitos.</p>
             <p class="mb-0"><strong>1990 → 90</strong></p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🗓️</div>
+          <article class="cardx">
+            <div class="icon">🗓️</div>
             <h3>Mes</h3>
             <p>Siempre debe ocupar dos posiciones.</p>
             <p class="mb-0"><strong>Junio → 06</strong></p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">📆</div>
+          <article class="cardx">
+            <div class="icon">📆</div>
             <h3>Día</h3>
             <p>También ocupa dos posiciones.</p>
             <p class="mb-0"><strong>Día 5 → 05</strong></p>
@@ -505,15 +876,12 @@
       </section>
 
       <section class="lesson-section" id="caracteres-11-13">
-        <div class="section-heading">
-          <i class="bi bi-5-circle-fill"></i>
-          <h2>5 · Caracteres 11 al 13 · Sexo y entidad de nacimiento</h2>
-        </div>
+        <div class="section">5 · CARACTERES 11 AL 13 · SEXO Y ENTIDAD DE NACIMIENTO</div>
 
         <div class="row g-4">
           <div class="col-lg-5">
-            <article class="concept-card h-100">
-              <div class="concept-icon">👤</div>
+            <article class="cardx h-100">
+              <div class="icon">👤</div>
               <h3>Carácter 11 · Sexo</h3>
               <p>
                 Este carácter representa el sexo registrado en los documentos probatorios.
@@ -527,8 +895,8 @@
           </div>
 
           <div class="col-lg-7">
-            <article class="concept-card h-100">
-              <div class="concept-icon">🗺️</div>
+            <article class="cardx h-100">
+              <div class="icon">🗺️</div>
               <h3>Caracteres 12 y 13 · Entidad federativa</h3>
               <p>
                 Se utiliza un código de dos letras que identifica la entidad de nacimiento.
@@ -547,18 +915,14 @@
       </section>
 
       <section class="lesson-section" id="caracteres-14-16">
-        <div class="section-heading">
-          <i class="bi bi-6-circle-fill"></i>
-          <h2>6 · Caracteres 14 al 16 · Consonantes internas</h2>
-        </div>
+        <div class="section">6 · CARACTERES 14 AL 16 · CONSONANTES INTERNAS</div>
 
         <p>
           En este bloque se buscan consonantes internas. Esto significa que se ignora la letra inicial
           y se avanza dentro de la palabra hasta encontrar la primera consonante útil.
         </p>
 
-        <div class="table-responsive">
-          <table class="table topic-table align-middle">
+        <div class="table-wrap"><table class="data-table">
             <thead>
               <tr>
                 <th>Posición</th>
@@ -583,8 +947,7 @@
                 <td><strong>N</strong></td>
               </tr>
             </tbody>
-          </table>
-        </div>
+</table></div>
 
         <div class="summary mt-4">
           <div class="bulb">🔎</div>
@@ -597,15 +960,12 @@
       </section>
 
       <section class="lesson-section" id="caracteres-17-18">
-        <div class="section-heading">
-          <i class="bi bi-7-circle-fill"></i>
-          <h2>7 · Caracteres 17 y 18 · Diferenciación y verificación</h2>
-        </div>
+        <div class="section">7 · CARACTERES 17 Y 18 · DIFERENCIACIÓN Y VERIFICACIÓN</div>
 
         <div class="row g-4">
           <div class="col-lg-6">
-            <article class="concept-card h-100">
-              <div class="concept-icon">🔀</div>
+            <article class="cardx h-100">
+              <div class="icon">🔀</div>
               <h3>Carácter 17</h3>
               <p>
                 Se utiliza como elemento diferenciador cuando dos personas pudieran compartir los primeros
@@ -618,8 +978,8 @@
           </div>
 
           <div class="col-lg-6">
-            <article class="concept-card h-100">
-              <div class="concept-icon">✓</div>
+            <article class="cardx h-100">
+              <div class="icon">✓</div>
               <h3>Carácter 18</h3>
               <p>
                 Es un dígito verificador. Su propósito es ayudar a comprobar que la clave completa conserve
@@ -634,14 +994,11 @@
       </section>
 
       <section class="lesson-section" id="excepciones">
-        <div class="section-heading">
-          <i class="bi bi-8-circle-fill"></i>
-          <h2>8 · Excepciones y reglas que no deben olvidarse</h2>
-        </div>
+        <div class="section">8 · EXCEPCIONES Y REGLAS QUE NO DEBEN OLVIDARSE</div>
 
-        <div class="concept-grid">
-          <article class="concept-card">
-            <div class="concept-icon">👩</div>
+        <div class="cards4">
+          <article class="cardx">
+            <div class="icon">👩</div>
             <h3>María y José</h3>
             <p>
               Si María o José aparecen junto con otro nombre, normalmente se considera el siguiente
@@ -649,40 +1006,40 @@
             </p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">✖️</div>
+          <article class="cardx">
+            <div class="icon">✖️</div>
             <h3>Sin segundo apellido</h3>
             <p>
               Cuando no existe segundo apellido se utiliza X en la posición que corresponde.
             </p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🔍</div>
+          <article class="cardx">
+            <div class="icon">🔍</div>
             <h3>Sin vocal interna</h3>
             <p>
               Si el apellido no tiene una vocal interna válida, la posición correspondiente se llena con X.
             </p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🔎</div>
+          <article class="cardx">
+            <div class="icon">🔎</div>
             <h3>Sin consonante interna</h3>
             <p>
               Cuando no se encuentra consonante interna útil se utiliza X.
             </p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">🧹</div>
+          <article class="cardx">
+            <div class="icon">🧹</div>
             <h3>Partículas y preposiciones</h3>
             <p>
               Apellidos y nombres compuestos pueden incluir partículas que no deben tratarse como la palabra principal.
             </p>
           </article>
 
-          <article class="concept-card">
-            <div class="concept-icon">⚠️</div>
+          <article class="cardx">
+            <div class="icon">⚠️</div>
             <h3>Palabras inconvenientes</h3>
             <p>
               Si los primeros cuatro caracteres forman una palabra inconveniente, se realiza una sustitución para evitarla.
@@ -692,10 +1049,7 @@
       </section>
 
       <section class="lesson-section" id="proceso">
-        <div class="section-heading">
-          <i class="bi bi-9-circle-fill"></i>
-          <h2>9 · Cómo pensar la generación de una CURP paso a paso</h2>
-        </div>
+        <div class="section">9 · CÓMO PENSAR LA GENERACIÓN DE UNA CURP PASO A PASO</div>
 
         <p>
           Para resolver el problema de manera ordenada, el alumno debe pensar primero en los datos de entrada y
@@ -755,10 +1109,7 @@
       </section>
 
       <section class="lesson-section" id="normativa">
-        <div class="section-heading">
-          <i class="bi bi-file-earmark-pdf-fill"></i>
-          <h2>10 · Consulta del Instructivo Normativo</h2>
-        </div>
+        <div class="section">10 · CONSULTA DEL INSTRUCTIVO NORMATIVO</div>
 
         <p>
           Para revisar reglas formales, casos especiales y criterios de asignación, se recomienda consultar
@@ -784,10 +1135,7 @@
       </section>
 
       <section class="lesson-section" id="cuestionario">
-        <div class="section-heading">
-          <i class="bi bi-patch-question-fill"></i>
-          <h2>11 · Cuestionario de validación</h2>
-        </div>
+        <div class="section">11 · CUESTIONARIO DE VALIDACIÓN</div>
 
         <p>
           La primera parte verifica reglas básicas con palabras y nombres. La segunda obliga a analizar datos personales
@@ -801,46 +1149,61 @@
           <article class="quiz-q">
             <h3>Pregunta 1</h3>
             <p>Para el apellido <strong>Salgado</strong>, ¿cuál es la primera vocal interna?</p>
-            <span class="quiz-option">A) S</span>
-            <span class="quiz-option">B) A</span>
-            <span class="quiz-option">C) O</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: B) A.</strong> La S es la inicial; después aparece A como primera vocal interna.</p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) S</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">B) A</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) O</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. La S es la inicial; la primera vocal interna posterior es A." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
             <h3>Pregunta 2</h3>
             <p>Si una persona se llama <strong>María Fernanda</strong>, ¿qué inicial se considera normalmente como nombre significativo?</p>
-            <span class="quiz-option">A) M</span>
-            <span class="quiz-option">B) F</span>
-            <span class="quiz-option">C) X</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: B) F.</strong> Se aplica la regla especial para María/José cuando existe otro nombre.</p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) M</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">B) F</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) X</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. Se aplica la regla especial para María/José cuando existe otro nombre significativo." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
             <h3>Pregunta 3</h3>
             <p>Si una persona no tiene segundo apellido, ¿qué carácter se utiliza en la posición correspondiente?</p>
-            <span class="quiz-option">A) 0</span>
-            <span class="quiz-option">B) N</span>
-            <span class="quiz-option">C) X</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: C) X.</strong></p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) 0</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">B) N</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">C) X</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. Se utiliza X en la posición correspondiente." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
             <h3>Pregunta 4</h3>
             <p>En <strong>Briseño</strong>, ¿cuál es la primera consonante interna después de la inicial?</p>
-            <span class="quiz-option">A) R</span>
-            <span class="quiz-option">B) I</span>
-            <span class="quiz-option">C) S</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: A) R.</strong> La B es inicial; la primera consonante interna posterior es R.</p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="true">A) R</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">B) I</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) S</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. La B es la inicial; la primera consonante interna posterior es R." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
             <h3>Pregunta 5</h3>
             <p>¿Qué formato representa correctamente la fecha dentro de la CURP?</p>
-            <span class="quiz-option">A) DDMMAA</span>
-            <span class="quiz-option">B) AAMMDD</span>
-            <span class="quiz-option">C) AAAAMMDD</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: B) AAMMDD.</strong></p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) DDMMAA</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">B) AAMMDD</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) AAAAMMDD</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. El formato es AAMMDD." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
         </div>
 
@@ -854,10 +1217,13 @@
               Fecha: 26/06/1956 · Sexo: Mujer · Entidad: DF
             </p>
             <p>¿Cuál de estas opciones representa correctamente los primeros 16 caracteres?</p>
-            <span class="quiz-option">A) SABC560626MDFLRN</span>
-            <span class="quiz-option">B) SACB560626MDFLRN</span>
-            <span class="quiz-option">C) SABC260656MDFLRN</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: A) SABC560626MDFLRN.</strong></p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="true">A) SABC560626MDFLRN</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">B) SACB560626MDFLRN</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) SABC260656MDFLRN</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. SABC | 560626 | M | DF | LRN." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
@@ -867,10 +1233,13 @@
               Fecha: 05/09/1970 · Sexo: Hombre · Entidad: DF
             </p>
             <p>¿Qué bloque de fecha debe ocupar las posiciones 5–10?</p>
-            <span class="quiz-option">A) 700905</span>
-            <span class="quiz-option">B) 050970</span>
-            <span class="quiz-option">C) 197005</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: A) 700905.</strong></p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="true">A) 700905</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">B) 050970</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) 197005</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. 05/09/1970 se representa como 700905." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
@@ -880,10 +1249,13 @@
               Fecha: 12/03/1998 · Sexo: Mujer · Entidad: BC
             </p>
             <p>¿Cuál sería el bloque inicial más razonable aplicando la regla de María/José?</p>
-            <span class="quiz-option">A) LORM</span>
-            <span class="quiz-option">B) LORF</span>
-            <span class="quiz-option">C) LOXM</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: B) LORF.</strong> L de López, O como vocal interna, R de Ruiz y F de Fernanda.</p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) LORM</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">B) LORF</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) LOXM</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. L de López, O como vocal interna, R de Ruiz y F de Fernanda." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
@@ -893,10 +1265,13 @@
               Fecha: 08/11/2002 · Sexo: Mujer · Entidad: BC
             </p>
             <p>¿Qué debe ocurrir con la posición asociada al segundo apellido?</p>
-            <span class="quiz-option">A) Se deja vacía</span>
-            <span class="quiz-option">B) Se utiliza X</span>
-            <span class="quiz-option">C) Se repite la inicial del primer apellido</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: B) Se utiliza X.</strong></p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="false">A) Se deja vacía</button>
+              <button type="button" class="quiz-option-btn" data-correct="true">B) Se utiliza X</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) Se repite la inicial del primer apellido</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. Cuando no existe segundo apellido se utiliza X." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
 
           <article class="quiz-q">
@@ -906,28 +1281,25 @@
               Fecha: 05/01/2001 · Sexo: Hombre · Entidad: NL
             </p>
             <p>¿Cuál de estas secuencias representa correctamente el bloque de fecha y sexo?</p>
-            <span class="quiz-option">A) 010105H</span>
-            <span class="quiz-option">B) 050101H</span>
-            <span class="quiz-option">C) 010501M</span>
-            <details><summary>Validar respuesta</summary><p><strong>Respuesta correcta: A) 010105H.</strong> 2001 → 01, enero → 01, día 05 → 05, sexo Hombre → H.</p></details>
+          
+            <div class="quiz-options">
+              <button type="button" class="quiz-option-btn" data-correct="true">A) 010105H</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">B) 050101H</button>
+              <button type="button" class="quiz-option-btn" data-correct="false">C) 010501M</button>
+            </div>
+            <div class="quiz-feedback" data-correct-message="✓ Correcto. 2001 → 01, enero → 01, día 05 → 05 y Hombre → H." data-wrong-message="✗ Respuesta incorrecta. Revisa la regla y vuelve a intentarlo."></div>
           </article>
         </div>
       </section>
 
-      <div class="summary final-summary">
-        <div class="bulb">🎯</div>
-        <div>
-          <b>EN RESUMEN</b><br>
-          La mejor manera de comprender la CURP es analizarla por bloques. Primero se identifican las letras
-          derivadas de los nombres, después la fecha, el sexo y la entidad de nacimiento, posteriormente las
-          consonantes internas y finalmente los caracteres de control. Si el alumno puede explicar de dónde sale
-          cada bloque sin consultar una guía, está listo para plantear después una solución informática.
-        </div>
-      </div>
+      <div class="note"><b>En resumen:</b> la CURP debe entenderse como una cadena de 18 posiciones con reglas definidas. Primero se analizan nombres y apellidos, después fecha, sexo y entidad de nacimiento, luego consonantes internas y finalmente los caracteres de control. Si el alumno puede explicar el origen de cada bloque, ya comprende el problema que posteriormente podrá automatizar.</div>
+
+      <blockquote>“Antes de programar una solución, primero debemos entender completamente las reglas del problema.”<br><b>— Prof. Pedro Núñez Yepiz</b></blockquote>
+    </div>
 
     </div>
 
-    <nav class="page-navigation" aria-label="Navegación entre páginas">
+    <nav class="page-navigation" aria-label="Navegación entre temas">
       <a class="page-nav-btn previous" href="tema_13_ordenacion_busqueda.html">
         <i class="bi bi-arrow-left"></i>
         Anterior
@@ -951,5 +1323,35 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../scripts/layout.js" defer></script>
   <script src="../scripts/app.js" defer></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.querySelectorAll(".quiz-q").forEach(function (question) {
+        const buttons = question.querySelectorAll(".quiz-option-btn");
+        const feedback = question.querySelector(".quiz-feedback");
+
+        buttons.forEach(function (button) {
+          button.addEventListener("click", function () {
+            buttons.forEach(function (btn) {
+              btn.classList.remove("is-correct", "is-wrong");
+            });
+
+            const correct = button.dataset.correct === "true";
+
+            if (correct) {
+              button.classList.add("is-correct");
+              feedback.textContent = feedback.dataset.correctMessage;
+              feedback.className = "quiz-feedback correct show";
+            } else {
+              button.classList.add("is-wrong");
+              feedback.textContent = feedback.dataset.wrongMessage;
+              feedback.className = "quiz-feedback wrong show";
+            }
+          });
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
