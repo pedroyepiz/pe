@@ -83,13 +83,14 @@
 
     .pe-infografias-uniforme .infografia-grid{
       display:grid;
-      grid-template-columns:1fr;
+      grid-template-columns:repeat(2,minmax(0,1fr));
       gap:22px;
+      align-items:stretch;
     }
 
     .pe-infografias-uniforme .infografia-card{
-      display:grid;
-      grid-template-columns:minmax(300px,.78fr) minmax(0,1.22fr);
+      display:flex;
+      flex-direction:column;
       min-width:0;
       overflow:hidden;
       background:#fff;
@@ -109,15 +110,15 @@
     .pe-infografias-uniforme .infografia-thumb{
       display:block;
       width:100%;
-      height:100%;
-      min-height:100%;
+      height:auto;
+      min-height:0;
       aspect-ratio:1/1;
       object-fit:contain;
       object-position:center;
       padding:14px;
       background:linear-gradient(180deg,#f6fbf8 0%,#edf7f2 100%);
       border:0;
-      border-right:1px solid #e0ece6;
+      border-bottom:1px solid #e0ece6;
       cursor:zoom-in;
       transition:transform .18s ease;
     }
@@ -231,21 +232,9 @@
       border:1px solid #b9dccd;
     }
 
-    @media (max-width:991.98px){
-      .pe-infografias-uniforme .infografia-card{
-        grid-template-columns:1fr;
-      }
-
-      .pe-infografias-uniforme .infografia-thumb{
-        height:auto;
-        min-height:0;
-        border-right:0;
-        border-bottom:1px solid #e0ece6;
-      }
-    }
-
     @media (max-width:767.98px){
       .pe-infografias-uniforme .page-content-card.content{padding:14px}
+      .pe-infografias-uniforme .infografia-grid{grid-template-columns:1fr;gap:18px}
       .pe-infografias-uniforme .infografia-thumb{padding:10px}
       .pe-infografias-uniforme .infografia-info{padding:18px 18px 19px}
       .pe-infografias-uniforme .ver-btn{width:100%;min-height:46px}
@@ -327,10 +316,9 @@
       <section class="gallery-intro">
         <h2>📁 Galería visual · Archivos en C</h2>
         <p>
-          Esta infografía resume qué es un archivo, para qué se utiliza, tipos de archivos,
-          archivos de texto y binarios, funciones principales para lectura y escritura,
-          modos de apertura, ciclo básico de trabajo, buenas prácticas y analogías para
-          comprender la persistencia de información.
+          El Tema 12 se presenta en cuatro infografías complementarias: una vista general,
+          el manejo de archivos y sus funciones principales, los archivos binarios y los
+          archivos de texto. Selecciona cualquier imagen para abrirla en el visor y utilizar zoom.
         </p>
       </section>
 
@@ -338,36 +326,90 @@
 
         <article class="infografia-card destacada">
           <img class="infografia-thumb"
-               src="../images/infografias/miniaturas/mini_archivos_c.webp"
-               alt="Infografía del Tema 12 sobre archivos en C"
-               width="680"
-               height="680"
-               loading="lazy"
-               decoding="async"
-               tabindex="0"
+               src="../images/infografias/miniaturas/mini_infografia_archivos.webp"
+               alt="Infografía general del Tema 12 sobre archivos en C"
+               loading="lazy" decoding="async" tabindex="0"
                data-infografia
-               data-src="../images/infografias/miniaturas/mini_archivos_c.webp"
+               data-src="../images/infografias/infografia_archivos.webp"
                data-title="Archivos en C · Lectura, escritura y organización de información persistente">
-
           <div class="infografia-info">
-            <h3>1 · Archivos en C</h3>
-
+            <h3>1 · Archivos en C · Vista general</h3>
             <p>
-              Panorama general sobre archivos en C: concepto de archivo, persistencia,
-              tipos de archivos, archivos de texto y binarios, funciones como
-              <code>fopen()</code>, <code>fclose()</code>, <code>fprintf()</code>,
-              <code>fscanf()</code>, <code>fputs()</code>, <code>fgets()</code>,
-              <code>fread()</code>, <code>fwrite()</code>, modos de apertura,
-              ciclo básico de trabajo y buenas prácticas.
+              Introducción al concepto de archivo, persistencia de información, archivos de texto
+              y binarios, funciones principales, modos de apertura, ciclo básico de trabajo y buenas prácticas.
             </p>
-
-            <button class="ver-btn"
-                    type="button"
-                    data-infografia
-                    data-src="../images/infografias/miniaturas/mini_archivos_c.webp"
+            <button class="ver-btn" type="button" data-infografia
+                    data-src="../images/infografias/infografia_archivos.webp"
                     data-title="Archivos en C · Lectura, escritura y organización de información persistente">
-              <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i>
-              Ver infografía
+              <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía
+            </button>
+          </div>
+        </article>
+
+        <article class="infografia-card">
+          <img class="infografia-thumb"
+               src="../images/infografias/miniaturas/mini_infografia_archivos_manejo.webp"
+               alt="Infografía sobre manejo de archivos en C y funciones principales"
+               loading="lazy" decoding="async" tabindex="0"
+               data-infografia
+               data-src="../images/infografias/infografia_archivos_manejo.webp"
+               data-title="Manejo de archivos en C · Comandos y funciones principales">
+          <div class="infografia-info">
+            <h3>2 · Manejo de archivos en C</h3>
+            <p>
+              Resume el uso de <code>FILE</code>, <code>fopen()</code>, <code>fclose()</code>, modos de apertura,
+              funciones de texto y binarias, posicionamiento del cursor y buenas prácticas.
+            </p>
+            <button class="ver-btn" type="button" data-infografia
+                    data-src="../images/infografias/infografia_archivos_manejo.webp"
+                    data-title="Manejo de archivos en C · Comandos y funciones principales">
+              <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía
+            </button>
+          </div>
+        </article>
+
+        <article class="infografia-card">
+          <img class="infografia-thumb"
+               src="../images/infografias/miniaturas/mini_infografia_archivos_binarios.webp"
+               alt="Infografía sobre archivos binarios en C"
+               loading="lazy" decoding="async" tabindex="0"
+               data-infografia
+               data-src="../images/infografias/infografia_archivos_binarios.webp"
+               data-title="Archivos binarios en C · Lectura, escritura y acceso directo">
+          <div class="infografia-info">
+            <h3>3 · Archivos binarios en C</h3>
+            <p>
+              Explica modos binarios, <code>fwrite()</code>, <code>fread()</code>, <code>fseek()</code>,
+              constantes <code>SEEK_SET</code>, <code>SEEK_CUR</code> y <code>SEEK_END</code>, además de
+              <code>sizeof</code> y lectura de registros.
+            </p>
+            <button class="ver-btn" type="button" data-infografia
+                    data-src="../images/infografias/infografia_archivos_binarios.webp"
+                    data-title="Archivos binarios en C · Lectura, escritura y acceso directo">
+              <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía
+            </button>
+          </div>
+        </article>
+
+        <article class="infografia-card">
+          <img class="infografia-thumb"
+               src="../images/infografias/miniaturas/mini_infografia_archivos_texto.webp"
+               alt="Infografía sobre archivos de texto en C"
+               loading="lazy" decoding="async" tabindex="0"
+               data-infografia
+               data-src="../images/infografias/infografia_archivos_texto.webp"
+               data-title="Archivos de texto en C · Lectura y escritura de información">
+          <div class="infografia-info">
+            <h3>4 · Archivos de texto en C</h3>
+            <p>
+              Presenta <code>FILE</code>, modos de apertura, <code>fopen()</code>, <code>fclose()</code>,
+              <code>fprintf()</code>, <code>fscanf()</code>, <code>fgetc()</code>, EOF y ejemplos básicos
+              para guardar y generar archivos de texto.
+            </p>
+            <button class="ver-btn" type="button" data-infografia
+                    data-src="../images/infografias/infografia_archivos_texto.webp"
+                    data-title="Archivos de texto en C · Lectura y escritura de información">
+              <i class="bi bi-arrows-fullscreen" aria-hidden="true"></i> Ver infografía
             </button>
           </div>
         </article>
@@ -377,11 +419,11 @@
       <div class="summary">
         <div class="bulb">💡</div>
         <div>
-          <b>RECOMENDACIÓN</b><br>
-          Comienza identificando qué es un archivo y por qué permite conservar información.
-          Después compara archivos de texto y binarios, revisa los modos de apertura y las
-          funciones más utilizadas, y termina relacionando todo con el ciclo:
-          <b>abrir → verificar → leer/escribir → cerrar</b>.
+          <b>RUTA DE ESTUDIO RECOMENDADA</b><br>
+          Revisa primero la vista general de <b>Archivos en C</b>. Continúa con
+          <b>Manejo de archivos</b> para identificar funciones y modos de apertura;
+          después compara <b>Archivos binarios</b> y <b>Archivos de texto</b> para reconocer
+          cuándo conviene usar cada formato.
         </div>
       </div>
 
