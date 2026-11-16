@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#006847">
+  <meta name="description" content="Prueba rápida de 14 preguntas, una por tema de Programación Estructurada. Código en C11, puntuación ponderada y retroalimentación.">
+  <title>Prueba rápida | Programación Estructurada · UABC FIAD</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <link rel="stylesheet" href="../styles/pages/paginas_uniformes.css">
+  <link rel="stylesheet" href="../styles/pages/cuestionario_programacion.css">
+</head>
+<body id="inicio" class="pe-home pe-course-page pe-uniform-page page-cuestionario-pe" data-quiz-mode="prueba">
+  <a class="peq-skip" href="#peq-app">Saltar al cuestionario</a>
+  <div id="site-header"></div>
+  <section class="topic-course-hero">
+    <div class="container-fluid pe-shell">
+      <div class="row g-4 align-items-center peq-hero-grid">
+        <div class="col-xl-7">
+          <div class="topic-number-pill"><span aria-hidden="true">🧪</span> Revisión breve · 1 por tema</div>
+          <div class="course-kicker">PROGRAMACIÓN ESTRUCTURADA</div>
+          <h1 class="course-title">Prueba rápida</h1>
+          <p class="course-subtitle">14 preguntas aleatorias del banco de 215. Analiza el código, sigue la ejecución y elige una respuesta.</p>
+          <div class="hero-line"></div>
+          <p class="peq-hero-note"><span aria-hidden="true">↔</span> Temas mezclados · Cuatro opciones · Retroalimentación al terminar</p>
+        </div>
+        <div class="col-xl-5"><div id="course-info" data-topic="Prueba rápida · Banco de 215 preguntas"></div></div>
+      </div>
+    </div>
+  </section>
+  <main id="peq-app" class="container-fluid pe-shell page-content-shell">
+    <article class="page-content-card content peq-card">
+      <div class="note purpose-box"><strong>Propósito:</strong> aplicar y relacionar lo aprendido en los 14 temas mediante lectura de código, salidas, retornos y detección de errores.</div>
+      <noscript><p class="peq-noscript">Activa JavaScript en tu navegador para seleccionar preguntas, registrar respuestas y calcular tu calificación.</p></noscript>
+      <div id="peq-live" class="peq-sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
+      <section id="peq-intro" aria-labelledby="peq-start-title">
+        <h2 id="peq-start-title" class="peq-section-title">Prueba rápida del banco</h2>
+        <div class="peq-intro-grid">
+          <div>
+            <span class="peq-eyebrow">BANCO DE <span id="peq-bank-count">215</span> PREGUNTAS · C11</span>
+            <h3 id="peq-mode-title" class="peq-intro-title">Una pregunta de cada tema</h3>
+            <p id="peq-mode-intro" class="peq-muted">Seleccionamos preguntas de todos los temas del curso.</p>
+            <div class="peq-stats" aria-label="Composición del intento">
+              <div class="peq-stat"><strong id="peq-count">14</strong><span>preguntas por intento</span></div>
+              <div class="peq-stat"><strong id="peq-hard-count">7</strong><span>preguntas difíciles</span></div>
+              <div class="peq-stat gold"><strong id="peq-max-points">21</strong><span>puntos posibles</span></div>
+            </div>
+            <p id="peq-mix-description" class="peq-muted peq-small">Al menos la mitad de las preguntas son difíciles.</p>
+            <div class="peq-actions">
+              <button id="peq-start" class="peq-button" type="button" disabled>Preparando cuestionario…</button>
+              <a class="peq-button text" href="cuestionario_programacion.html">Cuestionario completo · 65 preguntas</a>
+            </div>
+            <p class="peq-small peq-muted">Puedes repetirlo. Cada intento vuelve a seleccionar y mezclar preguntas y opciones.</p>
+          </div>
+          <aside class="peq-rule-card" aria-labelledby="peq-rules-title">
+            <h3 id="peq-rules-title">Antes de comenzar</h3>
+            <ol class="peq-rule-list">
+              <li>Lee el código y elige <strong>una opción</strong> por pregunta.</li>
+              <li>Responde todas antes de presionar <strong>Comprobar respuestas y calificar</strong>.</li>
+              <li>Al terminar verás tu calificación, las respuestas correctas y la explicación de cada ejercicio.</li>
+            </ol>
+            <div class="peq-weight"><span class="peq-badge">Media · 1 punto</span><span class="peq-badge hard">Difícil · 2 puntos</span></div>
+            <p class="peq-small peq-muted">Calificación sobre 100, calculada con los puntos obtenidos.</p>
+          </aside>
+        </div>
+        <details class="peq-distribution">
+          <summary>Ver cuántas preguntas se toman de cada tema</summary>
+          <div class="peq-table-wrap"><table class="peq-table">
+            <thead><tr><th scope="col">Tema</th><th class="number" scope="col">En el banco</th><th class="number" scope="col">Por intento</th></tr></thead>
+            <tbody id="peq-plan-rows"></tbody>
+            <tfoot><tr><th scope="row">Total</th><td class="number">215</td><td id="peq-plan-total" class="number">14</td></tr></tfoot>
+          </table></div>
+        </details>
+        <details class="peq-extra-rules">
+          <summary class="peq-rules-summary">Criterios para interpretar el código</summary>
+          <ul>
+            <li>Se usa <strong>C11</strong>. Las instrucciones sueltas se consideran dentro de <code>main</code> y las cabeceras necesarias están incluidas, salvo cuando la pregunta revise precisamente esas inclusiones.</li>
+            <li>No supongas tamaños fijos para tipos ni estructuras. Los tipos de ancho fijo indicados están disponibles y la codificación es compatible con ASCII.</li>
+            <li>Respeta los saltos de línea y el orden de la salida. No cuentes el eco de la entrada; se ignoran los espacios finales y el salto final.</li>
+            <li>Salvo que se analice un fallo, las operaciones de archivos sobre datos existentes tienen éxito. Los archivos binarios permiten los desplazamientos indicados y sus posiciones caben en <code>long</code>.</li>
+          </ul>
+        </details>
+      </section>
+      <section id="peq-panel" hidden aria-labelledby="peq-attempt-title">
+        <div class="peq-toolbar">
+          <div><span class="peq-eyebrow">CUESTIONARIO ACTUAL</span><h2 id="peq-attempt-title" tabindex="-1">Intento</h2><p id="peq-attempt-meta" class="peq-muted peq-small"></p></div>
+          <div class="peq-toolbar-actions"><button id="peq-new-attempt" class="peq-button secondary" type="button">↻ Nuevo intento</button></div>
+        </div>
+        <p class="peq-small peq-muted">Nuevo intento selecciona otras preguntas y reinicia las respuestas actuales.</p>
+        <div class="peq-progress-sticky">
+          <div class="peq-progress-text"><span>Respondidas <strong id="peq-progress-label">0 / 14</strong> · <span id="peq-remaining">14 pendientes</span></span><a href="#peq-submit">Ir a calificar ↓</a></div>
+          <div id="peq-progress-track" class="peq-progress-track" role="progressbar" aria-label="Preguntas respondidas" aria-valuemin="0" aria-valuemax="14" aria-valuenow="0"><div id="peq-progress-fill" class="peq-progress-fill"></div></div>
+        </div>
+        <details class="peq-map"><summary>Ir a una pregunta</summary><nav id="peq-map-grid" class="peq-map-grid" aria-label="Índice de preguntas"></nav></details>
+        <form id="peq-form" novalidate>
+          <p id="peq-missing" class="peq-message" role="alert" hidden></p>
+          <div id="peq-questions" class="peq-questions"></div>
+          <div id="peq-submit" class="peq-submit-row"><button id="peq-check" class="peq-button" type="submit">Comprobar respuestas y calificar</button></div>
+        </form>
+        <section id="peq-result" class="peq-result" hidden aria-labelledby="peq-result-title">
+          <div class="peq-result-heading">
+            <div class="peq-score-circle" aria-label="Calificación"><strong id="peq-grade">0</strong><span>/ 100</span></div>
+            <div><span class="peq-eyebrow">CALIFICACIÓN FINAL</span><h2 id="peq-result-title" tabindex="-1">Tu resultado</h2><p id="peq-result-summary"></p></div>
+          </div>
+          <div class="peq-result-stats"><div><strong id="peq-correct-count">0</strong><span>respuestas correctas</span></div><div><strong id="peq-error-count">0</strong><span>respuestas incorrectas</span></div><div><strong id="peq-earned-points">0</strong><span>puntos obtenidos</span></div></div>
+          <p id="peq-formula" class="peq-formula"></p>
+          <h3>Resultado por tema</h3>
+          <div class="peq-table-wrap"><table class="peq-table"><thead><tr><th scope="col">Tema</th><th class="number" scope="col">Aciertos</th><th class="number" scope="col">Puntos</th></tr></thead><tbody id="peq-topic-results"></tbody></table></div>
+          <div class="peq-actions"><button id="peq-repeat-result" class="peq-button" type="button">↻ Repetir con otras preguntas</button><button id="peq-review" class="peq-button secondary" type="button">Revisar respuestas</button></div>
+        </section>
+      </section>
+      <div id="peq-load-error" class="peq-noscript" role="alert" hidden><strong>No se pudo preparar el cuestionario.</strong><p>Vuelve a cargar la página. Si el problema continúa, revisa que hayas copiado todos los archivos de la solución.</p><button id="peq-reload" class="peq-button secondary" type="button">Volver a cargar</button></div>
+    </article>
+    <nav class="peq-footer-nav" aria-label="Inicio y versiones del cuestionario"><a class="back-home peq-button secondary" href="../index.html">⌂ Inicio</a><a class="peq-button secondary" href="cuestionario_programacion.html">Cuestionario completo · 65 preguntas →</a></nav>
+  </main>
+  <div id="site-footer"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script src="../scripts/layout.js" defer></script>
+  <script src="../scripts/app.js" defer></script>
+  <script src="../data/banco_preguntas_pe.js" defer></script>
+  <script src="../scripts/pages/cuestionario_programacion.core.js" defer></script>
+  <script src="../scripts/pages/cuestionario_programacion.js" defer></script>
+</body>
+</html>
