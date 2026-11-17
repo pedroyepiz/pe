@@ -16,7 +16,7 @@
   class RemoteProvider {
     constructor(base){this.remote=true;this.base=base.replace(/\/$/,'');}
     async request(path,body,authenticated=false){
-      const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),25000);
+      const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),45000);
       try{
         const response=await fetch(this.base+path,{method:'POST',headers:{'Content-Type':'application/json',...(authenticated?{Authorization:'Bearer '+this.token}:{})},body:JSON.stringify(body),signal:controller.signal,credentials:'omit'});
         const data=await response.json().catch(()=>({}));
