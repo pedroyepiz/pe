@@ -71,10 +71,11 @@
       $('peq-questions').innerHTML=this.questions.map(q=>this.questionHtml(q)).join('');this.progress();this.message('peq-quiz-error','');this.focus('peq-attempt-title');this.say('La evaluación está lista.');
     }
     questionHtml(q,detail){
-      const e=C.escapeHtml;
-      return '<section class="peq-question" id="card-'+e(q.id)+'" aria-labelledby="title-'+e(q.id)+'"><h3 id="title-'+e(q.id)+'" tabindex="-1">'+inline(q.prompt)+'</h3>'+(q.code?'<pre><code>'+e(q.code)+'</code></pre>':'')+'<div class="peq-options" role="radiogroup" aria-labelledby="title-'+e(q.id)+'">'+q.options.map((o,i)=>{
+      const e=C.escapeHtml,reviewClass=detail?(detail.correct?' is-correct':' is-incorrect'):'';
+      const reviewStatus=detail?'<p class="peq-review-status"><span aria-hidden="true">'+(detail.correct?'✓':'✕')+'</span> '+(detail.correct?'Respuesta correcta':'Respuesta incorrecta')+'</p>':'';
+      return '<section class="peq-question'+reviewClass+'" id="card-'+e(q.id)+'" aria-labelledby="title-'+e(q.id)+'">'+reviewStatus+'<h3 id="title-'+e(q.id)+'" tabindex="-1">'+inline(q.prompt)+'</h3>'+(q.code?'<pre><code>'+e(q.code)+'</code></pre>':'')+'<div class="peq-options" role="radiogroup" aria-labelledby="title-'+e(q.id)+'">'+q.options.map((o,i)=>{
         const selected=this.answers[q.id]===o.id,correct=detail&&detail.correctId===o.id,incorrect=detail&&selected&&!detail.correct;
-        return '<label class="peq-option'+(correct?' correct':'')+(incorrect?' incorrect':'')+'"><input type="radio" name="'+e(q.id)+'" value="'+e(o.id)+'"'+(selected?' checked':'')+(detail?' disabled':'')+'><span class="peq-option-body"><span class="peq-option-letter">'+String.fromCharCode(65+i)+(correct?' · RESPUESTA CORRECTA':incorrect?' · TU RESPUESTA':'')+'</span>'+(o.format==='code'||o.format==='output'?'<pre><code>'+e(o.text)+'</code></pre>':'<p>'+inline(o.text)+'</p>')+'</span></label>';
+        return '<label class="peq-option'+(correct?' correct':'')+(incorrect?' incorrect':'')+'"><input type="radio" name="'+e(q.id)+'" value="'+e(o.id)+'"'+(selected?' checked':'')+(detail?' disabled':'')+'><span class="peq-option-body"><span class="peq-option-letter">'+String.fromCharCode(65+i)+(correct?' · RESPUESTA CORRECTA':incorrect?' · TU RESPUESTA INCORRECTA':'')+'</span>'+(o.format==='code'||o.format==='output'?'<pre><code>'+e(o.text)+'</code></pre>':'<p>'+inline(o.text)+'</p>')+'</span></label>';
       }).join('')+'</div>'+(detail?'<div class="peq-feedback"><p><strong>'+(detail.correct?'Correcto.':'Revisa tu respuesta.')+'</strong> · '+e(detail.topicTitle)+'</p><p>'+inline(detail.explanation)+'</p></div>':'')+'</section>';
     }
     progress(){const percent=Math.round(100*Object.keys(this.answers).length/this.questions.length);$('peq-progress-label').textContent=percent+'%';$('peq-progress-fill').style.width=percent+'%';$('peq-progress-track').setAttribute('aria-valuenow',String(percent));}
