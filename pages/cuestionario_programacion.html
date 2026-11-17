@@ -41,8 +41,8 @@
                 <div class="peq-field"><label for="peq-matricula">Matrícula</label><input id="peq-matricula" name="matricula" inputmode="numeric" autocomplete="off" maxlength="10" required aria-describedby="peq-matricula-error"><p id="peq-matricula-error" class="peq-field-error"></p></div>
                 <div class="peq-field"><label for="peq-group">Grupo</label><input id="peq-group" name="group" autocomplete="off" maxlength="20" required aria-describedby="peq-group-error"><p id="peq-group-error" class="peq-field-error"></p></div>
               </div>
-              <div class="peq-field"><label for="peq-email">Correo electrónico</label><input id="peq-email" name="email" type="email" autocomplete="email" maxlength="254" required aria-describedby="peq-email-error"><p id="peq-email-error" class="peq-field-error"></p></div>
-              <div class="peq-field"><label for="peq-confirm-email">Confirma tu correo</label><input id="peq-confirm-email" name="confirmEmail" type="email" autocomplete="off" maxlength="254" required aria-describedby="peq-confirmEmail-error"><p id="peq-confirmEmail-error" class="peq-field-error"></p></div>
+              <div class="peq-field"><label for="peq-email">Correo institucional UABC</label><input id="peq-email" name="email" type="email" placeholder="usuario@uabc.edu.mx" autocomplete="email" maxlength="254" required aria-describedby="peq-email-hint peq-email-error"><p id="peq-email-hint" class="peq-small peq-muted">Solo se aceptan correos @uabc.edu.mx.</p><p id="peq-email-error" class="peq-field-error"></p></div>
+              <div class="peq-field"><label for="peq-confirm-email">Confirma tu correo institucional</label><input id="peq-confirm-email" name="confirmEmail" type="email" placeholder="usuario@uabc.edu.mx" autocomplete="off" maxlength="254" required aria-describedby="peq-email-hint peq-confirmEmail-error"><p id="peq-confirmEmail-error" class="peq-field-error"></p></div>
               <div class="peq-honeypot" aria-hidden="true"><label for="peq-website">Deja vacío este campo</label><input id="peq-website" name="website" tabindex="-1" autocomplete="off"></div>
               <p class="peq-small peq-muted">Usaremos tus datos para identificar la evaluación y enviarte el resultado cuando lo solicites.</p>
             </div>
@@ -79,7 +79,7 @@
   <script src="../scripts/layout.js" defer></script>
   <script src="../scripts/app.js" defer></script>
   <script src="../scripts/pages/cuestionario_programacion.config.js" defer></script>
-  <script src="../scripts/pages/cuestionario_programacion.core.js" defer></script>
+  <script src="../scripts/pages/cuestionario_programacion.core.js?v=validacion-uabc-2" defer></script>
   <script src="../scripts/pages/cuestionario_programacion.puzzle.js" defer></script>
   <script src="../scripts/pages/cuestionario_programacion.js?v=2columnas-revision-1" defer></script>
 </body>

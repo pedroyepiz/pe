@@ -10,6 +10,8 @@
     if(!/^\d{5,10}$/.test(p.matricula)) errors.matricula='Escribe tu matrícula de 5 a 10 dígitos.';
     if(!/^[A-Z0-9][A-Z0-9 _.-]{0,19}$/.test(p.group)) errors.group='Escribe el grupo como aparece en tu lista.';
     if(p.email.length>254||!/^([^\s@<>]{1,64})@([A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\.)+[A-Za-z]{2,63}$/.test(p.email)) errors.email='Escribe un correo válido.';
+    // PE_CORREO_UABC_V2
+    if(!errors.email&&!p.email.endsWith("@uabc.edu.mx")) errors.email="Utiliza tu correo institucional @uabc.edu.mx.";
     return {profile:p,errors,valid:Object.keys(errors).length===0};
   }
   function validateData(data){
